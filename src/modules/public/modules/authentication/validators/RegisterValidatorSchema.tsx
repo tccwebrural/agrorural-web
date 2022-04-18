@@ -10,6 +10,7 @@ import {
 
 const RegisterValidatorSchema = object({
   email: string().email(EMAIL_INVALID).required(REQUIRED_FIELD),
+  farmName: string().required(REQUIRED_FIELD),
   name: string().required(REQUIRED_FIELD),
   phone: string().required(REQUIRED_FIELD),
   cpf: string().required(REQUIRED_FIELD).matches(CPF_REGEX, CPF_INVALID),

@@ -5,7 +5,8 @@ import CattleFormPage from "./../modules/cattles/pages/CattleForm";
 import HomePage from "./../modules/home/pages/Home";
 import ViewProfilePage from "./../modules/profiles/pages/ViewProfile";
 import ProfileFormPage from "./../modules/profiles/pages/ProfileForm";
-import UpdateCattleStatusModal from "../modules/cattles/components/UpdateCattleStatusModal";
+import UpdateCattleStatusModal from "../modules/cattles/components/UpdateCattleModal";
+import UpdateCattleModal from "../modules/cattles/components/UpdateCattleModal";
 
 export const PRIVATE_ROUTES: Array<Route> = [
   {
@@ -27,12 +28,12 @@ export const PRIVATE_ROUTES: Array<Route> = [
     path: "cattles/form",
     component: CattleFormPage,
   },
-  // {
-  //   key: "update-cattle",
-  //   title: "Editar Gado",
-  //   path: "cattles/form/:id",
-  //   component: UpdateCattleStatusModal,
-  // },
+  {
+    key: "update-cattle",
+    title: "Editar Gado",
+    path: "cattles/form/:id",
+    component: UpdateCattleModal,
+  },
   // {
   //   key: "get-cattle",
   //   title: "Visualizar informações do Gado",
@@ -53,12 +54,12 @@ export const PRIVATE_ROUTES: Array<Route> = [
   //   component: CattleFormPage,
   // },
   // /* ROTAS DO MEU PERFIL ATUAL */
-  // {
-  //   key: "my-profile",
-  //   title: "Meu Perfil",
-  //   path: "profile",
-  //   component: ViewProfilePage,
-  // },
+  {
+    key: "my-profile",
+    title: "Meu Perfil",
+    path: "profile",
+    component: ViewProfilePage,
+  },
   // {
   //   key: "update-my-profile",
   //   title: "Atualizar dados do meu Perfil",

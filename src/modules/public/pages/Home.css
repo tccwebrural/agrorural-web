@@ -1,0 +1,202 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+h1 {
+  color: #33658a;
+  padding: 2% 0%;
+  font-size: 30px;
+}
+
+h2 {
+  color: #33658a;
+  padding: 2% 6%;
+  font-size: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 100%;
+  background-color: #33648a10;
+  position: relative;
+}
+
+main {
+  position: relative;
+}
+
+#btn {
+  border: none;
+  color: black;
+  font-size: 20px;
+  width: 110px;
+  height: 30px;
+  margin: 1% 2%;
+  background-color: #33648a00;
+}
+
+#btn:hover {
+  background-color: #33648a10;
+  border-radius: 10px;
+}
+
+#img-logoPequena {
+  display: flex;
+  justify-content: flex-start;
+}
+#img-logoPequena img {
+  max-width: 100px;
+}
+
+#cabecalho {
+  display: flex;
+}
+
+#cabecalho a {
+  text-decoration: none;
+  color: black;
+}
+
+#credenciais {
+  display: flex;
+}
+
+#credenciais a {
+  text-decoration: none;
+  color: black;
+}
+
+#logo {
+  display: flex;
+  justify-content: center;
+}
+
+#img-logo {
+  max-width: 400px;
+  min-width: 150px;
+  margin: 5%;
+}
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+#agroRural {
+  width: 60%;
+  padding: 2%;
+}
+
+#ideia {
+  width: 60%;
+  position: relative;
+  left: 40%;
+  padding: 2%;
+}
+
+#objetivo {
+  width: 60%;
+  padding: 2%;
+}
+
+#instituicao {
+  max-width: 100%;
+  padding: 2%;
+}
+
+#img-instituicao {
+  display: flex;
+  width: 100%;
+  margin: auto;
+}
+
+#img-instituicao img {
+  width: 500px;
+  margin: 2%;
+}
+
+#orientador {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.conjunto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#sobreNos {
+  padding: 2%;
+}
+
+#sobre-nos {
+  justify-content: space-evenly;
+  display: flex;
+  padding: 2%;
+}
+
+.sobre {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#imgfooter {
+  display: flex;
+  position: relative;
+}
+
+#imgfooter img {
+  width: 100%;
+  position: absolute;
+}
+
+#img-sobre {
+  width: 150px;
+  border-style: groove;
+  border-color: #33658a;
+  border-radius: 50%;
+  margin: 5%;
+}
+
+#imgMeio {
+  position: absolute;
+  top: 600px;
+}
+
+#imgMeio img {
+  width: 100%;
+}
+
+#imgMeio1 {
+  position: absolute;
+  top: 300px;
+  left: 1000px;
+  z-index: -1;
+}
+
+#imgMeio1 img {
+  width: 100%;
+}
+
+#imgMeio2 {
+  position: absolute;
+  top: 400px;
+  left: 50px;
+  z-index: -1;
+}
+
+#imgMeio2 img {
+  width: 100%;
+}
+
+#teste {
+  display: flex;
+  align-items: center;
+  margin: 1%;
+}

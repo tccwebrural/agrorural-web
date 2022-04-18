@@ -15,8 +15,8 @@ import { PRIVATE_ROUTES } from "./routes/PrivateRoutes";
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const auth = useAuth();
 
-  if (!auth.isLoggedIn) {
-    return <Navigate key="redirect-to-home" to="/home" replace />;
+  if (!auth.isLoggedIn && auth.user) {
+    // return <Navigate key="redirect-to-home" to="/home" replace />;
   }
 
   return children;

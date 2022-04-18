@@ -179,7 +179,7 @@ const UserAuthProvider = (): AuthContext => {
 
   useEffect(() => {
     if (userAuth && user && isLoggedIn) {
-      navigate("/private");
+      // navigate("/private");
     }
   }, [userAuth, user]);
 

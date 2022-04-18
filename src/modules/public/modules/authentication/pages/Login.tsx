@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import React, { ReactElement } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +7,10 @@ import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { LoginValidatorSchema } from "../validators/LoginValidatorSchema";
 import "./Login.css";
-
+import footer from "../../../../../assets/footer.png";
+import vaca3 from "../../../../../assets/vaca3.png";
+import vaca4 from "../../../../../assets/vaca4.png";
+import logoPequena from "../../../../../assets/logoPequena.png";
 const LoginPage = (): ReactElement => {
   const authContext = useAuth();
   const navigate = useNavigate();
@@ -25,32 +28,63 @@ const LoginPage = (): ReactElement => {
   });
 
   return (
-    <div className="login">
-      <img src={logoMd} />
-      <form className="login__container" onSubmit={formLoginUser.handleSubmit}>
-        <TextField
-          type="email"
-          label="E-mail"
-          variant="outlined"
-          {...getControls(formLoginUser, "email")}
-        />
-        <TextField
-          type="Password"
-          label="Senha"
-          variant="outlined"
-          {...getControls(formLoginUser, "password")}
-        />
-        <Button className="login__submit" variant="contained" type="submit">
-          Login
-        </Button>
-        <p>
-          <Link to="/reset">Esqueci minha senha</Link>
-        </p>
-        <p>
-          Você ainda não tem conta? <Link to="/sign-up">Registre-se</Link>.
-        </p>
-      </form>
-    </div>
+    <>
+      <div id="imgFooter">
+        <img src={footer} alt="" />
+      </div>
+      <div id="imgVaca1">
+        <img src={vaca4} alt="" />
+      </div>
+      <div id="imgVaca2">
+        <img src={vaca3} alt="" />
+      </div>
+
+      <Container>
+        <section>
+          <div id="logi">
+            <div id="logoPequena">
+              <img src={logoPequena} alt="Erro..." />
+            </div>
+            <form id="form" onSubmit={formLoginUser.handleSubmit}>
+              <Box>
+                <Grid sx={{ margin: "2% 0%" }}>
+                  <TextField
+                    type="email"
+                    label="E-mail"
+                    variant="outlined"
+                    {...getControls(formLoginUser, "email")}
+                  />
+                </Grid>
+                <Grid sx={{ margin: "2% 0%" }}>
+                  <TextField
+                    type="Password"
+                    label="Senha"
+                    variant="outlined"
+                    {...getControls(formLoginUser, "password")}
+                  />
+                </Grid>
+                <Grid sx={{ margin: "2% 0%" }}>
+                  <Button variant="contained" type="submit">
+                    Entrar
+                  </Button>
+                </Grid>
+                <Grid sx={{ margin: "2% 0%", textAlign: "center" }}>
+                  <span>
+                    Você ainda não tem conta?
+                    <Link to="/sign-up">Registre-se</Link>.
+                  </span>
+                </Grid>
+                <Grid sx={{ margin: "2% 0%", textAlign: "center" }}>
+                  <span>
+                    <Link to="/reset">Esqueci minha senha</Link>
+                  </span>
+                </Grid>
+              </Box>
+            </form>
+          </div>
+        </section>
+      </Container>
+    </>
   );
 };
 export default LoginPage;
