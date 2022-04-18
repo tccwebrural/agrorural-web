@@ -1,6 +1,6 @@
 import { Box, Typography, Container } from "@mui/material";
 import React, { ReactElement } from "react";
-import "./Home.css";
+import "../styles/Home.css";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 
 import logoPequena from "../../../assets/logoPequena.png";
