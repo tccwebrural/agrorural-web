@@ -12,8 +12,7 @@ import vaca2 from "../../../../../assets/vaca3.png";
 import vaca3 from "../../../../../assets/vaca3.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 
-import "./Register.css";
-
+import "../../../styles/Register.css";
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
 
