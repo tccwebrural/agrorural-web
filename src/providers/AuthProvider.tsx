@@ -19,29 +19,28 @@ import React, {
   useEffect,
   useState,
 } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { auth, firestore } from "../configs/Firebase";
 import {
   COLLECTION_FARMS,
   COLLECTION_USERS,
   LOCAL_AUTH_PROVIDER,
 } from "../constants";
 import { RegisterUserModel, UserModel } from "../models/UserModel";
-import { auth, firestore } from "../configs/Firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 type AuthContext = {
-  isLoggedIn: boolean;
-  user?: UserModel;
+  userState: UserModel | undefined;
+  getUser: () => Promise<UserModel | undefined>;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (formData: RegisterUserModel) => Promise<void>;
-  logout: () => void;
+  logout: (redirectToHome?: boolean) => void;
   sendPasswordReset: (email: string) => {};
 };
 
 const UserAuthProvider = (): AuthContext => {
   const [userAuth] = useAuthState(auth);
   const [user, setUser] = useState<UserModel>();
-  const [isLoggedIn, setLoggedIn] = useState<boolean>(false);
   const navigate = useNavigate();
 
   /**
@@ -56,7 +55,7 @@ const UserAuthProvider = (): AuthContext => {
       await loadUserDataById(res.user.uid);
     } catch (err) {
       console.error(err);
-      if (isLoggedIn) {
+      if (await isLoggedIn()) {
         logout(false);
       }
     }
@@ -166,26 +165,32 @@ const UserAuthProvider = (): AuthContext => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        setLoggedIn(true);
         loadUserDataById(user.uid);
       } else {
         setUser(undefined);
-        setLoggedIn(false);
       }
     });
     // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    if (userAuth && user && isLoggedIn) {
-      // navigate("/private");
+  const isLoggedIn = async () => {
+    const user = await getUser();
+    return !!user;
+  };
+
+  const getUser = async () => {
+    if (!user && userAuth?.uid) {
+      const uid = userAuth.uid;
+      await loadUserDataById(uid);
     }
-  }, [userAuth, user]);
+
+    return user;
+  };
 
   return {
-    isLoggedIn,
-    user,
+    userState: user,
+    getUser,
     signIn,
     signUp,
     logout,

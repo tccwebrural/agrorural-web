@@ -1,12 +1,15 @@
 import { Route } from "../../../models/RouteModel";
 /* Paginas publicas da aplicação */
 import CattleListPage from "../modules/cattles/pages/CattleList";
-import CattleFormPage from "./../modules/cattles/pages/CattleForm";
+import CattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import HomePage from "./../modules/home/pages/Home";
 import ViewProfilePage from "./../modules/profiles/pages/ViewProfile";
 import ProfileFormPage from "./../modules/profiles/pages/ProfileForm";
 import UpdateCattleStatusModal from "../modules/cattles/components/UpdateCattleModal";
 import UpdateCattleModal from "../modules/cattles/components/UpdateCattleModal";
+import VaccineFormPage from "../modules/cattles/pages/VaccineForm";
+import MyCattle from "../modules/cattles/pages/MyCattle";
+import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 
 export const PRIVATE_ROUTES: Array<Route> = [
   {
@@ -26,13 +29,20 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "add-cattle",
     title: "Cadastrar Gado",
     path: "cattles/form",
-    component: CattleFormPage,
+    component: CreateCattleFormPage,
   },
   {
     key: "update-cattle",
     title: "Editar Gado",
     path: "cattles/form/:id",
     component: UpdateCattleModal,
+  },
+
+  {
+    key: "vacine-form",
+    title: "Cadastrar vacina",
+    path: "cattles/:id/vacine/form",
+    component: VaccineFormPage,
   },
   // {
   //   key: "get-cattle",
@@ -59,6 +69,13 @@ export const PRIVATE_ROUTES: Array<Route> = [
     title: "Meu Perfil",
     path: "profile",
     component: ViewProfilePage,
+  },
+
+  {
+    key: "my-cattle",
+    title: "Meu gado",
+    path: "cattle/view",
+    component: MyCattle,
   },
   // {
   //   key: "update-my-profile",

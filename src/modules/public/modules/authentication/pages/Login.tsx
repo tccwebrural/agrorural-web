@@ -6,7 +6,7 @@ import logoMd from "../../../../../assets/logo-md.svg";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { LoginValidatorSchema } from "../validators/LoginValidatorSchema";
-import "../../../styles/Home.css";
+import "../../../styles/Login.css";
 import footer from "../../../../../assets/footer.png";
 import vaca3 from "../../../../../assets/vaca3.png";
 import vaca4 from "../../../../../assets/vaca4.png";

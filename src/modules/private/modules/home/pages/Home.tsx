@@ -11,8 +11,7 @@ import {
 } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useAuth } from "../../../../../providers/AuthProvider";
-import "../../cattles/styles/Home.css";
-
+import "../../../styles/Home.css";
 function createData(
   periodo: Number,
   bezerros: number,
@@ -36,7 +35,6 @@ const rows = [
 
 const HomePage = (): ReactElement => {
   const authContext = useAuth();
-  console.log(authContext.user);
 
   // return (
   //   <Box

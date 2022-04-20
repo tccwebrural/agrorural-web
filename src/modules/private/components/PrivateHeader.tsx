@@ -1,25 +1,26 @@
-import React, { Fragment, ReactElement } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   Box,
-  Link,
+  Button,
   Container,
   IconButton,
+  Link,
   Menu,
   MenuItem,
   Toolbar,
   Typography,
-  Button,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import React, { Fragment, ReactElement, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { APP_TITLE, ROOT_THEME } from "../../../constants";
-import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
 import { useAuth } from "../../../providers/AuthProvider";
+import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [userEmail, setUserEmail] = React.useState("");
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
@@ -28,6 +29,16 @@ const Header = (props: any): ReactElement => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      const user = await auth.getUser();
+      if (user) {
+        setUserEmail(user.email);
+      }
+    };
+    loadUserData();
+  }, [auth.userState]);
 
   return (
     <>
@@ -85,7 +96,7 @@ const Header = (props: any): ReactElement => {
                     <Link
                       key={page.key}
                       component={NavLink}
-                      to={`private/${page.path}`}
+                      to={page.path}
                       color="black"
                       underline="none"
                       variant="button"
@@ -122,7 +133,7 @@ const Header = (props: any): ReactElement => {
                     <Link
                       key={page.key}
                       component={NavLink}
-                      to={`private/${page.path}`}
+                      to={page.path}
                       color="black"
                       underline="none"
                       variant="button"
@@ -133,22 +144,16 @@ const Header = (props: any): ReactElement => {
                   )
                 )}
               </Box>
-              {auth.user ? (
-                <Fragment>
-                  <Link
-                    key="my-profile"
-                    component={NavLink}
-                    to="private/my-profile"
-                  >
-                    Meu perfil ({auth.user.email})
-                  </Link>
-                  <Button onClick={() => auth.logout()}>Sair</Button>
-                </Fragment>
-              ) : (
-                <Link key="sign-in" component={NavLink} to="/sign-in">
-                  Entrar
+              <Fragment>
+                <Link
+                  key="my-profile"
+                  component={NavLink}
+                  to="private/my-profile"
+                >
+                  Meu perfil ({userEmail})
                 </Link>
-              )}
+                <Button onClick={() => auth.logout()}>Sair</Button>
+              </Fragment>
             </Box>
           </Toolbar>
         </Container>

@@ -14,7 +14,8 @@ import React, { ReactElement } from "react";
 import { string } from "yup/lib/locale";
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import bezerro from "../../../../../assets/bezerro.png";
-import "../styles/UpdateCattleModal.css";
+import "../../../styles/UpdateCattleModal.css";
+import { Link } from "react-router-dom";
 const UpdateCattleModal = (): ReactElement => {
   // return (
   //   <Box
@@ -126,8 +127,8 @@ const UpdateCattleModal = (): ReactElement => {
                     sx={{ margin: 1 }}
                     variant="contained"
                     color="error"
-                    // component={Link}
-                    // to="/animals/list"
+                    component={Link}
+                    to="/private/cattles"
                   >
                     Cancelar
                   </Button>

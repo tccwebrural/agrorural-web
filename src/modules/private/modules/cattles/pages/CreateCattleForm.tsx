@@ -12,19 +12,26 @@ import {
   Paper,
   styled,
 } from "@mui/material";
+
 import { Timestamp } from "firebase/firestore";
 import { FarmModel } from "modules/private/models/FarmModel";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { CattleHelper } from "../helpers/CattleHelper";
 import {
   CattleDethTypes,
+  CattleModel,
   CattleSexs,
   CattleTypes,
 } from "../models/CattleModel";
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import bezerro from "../../../../../assets/bezerro.png";
-import "../styles/CattleForm.css";
+import "../../../styles/CattleForm.css";
+import { getControls } from "../../../../../utils/FormUtils";
 
+import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import { TodayTwoTone } from "@mui/icons-material";
+import { object } from "yup/lib/locale";
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   margin: "auto",
@@ -34,9 +41,34 @@ const Item = styled(Paper)(({ theme }) => ({
   borderTop: 2,
 }));
 
-const CattleFormPage = (): ReactElement => {
+const CreateCattleFormPage = (): ReactElement => {
   const cattlehelpers = CattleHelper();
 
+  const [cattles, setCattle] = useState<CattleModel>();
+
+  const navigate = useNavigate();
+  // DateTime convertedDateTime = DateTime.parse('2022-01-10 00:00:00');
+  // Timestamp convertedDateTimeStamp = Timestamp.fromDate(convertedDateTime)
+
+  const convertedDateTime = Timestamp.now();
+
+  const formCattle = useFormik({
+    initialValues: {
+      id: "",
+      weigth: parseInt(""),
+      name: "",
+      type: CattleTypes,
+      birthday: undefined,
+      sex: CattleSexs.MACHO || CattleSexs.FEMEA,
+      qtyChildren: parseInt(""),
+    },
+    // validationSchema: RegisterValidatorSchema,
+    onSubmit: async (formValue: CattleModel) => {
+      cattlehelpers
+        .createCattle(formValue)
+        .then(() => navigate("/private/cattles"));
+    },
+  });
   const cattle = {
     // id: "",
     birthday: Timestamp.now(),
@@ -93,7 +125,8 @@ const CattleFormPage = (): ReactElement => {
       <div className="MainBlock">
         <div className="Block-Txt-Line">
           <h2 className="Block-Line">
-            <span className="Block-Txt">Minha Criação &gt; Cadastrar Gado</span>
+            {/* <span className="Block-Txt">Minha Criação &gt; Cadastrar Gado</span> */}
+            <span className="Block-Txt">Cadastrar Gado</span>
           </h2>
         </div>
         <Box sx={{ "& .MuiTextField-root": { m: 1, width: "33ch" } }}>
@@ -101,7 +134,11 @@ const CattleFormPage = (): ReactElement => {
             <Item id="AnimalRegister-Form">
               <FormControl sx={{ m: 1, minWidth: 255 }}>
                 <InputLabel htmlFor="grouped-select">Categoria</InputLabel>
-                <Select label="Grouping" name="category">
+                <Select
+                  {...getControls(formCattle, "sex")}
+                  label="Grouping"
+                  // name="category"
+                >
                   <MenuItem value={1}>Vaca</MenuItem>
                   <MenuItem value={2}>Boi</MenuItem>
                   <MenuItem value={3}>Bezerra</MenuItem>
@@ -115,7 +152,8 @@ const CattleFormPage = (): ReactElement => {
                 // disabled
                 label="Identificador"
                 type="number"
-                name="identifier"
+                // name="identifier"
+                {...getControls(formCattle, "id")}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -125,7 +163,7 @@ const CattleFormPage = (): ReactElement => {
               <TextField
                 label="Nome"
                 type="text"
-                name="name"
+                {...getControls(formCattle, "name")}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -138,11 +176,16 @@ const CattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                name="birthday"
+                // name="birthday"
+                {...getControls(formCattle, "birthday")}
               />
               <FormControl sx={{ m: 1, minWidth: 270 }}>
                 <InputLabel htmlFor="type">Tipo</InputLabel>
-                <Select label="Grouping" name="type">
+                <Select
+                  {...getControls(formCattle, "type")}
+                  label="Grouping"
+                  // name="type"
+                >
                   <MenuItem value={1}>Gado de Corte</MenuItem>
                   <MenuItem value={2}>Gado Leitero</MenuItem>
                 </Select>
@@ -150,8 +193,8 @@ const CattleFormPage = (): ReactElement => {
 
               <TextField
                 label="Peso Aproximadamente"
-                name="weight"
                 type="number"
+                {...getControls(formCattle, "weight")}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -175,8 +218,8 @@ const CattleFormPage = (): ReactElement => {
                         sx={{ marginRight: 1 }}
                         variant="contained"
                         color="error"
-                        // component={Link}
-                        // to="/animals/list"
+                        component={Link}
+                        to="/private/cattles"
                       >
                         Cancelar
                       </Button>
@@ -185,6 +228,7 @@ const CattleFormPage = (): ReactElement => {
                         variant="contained"
                         color="success"
                         sx={{ paddingTop: 2.3, paddingBottom: 2.3 }}
+                        type="submit"
                       >
                         Salvar
                       </Button>
@@ -200,4 +244,4 @@ const CattleFormPage = (): ReactElement => {
   );
 };
 
-export default CattleFormPage;
+export default CreateCattleFormPage;

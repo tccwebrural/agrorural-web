@@ -1,5 +1,12 @@
-import React from "react";
-import { Navigate, Route } from "react-router-dom";
+import { auth } from "configs/Firebase";
+import React, { useEffect, useState } from "react";
+import {
+  IndexRouteProps,
+  LayoutRouteProps,
+  Navigate,
+  PathRouteProps,
+  Route,
+} from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
 import PrivateLayout from "./components/PrivateLayout";
 import HomePage from "./modules/home/pages/Home";
@@ -13,13 +20,26 @@ import { PRIVATE_ROUTES } from "./routes/PrivateRoutes";
  * caso contrário um {@link Navigate} para /home quando o usuário não está logado;
  */
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
-  const auth = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState<any>(undefined);
 
-  if (!auth.isLoggedIn && auth.user) {
-    // return <Navigate key="redirect-to-home" to="/home" replace />;
-  }
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
-  return children;
+  return isLoggedIn === null ? (
+    <div>Some kind of loader/spinner here...</div>
+  ) : isLoggedIn === false ? (
+    <Navigate key="redirect-to-home" to="/sign-in" replace />
+  ) : (
+    children
+  );
 };
 
 /**
@@ -44,7 +64,14 @@ const PrivateRoute = () => {
   return (
     <Route path="/private" element={<PrivateLayout />}>
       {getPrivateRoutes()}
-      <Route index element={<HomePage />} />
+      <Route
+        index
+        element={
+          <RequireAuth>
+            <HomePage />
+          </RequireAuth>
+        }
+      />
     </Route>
   );
 };

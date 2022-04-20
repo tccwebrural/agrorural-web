@@ -15,9 +15,9 @@ enum CattleDethTypes {
 
 class CattleModel {
   id?: string;
-  birthday!: Timestamp;
+  birthday?: Timestamp;
   name!: string;
-  qtyChildren!: number;
+  qtyChildren?: number;
   sex!: CattleSexs;
   type!: CattleTypes;
   weigth!: number;

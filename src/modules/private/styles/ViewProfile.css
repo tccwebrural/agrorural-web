@@ -1,0 +1,78 @@
+/* #Block-Profile{
+    width: 1100px;
+    height: 542px;
+    margin:auto;
+    margin-top: 2%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px 2px var(--cor111);
+} */
+#Profile {
+  display: flex;
+  justify-content: center;
+  margin-top: -2%;
+}
+#SmallBlock-Profile {
+  height: 420px;
+  width: 450px;
+  border: none;
+  box-shadow: 0px 1px 5px 0px var(--cor033);
+  border-radius: 8px;
+  padding: 3%;
+  margin-top: 2%;
+  background-color: var(--cor001);
+  position: relative;
+}
+#menuProfile {
+  margin-left: 85%;
+  background-color: var(--transparente);
+  border: none;
+  margin-top: -4%;
+}
+#imgProfile {
+  display: flex;
+  justify-content: center;
+  margin-top: -8%;
+}
+fieldset#img {
+  width: 90px;
+  height: 95px;
+  border-radius: 70px;
+  border: 1px solid var(--cor033);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#imgUser {
+  width: 95px;
+  height: 100px;
+  border-radius: 70px;
+}
+#BlockNameProfile {
+  display: flex;
+  justify-content: center;
+  margin-top: 4%;
+}
+#nameProfile {
+  font-weight: bold;
+  border: none;
+  text-align: center;
+  font-size: 17px;
+  color: var(--cor004);
+}
+#FieldsProfile {
+  margin-top: 10%;
+  height: 200px;
+  line-height: 50px;
+  display: block;
+}
+.labelCamposPerfil {
+  font-weight: bold;
+  color: var(--cor003);
+}
+.txt-FieldsProfile {
+  width: 100%;
+}
+#imgFooter-Profile {
+  margin-top: -15.8%;
+  width: 1100px;
+}

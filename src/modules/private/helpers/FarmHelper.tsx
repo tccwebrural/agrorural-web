@@ -5,14 +5,15 @@ import { FarmModel } from "../models/FarmModel";
 export const FarmHelper = () => {
   const authContext = useAuth();
 
-  const getFarmRef = (): DocumentReference | undefined => {
-    if (authContext.user && authContext.isLoggedIn) {
-      return authContext.user.farmRef;
+  const getFarmRef = async (): Promise<DocumentReference | undefined> => {
+    const user = await authContext.getUser();
+    if (user) {
+      return user.farmRef;
     }
   };
 
   const getFarmValues = async (): Promise<FarmModel | undefined> => {
-    const farmRef = getFarmRef();
+    const farmRef = await getFarmRef();
     if (farmRef) {
       const farmDoc = await getDoc(farmRef);
       return { id: farmDoc.id, ...farmDoc.data() } as FarmModel;
