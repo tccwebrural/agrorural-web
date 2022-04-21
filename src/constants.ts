@@ -29,6 +29,7 @@ export const PASSWORD_MIN_8 = "A senha deve conter no mínimo 8 caracteres";
 export const PASSWORD_IS_NOT_EQUALS = "Ambas as senhas devem ser identicas";
 export const REQUIRED_FIELD = "O campo é obrigatório";
 export const CPF_INVALID = "Digite um cpf válido";
+export const INDENTIFER_INVALID = "Digite um identificador válido";
 
 /* REGEXS */
 export const CPF_REGEX =
