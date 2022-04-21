@@ -15,6 +15,8 @@ import { NavLink } from "react-router-dom";
 import { APP_TITLE, ROOT_THEME } from "../../../constants";
 import { useAuth } from "../../../providers/AuthProvider";
 import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
+import logoPequena from "../../../assets/logoPequena.png";
+import "./PrivateHeader.css";
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();
@@ -42,14 +44,18 @@ const Header = (props: any): ReactElement => {
 
   return (
     <>
-      <Box
-        sx={{
-          width: "100%",
-          height: "auto",
-          backgroundColor: ROOT_THEME.palette.primary.main,
-        }}
-      >
-        <Container maxWidth="xl">
+      <Box id="header">
+        <Container
+          maxWidth="xl"
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+          }}
+        >
+          <div id="logoPequena-header">
+            <img src={logoPequena} alt="Erro..." />
+          </div>
+
           <Toolbar disableGutters>
             {/* MOBILE */}
             <Typography
@@ -60,7 +66,7 @@ const Header = (props: any): ReactElement => {
                 display: { xs: "none", md: "flex" },
               }}
             >
-              {APP_TITLE}
+              {}
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
@@ -150,7 +156,7 @@ const Header = (props: any): ReactElement => {
                   component={NavLink}
                   to="private/my-profile"
                 >
-                  Meu perfil ({userEmail})
+                  Meu perfil {userEmail}
                 </Link>
                 <Button onClick={() => auth.logout()}>Sair</Button>
               </Fragment>

@@ -16,6 +16,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "home",
     title: "Tela inicial",
     path: "home",
+    showHeaderBtn: true,
     component: HomePage,
   },
   /* ROTAS DO CONTROLE DO GADO */
@@ -23,18 +24,21 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "get-cattles",
     title: "Meu Gado",
     path: "cattles",
+    showHeaderBtn: true,
     component: CattleListPage,
   },
   {
     key: "add-cattle",
     title: "Cadastrar Gado",
     path: "cattles/form",
+    showHeaderBtn: true,
     component: CreateCattleFormPage,
   },
   {
     key: "update-cattle",
     title: "Editar Gado",
     path: "cattles/form/:id",
+    showHeaderBtn: true,
     component: UpdateCattleModal,
   },
 
@@ -42,6 +46,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "vacine-form",
     title: "Cadastrar vacina",
     path: "cattles/:id/vacine/form",
+    showHeaderBtn: true,
     component: VaccineFormPage,
   },
   // {
