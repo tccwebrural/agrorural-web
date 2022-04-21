@@ -62,7 +62,7 @@ const CreateCattleFormPage = (): ReactElement => {
     validationSchema: CattleValidatorSchema,
     onSubmit: async (formValue: CattleModel) => {
       // Date.UTC(""),
-      formValue.birthday?.toDate();
+      // formValue.birthday?.toDate();
       cattlehelpers
         .createCattle(formValue)
         .then(() => navigate("/private/cattles"));
