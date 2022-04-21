@@ -47,34 +47,36 @@ const LoginPage = (): ReactElement => {
             </div>
             <form id="form" onSubmit={formLoginUser.handleSubmit}>
               <Box>
-                <Grid sx={{ margin: "2% 0%" }}>
+                <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <TextField
+                    sx={{ width: "300px" }}
                     type="email"
                     label="E-mail"
                     variant="outlined"
                     {...getControls(formLoginUser, "email")}
                   />
                 </Grid>
-                <Grid sx={{ margin: "2% 0%" }}>
+                <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <TextField
+                    sx={{ width: "300px" }}
                     type="Password"
                     label="Senha"
                     variant="outlined"
                     {...getControls(formLoginUser, "password")}
                   />
                 </Grid>
-                <Grid sx={{ margin: "2% 0%" }}>
+                <Grid sx={{ margin: "4% 0%", textAlign: "center" }}>
                   <Button variant="contained" type="submit">
                     Entrar
                   </Button>
                 </Grid>
-                <Grid sx={{ margin: "2% 0%", textAlign: "center" }}>
+                <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <span>
                     Você ainda não tem conta?
                     <Link to="/sign-up">Registre-se</Link>.
                   </span>
                 </Grid>
-                <Grid sx={{ margin: "2% 0%", textAlign: "center" }}>
+                <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <span>
                     <Link to="/reset">Esqueci minha senha</Link>
                   </span>
