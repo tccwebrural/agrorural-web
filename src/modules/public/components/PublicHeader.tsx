@@ -14,7 +14,7 @@ import React, { Fragment, ReactElement, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { APP_TITLE, ROOT_THEME } from "../../../constants";
 import { useAuth } from "../../../providers/AuthProvider";
-import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
+import { PUBLIC_ROUTES } from "../routes/PublicRoutes";
 import logoPequena from "../../../assets/logoPequena.png";
 import "../styles/Header.css";
 
@@ -97,7 +97,7 @@ const Header = (props: any): ReactElement => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
+                {PUBLIC_ROUTES.filter((page) => page.showHeaderBtn).map(
                   (page) => (
                     <Link
                       key={page.key}
@@ -134,7 +134,7 @@ const Header = (props: any): ReactElement => {
                   marginLeft: "1rem",
                 }}
               >
-                {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
+                {PUBLIC_ROUTES.filter((page) => page.showHeaderBtn).map(
                   (page) => (
                     <Link
                       key={page.key}
@@ -150,16 +150,6 @@ const Header = (props: any): ReactElement => {
                   )
                 )}
               </Box>
-              <Fragment>
-                <Link
-                  key="my-profile"
-                  component={NavLink}
-                  to="private/my-profile"
-                >
-                  Meu perfil {userEmail}
-                </Link>
-                <Button onClick={() => auth.logout()}>Sair</Button>
-              </Fragment>
             </Box>
           </Toolbar>
         </Container>
