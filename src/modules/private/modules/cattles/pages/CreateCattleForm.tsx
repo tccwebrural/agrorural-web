@@ -49,25 +49,24 @@ const CreateCattleFormPage = (): ReactElement => {
 
   const formCattle = useFormik({
     initialValues: {
-      identifier: parseInt(""),
-      weigth: parseInt(""),
+      identifier: 0,
+      weigth: 0,
       name: "",
       type: CattleTypes.CORTE,
       birthday: undefined,
-      sex: CattleSexs.MACHO || CattleSexs.FEMEA,
-      qtyChildren: parseInt(""),
+      sex: CattleSexs.MACHO,
+      qtyChildren: 0,
     },
 
     validationSchema: CattleValidatorSchema,
     onSubmit: async (formValue: CattleModel) => {
       // Date.UTC(""),
-      // formValue.birthday?.toDate();
+      formValue.birthday?.toDate();
       cattlehelpers
         .createCattle(formValue)
         .then(() => navigate("/private/cattles"));
     },
   });
-
   console.log(formCattle);
 
   return (
@@ -143,7 +142,7 @@ const CreateCattleFormPage = (): ReactElement => {
                   </Select>
                 </FormControl>
                 <TextField
-                  label="Peso Aproximadamente"
+                  label="Peso Aproximadamente em Kg"
                   type="number"
                   {...getControls(formCattle, "weigth")}
                   InputLabelProps={{
