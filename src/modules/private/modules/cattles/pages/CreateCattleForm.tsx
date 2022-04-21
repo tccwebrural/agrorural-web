@@ -26,6 +26,7 @@ import {
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import bezerro from "../../../../../assets/bezerro.png";
 import "../../../styles/CattleForm.css";
+import "../../../styles/style.css";
 import { getControls } from "../../../../../utils/FormUtils";
 
 import { Link, useNavigate } from "react-router-dom";

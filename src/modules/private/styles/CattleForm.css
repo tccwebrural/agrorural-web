@@ -34,3 +34,40 @@
   align-items: flex-end;
   height: 220px;
 }
+
+#AnimalRegister-Form {
+  margin-top: 0%;
+  width: 1025px;
+  box-shadow: 2px 2px 4px 2px var(--cor111);
+  border-radius: 8px;
+}
+#Block-CowImage-Form {
+  display: flex;
+  justify-content: start;
+  margin-right: 10%;
+  margin-left: -10%;
+}
+#CowImage-Form {
+  width: 350px;
+  height: 220px;
+  position: relative;
+  margin-right: 18%;
+  margin-top: 4%;
+}
+#Block-CalfImage-Form {
+  display: flex;
+  justify-content: end;
+}
+#CalfImage-Form {
+  width: 160px;
+  height: 140px;
+  position: relative;
+  margin-right: -120%;
+  margin-top: 26%;
+}
+#Btns-SaveCancel-Form {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+  height: 220px;
+}
