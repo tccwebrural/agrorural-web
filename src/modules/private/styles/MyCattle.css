@@ -21,14 +21,14 @@
   height: 90px;
 }
 #blocoTituloTxt-criacao {
-  color: var(--cor005);
+  color: black;
   padding: 10px 10px;
   margin-right: 5%;
   width: 25%;
   font-size: 22px;
 }
 #blocoTituloLine-criacao {
-  background-color: var(--cor007);
+  background-color: yellow;
   display: flex;
   height: 3px;
   width: 70%;

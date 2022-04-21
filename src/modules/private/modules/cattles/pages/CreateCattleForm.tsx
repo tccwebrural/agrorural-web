@@ -57,7 +57,7 @@ const CreateCattleFormPage = (): ReactElement => {
       id: "",
       weigth: parseInt(""),
       name: "",
-      type: CattleTypes,
+      type: CattleTypes.CORTE,
       birthday: undefined,
       sex: CattleSexs.MACHO || CattleSexs.FEMEA,
       qtyChildren: parseInt(""),
