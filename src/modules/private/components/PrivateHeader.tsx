@@ -16,7 +16,7 @@ import { APP_TITLE, ROOT_THEME } from "../../../constants";
 import { useAuth } from "../../../providers/AuthProvider";
 import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
 import logoPequena from "../../../assets/logoPequena.png";
-import "./PrivateHeader.css";
+import "../styles/PrivateHeader.css";
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();
