@@ -139,12 +139,44 @@ const CattleListPage = (): ReactElement => {
     cattlehelpers.getAllCattles().then((animals) => setAnimals(animals));
   }, []);
 
-  // const getAnimalAge = (animals: CattleModel) => {
-  //   const animalAge = animals.birthday;
-  //   const actualDay = Timestamp.now();
+  //
+  // useEffect(() => {
+  //   cattlehelpers.getAllCattles().then((animals: CattleModel[]) => {
+  //     const animalDate = [];
+  //     for (let i = 0; i < animals.length; i++) {
+  //       const animal = animals.at(i);
 
-  //   const getActualAnimalAge = animalAge - actualDay;
-  // };
+  //       // if (animal?.birthday) {
+  //       //   return (
+  //       //     animal.birthday.toDate().getTime() -
+  //       //     Timestamp.now().toDate().getTime()
+  //       //   );
+  //       // }
+  //       const animalToShow = {
+  //         birthday: animal?.birthday?.toDate().getTime(),
+  //         DateNow: Timestamp.now().toDate().getTime(),
+  //       };
+  //       if (animalToShow.birthday) {
+  //         return animalToShow.DateNow - animalToShow.birthday;
+  //       }
+  //       animalDate.push(animalToShow);
+  //     }
+
+  //     setAnimals(animalDate);
+  //   });
+  // }, []);
+
+  const getAnimalAge = (animals: CattleModel) => {
+    // const animalAge = animals.birthday?.toDate().getTime();
+    // const actualDay = Timestamp.now().toDate().getTime();
+    // const getActualAnimalAge = animalAge? - actualDay
+    // return getActualAnimalAge;
+    // if (animal?.birthday) {
+    //   return (
+    //     animal.birthday.toDate().getTime() - Timestamp.now().toDate().getTime()
+    //   );
+    // }
+  };
 
   const openDeleteAnimalModal = (animalSelected: CattleModel) => {
     setSelectedAnimal(animalSelected);
@@ -196,45 +228,6 @@ const CattleListPage = (): ReactElement => {
       );
     }
   };
-
-  const rows = [
-    {
-      id: 1,
-      category: "Vaca",
-      name: "Mimosa",
-      birthday: 5,
-      type: "Gado Leiteiro",
-      weight: 350,
-      qtyChildreen: 4,
-    },
-    {
-      id: 2,
-      category: "Vaca",
-      name: "Malhada",
-      birthday: 9,
-      type: "Gado Leiteiro",
-      weight: 420,
-      qtyChildreen: 3,
-    },
-    {
-      id: 3,
-      category: "Novilha",
-      name: null,
-      birthday: 2,
-      type: "Gado de Corte",
-      weight: 450,
-      qtyChildreen: 2,
-    },
-    {
-      id: 4,
-      category: "Novilha",
-      name: null,
-      birthday: 2,
-      type: "Gado de Corte",
-      weight: 160,
-      qtyChildren: 0,
-    },
-  ];
 
   // return (
   //   <Box
