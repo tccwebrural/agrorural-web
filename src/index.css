@@ -14,3 +14,13 @@
   --cor009: rgb(189, 55, 37);
   --cor008: rgb(37, 37, 37);
 }
+.spinner-background {
+  content: " ";
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  height: 100%;
+  display: block;
+  position: absolute;
+  width: 100%;
+  z-index: 9998;
+}

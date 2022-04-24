@@ -13,9 +13,12 @@ import vaca3 from "../../../../../assets/vaca3.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 import "../../../styles/Register.css";
 import { Toaster } from "react-hot-toast";
+import { trackPromise } from "react-promise-tracker";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
+  const authContext = useAuth();
 
   const formRegisterUser = useFormik({
     initialValues: {
@@ -30,10 +33,12 @@ const RegisterPage = (): ReactElement => {
     validationSchema: RegisterValidatorSchema,
     onSubmit: async (formValue: RegisterUserModel) => {
       authContext.signUp(formValue).then(() => navigate("/private/home"));
+      trackPromise(
+        authContext.signUp(formValue).then(() => navigate("/private/home")),
+        GLOBAL_LOADING_KEY
+      );
     },
   });
-
-  const authContext = useAuth();
 
   return (
     <>

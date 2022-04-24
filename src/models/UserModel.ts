@@ -6,6 +6,7 @@ export interface UserModel {
   email: string;
   farmRef: DocumentReference;
   createdAt: Timestamp;
+  active: boolean;
 }
 
 export interface RegisterUserModel {

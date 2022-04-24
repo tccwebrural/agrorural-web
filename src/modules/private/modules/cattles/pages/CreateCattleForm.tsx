@@ -14,15 +14,9 @@ import {
 } from "@mui/material";
 
 import { Timestamp } from "firebase/firestore";
-import { FarmModel } from "modules/private/models/FarmModel";
 import React, { ReactElement, useState } from "react";
 import { CattleHelper } from "../helpers/CattleHelper";
-import {
-  CattleDethTypes,
-  CattleModel,
-  CattleSexs,
-  CattleTypes,
-} from "../models/CattleModel";
+import { CattleModel } from "../models/CattleModel";
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import bezerro from "../../../../../assets/bezerro.png";
 import "../../../styles/CattleForm.css";
@@ -53,9 +47,9 @@ const CreateCattleFormPage = (): ReactElement => {
       identifier: 0,
       weigth: 0,
       name: "",
-      type: CattleTypes.CORTE,
-      birthday: undefined,
-      sex: CattleSexs.MACHO,
+      type: 0,
+      birthday: "",
+      sex: 0,
       qtyChildren: 0,
     },
 

@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoMd from "../../../../../assets/logo-md.svg";
 import { useAuth } from "../../../../../providers/AuthProvider";
@@ -12,9 +12,15 @@ import vaca3 from "../../../../../assets/vaca3.png";
 import vaca4 from "../../../../../assets/vaca4.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 import { Toaster } from "react-hot-toast";
+import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 const LoginPage = (): ReactElement => {
   const authContext = useAuth();
   const navigate = useNavigate();
+  const loadingHelper = useGlobalLoading();
+
+  useEffect(() => {
+    authContext.logout(false);
+  }, []);
 
   const formLoginUser = useFormik({
     initialValues: {
@@ -23,8 +29,10 @@ const LoginPage = (): ReactElement => {
     },
     validationSchema: LoginValidatorSchema,
     onSubmit: async (formValue) => {
+      loadingHelper.startLoading();
       await authContext.signIn(formValue.email, formValue.password);
       navigate("/private");
+      loadingHelper.stopLoading();
     },
   });
 

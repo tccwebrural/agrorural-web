@@ -39,7 +39,6 @@ export const CPF_REGEX =
 export const INTERNAL_ERROR =
   "Ops! Ocorreu um erro inesperado, por favor tente mais tarde.";
 
-export const WELCOME_TO_SYSTEAM = "Bem vindo ao sistema!";
 export const FIREAUTH_ERROR_CODES_MAP: { [key: string]: string } = {
   "auth/app-deleted": "O banco de dados não foi localizado.",
   "auth/expired-action-code": "O código da ação o ou link expirou.",
@@ -178,3 +177,14 @@ export const FIREAUTH_ERROR_CODES_MAP: { [key: string]: string } = {
   "auth/internal-error":
     "O servidor de autenticação encontrou um erro inesperado ao tentar processar a solicitação.",
 };
+export const USUARIO_CADASTRADO_COM_SUCESSO = "Cadastro realizado com sucesso!";
+
+export const ATUH_INTERNAL_ERROR =
+  "Ocorreu um erro interno ao carregar informações do usuário.";
+
+export const DISABLED_USER =
+  "Usuário desativado, por favor contacte o administrador do sistema para reativação";
+export const NOT_FOUND_USER =
+  "Usuário não identificado com credênciais do google";
+
+export const GLOBAL_LOADING_KEY = "global";
