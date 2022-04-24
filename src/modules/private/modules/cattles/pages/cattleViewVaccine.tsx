@@ -1,35 +1,33 @@
 import {
+  Box,
+  Button,
+  Checkbox,
   Container,
   Fab,
-  Box,
   FormControl,
   Grid,
-  TextField,
   InputLabel,
-  Select,
   MenuItem,
-  Button,
+  Select,
+  TextField,
 } from "@mui/material";
-import { ReactElement } from "react";
-import { Link } from "react-router-dom";
-import { MdCoronavirus } from "react-icons/md";
+import React, { ReactElement } from "react";
 import { BsPrinter } from "react-icons/bs";
-import AddIcon from "@mui/icons-material/Add";
-import vaca1 from "../../../../../assets/vaca1.png";
-import "../../../styles/MyCattle.css";
+import { MdCoronavirus } from "react-icons/md";
+import { Link } from "react-router-dom";
+import "../../../styles/cattleViewVaccine.css";
+
 function imprimir() {
   window.print();
 }
-const MyCattle = (): ReactElement => {
+
+const cattleViewVaccine = (): ReactElement => {
   return (
     <>
       <Container
         sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
       >
-        <div className="imgGados">
-          <img src={vaca1} alt="Erro..." />
-        </div>
-        <div id="blocoGeral">
+        <div id="blocoGeralVacina">
           <section>
             <div id="blocoTitulo-criacao">
               <h2 id="blocoTituloTxt-criacao">Minha Criação &gt; Gado</h2>
@@ -70,7 +68,7 @@ const MyCattle = (): ReactElement => {
                   <Grid sx={{ margin: "1%" }}>
                     <FormControl sx={{ minWidth: 221 }}>
                       <InputLabel>Tipo</InputLabel>
-                      <Select label="Grouping" name="tipo">
+                      <Select label="Grouping" name="type">
                         <MenuItem value={1}>Gado de Corte</MenuItem>
                         <MenuItem value={2}>Gado Leitero</MenuItem>
                       </Select>
@@ -113,85 +111,71 @@ const MyCattle = (): ReactElement => {
             <div>
               <div id="blocoTitulo-vacina">
                 <h2 id="blocoTituloTxt-vacina">Cartao de Vacina</h2>
-                <span id="blocoTituloLine-vacina">
-                  <Fab
-                    id="icon-vaccine"
-                    component={Link}
-                    to="/private/cattles/:id/vacine/form"
-                  >
-                    <button id="btAdd-Vaccine">
-                      <abbr title="Adicionar Vacina">
-                        <AddIcon />
-                      </abbr>
-                    </button>
-                  </Fab>
-                </span>
+                <span id="blocoTituloLine-vacina"></span>
               </div>
-
+              <div id="infoGado">
+                <Box>
+                  <FormControl
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Grid item xs={2} sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="outlined-disabled"
+                        label="Nome"
+                        type="text"
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 150 }}
+                        id="outlined-disabled"
+                        label="Lote"
+                        type="number"
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="outlined-disabled"
+                        label="Fabricante"
+                        type="text"
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="outlined-disabled"
+                        label="Data da Aplicação"
+                        type="date"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="outlined-disabled"
+                        label="Data da Validade"
+                        type="date"
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                  </FormControl>
+                </Box>
+              </div>
               <div id="blocoVacinas">
                 <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
-
-                      <p>Virus 1</p>
-                    </abbr>
-                  </Button>
-                </Grid>
-                <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
-                      <p>Virus 2</p>
-                    </abbr>
-                  </Button>
-                </Grid>
-                <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
-
-                      <p>Virus 3</p>
-                    </abbr>
-                  </Button>
-                </Grid>
-                <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    {" "}
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
-
-                      <p>Virus 4</p>
-                    </abbr>
-                  </Button>
+                  <MdCoronavirus size={80} />
+                  <p>Virus 1</p>
+                  <Checkbox />
                 </Grid>
               </div>
             </div>
@@ -211,4 +195,4 @@ const MyCattle = (): ReactElement => {
     </>
   );
 };
-export default MyCattle;
+export default cattleViewVaccine;
