@@ -1,29 +1,28 @@
 import { Timestamp } from "firebase/firestore";
 
-enum CattleTypes {
-  LEITEIRO = "LEITEIRO",
-  CORTE = "CORTE",
-}
-enum CattleSexs {
-  MACHO = "MACHO",
-  FEMEA = "FEMEA",
-}
-enum CattleDethTypes {
-  CONSUMO_PROPRIO = "CONSUMO PROPRIO",
-  OBITOS_CAUSAS_DIVERSAS = "OBITOS CAUSAS DIVERSAS",
-}
-
+const CATTLE_SEXS: { [key: number]: string } = {
+  1: "MACHO",
+  2: "FÊMEA",
+};
+const CATTLE_TYPES: { [key: number]: string } = {
+  1: "LEITEIRO",
+  2: "CORTE",
+};
+const CATTLE_DETH_TYPES: { [key: number]: string } = {
+  1: "CONSUMO PROPRIO",
+  2: "OBITOS CAUSAS DIVERSAS",
+};
 class CattleModel {
   id?: string;
   identifier!: number;
-  birthday?: Timestamp;
+  birthday!: string;
   name!: string;
   qtyChildren?: number;
-  sex!: CattleSexs;
-  type!: CattleTypes;
+  sex!: number;
+  type!: number;
   weigth!: number;
   createdAt?: Timestamp;
-  deathBy?: CattleDethTypes;
+  deathBy?: number;
 }
 
-export { CattleTypes, CattleSexs, CattleModel, CattleDethTypes };
+export { CATTLE_DETH_TYPES, CATTLE_SEXS, CattleModel, CATTLE_TYPES };

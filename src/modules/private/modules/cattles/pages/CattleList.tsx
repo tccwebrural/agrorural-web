@@ -1,5 +1,10 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridRenderCellParams,
+  GridValueGetterParams,
+} from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { ImEye } from "react-icons/im";
@@ -7,11 +12,13 @@ import VaccinesIcon from "@mui/icons-material/Vaccines";
 import { Box, Button, Fab, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { CattleModel } from "../models/CattleModel";
+import { CattleModel, CATTLE_SEXS, CATTLE_TYPES } from "../models/CattleModel";
 import { CattleHelper } from "../helpers/CattleHelper";
 import "../../../styles/CattleList.css";
 import { FarmModel } from "modules/private/models/FarmModel";
 import { Timestamp } from "firebase/firestore";
+import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import toast from "react-hot-toast";
 const CattleListPage = (): ReactElement => {
   const columns: GridColDef[] = [
     {
@@ -28,6 +35,7 @@ const CattleListPage = (): ReactElement => {
       width: 110,
       headerAlign: "center",
       align: "center",
+      valueGetter: (params: GridValueGetterParams) => getSex(params.row.sex),
     },
     {
       field: "name",
@@ -38,7 +46,7 @@ const CattleListPage = (): ReactElement => {
       sortable: false,
     },
     {
-      field: "birthday",
+      field: "age",
       headerName: "Idade",
       headerAlign: "center",
       align: "center",
@@ -60,6 +68,7 @@ const CattleListPage = (): ReactElement => {
       align: "center",
       type: "number",
       width: 90,
+      valueGetter: (params: GridValueGetterParams) => `${params.row.weigth} kg`,
     },
     {
       field: "qtyChildren",
@@ -133,49 +142,75 @@ const CattleListPage = (): ReactElement => {
   const [animals, setAnimals] = useState<CattleModel[]>([]);
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
   const cattlehelpers = CattleHelper();
+  const loadingHelper = useGlobalLoading();
 
-  useEffect(() => {
-    cattlehelpers.getAllCattles().then((animals) => setAnimals(animals));
-  }, []);
+  const getSex = (sex: number): string => {
+    return CATTLE_SEXS[sex];
+  };
+  const getAgeFromDate = (date: string) => {
+    var today = new Date();
+    var birthDate = new Date(date);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
 
-  //
   // useEffect(() => {
-  //   cattlehelpers.getAllCattles().then((animals: CattleModel[]) => {
-  //     const animalDate = [];
-  //     for (let i = 0; i < animals.length; i++) {
-  //       const animal = animals.at(i);
-
-  //       // if (animal?.birthday) {
-  //       //   return (
-  //       //     animal.birthday.toDate().getTime() -
-  //       //     Timestamp.now().toDate().getTime()
-  //       //   );
-  //       // }
-  //       const animalToShow = {
-  //         birthday: animal?.birthday?.toDate().getTime(),
-  //         DateNow: Timestamp.now().toDate().getTime(),
-  //       };
-  //       if (animalToShow.birthday) {
-  //         return animalToShow.DateNow - animalToShow.birthday;
-  //       }
-  //       animalDate.push(animalToShow);
-  //     }
-
-  //     setAnimals(animalDate);
-  //   });
+  //   loadingHelper.startLoading()
+  //   cattlehelpers.getAllCattles().then((animals) => setAnimals(animals));
   // }, []);
 
-  const getAnimalAge = (animals: CattleModel) => {
-    // const animalAge = animals.birthday?.toDate().getTime();
-    // const actualDay = Timestamp.now().toDate().getTime();
-    // const getActualAnimalAge = animalAge? - actualDay
-    // return getActualAnimalAge;
-    // if (animal?.birthday) {
-    //   return (
-    //     animal.birthday.toDate().getTime() - Timestamp.now().toDate().getTime()
-    //   );
-    // }
-  };
+  //
+
+  useEffect(() => {
+    loadingHelper.startLoading();
+    cattlehelpers
+      .getAllCattles()
+      .then((cattles) => {
+        const listToDisplay: any[] = [];
+        for (let index = 0; index < cattles.length; index++) {
+          const cattle = cattles[index];
+
+          const cattleToDisplay = {
+            id: cattle.id,
+            identifier: cattle.identifier,
+            name: cattle.name,
+            // Exemplo 3 de como mudar o valor para exibir
+            age: getAgeFromDate(cattle.birthday),
+            // Exemplo 4 de como mudar o valor para exibir
+            type: CATTLE_TYPES[cattle.type],
+            sex: cattle.sex,
+            weigth: cattle.weigth,
+          };
+
+          listToDisplay.push(cattleToDisplay);
+        }
+
+        setAnimals(listToDisplay);
+
+        // Utilizando a função map para simplificar as operações
+        //
+        // setCattles(
+        //   cattles.map((cattle) => ({
+        //     id: cattle.id,
+        //     identifier: cattle.identifier,
+        //     name: cattle.name,
+        //     age: getAgeFromDate(cattle.birthday),
+        //     type: CATTLE_TYPES[cattle.type],
+        //     sex: cattle.sex,
+        //     weigth: cattle.weigth,
+        //   }))
+        // );
+        loadingHelper.stopLoading();
+      })
+      .catch((err: any) => {
+        toast.error(err);
+        loadingHelper.stopLoading();
+      });
+  }, []);
 
   const openDeleteAnimalModal = (animalSelected: CattleModel) => {
     setSelectedAnimal(animalSelected);
