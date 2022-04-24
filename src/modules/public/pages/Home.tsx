@@ -39,7 +39,7 @@ const HomePage = (): ReactElement => {
         </div>
         <div id="credenciais">
           <button id="btn">
-            <Link to="/sign-up">Registrar</Link>
+            <Link to="/sign-up">Cadastrar</Link>
           </button>
           <button id="btn">
             <Link to="/sign-in">Login</Link>

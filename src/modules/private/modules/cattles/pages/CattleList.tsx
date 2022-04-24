@@ -82,19 +82,19 @@ const CattleListPage = (): ReactElement => {
 
         return (
           <>
-            <Link to={`/private/cattle/Vaccine`}>
+            <Link to={`/private/cattle/infoGado`}>
               <Fab
                 size="small"
                 style={{ color: "green" }}
                 id="btn-ViewAnimalData"
               >
-                <abbr title="Editar Dados do Animal">
+                <abbr title="Visualizar dados do Animal">
                   <ImEye size={20} style={{ color: "white" }} />
                 </abbr>
               </Fab>
             </Link>
 
-            <Link to={`/private/cattle/vaccine/view`}>
+            <Link to={`/private/cattle/Vaccine`}>
               <Fab size="small" color="primary" id="btn-ViewVaccine">
                 <abbr title="Cartão de Vacina">
                   <VaccinesIcon />

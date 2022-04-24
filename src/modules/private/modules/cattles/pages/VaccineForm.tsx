@@ -135,7 +135,7 @@ const VaccineFormPage = (): ReactElement => {
                     variant="contained"
                     color="error"
                     component={Link}
-                    to="/private/cattles"
+                    to="/private/cattle/Vaccine"
                   >
                     Cancelar
                   </Button>

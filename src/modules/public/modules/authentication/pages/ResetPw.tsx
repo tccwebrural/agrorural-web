@@ -4,27 +4,6 @@ import React, { ReactElement } from "react";
 
 const ResetPwPage = (): ReactElement => {
   return (
-    // <Box
-    //   sx={{
-    //     flexGrow: 1,
-    //     backgroundColor: "whitesmoke",
-    //     display: "flex",
-    //     justifyContent: "center",
-    //     alignItems: "center",
-    //   }}
-    // >
-    //   <Typography variant="h3">ResetPw</Typography>
-    // </Box>
-
-    // <Box
-    //   sx={{
-    //     width: 500,
-    //     maxWidth: "100%",
-
-    //   }}
-    // >
-    //   <TextField fullWidth label="Informe o email" id="fullWidth" />
-    // </Box>
     <Box sx={{ "& > :not(style)": { m: 1 } }}>
       <TextField
         id="input-with-icon-textfield"

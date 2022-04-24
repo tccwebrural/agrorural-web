@@ -11,6 +11,7 @@ import VaccineFormPage from "../modules/cattles/pages/VaccineForm";
 import MyCattle from "../modules/cattles/pages/MyCattle";
 import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import cattleViewVaccine from "../modules/cattles/pages/cattleViewVaccine";
+import CattleInfoGado from "../modules/cattles/pages/cattleInfoGado";
 
 export const PRIVATE_ROUTES: Array<Route> = [
   {
@@ -23,7 +24,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
 
   {
     key: "get-cattles",
-    title: "Meu Gado",
+    title: "Minha Criação",
     path: "cattles",
     showHeaderBtn: true,
     component: CattleListPage,
@@ -73,5 +74,13 @@ export const PRIVATE_ROUTES: Array<Route> = [
     path: "cattle/vaccine/view",
     showHeaderBtn: false,
     component: cattleViewVaccine,
+  },
+
+  {
+    key: "infoGado",
+    title: "Informações do Gado ",
+    path: "cattle/infoGado",
+    showHeaderBtn: false,
+    component: CattleInfoGado,
   },
 ];

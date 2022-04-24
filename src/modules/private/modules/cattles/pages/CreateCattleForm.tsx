@@ -76,7 +76,7 @@ const CreateCattleFormPage = (): ReactElement => {
         <div className="Block-Txt-Line">
           <h2 className="Block-Line">
             {/* <span className="Block-Txt">Minha Criação &gt; Cadastrar Gado</span> */}
-            <span className="Block-Txt">Cadastrar Gado</span>
+            <span className="Block-Txt">Cadastrar Animal</span>
           </h2>
         </div>
 

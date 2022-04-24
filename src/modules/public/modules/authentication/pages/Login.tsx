@@ -74,7 +74,7 @@ const LoginPage = (): ReactElement => {
                 <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <span>
                     Você ainda não tem conta?
-                    <Link to="/sign-up">Registre-se</Link>.
+                    <Link to="/sign-up">Cadastre-se</Link>.
                   </span>
                 </Grid>
                 <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>

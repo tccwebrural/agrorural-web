@@ -18,7 +18,11 @@ import AddIcon from "@mui/icons-material/Add";
 import vaca1 from "../../../../../assets/vaca1.png";
 import "../../../styles/MyCattle.css";
 
-const MyCattle = (): ReactElement => {
+function imprimir() {
+  window.print();
+}
+
+const CattleInfoGado = (): ReactElement => {
   return (
     <>
       <Container
@@ -30,8 +34,14 @@ const MyCattle = (): ReactElement => {
         <div id="blocoGeral">
           <section>
             <div id="blocoTitulo-criacao">
-              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal </h2>
-              <span id="blocoTituloLine-criacao"></span>
+              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal</h2>
+              <span id="blocoTituloLine-criacao">
+                <abbr title="Imprimir">
+                  <Fab id="icone" onClick={imprimir}>
+                    <BsPrinter size={20} />
+                  </Fab>
+                </abbr>
+              </span>
             </div>
 
             <div id="infoGado">
@@ -105,85 +115,49 @@ const MyCattle = (): ReactElement => {
             <div>
               <div id="blocoTitulo-vacina">
                 <h2 id="blocoTituloTxt-vacina">Cartao de Vacina</h2>
-                <span id="blocoTituloLine-vacina">
-                  <Fab
-                    id="icon-vaccine"
-                    component={Link}
-                    to="/private/cattles/:id/vacine/form"
-                  >
-                    <button id="btAdd-Vaccine">
-                      <abbr title="Adicionar Vacina">
-                        <AddIcon />
-                      </abbr>
-                    </button>
-                  </Fab>
-                </span>
+                <span id="blocoTituloLine-vacina"></span>
               </div>
 
               <div id="blocoVacinas">
                 <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
+                  <abbr title="Detalhes da vacina">
+                    <MdCoronavirus
+                      size={80}
+                      style={{ margin: "10 0", color: "black" }}
+                    />
 
-                      <p>Virus 1</p>
-                    </abbr>
-                  </Button>
+                    <p>Virus 1</p>
+                  </abbr>
                 </Grid>
                 <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
-                      <p>Virus 2</p>
-                    </abbr>
-                  </Button>
+                  <abbr title="Detalhes da vacina">
+                    <MdCoronavirus
+                      size={80}
+                      style={{ margin: "10 0", color: "black" }}
+                    />
+                    <p>Virus 2</p>
+                  </abbr>
                 </Grid>
                 <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
+                  <abbr title="Detalhes da vacina">
+                    <MdCoronavirus
+                      size={80}
+                      style={{ margin: "10 0", color: "black" }}
+                    />
 
-                      <p>Virus 3</p>
-                    </abbr>
-                  </Button>
+                    <p>Virus 3</p>
+                  </abbr>
                 </Grid>
                 <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
-                    {" "}
-                    <abbr title="Detalhes da vacina">
-                      <MdCoronavirus
-                        size={80}
-                        style={{ margin: "10 0", color: "black" }}
-                      />
+                  {" "}
+                  <abbr title="Detalhes da vacina">
+                    <MdCoronavirus
+                      size={80}
+                      style={{ margin: "10 0", color: "black" }}
+                    />
 
-                      <p>Virus 4</p>
-                    </abbr>
-                  </Button>
+                    <p>Virus 4</p>
+                  </abbr>
                 </Grid>
               </div>
             </div>
@@ -203,4 +177,5 @@ const MyCattle = (): ReactElement => {
     </>
   );
 };
-export default MyCattle;
+
+export default CattleInfoGado;

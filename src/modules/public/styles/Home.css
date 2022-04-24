@@ -40,6 +40,7 @@ main {
 #btn:hover {
   background-color: #33648a10;
   border-radius: 10px;
+  align-items: center;
 }
 
 #img-logoPequena {

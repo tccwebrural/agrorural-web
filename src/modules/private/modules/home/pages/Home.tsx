@@ -8,10 +8,13 @@ import {
   TableRow,
   TableBody,
   Paper,
+  Fab,
 } from "@mui/material";
 import React, { ReactElement } from "react";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import "../../../styles/Home.css";
+import { BsPrinter } from "react-icons/bs";
+
 function createData(
   periodo: Number,
   bezerros: number,
@@ -36,27 +39,23 @@ const rows = [
 const HomePage = (): ReactElement => {
   const authContext = useAuth();
 
-  // return (
-  //   <Box
-  //     sx={{
-  //       flexGrow: 1,
-  //       backgroundColor: "whitesmoke",
-  //       display: "flex",
-  //       justifyContent: "center",
-  //       alignItems: "center",
-  //     }}
-  //   >
-  //     <Typography variant="h3">Cockpit</Typography>
-  //   </Box>
-  // );
+  function imprimir() {
+    window.print();
+  }
+
   return (
     <>
       <main>
         <div className="MainBlock">
-          <div className="Block-Txt-Line">
-            <h2 className="Block-Line">
-              <span className="Block-Txt">Meus Relatórios</span>
-            </h2>
+          <div id="blocoTitulo-criacao">
+            <h2 id="blocoTituloTxt-criacao">Meu Relatorio</h2>
+            <span id="blocoTituloLine-vacina">
+              <abbr title="Imprimir">
+                <Fab id="icone" onClick={imprimir}>
+                  <BsPrinter size={20} />
+                </Fab>
+              </abbr>
+            </span>
           </div>
           <Box id="Block-MyReports">
             <div>
