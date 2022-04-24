@@ -12,6 +12,7 @@ import vaca2 from "../../../../../assets/vaca2.png";
 import vaca3 from "../../../../../assets/vaca3.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 import "../../../styles/Register.css";
+import { Toaster } from "react-hot-toast";
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();

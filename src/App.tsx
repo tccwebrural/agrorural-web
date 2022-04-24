@@ -1,5 +1,6 @@
 import { CssBaseline } from "@mui/material";
 import React from "react";
+import { Toaster } from "react-hot-toast";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./modules/private/Private";
 import PublicRoute from "./modules/public/Public";
@@ -17,6 +18,7 @@ function App() {
           </Routes>
         </ProviderAuth>
       </BrowserRouter>
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 }

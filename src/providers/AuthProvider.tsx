@@ -20,7 +20,9 @@ import React, {
   useState,
 } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { getFireError } from "utils/HandleFirebaseError";
 import { auth, firestore } from "../configs/Firebase";
 import {
   COLLECTION_FARMS,
@@ -53,11 +55,14 @@ const UserAuthProvider = (): AuthContext => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       await loadUserDataById(res.user.uid);
-    } catch (err) {
+    } catch (err: any) {
+      toast.error(getFireError(err));
+
       console.error(err);
       if (await isLoggedIn()) {
         logout(false);
       }
+      throw err;
     }
   };
 
@@ -75,8 +80,10 @@ const UserAuthProvider = (): AuthContext => {
       );
       const user = res.user;
       await registerUser(user.uid, formData);
-    } catch (err) {
+    } catch (err: any) {
+      toast.error(getFireError(err));
       console.error(err);
+      throw err;
     }
   };
 
@@ -93,7 +100,9 @@ const UserAuthProvider = (): AuthContext => {
   const sendPasswordReset = async (email: string) => {
     try {
       await sendPasswordResetEmail(auth, email);
-    } catch (err) {
+    } catch (err: any) {
+      toast.error(getFireError(err));
+      throw err;
       console.error(err);
     }
   };
