@@ -11,6 +11,7 @@ import footer from "../../../../../assets/footer.png";
 import vaca3 from "../../../../../assets/vaca3.png";
 import vaca4 from "../../../../../assets/vaca4.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
+import { Toaster } from "react-hot-toast";
 const LoginPage = (): ReactElement => {
   const authContext = useAuth();
   const navigate = useNavigate();
