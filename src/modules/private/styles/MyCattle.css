@@ -2,6 +2,9 @@
   margin: 0%;
   padding: 0%;
 }
+abbr {
+  text-decoration: none;
+}
 
 #blocoGeral {
   position: relative;
@@ -10,7 +13,7 @@
   max-height: 550px;
   margin: 3%;
   border-radius: 8px;
-  box-shadow: 4px 4px 4px 4px rgb(236, 236, 236);
+  box-shadow: 0px 2px 0px 2px rgb(236, 236, 236);
 }
 
 #blocoTitulo-criacao {
@@ -21,14 +24,14 @@
   height: 90px;
 }
 #blocoTituloTxt-criacao {
-  color: black;
+  color: var(--cor005);
   padding: 10px 10px;
   margin-right: 5%;
   width: 25%;
   font-size: 22px;
 }
 #blocoTituloLine-criacao {
-  background-color: yellow;
+  background-color: #fad400;
   display: flex;
   height: 3px;
   width: 70%;
@@ -52,7 +55,7 @@
   font-size: 22px;
 }
 #blocoTituloLine-vacina {
-  background-color: var(--cor007);
+  background-color: #fad400;
   display: flex;
   height: 3px;
   width: 75%;
@@ -60,33 +63,12 @@
   margin-left: -240px;
 }
 
-#icon {
-  background-color: blueviolet;
-}
 #infoGado {
   padding: 1%;
 }
 
 #tituloVacina {
   margin: 1%;
-}
-
-#print {
-  background-color: var(--cor007);
-  margin-top: -90px;
-  margin-left: 87%;
-}
-
-#printAdd {
-  background-color: aliceblue;
-  margin-top: -90px;
-  margin-left: 87%;
-}
-
-#btPrintAddIcon {
-  background-color: aliceblue;
-  border: none;
-  color: black;
 }
 
 #nomeTitulo {
@@ -124,10 +106,14 @@
 #vacinas {
   width: 150px;
   height: 150px;
-  border-radius: 30px;
+  border-radius: 12px;
   margin: 1%;
   text-align: center;
-  box-shadow: 2px 2px 4px 4px var(--cor111);
+  box-shadow: 0px 0px 4px 4px var(--cor111);
+}
+
+#vacinas p {
+  color: black;
 }
 
 #button {
@@ -154,4 +140,17 @@
   position: relative;
   left: 670px;
   bottom: 25px;
+}
+
+#icon-vaccine {
+  background-color: white;
+  position: relative;
+  left: 720px;
+  bottom: 25px;
+}
+
+#btAdd-Vaccine {
+  background-color: white;
+  color: black;
+  border: none;
 }

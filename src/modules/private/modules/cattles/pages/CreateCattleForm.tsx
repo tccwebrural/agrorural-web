@@ -79,6 +79,7 @@ const CreateCattleFormPage = (): ReactElement => {
             <span className="Block-Txt">Cadastrar Gado</span>
           </h2>
         </div>
+
         <form onSubmit={formCattle.handleSubmit}>
           <Box sx={{ "& .MuiTextField-root": { m: 1, width: "33ch" } }}>
             <Grid>
@@ -91,13 +92,6 @@ const CreateCattleFormPage = (): ReactElement => {
                     label="Grouping"
                     // name="category"
                   >
-                    {/* <MenuItem value={1}>Vaca</MenuItem>
-                  <MenuItem value={2}>Boi</MenuItem>
-                  <MenuItem value={3}>Bezerra</MenuItem>
-                  <MenuItem value={4}>Bezerro</MenuItem>
-                  <MenuItem value={5}>Novilha</MenuItem>
-                  <MenuItem value={6}>Novilho</MenuItem>
-                  <MenuItem value={6}>Novilho</MenuItem> */}
                     <MenuItem value={1}>MACHO</MenuItem>
                     <MenuItem value={2}>FÊMEA</MenuItem>
                   </Select>

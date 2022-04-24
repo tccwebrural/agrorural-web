@@ -7,9 +7,9 @@ import VaccinesIcon from "@mui/icons-material/Vaccines";
 import { Box, Button, Fab, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import "../../../styles/CattleList.css";
 import { CattleModel } from "../models/CattleModel";
 import { CattleHelper } from "../helpers/CattleHelper";
+import "../../../styles/CattleList.css";
 import { FarmModel } from "modules/private/models/FarmModel";
 import { Timestamp } from "firebase/firestore";
 const CattleListPage = (): ReactElement => {
@@ -82,20 +82,19 @@ const CattleListPage = (): ReactElement => {
 
         return (
           <>
-            <Link to={`/private/cattle/view`}>
+            <Link to={`/private/cattle/Vaccine`}>
               <Fab
                 size="small"
-                // style={{ color: "purple" }}
-                color="primary"
-                id=" btn-ViewAnimalData"
+                style={{ color: "green" }}
+                id="btn-ViewAnimalData"
               >
-                <abbr title="Visualizar Dados do Animal">
-                  <ImEye size={20} />
+                <abbr title="Editar Dados do Animal">
+                  <ImEye size={20} style={{ color: "white" }} />
                 </abbr>
               </Fab>
             </Link>
 
-            <Link to={`/private/cattles/${currentAnimalRow.id}/vacine/form`}>
+            <Link to={`/private/cattle/vaccine/view`}>
               <Fab size="small" color="primary" id="btn-ViewVaccine">
                 <abbr title="Cartão de Vacina">
                   <VaccinesIcon />
@@ -110,7 +109,7 @@ const CattleListPage = (): ReactElement => {
                 id="btn-EditAnimalData"
               >
                 <abbr title="Editar Dados do Animal">
-                  <EditIcon />
+                  <EditIcon style={{ color: "white" }} />
                 </abbr>
               </Fab>
             </Link>

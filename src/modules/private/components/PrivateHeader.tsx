@@ -52,22 +52,20 @@ const Header = (props: any): ReactElement => {
             justifyContent: "space-around",
           }}
         >
-          <div id="logoPequena-header">
-            <img src={logoPequena} alt="Erro..." />
-          </div>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <div id="logoPequena-header">
+              <img src={logoPequena} alt="Erro..." />
+            </div>
+          </Box>
 
-          <Toolbar disableGutters>
+          <Toolbar>
             {/* MOBILE */}
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-              }}
-            >
-              {}
-            </Typography>
+
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -116,24 +114,9 @@ const Header = (props: any): ReactElement => {
               </Menu>
             </Box>
             {/* WEB */}
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-            >
-              {APP_TITLE}
-            </Typography>
+
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "flex-start",
-                  alignItems: "center",
-                  marginLeft: "1rem",
-                }}
-              >
+              <Box>
                 {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
                   (page) => (
                     <Link
@@ -150,18 +133,18 @@ const Header = (props: any): ReactElement => {
                   )
                 )}
               </Box>
-              <Fragment>
-                <Link
-                  key="my-profile"
-                  component={NavLink}
-                  to="private/my-profile"
-                >
-                  Meu perfil {userEmail}
-                </Link>
-                <Button onClick={() => auth.logout()}>Sair</Button>
-              </Fragment>
             </Box>
           </Toolbar>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Button sx={{ color: " black" }} onClick={() => auth.logout()}>
+              Sair
+            </Button>
+          </Box>
         </Container>
       </Box>
     </>
@@ -169,3 +152,15 @@ const Header = (props: any): ReactElement => {
 };
 
 export default Header;
+/**
+ *  <Fragment>
+                  <Link
+                    key="my-profile"
+                    component={NavLink}
+                    to="private/my-profile"
+                  >
+                    Meu perfil {userEmail}
+                  </Link>
+                  <Button onClick={() => auth.logout()}>Sair</Button>
+                </Fragment>
+ */
