@@ -1,0 +1,58 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+h4,
+h3 {
+  color: #33658a;
+}
+#Bloco-Geral {
+  border-radius: 10px;
+  margin: 3%;
+  box-shadow: 0px 2px 0px 2px rgb(236, 236, 236);
+}
+
+#Bloco-Notificacoes {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  box-shadow: 2px 2px 2px 2px rgb(236, 236, 236);
+}
+
+#color {
+  background-color: #33658a;
+  width: 40px;
+}
+
+#color2 {
+  background-color: rgb(221, 3, 3);
+  width: 40px;
+}
+
+#text-notify-title {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0% 2%;
+}
+
+#text-notify {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 2%;
+}
+
+#text-notify-dados {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#dados {
+  margin: 1% 2%;
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  align-items: flex-start;
+}

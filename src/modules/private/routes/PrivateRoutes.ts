@@ -12,6 +12,7 @@ import MyCattle from "../modules/cattles/pages/MyCattle";
 import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import cattleViewVaccine from "../modules/cattles/pages/cattleViewVaccine";
 import CattleInfoGado from "../modules/cattles/pages/cattleInfoGado";
+import notifyVaccine from "../modules/cattles/NotifyVaccine";
 
 export const PRIVATE_ROUTES: Array<Route> = [
   {
@@ -50,6 +51,14 @@ export const PRIVATE_ROUTES: Array<Route> = [
     path: "cattles/:id/vacine/form",
     showHeaderBtn: false,
     component: VaccineFormPage,
+  },
+
+  {
+    key: "Notify Vaccine",
+    title: "Notificações",
+    path: "cattle/NotifyVaccine",
+    showHeaderBtn: true,
+    component: notifyVaccine,
   },
 
   {
