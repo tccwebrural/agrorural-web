@@ -7,12 +7,13 @@ import ViewProfilePage from "./../modules/profiles/pages/ViewProfile";
 import ProfileFormPage from "./../modules/profiles/pages/ProfileForm";
 import UpdateCattleStatusModal from "../modules/cattles/components/UpdateCattleModal";
 import UpdateCattleModal from "../modules/cattles/components/UpdateCattleModal";
-import VaccineFormPage from "../modules/cattles/pages/VaccineForm";
 import MyCattle from "../modules/cattles/pages/MyCattle";
 import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import cattleViewVaccine from "../modules/cattles/pages/cattleViewVaccine";
 import CattleInfoGado from "../modules/cattles/pages/cattleInfoGado";
-import notifyVaccine from "../modules/cattles/NotifyVaccine";
+import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
+import notifyVaccine from "../modules/vacine/pages/NotifyVaccine";
+import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
 
 export const PRIVATE_ROUTES: Array<Route> = [
   {
@@ -42,7 +43,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     title: "Editar Gado",
     path: "cattles/form/:id",
     showHeaderBtn: false,
-    component: UpdateCattleModal,
+    component: UpdateCattle,
   },
 
   {

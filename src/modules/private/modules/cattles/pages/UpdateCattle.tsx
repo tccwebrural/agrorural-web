@@ -10,16 +10,78 @@ import {
   Typography,
 } from "@mui/material";
 import { Timestamp } from "firebase/firestore";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { string } from "yup/lib/locale";
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import bezerro from "../../../../../assets/bezerro.png";
-import "../../../styles/UpdateCattleModal.css";
-import { Link } from "react-router-dom";
-const UpdateCattleModal = (): ReactElement => {
+import { Link, useNavigate, useParams } from "react-router-dom";
+import "../../../styles/UpdateCattle.css";
+import { CattleHelper } from "../helpers/CattleHelper";
+import { CattleModel } from "../models/CattleModel";
+import { CattleValidatorSchema } from "modules/public/modules/authentication/validators/CattleValidatorSchema";
+import { useFormik } from "formik";
+import { getControls } from "../../../../../utils/FormUtils";
+
+const UpdateCattle = (): ReactElement => {
   const salvarDadosAnimal = (e: any) => {
     alert("Dados Atualizados com Sucesso");
   };
+  const cattlehelpers = CattleHelper();
+
+  const [animals, setAnimals] = useState<CattleModel[]>([]);
+
+  const navigate = useNavigate();
+  const params = useParams();
+
+  //   useEffect(() => {
+  //     cattlehelpers.getAllCattles().then((animals) => setAnimals(animals));
+  //   }, []);
+  useEffect(() => {
+    if (params.cattleId) {
+      cattlehelpers.getCattleId(params.cattleId);
+    }
+  }, []);
+  console.log(useEffect);
+
+  const tst = () => {
+    // if (params.cattleId) {
+    //   cattlehelpers.getCattleId(params.cattleId);
+    // }
+    cattlehelpers.getAllCattles();
+  };
+
+  console.log(tst);
+  const formCattle = useFormik({
+    initialValues: {
+      identifier: 0,
+      weigth: 0,
+      name: "",
+      type: 1,
+      birthday: "",
+      sex: 1,
+      qtyChildren: 0,
+    },
+
+    // validateOnChange:{
+    //     setAnimals
+    // }
+    validationSchema: CattleValidatorSchema,
+
+    onSubmit: async (formValue: CattleModel) => {
+      // Date.UTC(""),
+
+      if (params.id) {
+        cattlehelpers
+          .updateCattleId(formValue, params.id)
+          .then(() => navigate("/private/cattles"));
+      }
+      //   cattlehelpers
+      //     .updateCattleId(formValue, "9YJqnJspxVO7FgV9Q7zn")
+      //     .then(() => navigate("/private/cattles"));
+    },
+  });
+  console.log(params);
+  console.log();
   return (
     <>
       <Box
@@ -37,7 +99,7 @@ const UpdateCattleModal = (): ReactElement => {
               </span>
             </h2>
           </div>
-          <form id="Block-EditAnimalData">
+          <form id="Block-EditAnimalData" onSubmit={formCattle.handleSubmit}>
             <Box
               sx={{
                 "& .MuiTextField-root": { m: 1, width: "25ch" },
@@ -45,15 +107,14 @@ const UpdateCattleModal = (): ReactElement => {
             >
               <FormControl sx={{ m: 1, minWidth: 260 }}>
                 <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
-                <Select label="Grouping" name="category">
-                  {/* <MenuItem value={1}>Vaca</MenuItem>
-                  <MenuItem value={2}>Boi</MenuItem>
-                  <MenuItem value={3}>Bezerra</MenuItem>
-                  <MenuItem value={4}>Bezerro</MenuItem>
-                  <MenuItem value={5}>Novilha</MenuItem>
-                  <MenuItem value={6}>Novilho</MenuItem> */}
+
+                <Select
+                  {...getControls(formCattle, "sex")}
+                  label="Grouping"
+                  // name="category"
+                >
                   <MenuItem value={1}>MACHO</MenuItem>
-                  <MenuItem value={2}>FEMEA</MenuItem>
+                  <MenuItem value={2}>FÊMEA</MenuItem>
                 </Select>
               </FormControl>
               <TextField
@@ -62,6 +123,7 @@ const UpdateCattleModal = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                {...getControls(formCattle, "identifier")}
               />
               <TextField
                 style={{ width: 300 }}
@@ -69,11 +131,13 @@ const UpdateCattleModal = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
+                {...getControls(formCattle, "name")}
               />
               <TextField
                 style={{ width: 280 }}
                 label="Data de Nascimento"
                 type="date"
+                {...getControls(formCattle, "birthday")}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -81,7 +145,11 @@ const UpdateCattleModal = (): ReactElement => {
 
               <FormControl sx={{ m: 1, minWidth: 271 }}>
                 <InputLabel htmlFor="type">Tipo</InputLabel>
-                <Select label="Grouping" name="type">
+                <Select
+                  {...getControls(formCattle, "type")}
+                  //   label="Grouping"
+                  // name="type"
+                >
                   <MenuItem value={1}>Gado de Corte</MenuItem>
                   <MenuItem value={2}>Gado Leitero</MenuItem>
                 </Select>
@@ -90,10 +158,22 @@ const UpdateCattleModal = (): ReactElement => {
               <TextField
                 style={{ width: 279 }}
                 label="Peso"
-                type="password"
+                {...getControls(formCattle, "weight")}
+                type="string"
                 InputLabelProps={{
                   shrink: true,
                 }}
+              />
+              <TextField
+                // disabled
+                label="Quantidade de cria"
+                type="number"
+                // name="identifier"
+                {...getControls(formCattle, "qtyChildren")}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={{ width: 268 }}
               />
 
               <div id="Block-CowImage-EditAnimalData">
@@ -125,7 +205,8 @@ const UpdateCattleModal = (): ReactElement => {
                   <Button
                     variant="contained"
                     color="success"
-                    onClick={salvarDadosAnimal}
+                    // onClick={salvarDadosAnimal}
+                    type="submit"
                     sx={{ paddingTop: 2.3, paddingBottom: 2.3 }}
                   >
                     Atualizar
@@ -134,10 +215,19 @@ const UpdateCattleModal = (): ReactElement => {
               </div>
             </Box>
           </form>
+          <Button
+            variant="contained"
+            color="success"
+            // onClick={salvarDadosAnimal}
+            onSubmit={tst}
+            sx={{ paddingTop: 2.3, paddingBottom: 2.3 }}
+          >
+            VER
+          </Button>
         </div>
       </Box>
     </>
   );
 };
 
-export default UpdateCattleModal;
+export default UpdateCattle;

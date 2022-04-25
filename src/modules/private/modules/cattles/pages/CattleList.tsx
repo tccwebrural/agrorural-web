@@ -72,11 +72,14 @@ const CattleListPage = (): ReactElement => {
     },
     {
       field: "qtyChildren",
+
       headerName: "Qtd de Cria",
       headerAlign: "center",
       align: "center",
       width: 100,
       sortable: false,
+      // valueGetter: (params: GridValueGetterParams) =>
+      //     `${params.row.qtyChildren} kkk`,
     },
     {
       field: "operacoes",
@@ -88,7 +91,6 @@ const CattleListPage = (): ReactElement => {
       width: 210,
       renderCell: (params: GridRenderCellParams) => {
         const currentAnimalRow = params.row as CattleModel;
-
         return (
           <>
             <Link to={`/private/cattle/infoGado`}>
@@ -184,6 +186,7 @@ const CattleListPage = (): ReactElement => {
             type: CATTLE_TYPES[cattle.type],
             sex: cattle.sex,
             weigth: cattle.weigth,
+            qtyChildren: cattle.qtyChildren,
           };
 
           listToDisplay.push(cattleToDisplay);

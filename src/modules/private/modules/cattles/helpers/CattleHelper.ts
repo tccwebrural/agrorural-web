@@ -3,6 +3,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
   Timestamp,
@@ -62,6 +63,28 @@ export const CattleHelper = () => {
     }
   };
 
+  const getCattleId = async (cattleId: string) => {
+    let cattles: Array<CattleModel> = [];
+
+    const farmRef = await getFarmRef();
+    if (farmRef) {
+      const cattlesCollectionRef = collection(
+        firestore,
+        COLLECTION_FARMS,
+        farmRef.id,
+        COLLECTION_CATTLES
+      );
+      const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
+
+      return getDoc(cattleRef);
+      // const findByCollectionRef = query(cattlesCollectionRef);
+      // const response = await getDoc(cattlesCollectionRef);
+      // cattles = response.docs.map((doc) => {
+      //   return { id: doc.id, ...doc.data() } as CattleModel;
+      // });
+    }
+  };
+
   const getAllCattles = async () => {
     let cattles: Array<CattleModel> = [];
     const farmRef = await getFarmRef();
@@ -81,5 +104,11 @@ export const CattleHelper = () => {
     return cattles;
   };
 
-  return { createCattle, getAllCattles, deleteCattleId, updateCattleId };
+  return {
+    createCattle,
+    getAllCattles,
+    deleteCattleId,
+    updateCattleId,
+    getCattleId,
+  };
 };

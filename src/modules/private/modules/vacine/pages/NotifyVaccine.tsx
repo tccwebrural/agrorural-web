@@ -1,6 +1,6 @@
 import { Box, Container, Grid } from "@mui/material";
 import { ReactElement } from "react";
-import "../../styles/NotifyVaccine.css";
+import "../../../styles/NotifyVaccine.css";
 
 const nomeVacina = "brucelose";
 const dataVacina = "01/05/2022";

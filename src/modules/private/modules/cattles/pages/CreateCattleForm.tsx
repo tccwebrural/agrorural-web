@@ -47,13 +47,14 @@ const CreateCattleFormPage = (): ReactElement => {
       identifier: 0,
       weigth: 0,
       name: "",
-      type: 0,
+      type: 1,
       birthday: "",
-      sex: 0,
+      sex: 1,
       qtyChildren: 0,
     },
 
     validationSchema: CattleValidatorSchema,
+
     onSubmit: async (formValue: CattleModel) => {
       // Date.UTC(""),
       // formValue.birthday?.toDate();
@@ -62,7 +63,6 @@ const CreateCattleFormPage = (): ReactElement => {
         .then(() => navigate("/private/cattles"));
     },
   });
-  console.log(formCattle);
 
   return (
     <>
