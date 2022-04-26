@@ -102,7 +102,7 @@ const CreateCattleFormPage = (): ReactElement => {
                   style={{ width: 268 }}
                 />
                 <TextField
-                  label="Nome do gado "
+                  label="Nome do Animal "
                   type="text"
                   {...getControls(formCattle, "name")}
                   InputLabelProps={{
@@ -150,7 +150,15 @@ const CreateCattleFormPage = (): ReactElement => {
                   style={{ width: 268 }}
                 />
                 <Stack direction="row" spacing={2}>
-                  <Grid container justifyContent="flex-end">
+                  <Grid
+                    justifyContent="flex-end"
+                    sx={{
+                      display: "flex",
+                      position: "relative",
+                      left: "15%",
+                      top: "-90px",
+                    }}
+                  >
                     <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
                       <div id="Block-CowImage-Form">
                         <img
