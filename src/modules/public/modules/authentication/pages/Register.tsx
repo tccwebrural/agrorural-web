@@ -30,9 +30,10 @@ const RegisterPage = (): ReactElement => {
       phone: "",
       cpf: "",
     },
+
+    //
     validationSchema: RegisterValidatorSchema,
     onSubmit: async (formValue: RegisterUserModel) => {
-      authContext.signUp(formValue).then(() => navigate("/private/home"));
       trackPromise(
         authContext.signUp(formValue).then(() => navigate("/private/home")),
         GLOBAL_LOADING_KEY
