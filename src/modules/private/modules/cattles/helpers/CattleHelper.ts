@@ -1,3 +1,4 @@
+// import { randomUUID } from "crypto";
 import {
   addDoc,
   collection,
@@ -17,10 +18,22 @@ import { CattleModel } from "../models/CattleModel";
 export const CattleHelper = () => {
   const { getFarmRef } = FarmHelper();
 
+  const getCattleByIdentificador = async (
+    identificador?: number
+  ): Promise<CattleModel | undefined> => {
+    if (identificador) {
+      //BUSCAR NO FIREBASE VACAS COM O IDENTIFICADOR
+      //https://firebase.google.com/docs/firestore/query-data/queries#simple_queries
+      return new Promise(() => undefined);
+    }
+  };
+
   const createCattle = async (cattle: CattleModel) => {
     const farmRef = await getFarmRef();
+
     if (farmRef) {
       cattle.createdAt = Timestamp.now();
+      cattle.identifier = 10;
       const cattlesCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
@@ -33,18 +46,24 @@ export const CattleHelper = () => {
     }
   };
 
-  const updateCattleId = async (cattle: CattleModel, cattleId: string) => {
+  const updateCattleId = async (cattle: CattleModel) => {
     const farmRef = await getFarmRef();
-    if (farmRef) {
+    if (farmRef && cattle.id) {
       const cattlesCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
         farmRef.id,
         COLLECTION_CATTLES
       );
-
-      const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
-      return updateDoc(cattleRef, { ...cattle });
+      const cattleRes = await getCattleByIdentificador(cattle.identifier);
+      if (cattleRes) {
+        throw "JÀ EXISTE UM  GADO COM O MESMO IDENTIFICADOR";
+      } else {
+        const cattleRef = doc(firestore, cattlesCollectionRef.path, cattle.id);
+        return updateDoc(cattleRef, { ...cattle });
+      }
+    } else {
+      //TODO: Exibe mensagem de erro
     }
   };
 
@@ -63,9 +82,7 @@ export const CattleHelper = () => {
     }
   };
 
-  const getCattleId = async (cattleId: string) => {
-    let cattles: Array<CattleModel> = [];
-
+  const getCattleById = async (cattleId: string) => {
     const farmRef = await getFarmRef();
     if (farmRef) {
       const cattlesCollectionRef = collection(
@@ -76,12 +93,8 @@ export const CattleHelper = () => {
       );
       const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
 
-      return getDoc(cattleRef);
-      // const findByCollectionRef = query(cattlesCollectionRef);
-      // const response = await getDoc(cattlesCollectionRef);
-      // cattles = response.docs.map((doc) => {
-      //   return { id: doc.id, ...doc.data() } as CattleModel;
-      // });
+      const cattleDoc = await getDoc(cattleRef);
+      return { id: cattleDoc.id, ...cattleDoc.data() } as CattleModel;
     }
   };
 
@@ -109,6 +122,6 @@ export const CattleHelper = () => {
     getAllCattles,
     deleteCattleId,
     updateCattleId,
-    getCattleId,
+    getCattleById,
   };
 };

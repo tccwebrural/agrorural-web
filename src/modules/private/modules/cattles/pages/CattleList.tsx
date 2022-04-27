@@ -4,6 +4,8 @@ import {
   GridColDef,
   GridRenderCellParams,
   GridValueGetterParams,
+  nlNL,
+  ptBR,
 } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -19,6 +21,8 @@ import { FarmModel } from "modules/private/models/FarmModel";
 import { Timestamp } from "firebase/firestore";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
+// import { ptBR } from "@mui/material/locale";
+
 import { bgcolor } from "@mui/system";
 const CattleListPage = (): ReactElement => {
   const columns: GridColDef[] = [
@@ -29,9 +33,10 @@ const CattleListPage = (): ReactElement => {
       align: "center",
       width: 120,
     },
+
     {
       field: "sex",
-      headerName: "Categoria",
+      headerName: "Sexo",
       sortable: false,
       width: 110,
       headerAlign: "center",
@@ -331,11 +336,13 @@ const CattleListPage = (): ReactElement => {
               getRowId={(e: any) => e.id}
               rows={animals}
               columns={columns}
+              localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
               sx={{
                 border: "none",
                 boxShadow: " 2px 2px 4px 2px var(--cor111)",
               }}
             />
+
             {renderDeleteAnimalModal()}
           </div>
         </Box>
