@@ -146,9 +146,10 @@ const UpdateCattle = (): ReactElement => {
               <FormControl sx={{ m: 1, minWidth: 271 }}>
                 <InputLabel htmlFor="type">Tipo</InputLabel>
                 <Select
-                  {...getControls(formCattle, "type")}
-                  //   label="Grouping"
-                  // name="type"
+                //  {...getControls(formCattle, "type")}
+                  label="Grouping"
+                  name="type"
+                 
                 >
                   <MenuItem value={1}>Gado de Corte</MenuItem>
                   <MenuItem value={2}>Gado Leitero</MenuItem>
@@ -215,7 +216,7 @@ const UpdateCattle = (): ReactElement => {
               </div>
             </Box>
           </form>
-          <Button
+          {/* <Button
             variant="contained"
             color="success"
             // onClick={salvarDadosAnimal}
@@ -223,7 +224,7 @@ const UpdateCattle = (): ReactElement => {
             sx={{ paddingTop: 2.3, paddingBottom: 2.3 }}
           >
             VER
-          </Button>
+          </Button> */}
         </div>
       </Box>
     </>

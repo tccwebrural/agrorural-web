@@ -1,0 +1,254 @@
+#Block-Txt-Line-CattleDeclaration{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 90px;
+    margin: auto;
+}
+#Block-Txt-CattleDeclaration{
+    color: var(--cor005);
+    padding: 10px 10px;
+    margin-right: -5%;
+    width: 25%;
+    font-size: 22px;
+    background-color: var(--cor001);
+    position: relative;
+}
+#Block-Line-CattleDeclaration{
+    background-color: var(--cor007);
+    display: flex;
+    height: 3px;
+    width: 100%;
+    margin-top: 8px;
+    margin-right: 5px;
+    margin-left: -60px;
+}
+#printIcon{
+    background-color: var(--cor007);
+    margin-top: -25px;
+    margin-left: 1447%;
+}
+.CattleDeclaration{
+    background-color:var(--cor006);
+    text-align: center;
+    font-size: 18px;
+    color: var(--cor001);
+    font-weight: bold;
+    height: 40px;
+    padding-top: 0.5%;
+    width: 898px;
+    margin: auto;
+    margin-top: 3.5%;
+    border-left: 1px solid var(--cor002);
+    border-top: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+  
+}
+#OwnerData{
+    background-color:  var(--cor011);
+    height: 200px;
+    border: 1px solid var(--cor002);
+    padding: 15px;
+    width: 898px;
+    margin: auto;
+}
+
+
+.labelDadosProprietario{
+    font-weight: bold;
+    color: var(--cor004);
+}
+.Declare-dadosDoPropietario{
+    border:none;
+    border-bottom: 1px solid var(--cor002);
+    margin: 10px;
+    background-color:rgba(194, 194, 194, 0);
+    color: var(--cor004);
+    font-size: 16px;
+    line-height: 25px;
+}
+
+.CurrentCattleHerd{
+    background-color: var(--cor011);
+    height: 250px;
+    border: 1px solid var(--cor002);
+    display: flex; 
+    padding-left: 12px;
+    width: 898px;
+    margin: auto;
+}
+
+.Block-CurrentCattleHerd{
+    margin-top: 6%;
+    margin-left: 1.3%;
+}
+.SmallBlocks-CurrentCattleHerd{
+    background-color: var(--cor005);
+    width: 161px;
+    text-align: center;
+    color: var(--cor001);
+    font-weight: bold;
+    height: 54px;
+    border: 1px solid var(--cor002);
+
+}
+
+#total{
+    background-color: var(--cor005);
+    width: 161px;
+    text-align: center;
+    color: var(--cor001);
+    font-weight: bold;
+    height:53px;
+    padding-top: 15px;
+    border: 1px solid var(--cor002);
+
+}
+
+
+.FieldMF-alt-Left{
+    height: 36px;
+    margin-top: -71px;
+    width: 81px;
+    border-bottom: 1px solid var(--cor002);
+    border-left: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FieldMF-Down-left{
+    width: 81px;
+    height: 34.9px;
+    border-bottom: 1px solid var(--cor002);
+    border-left: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.FieldMF-alt-Rigth{
+    height: 35px;
+    margin-top: -35px;
+    margin-left: 81px;
+    width: 80px;
+    border-bottom: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.FieldMF-Down-Rigth{
+    width: 81px;
+    height: 35px;
+    margin-left: 80px;
+    margin-top: -35px;
+    border-bottom: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.MF{
+    display: flex;
+    justify-content: space-around;
+    background-color:var(--cor001);
+    height: 100px;
+    width: 161px;
+}
+.M-txt{
+    border-bottom: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    border-left: 1px solid var(--cor002);
+    height: 31px;
+    width: 99px;
+    text-align: center;
+    background-color: var(--cor001);
+}
+
+.F-txt{
+    border-bottom:1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    /* border-left: 1px solid var(--cor002); */
+    height: 31px;
+    width: 99px;
+    text-align: center;
+    background-color: var(--cor001);
+}
+#CurrentCattleHerd-Mortality{
+    background-color:var(--cor006);
+    text-align: center;
+    font-size: 16px;
+    color: var(--cor001);
+    font-weight: bold;
+    height: 50px;
+    width: 898px;
+    margin: auto;
+    margin-top: 4%;
+    border-left: 1px solid var(--cor002);
+    border-top: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+
+
+}
+#causes-txt{
+    background-color: var(--cor005);
+    border-left: 1px solid var(--cor002);
+    border-top: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);    width: 161px;
+    text-align: center;
+    color: var(--cor001);
+    font-weight: bold;
+    height: 70px;
+    padding-top: 23px;
+    
+}
+#causes{
+    display: block;
+    background-color:var(--cor001);
+    height: 70px;
+    border:1px solid var(--cor002);
+    text-align: center;
+    width: 161px;
+}
+#txt-ownConsumption{
+    height: 32px;
+    margin-top: 1px;
+    border-bottom: 1px solid var(--cor002);
+}
+#txt-DeathVariousCauses{
+    font-size: 14.5px;
+    margin-top: 4px;
+}
+.SmallBlocksMortality{
+    background-color: var(--cor005);
+    border: 1px solid var(--cor002);
+    width: 161px;
+    text-align: center;
+    color: var(--cor001);
+    font-weight: bold;
+    height: 40px;
+    padding-top: 6px;
+   
+}
+
+#CattleDeclaration-Goal{
+    background-color:var(--cor011);
+    height: 200px;
+    border: 1px solid var(--cor002);
+    width: 898px;
+    margin: auto;
+}
+#BeefCattle-DairyCattle{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 12%;
+    text-align: center;
+}
+#CowImage-CattleDeclaration{
+    margin-top: -160%;
+    margin-right: -180px;
+    width: 220px;
+}
