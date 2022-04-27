@@ -11,7 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { ImEye } from "react-icons/im";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
-import { Box, Button, Fab, Modal } from "@mui/material";
+import { Box, Button, Container, Fab, Grid, Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { CattleModel, CATTLE_SEXS, CATTLE_TYPES } from "../models/CattleModel";
@@ -23,6 +23,7 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
 // import { ptBR } from "@mui/material/locale";
 
+import { bgcolor } from "@mui/system";
 const CattleListPage = (): ReactElement => {
   const columns: GridColDef[] = [
     {
@@ -77,7 +78,6 @@ const CattleListPage = (): ReactElement => {
     },
     {
       field: "qtyChildren",
-
       headerName: "Qtd de Cria",
       headerAlign: "center",
       align: "center",
@@ -145,6 +145,7 @@ const CattleListPage = (): ReactElement => {
       },
     },
   ];
+
   const [selectedAnimal, setSelectedAnimal] = useState<CattleModel>();
   const [animals, setAnimals] = useState<CattleModel[]>([]);
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
@@ -247,24 +248,69 @@ const CattleListPage = (): ReactElement => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
-            bgcolor: "background.paper",
-            border: "2px solid #000",
-            boxShadow: 24,
+            width: 560,
+            height: 250,
+            bgcolor: "white",
+            borderRadius: "10px",
+            boxShadow: 11,
             p: 4,
           }}
         >
           <Box>
-            <h2>
-              Você realmente deseja excluir esse animal ( {selectedAnimal.name}{" "}
-              )?
-            </h2>
-            <p>
-              Após a exclusão não será possível recuperar os dados do animal ({" "}
-              {selectedAnimal.name} )
-            </p>
-            <Button onClick={() => HandleDeleteAnimal(false)}>Não</Button>
-            <Button onClick={() => HandleDeleteAnimal(true)}>Sim</Button>
+            <div id="bloco-modal">
+              <Grid sx={{ margin: "2%  2%" }}>
+                <span>
+                  Você realmente deseja excluir esse animal ({" "}
+                  {selectedAnimal.name} )?
+                </span>
+              </Grid>
+              <Grid
+                sx={{
+                  margin: "2%  15% 2% 2%",
+                  display: "flex",
+                }}
+              >
+                <p>
+                  Após a exclusão não será possível recuperar os dados do animal
+                  ( {selectedAnimal.name} )
+                </p>
+              </Grid>
+
+              <Grid
+                sx={{
+                  display: "flex",
+                  margin: " 1%",
+                  justifyContent: "center",
+                }}
+              >
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalDelet"
+                    onClick={() => HandleDeleteAnimal(true)}
+                  >
+                    Sim
+                  </Button>{" "}
+                </Grid>
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalCancel"
+                    onClick={() => HandleDeleteAnimal(false)}
+                  >
+                    Não
+                  </Button>{" "}
+                </Grid>
+              </Grid>
+            </div>
           </Box>
         </Modal>
       );
@@ -284,7 +330,6 @@ const CattleListPage = (): ReactElement => {
             </abbr>
           </span>
         </div>
-
         <Box id="table-MinhaCriacao">
           <div style={{ height: 420, width: 1025 }}>
             <DataGrid
@@ -305,5 +350,4 @@ const CattleListPage = (): ReactElement => {
     </>
   );
 };
-
 export default CattleListPage;

@@ -50,3 +50,31 @@
 #btn-DeleteAnimal {
   padding-top: 7px;
 }
+
+#bloco-modal {
+  border-radius: 10px;
+  padding: 1%;
+}
+
+#bloco-modal span {
+  color: #33658a;
+  font-size: 20px;
+}
+
+#btn-modalCancel {
+  background-color: red;
+  color: white;
+}
+
+#btn-modalDelet {
+  background-color: green;
+  color: white;
+}
+
+#btn-modalCancel:hover {
+  background-color: rgb(253, 69, 69);
+}
+
+#btn-modalDelet:hover {
+  background-color: rgb(75, 134, 75);
+}
