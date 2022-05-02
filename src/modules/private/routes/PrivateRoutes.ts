@@ -1,4 +1,4 @@
-import { Route } from "../../../models/RouteModel";
+import { Route } from "../../public/models/RouteModel";
 /* Paginas publicas da aplicação */
 import CattleListPage from "../modules/cattles/pages/CattleList";
 import CattleFormPage from "../modules/cattles/pages/CreateCattleForm";

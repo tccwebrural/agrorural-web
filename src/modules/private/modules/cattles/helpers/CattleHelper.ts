@@ -1,31 +1,47 @@
+import { COLLECTION_CATTLES } from "./../../../../../constants";
 // import { randomUUID } from "crypto";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
+  DocumentReference,
   getDoc,
   getDocs,
   query,
   Timestamp,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { firestore } from "../../../../../configs/Firebase";
-import { COLLECTION_CATTLES, COLLECTION_FARMS } from "../../../../../constants";
+import { COLLECTION_FARMS } from "../../../../../constants";
 import { FarmHelper } from "../../../helpers/FarmHelper";
 import { CattleModel } from "../models/CattleModel";
 
 export const CattleHelper = () => {
   const { getFarmRef } = FarmHelper();
 
-  const getCattleByIdentificador = async (
-    identificador?: number
-  ): Promise<CattleModel | undefined> => {
-    if (identificador) {
-      //BUSCAR NO FIREBASE VACAS COM O IDENTIFICADOR
-      //https://firebase.google.com/docs/firestore/query-data/queries#simple_queries
-      return new Promise(() => undefined);
+  const getCattlesByIdentifier = async (identifier: number) => {
+    const farmRef = await getFarmRef();
+    let cattles = new Array<CattleModel>();
+    if (identifier && farmRef) {
+      const cattlesCollectionRef = collection(
+        firestore,
+        COLLECTION_FARMS,
+        farmRef.id,
+        COLLECTION_CATTLES
+      );
+
+      const whereByIdentfier = query(
+        cattlesCollectionRef,
+        where("identifier", "==", identifier)
+      );
+      const response = await getDocs(whereByIdentfier);
+      cattles = response.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() } as CattleModel;
+      });
     }
+    return cattles;
   };
 
   const createCattle = async (cattle: CattleModel) => {
@@ -33,14 +49,18 @@ export const CattleHelper = () => {
 
     if (farmRef) {
       cattle.createdAt = Timestamp.now();
-      cattle.identifier = 10;
-      const cattlesCollectionRef = collection(
-        firestore,
-        COLLECTION_FARMS,
-        farmRef.id,
-        COLLECTION_CATTLES
-      );
-      return addDoc(cattlesCollectionRef, cattle);
+      const cattles = await getCattlesByIdentifier(cattle.identifier);
+      if (cattles.length > 0) {
+        throw "JÀ EXISTE UM  GADO COM O MESMO IDENTIFICADOR";
+      } else {
+        const cattlesCollectionRef = collection(
+          firestore,
+          COLLECTION_FARMS,
+          farmRef.id,
+          COLLECTION_CATTLES
+        );
+        return addDoc(cattlesCollectionRef, cattle);
+      }
     } else {
       throw "Algo não esperado ocorreu, não foi possível encontrar a referência da fazenda do usuário atual";
     }
@@ -55,15 +75,44 @@ export const CattleHelper = () => {
         farmRef.id,
         COLLECTION_CATTLES
       );
-      const cattleRes = await getCattleByIdentificador(cattle.identifier);
-      if (cattleRes) {
+
+      const cattles = await getCattlesByIdentifier(cattle.identifier);
+      //REMOVER CATTLE ATUAL DA ATUALIZAÇÃO
+      for (let index = 0; index < cattles.length; index++) {
+        const item = cattles[index];
+        if (item.id === cattle.id) {
+          cattles.splice(index, 1);
+        }
+      }
+
+      if (cattles.length > 0) {
         throw "JÀ EXISTE UM  GADO COM O MESMO IDENTIFICADOR";
       } else {
-        const cattleRef = doc(firestore, cattlesCollectionRef.path, cattle.id);
+        const cattleRef = await doc(
+          firestore,
+
+          cattlesCollectionRef.path,
+          cattle.id
+        );
         return updateDoc(cattleRef, { ...cattle });
       }
     } else {
-      //TODO: Exibe mensagem de erro
+      throw "NÃO PODE ATUALIZAR UM CATTLE SEM FORNECER O ID";
+    }
+  };
+
+  const getCattleRef = async (cattleId: string) => {
+    const farmRef = await getFarmRef();
+    if (farmRef) {
+      const cattlesCollectionRef = collection(
+        firestore,
+        COLLECTION_FARMS,
+        farmRef.id,
+        COLLECTION_CATTLES
+      );
+      const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
+
+      return cattleRef;
     }
   };
 
@@ -83,18 +132,12 @@ export const CattleHelper = () => {
   };
 
   const getCattleById = async (cattleId: string) => {
-    const farmRef = await getFarmRef();
-    if (farmRef) {
-      const cattlesCollectionRef = collection(
-        firestore,
-        COLLECTION_FARMS,
-        farmRef.id,
-        COLLECTION_CATTLES
-      );
-      const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
-
+    const cattleRef = await getCattleRef(cattleId);
+    if (cattleRef) {
       const cattleDoc = await getDoc(cattleRef);
-      return { id: cattleDoc.id, ...cattleDoc.data() } as CattleModel;
+      if (cattleDoc.exists()) {
+        return { id: cattleDoc.id, ...cattleDoc.data() } as CattleModel;
+      }
     }
   };
 
@@ -123,5 +166,6 @@ export const CattleHelper = () => {
     deleteCattleId,
     updateCattleId,
     getCattleById,
+    getCattleRef,
   };
 };

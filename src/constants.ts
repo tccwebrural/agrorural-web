@@ -22,6 +22,7 @@ export const COLLECTION_FARMS = "farms";
 export const COLLECTION_CATTLES = "cattles";
 export const COLLECTION_DECLARATIONS = "declarations";
 export const COLLECTION_USERS = "users";
+export const COLLECTION_VACINES = "vacines";
 
 /* MENSAGENS DE ERRO DO FORMULÁRIO */
 export const EMAIL_INVALID = "Digite um email válido";
@@ -30,10 +31,23 @@ export const PASSWORD_IS_NOT_EQUALS = "Ambas as senhas devem ser identicas";
 export const REQUIRED_FIELD = "O campo é obrigatório";
 export const CPF_INVALID = "Digite um cpf válido";
 export const INDENTIFER_INVALID = "Digite um identificador válido";
+export const PHONE_MIN_9_11 = "Numero de telefone deve possuir 11 digitos";
 
 /* REGEXS */
+
+export const PHONE_REGEX =
+  // MAIS CERTO QUE TEM
+  // /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+  /^(?:(?:\+|00)?(55)\s?)?(?:(?:\(?[1-9][0-9]\)?)?\s?)?(?:((?:9\d|[2-9])\d{3})-?(\d{4}))$/;
+// ERRADO
+// /^(?(?:[14689][1-9]|2[12478]|3[1234578]|5[1345]|7[134579])\)? ?(?:[2-8]|9[1-9])[0-9]{3}\-?[0-9]{4}$/;
+
+// /(?\d{2,}\)?[ -]?\d{4,}[\-\s]?\d{4}$/;
+export const PHONE_INVALID = "numero de telefone inválido";
+
 export const CPF_REGEX =
-  /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
+  // /^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$/;
+  /^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/;
 
 /* MENSAGENS DE ERRO */
 export const INTERNAL_ERROR =

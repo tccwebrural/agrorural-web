@@ -1,9 +1,16 @@
-import { Box, Button, Container, Grid } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  FormControl,
+  Grid,
+  InputLabel,
+} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
 import React, { ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
-import { RegisterUserModel } from "../../../../../models/UserModel";
+import { RegisterUserModel } from "../../../models/UserModel";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { RegisterValidatorSchema } from "../validators/RegisterValidatorSchema";
@@ -15,6 +22,36 @@ import "../../../styles/Register.css";
 import { Toaster } from "react-hot-toast";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+import { IMaskInput } from "react-imask";
+import Input from "@mui/material/Input";
+import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
+
+// import { InputMask } from "react-input-mask";
+
+//MODEL PARA NUMERO
+// interface CustomProps {
+//   onChange: (event: { target: { name: string; value: string } }) => void;
+//   name: string;
+// }
+// // COMPONENTE A PARTE
+// const PhoneMaskCustom = React.forwardRef<HTMLElement, PhoneModel>(
+//   function TextMaskCustom(props, ref) {
+//     const { onChange, ...other } = props;
+//     return (
+//       <IMaskInput
+//         {...other}
+//         mask="(00) 00000-0000"
+//         definitions={{
+//           "#": /[1-9]/,
+//         }}
+//         onAccept={(value: any) =>
+//           onChange({ target: { name: props.name, value } })
+//         }
+//         overwrite
+//       />
+//     );
+//   }
+// );
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
@@ -85,10 +122,15 @@ const RegisterPage = (): ReactElement => {
                     <TextField
                       sx={{ width: "300px", margin: "2% 0%" }}
                       label="Telefone"
-                      {...getControls(formRegisterUser, "phone")}
                       type="text"
+                      {...getControls(formRegisterUser, "phone")}
+                      InputProps={{
+                        inputComponent: PhoneMaskCustom as any,
+                      }}
+                      // type="text"
                     />
                   </Grid>
+
                   <Grid>
                     <TextField
                       sx={{ width: "300px", margin: "2% 0%" }}
@@ -97,6 +139,7 @@ const RegisterPage = (): ReactElement => {
                       type="text"
                     />
                   </Grid>
+
                   <Grid>
                     <TextField
                       sx={{ width: "300px", margin: "2% 0%" }}
