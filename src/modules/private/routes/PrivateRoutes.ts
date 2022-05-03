@@ -15,6 +15,7 @@ import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
 import notifyVaccine from "../modules/vacine/pages/NotifyVaccine";
 import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
 import DeclareForm from "../modules/cattles/pages/DeclareForm";
+import TesteFormik from "../modules/testes/TesteFormik";
 
 export const PRIVATE_ROUTES: Array<Route> = [
   {
@@ -100,4 +101,13 @@ export const PRIVATE_ROUTES: Array<Route> = [
     showHeaderBtn: false,
     component: CattleInfoGado,
   },
+/////////////////////////  TESTE  /////////////////////////////////
+  {
+    key: "TesteFormik",
+    title: "teste formik",
+    path: "testes/TesteFormik",
+    showHeaderBtn: true,
+    component: TesteFormik,
+  },
+
 ];
