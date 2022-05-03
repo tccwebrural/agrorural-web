@@ -1,4 +1,4 @@
-import { Route } from "../../../models/RouteModel";
+import { Route } from "../../public/models/RouteModel";
 /* Paginas publicas da aplicação */
 import CattleListPage from "../modules/cattles/pages/CattleList";
 import CattleFormPage from "../modules/cattles/pages/CreateCattleForm";
@@ -81,7 +81,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "my-cattle",
     title: "Cartao de Vacina",
-    path: "cattle/Vaccine",
+    path: "cattle/:id/Vaccine",
     showHeaderBtn: false,
     component: MyCattle,
   },
@@ -97,7 +97,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "infoGado",
     title: "Informações do Gado ",
-    path: "cattle/infoGado",
+    path: "cattle/:id/infoGado",
     showHeaderBtn: false,
     component: CattleInfoGado,
   },

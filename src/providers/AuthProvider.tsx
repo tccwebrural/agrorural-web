@@ -266,7 +266,10 @@ import {
   NOT_FOUND_USER,
   USUARIO_CADASTRADO_COM_SUCESSO,
 } from "../constants";
-import { RegisterUserModel, UserModel } from "../models/UserModel";
+import {
+  RegisterUserModel,
+  UserModel,
+} from "../modules/public/models/UserModel";
 
 type AuthContext = {
   userState: UserModel | undefined;

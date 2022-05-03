@@ -9,17 +9,19 @@ import {
   TextField,
 } from "@mui/material";
 import { Formik } from "formik";
-import { CattleValidatorSchema } from "modules/public/modules/authentication/validators/CattleValidatorSchema";
+import { CattleValidatorSchema } from "modules/private/modules/cattles/validators/CattleValidatorSchema";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import React, { ReactElement, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { getFireError } from "utils/HandleFirebaseError";
 import bezerro from "../../../../../assets/bezerro.png";
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import { getControls } from "../../../../../utils/FormUtils";
 import "../../../styles/UpdateCattle.css";
 import { CattleHelper } from "../helpers/CattleHelper";
 import { CattleModel } from "../models/CattleModel";
-
+//
 const UpdateCattle = (): ReactElement => {
   const cattleHelper = CattleHelper();
   const loadingHelper = useGlobalLoading();
@@ -37,6 +39,23 @@ const UpdateCattle = (): ReactElement => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  const submitForm = (cattle: CattleModel) => {
+    cattle.id = id;
+    cattleHelper
+      .updateCattleId(cattle)
+      .then(() =>
+        //toast sucess
+        navigate("/private/cattles")
+      )
+
+      .catch((err) => {
+        //TODO: Mensagem de erro
+        //toast erro
+        console.error(err);
+        toast.error(getFireError(err));
+      });
+  };
+
   useEffect(() => {
     loadingHelper.startLoading();
     if (id) {
@@ -45,6 +64,7 @@ const UpdateCattle = (): ReactElement => {
           setInitialValues(cattle);
         } else {
           //TODO: Volta para listagem
+          toast.error("VACA NAO ENCONTRADA");
         }
         loadingHelper.stopLoading();
       });
@@ -66,34 +86,21 @@ const UpdateCattle = (): ReactElement => {
         <Formik
           // Enable -> renderiza o estado do initial values
           enableReinitialize={true}
-          onSubmit={async (formValue: CattleModel) => {
-            formValue.id = id;
-            cattleHelper
-              .updateCattleId(formValue)
-              .then(() =>
-                //toast sucess
-
-                navigate("/private/cattles")
-              )
-              .catch((err) => {
-                //TODO: Mensagem de erro
-                //toast error
-              });
-          }}
+          onSubmit={submitForm}
           validationSchema={CattleValidatorSchema}
           initialValues={initialValues}
         >
-          {(bolinha) => (
+          {(formik) => (
             <div className="MainBlock">
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
                   <span className="Block-Txt">
-                    Minha Criação &gt; Atualizar Gado
+                    Editar dados do Animal : {initialValues.name}
                   </span>
                 </h2>
               </div>
 
-              <form id="Block-EditAnimalData" onSubmit={bolinha.handleSubmit}>
+              <form id="Block-EditAnimalData" onSubmit={formik.handleSubmit}>
                 <Box
                   sx={{
                     "& .MuiTextField-root": { m: 1, width: "25ch" },
@@ -103,7 +110,7 @@ const UpdateCattle = (): ReactElement => {
                     <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
 
                     <Select
-                      {...getControls(bolinha, "sex")}
+                      {...getControls(formik, "sex")}
                       label="Grouping"
                       // name="category"
                     >
@@ -114,24 +121,26 @@ const UpdateCattle = (): ReactElement => {
                   <TextField
                     style={{ width: 270 }}
                     label="Identificador"
+                    type="number"
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    {...getControls(bolinha, "identifier")}
+                    {...getControls(formik, "identifier")}
                   />
+
                   <TextField
                     style={{ width: 300 }}
                     label="Nome"
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    {...getControls(bolinha, "name")}
+                    {...getControls(formik, "name")}
                   />
                   <TextField
                     style={{ width: 280 }}
                     label="Data de Nascimento"
                     type="date"
-                    {...getControls(bolinha, "birthday")}
+                    {...getControls(formik, "birthday")}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -140,7 +149,7 @@ const UpdateCattle = (): ReactElement => {
                   <FormControl sx={{ m: 1, minWidth: 271 }}>
                     <InputLabel htmlFor="type">Tipo</InputLabel>
                     <Select
-                      {...getControls(bolinha, "type")}
+                      {...getControls(formik, "type")}
                       //   label="Grouping"
                       // name="type"
                     >
@@ -152,7 +161,7 @@ const UpdateCattle = (): ReactElement => {
                   <TextField
                     style={{ width: 279 }}
                     label="Peso"
-                    {...getControls(bolinha, "weigth")}
+                    {...getControls(formik, "weigth")}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -162,8 +171,7 @@ const UpdateCattle = (): ReactElement => {
                     // disabled
                     label="Quantidade de cria"
                     type="number"
-                    // name="identifier"
-                    {...getControls(bolinha, "qtyChildren")}
+                    {...getControls(formik, "qtyChildren")}
                     InputLabelProps={{
                       shrink: true,
                     }}

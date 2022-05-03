@@ -10,15 +10,73 @@ import {
   MenuItem,
   Button,
 } from "@mui/material";
-import { ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { ReactElement, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdCoronavirus } from "react-icons/md";
 import { BsPrinter } from "react-icons/bs";
 import AddIcon from "@mui/icons-material/Add";
 import vaca1 from "../../../../../assets/vaca1.png";
 import "../../../styles/MyCattle.css";
+import { CattleModel } from "../models/CattleModel";
+import { idText } from "typescript";
+import { Formik } from "formik";
+import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import { CattleHelper } from "../helpers/CattleHelper";
+import toast from "react-hot-toast";
+import { getFireError } from "utils/HandleFirebaseError";
+import { getControls } from "utils/FormUtils";
 
 const MyCattle = (): ReactElement => {
+  const { id } = useParams();
+
+  const [initialValues, setInitialValues] = useState<CattleModel>({
+    identifier: 0,
+    weigth: 0,
+    name: "",
+    type: 1,
+    birthday: "",
+    sex: 1,
+    qtyChildren: 0,
+  });
+  const cattleHelper = CattleHelper();
+  const loadingHelper = useGlobalLoading();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    loadingHelper.startLoading();
+    if (id) {
+      cattleHelper.getCattleById(id).then((cattle?: CattleModel) => {
+        if (cattle) {
+          setInitialValues(cattle);
+        } else {
+          //TODO: Volta para listagem
+          toast.error("VACA NAO ENCONTRADA");
+        }
+        loadingHelper.stopLoading();
+      });
+    } else {
+      //TODO: Volta para listagem
+      loadingHelper.stopLoading();
+    }
+  }, []);
+
+  const submitForm = (cattle: CattleModel) => {
+    cattle.id = id;
+    cattleHelper
+      .updateCattleId(cattle)
+      .then(() =>
+        //toast sucess
+        navigate("/private/cattles")
+      )
+
+      .catch((err) => {
+        //TODO: Mensagem de erro
+        //toast erro
+        console.error(err);
+        toast.error(getFireError(err));
+      });
+  };
+
   return (
     <>
       <Container
@@ -30,75 +88,99 @@ const MyCattle = (): ReactElement => {
         <div id="blocoGeral">
           <section>
             <div id="blocoTitulo-criacao">
-              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal </h2>
+              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal k </h2>
               <span id="blocoTituloLine-criacao"></span>
             </div>
 
-            <div id="infoGado">
-              <Box>
-                <FormControl
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Grid item xs={2} sx={{ margin: "1%" }}>
-                    <TextField
-                      style={{ width: 180 }}
-                      id="outlined-disabled"
-                      label="Nome"
-                      type="text"
-                    />
-                  </Grid>
-                  <Grid sx={{ margin: "1%" }}>
-                    <TextField
-                      style={{ width: 80 }}
-                      id="outlined-disabled"
-                      label="Peso"
-                      type="number"
-                    />
-                  </Grid>
-                  <Grid sx={{ margin: "1%" }}>
-                    <FormControl sx={{ minWidth: 221 }}>
-                      <InputLabel>Tipo</InputLabel>
-                      <Select label="Grouping" name="tipo">
-                        <MenuItem value={1}>Gado de Corte</MenuItem>
-                        <MenuItem value={2}>Gado Leitero</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid sx={{ margin: "1%" }}>
-                    <TextField
-                      style={{ width: 180 }}
-                      id="outlined-disabled"
-                      label="Data de Nascimento"
-                      type="date"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                  </Grid>
-                  <Grid sx={{ margin: "1%" }}>
-                    <TextField
-                      style={{ width: 100 }}
-                      id="Qtd de Cria"
-                      label="Qtd de Cria"
-                      type="number"
-                    />
-                  </Grid>
-                  <Grid sx={{ margin: "1%" }}>
-                    <FormControl sx={{ minWidth: 100 }}>
-                      <InputLabel htmlFor="type">Sexo</InputLabel>
-                      <Select label="Grouping" name="type">
-                        <MenuItem value={1}>Macho</MenuItem>
-                        <MenuItem value={2}>Femea</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                </FormControl>
-              </Box>
-            </div>
+            <Formik
+              enableReinitialize={true}
+              onSubmit={submitForm}
+              initialValues={initialValues}
+            >
+              {(formik) => (
+                <Box>
+                  <FormControl
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Grid item xs={2} sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="outlined-disabled"
+                        label="Nome"
+                        type="text"
+                        disabled={true}
+                        {...getControls(formik, "name")}
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="outlined-disabled"
+                        label="Peso"
+                        type="number"
+                        disabled={true}
+                        {...getControls(formik, "weigth")}
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <FormControl sx={{ minWidth: 221 }}>
+                        <InputLabel>Tipo</InputLabel>
+                        <Select
+                          disabled={true}
+                          {...getControls(formik, "type")}
+                          label="Grouping"
+                          name="tipo"
+                        >
+                          <MenuItem value={1}>Gado de Corte</MenuItem>
+                          <MenuItem value={2}>Gado Leitero</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="outlined-disabled"
+                        label="Data de Nascimento"
+                        type="date"
+                        disabled={true}
+                        {...getControls(formik, "birthday")}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <TextField
+                        style={{ width: 180 }}
+                        id="Qtd de Cria"
+                        label="Qtd de Cria"
+                        type="number"
+                        disabled={true}
+                        {...getControls(formik, "qtyChildren")}
+                      />
+                    </Grid>
+                    <Grid sx={{ margin: "1%" }}>
+                      <FormControl sx={{ minWidth: 100 }}>
+                        <InputLabel htmlFor="type">Sexo</InputLabel>
+                        <Select
+                          disabled={true}
+                          {...getControls(formik, "sex")}
+                          label="Grouping"
+                          name="type"
+                        >
+                          <MenuItem value={1}>Macho</MenuItem>
+                          <MenuItem value={2}>Femea</MenuItem>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                  </FormControl>
+                </Box>
+              )}
+            </Formik>
           </section>
 
           <section>
@@ -109,7 +191,7 @@ const MyCattle = (): ReactElement => {
                   <Fab
                     id="icon-vaccine"
                     component={Link}
-                    to="/private/cattles/:id/vacine/form"
+                    to={`/private/cattles/${id}/vacine/form`}
                   >
                     <button id="btAdd-Vaccine">
                       <abbr title="Adicionar Vacina">
@@ -124,7 +206,7 @@ const MyCattle = (): ReactElement => {
                 <Grid id="vacinas">
                   <Button
                     component={Link}
-                    to="/private/cattle/vaccine/view"
+                    to="/private/cattle/:id/Vaccine/view"
                     sx={{ display: "flex", flexDirection: "column" }}
                   >
                     <abbr title="Detalhes da vacina">

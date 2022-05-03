@@ -1,4 +1,4 @@
-import { Route } from "../../../models/RouteModel";
+import { Route } from "../models/RouteModel";
 /* Paginas publicas da aplicação */
 import LoginPage from "../modules/authentication/pages/Login";
 import RegisterPage from "../modules/authentication/pages/Register";
