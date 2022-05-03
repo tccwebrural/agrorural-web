@@ -9,7 +9,9 @@ export interface UserModel {
   createdAt: Timestamp;
   active: boolean;
 }
-
+export interface PasswordResetModel {
+  email: string;
+}
 export interface RegisterUserModel {
   name: string;
   email: string;
