@@ -5,8 +5,8 @@ const CATTLE_SEXS: { [key: number]: string } = {
   2: "FÊMEA",
 };
 const CATTLE_TYPES: { [key: number]: string } = {
-  1: "LEITEIRO",
-  2: "CORTE",
+  1: "CORTE",
+  2: "LEITEIRO",
 };
 const CATTLE_DETH_TYPES: { [key: number]: string } = {
   1: "CONSUMO PROPRIO",

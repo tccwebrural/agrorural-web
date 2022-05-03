@@ -22,12 +22,14 @@ import bezerro from "../../../../../assets/bezerro.png";
 import "../../../styles/CattleForm.css";
 import "../../../styles/style.css";
 import { getControls } from "../../../../../utils/FormUtils";
+import toast from "react-hot-toast";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { TodayTwoTone } from "@mui/icons-material";
 import { object } from "yup/lib/locale";
-import { CattleValidatorSchema } from "modules/public/modules/authentication/validators/CattleValidatorSchema";
+import { CattleValidatorSchema } from "modules/private/modules/cattles/validators/CattleValidatorSchema";
+import { getFireError } from "utils/HandleFirebaseError";
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   margin: "auto",
@@ -60,10 +62,33 @@ const CreateCattleFormPage = (): ReactElement => {
       // formValue.birthday?.toDate();
       cattlehelpers
         .createCattle(formValue)
-        .then(() => navigate("/private/cattles"));
+        .then(() => navigate("/private/cattles"))
+
+        .catch((err) => {
+          //TODO: Mensagem de erro
+          //toast erro
+          console.error(err);
+          toast.error(getFireError(err));
+        });
     },
   });
 
+  //   onSubmit: async (formValue: CattleModel) => {
+  //     // Date.UTC(""),
+  //     // formValue.birthday?.toDate();
+  //     cattlehelpers
+  //       .createCattle(formValue)
+  //       .then(() =>{}
+  //        navigate("/private/cattles"))
+
+  //       .catch((err) => {
+  //         //TODO: Mensagem de erro
+  //         //toast erro
+  //         console.error(err);
+  //         toast.error(getFireError(err));
+  //       });
+  //   },
+  // });
   return (
     <>
       <div className="MainBlock">

@@ -51,7 +51,7 @@ export const CattleHelper = () => {
       cattle.createdAt = Timestamp.now();
       const cattles = await getCattlesByIdentifier(cattle.identifier);
       if (cattles.length > 0) {
-        throw "JÀ EXISTE UM  GADO COM O MESMO IDENTIFICADOR";
+        throw "Esse identificador já existe, por favor troque para um novo!";
       } else {
         const cattlesCollectionRef = collection(
           firestore,

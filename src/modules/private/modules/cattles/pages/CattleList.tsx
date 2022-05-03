@@ -98,7 +98,7 @@ const CattleListPage = (): ReactElement => {
         const currentAnimalRow = params.row as CattleModel;
         return (
           <>
-            <Link to={`/private/cattle/infoGado`}>
+            <Link to={`/private/cattle/${currentAnimalRow.id}/infoGado`}>
               <Fab
                 size="small"
                 style={{ color: "green" }}
@@ -110,7 +110,7 @@ const CattleListPage = (): ReactElement => {
               </Fab>
             </Link>
 
-            <Link to={`/private/cattle/Vaccine`}>
+            <Link to={`/private/cattle/${currentAnimalRow.id}/Vaccine`}>
               <Fab size="small" color="primary" id="btn-ViewVaccine">
                 <abbr title="Cartão de Vacina">
                   <VaccinesIcon />

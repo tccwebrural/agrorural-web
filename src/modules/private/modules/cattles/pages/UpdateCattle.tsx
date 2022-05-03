@@ -9,7 +9,7 @@ import {
   TextField,
 } from "@mui/material";
 import { Formik } from "formik";
-import { CattleValidatorSchema } from "modules/public/modules/authentication/validators/CattleValidatorSchema";
+import { CattleValidatorSchema } from "modules/private/modules/cattles/validators/CattleValidatorSchema";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import React, { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";

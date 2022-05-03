@@ -26,33 +26,6 @@ import { IMaskInput } from "react-imask";
 import Input from "@mui/material/Input";
 import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
 
-// import { InputMask } from "react-input-mask";
-
-//MODEL PARA NUMERO
-// interface CustomProps {
-//   onChange: (event: { target: { name: string; value: string } }) => void;
-//   name: string;
-// }
-// // COMPONENTE A PARTE
-// const PhoneMaskCustom = React.forwardRef<HTMLElement, PhoneModel>(
-//   function TextMaskCustom(props, ref) {
-//     const { onChange, ...other } = props;
-//     return (
-//       <IMaskInput
-//         {...other}
-//         mask="(00) 00000-0000"
-//         definitions={{
-//           "#": /[1-9]/,
-//         }}
-//         onAccept={(value: any) =>
-//           onChange({ target: { name: props.name, value } })
-//         }
-//         overwrite
-//       />
-//     );
-//   }
-// );
-
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
   const authContext = useAuth();

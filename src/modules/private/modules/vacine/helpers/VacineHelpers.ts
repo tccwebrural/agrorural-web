@@ -34,7 +34,6 @@ export const VacineHelper = () => {
 
     if (farmRef && cattle) {
       vacine.createdAt = Timestamp.now();
-
       const vaccineCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
@@ -129,5 +128,6 @@ export const VacineHelper = () => {
     getVacineById,
     deleteVacineId,
     updateVacineId,
+    createVacine,
   };
 };

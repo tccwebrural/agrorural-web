@@ -80,7 +80,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "my-cattle",
     title: "Cartao de Vacina",
-    path: "cattle/Vaccine",
+    path: "cattle/:id/Vaccine",
     showHeaderBtn: false,
     component: MyCattle,
   },
@@ -96,7 +96,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "infoGado",
     title: "Informações do Gado ",
-    path: "cattle/infoGado",
+    path: "cattle/:id/infoGado",
     showHeaderBtn: false,
     component: CattleInfoGado,
   },

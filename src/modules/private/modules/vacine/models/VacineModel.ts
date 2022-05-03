@@ -6,7 +6,7 @@ class VacineModel {
   date_application!: string;
   expiration_date!: string;
   manufacturer!: string;
-  createdAt!: Timestamp;
+  createdAt?: Timestamp;
 }
 
 export { VacineModel };
