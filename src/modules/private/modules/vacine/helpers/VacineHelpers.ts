@@ -47,14 +47,17 @@ export const VacineHelper = () => {
       throw "Algo não esperado ocorreu, não foi possível encontrar a referência da fazenda do usuário atual";
     }
   };
-  const updateVacineId = async (vacine: VacineModel) => {
+  const updateVacineId = async (vacine: VacineModel, cattleId: string) => {
     const farmRef = await getFarmRef();
+    const cattle = await getCattleById(cattleId);
+
     if (farmRef && vacine.id) {
       const vacinesCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
         farmRef.id,
         COLLECTION_CATTLES,
+        cattleId,
         COLLECTION_VACINES
       );
 
@@ -69,14 +72,17 @@ export const VacineHelper = () => {
     }
   };
 
-  const deleteVacineId = async (vacineId: string) => {
+  const deleteVacineId = async (vacineId: string, cattleId: string) => {
     const farmRef = await getFarmRef();
+    const cattle = await getCattleById(cattleId);
+
     if (farmRef) {
       const vacinesCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
         farmRef.id,
         COLLECTION_CATTLES,
+        cattleId,
         COLLECTION_VACINES
       );
       const vacineRef = doc(firestore, vacinesCollectionRef.path, vacineId);
@@ -112,6 +118,7 @@ export const VacineHelper = () => {
         COLLECTION_FARMS,
         farmRef.id,
         COLLECTION_CATTLES,
+
         COLLECTION_VACINES
       );
       const findByCollectionRef = query(vacinesCollectionRef);
