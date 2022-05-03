@@ -278,7 +278,7 @@ type AuthContext = {
   signUp: (formData: RegisterUserModel) => Promise<void>;
   logout: (redirectToHome?: boolean) => void;
   deactiveUser: () => Promise<void>;
-  sendPasswordReset: (email: string) => {};
+  sendPasswordReset: (email: string) => Promise<void>;
 };
 
 const UserAuthProvider = (): AuthContext => {
