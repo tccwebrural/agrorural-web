@@ -8,8 +8,8 @@ import { getControls } from "../../../../../utils/FormUtils";
 import { LoginValidatorSchema } from "../validators/LoginValidatorSchema";
 import "../../../styles/Login.css";
 import footer from "../../../../../assets/footer.png";
-import vaca3 from "../../../../../assets/vaca3.png";
-import vaca4 from "../../../../../assets/vaca4.png";
+import vaca1 from "../../../../../assets/vaca1.png";
+import vaca2 from "../../../../../assets/vaca2.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 import { Toaster } from "react-hot-toast";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
@@ -38,19 +38,19 @@ const LoginPage = (): ReactElement => {
 
   return (
     <>
-      <div id="imgFooter">
-        <img src={footer} alt="" />
+      <div id="Footer">
+        <img src={footer} alt="Erro..." />
       </div>
-      <div id="imgVaca1">
-        <img src={vaca4} alt="" />
+      <div id="Vaca1">
+        <img src={vaca1} alt="Erro..." />
       </div>
-      <div id="imgVaca2">
-        <img src={vaca3} alt="" />
+      <div id="Vaca2">
+        <img src={vaca2} alt="Erro..." />
       </div>
 
       <Container>
         <section>
-          <div id="logi">
+          <div id="login-TelaLogin">
             <div id="logoPequena">
               <img src={logoPequena} alt="Erro..." />
             </div>
@@ -75,14 +75,14 @@ const LoginPage = (): ReactElement => {
                   />
                 </Grid>
                 <Grid sx={{ margin: "4% 0%", textAlign: "center" }}>
-                  <Button variant="contained" type="submit">
+                  <Button id="btnLogin" variant="contained" type="submit">
                     Entrar
                   </Button>
                 </Grid>
                 <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <span>
                     Você ainda não tem conta?
-                    <Link to="/sign-up">Cadastre-se</Link>.
+                    <Link to="/sign-up">Cadastre-se</Link>
                   </span>
                 </Grid>
                 <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
