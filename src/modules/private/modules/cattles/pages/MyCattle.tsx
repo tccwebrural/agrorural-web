@@ -88,7 +88,7 @@ const MyCattle = (): ReactElement => {
         <div id="blocoGeral">
           <section>
             <div id="blocoTitulo-criacao">
-              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal k </h2>
+              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal : {initialValues.name} </h2>
               <span id="blocoTituloLine-criacao"></span>
             </div>
 
@@ -106,7 +106,7 @@ const MyCattle = (): ReactElement => {
                       justifyContent: "center",
                     }}
                   >
-                    <Grid item xs={2} sx={{ margin: "1%" }}>
+                    <Grid item xs={2} sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 180 }}
                         id="outlined-disabled"
@@ -116,7 +116,7 @@ const MyCattle = (): ReactElement => {
                         {...getControls(formik, "name")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 180 }}
                         id="outlined-disabled"
@@ -126,7 +126,7 @@ const MyCattle = (): ReactElement => {
                         {...getControls(formik, "weigth")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 221 }}>
                         <InputLabel>Tipo</InputLabel>
                         <Select
@@ -140,7 +140,7 @@ const MyCattle = (): ReactElement => {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 180 }}
                         id="outlined-disabled"
@@ -153,9 +153,9 @@ const MyCattle = (): ReactElement => {
                         }}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <TextField
-                        style={{ width: 180 }}
+                        style={{ width: 120 }}
                         id="Qtd de Cria"
                         label="Qtd de Cria"
                         type="number"
@@ -163,7 +163,7 @@ const MyCattle = (): ReactElement => {
                         {...getControls(formik, "qtyChildren")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 100 }}>
                         <InputLabel htmlFor="type">Sexo</InputLabel>
                         <Select

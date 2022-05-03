@@ -26,8 +26,9 @@ abbr {
   color: var(--cor005);
   padding: 10px 10px;
   margin-right: 5%;
-  width: 25%;
   font-size: 22px;
+  background-color: var(--cor001);
+  position: relative;
 }
 #blocoTituloLine-criacao {
   background-color: #fad400;
