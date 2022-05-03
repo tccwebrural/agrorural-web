@@ -73,22 +73,6 @@ const CreateCattleFormPage = (): ReactElement => {
     },
   });
 
-  //   onSubmit: async (formValue: CattleModel) => {
-  //     // Date.UTC(""),
-  //     // formValue.birthday?.toDate();
-  //     cattlehelpers
-  //       .createCattle(formValue)
-  //       .then(() =>{}
-  //        navigate("/private/cattles"))
-
-  //       .catch((err) => {
-  //         //TODO: Mensagem de erro
-  //         //toast erro
-  //         console.error(err);
-  //         toast.error(getFireError(err));
-  //       });
-  //   },
-  // });
   return (
     <>
       <div className="MainBlock">

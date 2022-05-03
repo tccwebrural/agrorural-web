@@ -4,6 +4,7 @@ export interface UserModel {
   id: string;
   name: string;
   email: string;
+
   farmRef: DocumentReference;
   createdAt: Timestamp;
   active: boolean;
