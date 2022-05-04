@@ -14,14 +14,21 @@
   margin-top: 30px !important;
 }
 
+
 * {
   margin: 0%;
   padding: 0%;
 }
-
+#form-Register {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: -6%;
+}
 #logoPequena img {
   width: 300px;
   margin: 6%;
+  margin-top: 1%
 }
 
 #logoPequena {
@@ -37,19 +44,19 @@
   flex-direction: column;
   width: 400px;
   max-height: 950px;
-  margin-top: 5%;
+  margin-top: -43.5%;
   z-index: 1;
   border-radius: 10px;
 }
 
-button {
+/* button {
   width: 100px;
   height: 30px;
   margin: 3% 34%;
   border-radius: 10px;
   background-color: #33658a;
   color: aliceblue;
-}
+} */
 
 span {
   text-align: center;
@@ -77,16 +84,20 @@ span a {
 }
 
 #imgVaca1 img {
-  width: 100%;
+  width: 350px;
+  margin-left: 15%;
+  margin-top: 11%;
 }
 
-#imgVaca2 {
+/* #imgVaca2 {
   position: absolute;
   top: 39%;
   z-index: -1;
   left: 1200px;
-}
+} */
 
-#imgVaca2 img {
-  width: 80%;
+#imgVaca2-Register img {
+  width: 250px;
+  margin-left: 75%;
+  margin-top: 22%;
 }

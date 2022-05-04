@@ -59,7 +59,7 @@ const RegisterPage = (): ReactElement => {
       <div id="imgVaca1">
         <img src={vaca2} alt="Erro..." />
       </div>
-      <div id="imgVaca2">
+      <div id="imgVaca2-Register">
         <img src={vaca3} alt="Erro..." />
       </div>
 
@@ -69,7 +69,7 @@ const RegisterPage = (): ReactElement => {
             <div id="logoPequena">
               <img src={logoPequena} alt="Erro..." />
             </div>
-            <div id="form">
+            <div id="form-Register">
               <form
                 className="register_container"
                 onSubmit={formRegisterUser.handleSubmit}
@@ -77,7 +77,7 @@ const RegisterPage = (): ReactElement => {
                 <Box>
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Proprietário da fazenda"
                       {...getControls(formRegisterUser, "name")}
                       type="text"
@@ -85,7 +85,7 @@ const RegisterPage = (): ReactElement => {
                   </Grid>
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Nome da fazenda"
                       {...getControls(formRegisterUser, "farmName")}
                       type="text"
@@ -93,7 +93,7 @@ const RegisterPage = (): ReactElement => {
                   </Grid>
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Telefone"
                       type="text"
                       {...getControls(formRegisterUser, "phone")}
@@ -106,7 +106,7 @@ const RegisterPage = (): ReactElement => {
 
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="CPF"
                       {...getControls(formRegisterUser, "cpf")}
                       type="text"
@@ -115,7 +115,7 @@ const RegisterPage = (): ReactElement => {
 
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Email"
                       {...getControls(formRegisterUser, "email")}
                       type="email"
@@ -123,7 +123,7 @@ const RegisterPage = (): ReactElement => {
                   </Grid>
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Senha"
                       type="password"
                       {...getControls(formRegisterUser, "password")}
@@ -131,15 +131,15 @@ const RegisterPage = (): ReactElement => {
                   </Grid>
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Confirmar senha"
                       type="password"
                       {...getControls(formRegisterUser, "passwordConfirm")}
                     />
                   </Grid>
-                  <Grid>
+                  <Grid sx={{marginTop:-2}}>
                     <Button
-                      sx={{ width: "300px", margin: "2% 0%" }}
+                      sx={{ width: "300px" }}
                       type="submit"
                       className="register_submit"
                       variant="contained"
