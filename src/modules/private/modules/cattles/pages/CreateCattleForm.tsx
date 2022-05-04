@@ -103,116 +103,112 @@ const CreateCattleFormPage = (): ReactElement => {
         <form onSubmit={formCattle.handleSubmit}>
           <Box sx={{ "& .MuiTextField-root": { m: 1, width: "33ch" } }}>
             <Grid id="CattleForm">
-              
-                <FormControl sx={{ m: 1, minWidth: 150 }}>
-                  
-                  <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
-                  <Select
-                    {...getControls(formCattle, "sex")}
-                    label="Grouping"
-                    // name="category"
-                  >
-                    <MenuItem value={1}>MACHO</MenuItem>
-                    <MenuItem value={2}>FÊMEA</MenuItem>
-                  </Select>
-                </FormControl>
-                <TextField
-                  // disabled
-                  label="Identificador"
-                  type="number"
-                  // name="identifier"
-                  {...getControls(formCattle, "identifier")}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  style={{ width: 218 }}
-                />
-                <TextField
-                  label="Nome do Animal "
-                  type="text"
-                  {...getControls(formCattle, "name")}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  style={{ width: 295 }}
-                />
-                 <TextField
-                  label="Peso Aproximadamente em Kg"
-                  type="number"
-                  {...getControls(formCattle, "weigth")}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <TextField
-                  label="Data de Nascimento"
-                  type="date"
-                  sx={{ m: 1, minWidth: 335 }}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  // name="birthday"
-                  {...getControls(formCattle, "birthday")}
-                />
-                <FormControl sx={{ m: 1, minWidth: 330 }}>
-                  <InputLabel htmlFor="type">Tipo</InputLabel>
-                  <Select
-                    {...getControls(formCattle, "type")}
-                    label="Grouping"
-                    // name="type"
-                  >
-                    <MenuItem value={1}>Gado de Corte</MenuItem>
-                    <MenuItem value={2}>Gado Leitero</MenuItem>
-                  </Select>
-                </FormControl>
-               
-                <TextField
-                  // disabled
-                  label="Quantidade de cria"
-                  type="number"
-                  // name="identifier"
-                  {...getControls(formCattle, "qtyChildren")}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  style={{ width: 310 }}
-                />
-                
-                <Stack direction="row" spacing={2}>
-                  
-                    <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
-                      <div id="Block-CowImage-Form">
-                        <img
-                          id="CowImage-Form"
-                          src={vaca_com_chifre_andando}
-                          alt="vaca"
-                        />
-                      </div>
-                      <div id="Block-CalfImage-Form">
-                        <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
-                      </div>
-                      <div id="Btns-SaveCancel-Form">
-                        <Button
-                          sx={{ marginRight: 1 }}
-                          variant="contained"
-                          color="error"
-                          component={Link}
-                          to="/private/cattles"
-                        >
-                          Cancelar
-                        </Button>
-                        <Button
-                          variant="contained"
-                          color="success"
-                          sx={{ paddingLeft:3.5, paddingRight:3.5}}
-                          type="submit"
-                        >
-                          Salvar
-                        </Button>
-                      </div>
-                    </Stack>
+              <FormControl sx={{ m: 1, minWidth: 150 }}>
+                <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
+                <Select
+                  {...getControls(formCattle, "sex")}
+                  label="Grouping"
+                  // name="category"
+                >
+                  <MenuItem value={1}>MACHO</MenuItem>
+                  <MenuItem value={2}>FÊMEA</MenuItem>
+                </Select>
+              </FormControl>
+              <TextField
+                // disabled
+                label="Identificador"
+                type="number"
+                // name="identifier"
+                {...getControls(formCattle, "identifier")}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={{ width: 218 }}
+              />
+              <TextField
+                label="Nome do Animal "
+                type="text"
+                {...getControls(formCattle, "name")}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={{ width: 295 }}
+              />
+              <TextField
+                label="Peso Aproximadamente em Kg"
+                type="number"
+                {...getControls(formCattle, "weigth")}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              <TextField
+                label="Data de Nascimento"
+                type="date"
+                sx={{ m: 1, minWidth: 335 }}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                // name="birthday"
+                {...getControls(formCattle, "birthday")}
+              />
+              <FormControl sx={{ m: 1, minWidth: 330 }}>
+                <InputLabel htmlFor="type">Tipo</InputLabel>
+                <Select
+                  {...getControls(formCattle, "type")}
+                  label="Grouping"
+                  // name="type"
+                >
+                  <MenuItem value={1}>Gado de Corte</MenuItem>
+                  <MenuItem value={2}>Gado Leitero</MenuItem>
+                </Select>
+              </FormControl>
+
+              <TextField
+                // disabled
+                label="Quantidade de cria"
+                type="number"
+                // name="identifier"
+                {...getControls(formCattle, "qtyChildren")}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={{ width: 310 }}
+              />
+
+              <Stack direction="row" spacing={2}>
+                <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
+                  <div id="Block-CowImage-Form">
+                    <img
+                      id="CowImage-Form"
+                      src={vaca_com_chifre_andando}
+                      alt="vaca"
+                    />
+                  </div>
+                  <div id="Block-CalfImage-Form">
+                    <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
+                  </div>
+                  <div id="Btns-SaveCancel-Form">
+                    <Button
+                      sx={{ marginRight: 1 }}
+                      variant="contained"
+                      color="error"
+                      component={Link}
+                      to="/private/cattles"
+                    >
+                      Cancelar
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      sx={{ paddingLeft: 3.5, paddingRight: 3.5 }}
+                      type="submit"
+                    >
+                      Salvar
+                    </Button>
+                  </div>
                 </Stack>
-              
+              </Stack>
             </Grid>
           </Box>
         </form>
