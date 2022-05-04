@@ -27,12 +27,11 @@
   height: 400px;
   margin: auto;
   padding: 1%;
-  box-shadow: 2px 2px 4px 2px var(--cor111);
-  border-radius: 8px;
 }
 #Block-CowImage-EditAnimalData {
   display: flex;
   justify-content: end;
+  margin-top: 11%;
 }
 #CowImage-EditAnimalData {
   width: 350px;
@@ -50,9 +49,8 @@
   width: 160px;
   height: 140px;
   position: relative;
-  margin-right: -130%;
   margin-top: 10%;
-  margin-right: 4%;
+  margin-right: 8%;
   margin-bottom: -5%;
 }
 #Btns-Update-Cancel-EditAnimalData {
@@ -60,6 +58,6 @@
   display: flex;
   justify-content: end;
   align-items: flex-end;
-  margin-right: -2px;
+  margin-right: 4%;
   margin-top: 5%;
 }
