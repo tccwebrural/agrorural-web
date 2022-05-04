@@ -9,14 +9,14 @@ import UpdateCattleStatusModal from "../modules/cattles/components/UpdateCattleM
 import UpdateCattleModal from "../modules/cattles/components/UpdateCattleModal";
 import MyCattle from "../modules/cattles/pages/MyCattle";
 import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
-import cattleViewVaccine from "../modules/cattles/pages/cattleViewVaccine";
+import cattleViewVaccine from "../modules/vacine/pages/cattleViewVaccine";
 import CattleInfoGado from "../modules/cattles/pages/cattleInfoGado";
 import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
 import notifyVaccine from "../modules/vacine/pages/NotifyVaccine";
 import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
 import DeclareForm from "../modules/cattles/pages/DeclareForm";
 import TesteFormik from "../modules/testes/TesteFormik";
-
+import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "home",
@@ -100,6 +100,13 @@ export const PRIVATE_ROUTES: Array<Route> = [
     path: "cattle/:id/infoGado",
     showHeaderBtn: false,
     component: CattleInfoGado,
+  },
+  {
+    key: "CattleEditVaccine",
+    title: "Editar Vacina",
+    path: "cattles/CattleEditVaccine:id",
+    showHeaderBtn: false,
+    component: CattleEditVaccine,
   },
 /////////////////////////  TESTE  /////////////////////////////////
   {

@@ -9,6 +9,9 @@ import { useAuth } from "providers/AuthProvider";
 import { Formik } from "formik";
 import { ResetPwValidatorSchema } from "../validators/ResetPwValidatorSchema";
 import { getControls } from "utils/FormUtils";
+import logoPequena from "../../../../../assets/logoPequena.png";
+import footer from "../../../../../assets/footer.png";
+
 import {
   PasswordResetModel,
   RegisterUserModel,
@@ -59,6 +62,8 @@ const ResetPwPage = (): ReactElement => {
         {(formik) => (
           <form onSubmit={formik.handleSubmit}>
             <div id="Block-ResetPassword">
+              <img style={{width:300,marginTop:"6%"}} src={logoPequena}  />
+  
               <Box sx={{ "& > :not(style)": { m: 1 } }}>
                 <h2 id="Txt-ForgotPassword">Esqueceu sua senha? </h2>
                 <p id="Txt-ResetPw">
@@ -94,7 +99,9 @@ const ResetPwPage = (): ReactElement => {
                 </Link>
               </Box>
             </div>
+            <img style={{marginTop:"30%", width:"100%"}} src={footer} alt="" />
           </form>
+           
         )}
       </Formik>
     </>

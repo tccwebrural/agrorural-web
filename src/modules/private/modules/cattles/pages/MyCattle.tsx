@@ -9,6 +9,7 @@ import {
   Select,
   MenuItem,
   Button,
+  Menu,
 } from "@mui/material";
 import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -25,6 +26,7 @@ import { CattleHelper } from "../helpers/CattleHelper";
 import toast from "react-hot-toast";
 import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const MyCattle = (): ReactElement => {
   const { id } = useParams();
@@ -77,6 +79,14 @@ const MyCattle = (): ReactElement => {
       });
   };
 
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <>
       <Container
@@ -88,7 +98,7 @@ const MyCattle = (): ReactElement => {
         <div id="blocoGeral">
           <section>
             <div id="blocoTitulo-criacao">
-              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal k </h2>
+              <h2 id="blocoTituloTxt-criacao">Minha Criação&gt;Animal : {initialValues.name} </h2>
               <span id="blocoTituloLine-criacao"></span>
             </div>
 
@@ -106,7 +116,7 @@ const MyCattle = (): ReactElement => {
                       justifyContent: "center",
                     }}
                   >
-                    <Grid item xs={2} sx={{ margin: "1%" }}>
+                    <Grid item xs={2} sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 180 }}
                         id="outlined-disabled"
@@ -116,7 +126,7 @@ const MyCattle = (): ReactElement => {
                         {...getControls(formik, "name")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 180 }}
                         id="outlined-disabled"
@@ -126,7 +136,7 @@ const MyCattle = (): ReactElement => {
                         {...getControls(formik, "weigth")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 221 }}>
                         <InputLabel>Tipo</InputLabel>
                         <Select
@@ -140,7 +150,7 @@ const MyCattle = (): ReactElement => {
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 180 }}
                         id="outlined-disabled"
@@ -153,9 +163,9 @@ const MyCattle = (): ReactElement => {
                         }}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <TextField
-                        style={{ width: 180 }}
+                        style={{ width: 120 }}
                         id="Qtd de Cria"
                         label="Qtd de Cria"
                         type="number"
@@ -163,7 +173,7 @@ const MyCattle = (): ReactElement => {
                         {...getControls(formik, "qtyChildren")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "1%" }}>
+                    <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 100 }}>
                         <InputLabel htmlFor="type">Sexo</InputLabel>
                         <Select
@@ -204,22 +214,67 @@ const MyCattle = (): ReactElement => {
 
               <div id="blocoVacinas">
                 <Grid id="vacinas">
-                  <Button
-                    component={Link}
-                    to="/private/cattle/:id/Vaccine/view"
-                    sx={{ display: "flex", flexDirection: "column" }}
+                <Button
+                    style={{width:5 ,marginLeft:"60%",marginTop:"4%",borderRadius:50}}
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
                   >
+                    <MoreHorizIcon style={{ color: "var(--cor008)" }} />
+                  </Button>
+                  <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}
+                   component={Link}
+                   to="/private/cattles/CattleEditVaccine:id" 
+                 >Editar Vacina
+                 </MenuItem>
+                  <MenuItem onClick={handleClose}>Deletar Vacina</MenuItem>
+                </Menu>
                     <abbr title="Detalhes da vacina">
                       <MdCoronavirus
                         size={80}
-                        style={{ margin: "10 0", color: "black" }}
+                        style={{ margin: "-15 0 2 0", color: "black" }}
                       />
 
                       <p>Virus 1</p>
                     </abbr>
-                  </Button>
                 </Grid>
                 <Grid id="vacinas">
+                <Button
+                    style={{width:5 ,marginLeft:"60%",marginTop:"4%",borderRadius:50}}
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    <MoreHorizIcon style={{ color: "var(--cor008)" }} />
+                  </Button>
+                  <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}
+                   component={Link}
+                   to="/private/cattles/CattleEditVaccine:id" 
+                  >
+                  Editar Vacina
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>Deletar Vacina</MenuItem>
+                </Menu>
                   <Button
                     component={Link}
                     to="/private/cattle/vaccine/view"
@@ -228,13 +283,38 @@ const MyCattle = (): ReactElement => {
                     <abbr title="Detalhes da vacina">
                       <MdCoronavirus
                         size={80}
-                        style={{ margin: "10 0", color: "black" }}
+                        style={{ margin: "-20 0 2 0", color: "black" }}
                       />
                       <p>Virus 2</p>
                     </abbr>
                   </Button>
                 </Grid>
                 <Grid id="vacinas">
+                <Button
+                    style={{width:5 ,marginLeft:"60%",marginTop:"4%",borderRadius:50}}
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    <MoreHorizIcon style={{ color: "var(--cor008)" }} />
+                  </Button>
+                  <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}
+                   component={Link}
+                   to="/private/cattles/CattleEditVaccine:id" 
+                 >Editar Vacina
+                 </MenuItem>
+                  <MenuItem onClick={handleClose}>Deletar Vacina</MenuItem>
+                </Menu>
                   <Button
                     component={Link}
                     to="/private/cattle/vaccine/view"
@@ -243,7 +323,7 @@ const MyCattle = (): ReactElement => {
                     <abbr title="Detalhes da vacina">
                       <MdCoronavirus
                         size={80}
-                        style={{ margin: "10 0", color: "black" }}
+                        style={{ margin: "-20 0 2 0", color: "black" }}
                       />
 
                       <p>Virus 3</p>
@@ -251,6 +331,32 @@ const MyCattle = (): ReactElement => {
                   </Button>
                 </Grid>
                 <Grid id="vacinas">
+                <Button 
+                    style={{width:5 ,marginLeft:"60%",marginTop:"4%",borderRadius:50}}
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    <MoreHorizIcon style={{ color: "var(--cor008)" }} />
+                  </Button>
+                  <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose} 
+                    component={Link}
+                    to="/private/cattles/CattleEditVaccine:id" 
+                  >
+                    Editar Vacina
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>Deletar Vacina</MenuItem>
+                </Menu>
                   <Button
                     component={Link}
                     to="/private/cattle/vaccine/view"
@@ -260,7 +366,7 @@ const MyCattle = (): ReactElement => {
                     <abbr title="Detalhes da vacina">
                       <MdCoronavirus
                         size={80}
-                        style={{ margin: "10 0", color: "black" }}
+                        style={{ margin: "-20 0 2 0", color: "black" }}
                       />
 
                       <p>Virus 4</p>

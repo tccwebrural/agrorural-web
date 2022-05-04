@@ -7,6 +7,7 @@ import {
   FormControl,
   Grid,
   InputLabel,
+  Menu,
   MenuItem,
   Select,
   TextField,
@@ -22,6 +23,7 @@ function imprimir() {
 }
 
 const cattleViewVaccine = (): ReactElement => {
+  
   return (
     <>
       <Container
@@ -173,9 +175,8 @@ const cattleViewVaccine = (): ReactElement => {
               </div>
               <div id="blocoVacinas">
                 <Grid id="vacinas">
-                  <MdCoronavirus size={80} />
+                  <MdCoronavirus style={{marginTop:25}} size={80} />
                   <p>Virus 1</p>
-                  <Checkbox />
                 </Grid>
               </div>
             </div>

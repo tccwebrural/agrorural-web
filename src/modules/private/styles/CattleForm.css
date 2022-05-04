@@ -1,39 +1,41 @@
-#AnimalRegister-Form {
+#AnimalRegister-Forme{
+  margin: auto;
   margin-top: 0%;
   width: 1025px;
-  box-shadow: 2px 2px 4px 2px var(--cor111);
-  border-radius: 8px;
+  height: 400px;
 }
 #Block-CowImage-Form {
   display: flex;
   justify-content: start;
   margin-right: 10%;
+  margin-top: 20%;
   margin-left: -10%;
   z-index: -1;
 }
-#CowImage-Form {
+#CowImage-Form{
   width: 350px;
   height: 220px;
   position: relative;
   margin-right: 18%;
-  margin-top: 4%;
+  margin-top: 20%;
 }
 #Block-CalfImage-Form {
   display: flex;
   justify-content: end;
+  margin-top: 20%;
 }
 #CalfImage-Form {
   width: 160px;
   height: 140px;
   position: relative;
   margin-right: -120%;
-  margin-top: 26%;
 }
 #Btns-SaveCancel-Form {
   display: flex;
   justify-content: end;
   align-items: flex-end;
   height: 220px;
+  margin-top: 20%;
 }
 
 #AnimalRegister-Form {
@@ -58,17 +60,13 @@
 #Block-CalfImage-Form {
   display: flex;
   justify-content: end;
+  margin-left: 15.5%;
 }
-#CalfImage-Form {
-  width: 160px;
-  height: 140px;
-  position: relative;
-  margin-right: -120%;
-  margin-top: 26%;
-}
+
 #Btns-SaveCancel-Form {
   display: flex;
   justify-content: end;
   align-items: flex-end;
   height: 220px;
+  margin-left: 1.5%;
 }

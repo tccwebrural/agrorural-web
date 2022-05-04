@@ -1,0 +1,63 @@
+#MainBlock-EditVaccine{
+    width: 1100px;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px 2px var(--cor111);
+    padding: 1px;
+    padding-bottom: 3%;
+  }
+#Block-Txt-Line-EditVacine{
+    height: 90px;
+    display: flex;
+    align-items: center;
+    width: 108%;
+    margin: auto;
+    margin-left: -4%;
+}
+#Block-TxtEditVacine{
+    background: var(--cor001);
+    padding: 0px 10px 0px 0px;
+    font-size: 23px;
+    color: var(--cor005);
+    width: 350px;
+}
+#Block-LineEditVacine{
+    width: 100%;
+    text-align: start;
+    background-color: var(--cor007);
+    height: 3px;
+    line-height: 0.1em;
+    margin: 0px 0 0px;
+    padding: 0px;
+}
+#Block-InputEditVacine{
+    margin-top: 2%;
+}
+#Block-TypeVaccine-EditVaccine{
+    margin-top: 12%;
+    margin-left: -5%;
+    display: flex;
+}
+#TypeVaccine-EditVaccine{
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    margin: -2% 3% 0% 1%;
+    text-align: center;
+    box-shadow: 0px 0px 4px 4px var(--cor111);
+}
+#CowImage-EditVaccine{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -22%;
+    margin-right: 25%;
+
+}
+#btn-SaveCancel-EditVacine{
+    display: flex;
+    justify-content: flex-end;
+    margin: -7% -5% 0% 0%;
+    position: relative;
+
+    }
