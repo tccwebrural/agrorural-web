@@ -7,6 +7,7 @@ import {
   FormControl,
   Grid,
   InputLabel,
+  Menu,
   MenuItem,
   Select,
   TextField,
@@ -16,12 +17,21 @@ import { BsPrinter } from "react-icons/bs";
 import { MdCoronavirus } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "../../../styles/cattleViewVaccine.css";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 function imprimir() {
   window.print();
 }
 
 const cattleViewVaccine = (): ReactElement => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <>
       <Container
@@ -173,9 +183,29 @@ const cattleViewVaccine = (): ReactElement => {
               </div>
               <div id="blocoVacinas">
                 <Grid id="vacinas">
-                  <MdCoronavirus size={80} />
+                <Button
+                    style={{width:5 ,marginLeft:"60%",marginTop:"4%",borderRadius:50}}
+                    aria-controls={open ? "basic-menu" : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? "true" : undefined}
+                    onClick={handleClick}
+                  >
+                    <MoreHorizIcon style={{ color: "var(--cor008)" }} />
+                  </Button>
+                  <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>Editar Vacina</MenuItem>
+                  <MenuItem onClick={handleClose}>Deletar Vacina</MenuItem>
+                </Menu>
+                  <MdCoronavirus style={{marginTop:-5}} size={80} />
                   <p>Virus 1</p>
-                  <Checkbox />
                 </Grid>
               </div>
             </div>
