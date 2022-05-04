@@ -13,7 +13,11 @@ import { BiMenu } from "react-icons/bi";
 import "../../../styles/ViewProfile.css";
 import { auth } from "configs/Firebase";
 import { ProviderAuth, useAuth } from "providers/AuthProvider";
-import { RegisterUserModel, UserModel } from "modules/public/models/UserModel";
+import {
+  PerfilModelUser,
+  RegisterUserModel,
+  UserModel,
+} from "modules/public/models/UserModel";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getFireError } from "utils/HandleFirebaseError";
@@ -22,6 +26,7 @@ import { Formik } from "formik";
 import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
 import { getControls } from "utils/FormUtils";
 import { DocumentReference } from "firebase/firestore";
+import { FarmHelper } from "modules/private/helpers/FarmHelper";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,46 +37,38 @@ const ViewProfilePage = (): ReactElement => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const userName = "George Michael";
-  const cpf = "000.000.002220.00";
-  const email = "george@gmail.com";
-  const tel = "(22) 99009900";
-  const nameFarm = "Fazenda Olhos d`agua";
-
-  const [initialValues, setInitialValues] = useState<RegisterUserModel>({
-    name: "123",
+  const auth = useAuth();
+  const { getFarmRef, getFarmValues } = FarmHelper();
+  const farmRef = getFarmRef();
+  const [initialValues, setInitialValues] = useState<PerfilModelUser>({
+    name: "",
     cpf: "",
     email: "",
-    farmName: "",
+
     phone: "",
-    password: "",
-  });
-  const [initialValues1, setInitialValues1] = useState({
-    email: "",
   });
 
   // const [initialValues, setInitialValues] = useState<UserModel>();
   const loadingHelper = useGlobalLoading();
-  const auth = useAuth();
 
   const navigate = useNavigate();
   const { id } = useParams();
 
   console.log(id);
   useEffect(() => {
-    auth.loadUserDataById("").then((user?: UserModel) => {
+    auth.getUser().then((user?: UserModel) => {
       if (user) {
-        setInitialValues(initialValues);
+        toast.success("Perfil carregado!");
+        setInitialValues(user);
       } else {
         //TODO: Volta para listagem
-        toast.error("VACA NAO ENCONTRADA");
+        toast.error("Erro ao carregar  credenciais");
       }
       loadingHelper.stopLoading();
     });
   }, []);
 
-  const submitForm = (user: RegisterUserModel) => {
+  const submitForm = (user: PerfilModelUser) => {
     // user. = id;
   };
 
@@ -131,7 +128,11 @@ const ViewProfilePage = (): ReactElement => {
               </div>
 
               <span id="BlockNameProfile">
-                <input id="nameProfile" defaultValue={initialValues.name} />
+                <input
+                  id="nameProfile"
+                  disabled={true}
+                  defaultValue={initialValues.name}
+                />
               </span>
 
               <Formik
@@ -144,30 +145,33 @@ const ViewProfilePage = (): ReactElement => {
                   <div id="FieldsProfile">
                     <TextField
                       label="CPF"
-                      defaultValue={cpf}
                       size="small"
                       variant="standard"
                       className="txt-FieldsProfile"
+                      disabled={true}
                       {...getControls(formik, "cpf")}
                     />
                     <TextField
                       label="E-mail"
-                      defaultValue={email}
                       variant="standard"
                       className="txt-FieldsProfile"
+                      {...getControls(formik, "email")}
+                      disabled={true}
                     />
                     <TextField
                       label="Telefone"
-                      defaultValue={tel}
                       size="small"
                       variant="standard"
                       className="txt-FieldsProfile"
+                      {...getControls(formik, "phone")}
+                      disabled={true}
                     />
                     <TextField
                       label="Nome da Fazenda"
-                      defaultValue={nameFarm}
                       variant="standard"
                       className="txt-FieldsProfile"
+                      disabled={true}
+                      {...getControls(formik, "farmName ")}
                     />
                     <div></div>
                   </div>

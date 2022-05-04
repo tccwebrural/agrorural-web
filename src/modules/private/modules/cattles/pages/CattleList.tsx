@@ -228,7 +228,9 @@ const CattleListPage = (): ReactElement => {
   const HandleDeleteAnimal = async (isToDelete: boolean) => {
     if (isToDelete && selectedAnimal && selectedAnimal.id) {
       await cattlehelpers.deleteCattleId(selectedAnimal.id);
+      toast.success(`Animal ${selectedAnimal.name} deletado com sucesso`);
       await cattlehelpers.getAllCattles().then(setAnimals);
+    } else {
     }
 
     // setSelectedAnimal({});
