@@ -8,7 +8,6 @@ import {
   Checkbox,
 } from "@mui/material";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
-import bezerro from "../../../../../assets/bezerro.png";
 const label = { inputProps: { "aria-label": "" } };
 import { MdCoronavirus } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -21,6 +20,8 @@ import { Formik } from "formik";
 import { VacineValidatorSchema } from "../validators/VacineValidatorSchema";
 import { getControls } from "utils/FormUtils";
 import { CattleModel } from "../../cattles/models/CattleModel";
+import vaca1 from "../../../../../assets/vaca1.png";
+
 const VaccineFormPage = (): ReactElement => {
   const [initialValues, setInitialValues] = useState<VacineModel>({
     date_application: "",
@@ -70,21 +71,21 @@ const VaccineFormPage = (): ReactElement => {
           initialValues={initialValues}
         >
           {(formik) => (
-            <div className="MainBlock">
+            <div id="MainBlock-VaccineForm">
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
                   <span className="Block-Txt">Cadastrar Vacina</span>
                 </h2>
               </div>
               <div id="Block-AnimalData">
-                <form id="Block-EditAnimalData" onSubmit={formik.handleSubmit}>
+                <form onSubmit={formik.handleSubmit}>
                   <Box
                     sx={{
                       "& .MuiTextField-root": { m: 1, width: "25ch" },
                     }}
                   >
                     <TextField
-                      style={{ width: 175 }}
+                      style={{ width: 220 }}
                       label="Nome"
                       type="text"
                       InputLabelProps={{
@@ -93,7 +94,7 @@ const VaccineFormPage = (): ReactElement => {
                       {...getControls(formik, "name")}
                     />
                     <TextField
-                      style={{ width: 100 }}
+                      style={{ width: 140 }}
                       label="Lote"
                       InputLabelProps={{
                         shrink: true,
@@ -101,7 +102,7 @@ const VaccineFormPage = (): ReactElement => {
                       {...getControls(formik, "lote")}
                     />
                     <TextField
-                      style={{ width: 160 }}
+                      style={{ width: 200 }}
                       label="Fabricante"
                       type="text"
                       InputLabelProps={{
@@ -138,10 +139,9 @@ const VaccineFormPage = (): ReactElement => {
                             }}
                           />
                         </abbr>
-                        <p id="VacinaIcon-Txt">Vacina</p>
+                        <p id="VacinaIcon-Txt">Vírus 1</p>
                         <Checkbox
                           {...label}
-                          defaultChecked
                           sx={{ fontSize: 28, marginLeft: 6.5, marginTop: -1 }}
                         />
                       </fieldset>
@@ -153,7 +153,7 @@ const VaccineFormPage = (): ReactElement => {
                             style={{ marginTop: 5, marginLeft: 35 }}
                           />
                         </abbr>
-                        <p id="VacinaIcon-Txt">Vírus</p>
+                        <p id="VacinaIcon-Txt">Vírus 2</p>
                         <Checkbox
                           {...label}
                           sx={{ fontSize: 28, marginLeft: 6.5, marginTop: -1 }}
@@ -161,12 +161,9 @@ const VaccineFormPage = (): ReactElement => {
                       </fieldset>
                     </div>
 
-                    <div id="Block-CalfImage-CadastroVacina">
-                      <img
-                        id="CalfImgae-CadastroVacina"
-                        src={bezerro}
-                        alt="bezerro"
-                      />
+                    <div id="Block-CowImage-CadastroVacina">
+                    <img style={{width:300}}src={vaca1} alt="Erro..." />
+
                     </div>
 
                     <div id="Btns-Add-Cancel-CadastroVacina">
@@ -185,7 +182,7 @@ const VaccineFormPage = (): ReactElement => {
                           variant="contained"
                           color="success"
                           type="submit"
-                          sx={{ paddingTop: 2.2, paddingBottom: 2.2 }}
+                          sx={{ paddingTop: 0.8, paddingBottom: 0.8 }}
                         >
                           Adicionar
                         </Button>

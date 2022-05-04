@@ -21,6 +21,7 @@ import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andan
 import bezerro from "../../../../../assets/bezerro.png";
 import "../../../styles/CattleForm.css";
 import "../../../styles/style.css";
+
 import { getControls } from "../../../../../utils/FormUtils";
 import toast from "react-hot-toast";
 
@@ -85,11 +86,11 @@ const CreateCattleFormPage = (): ReactElement => {
 
         <form onSubmit={formCattle.handleSubmit}>
           <Box sx={{ "& .MuiTextField-root": { m: 1, width: "33ch" } }}>
-            <Grid>
-              <Item id="AnimalRegister-Form">
-                <FormControl sx={{ m: 1, minWidth: 255 }}>
+            <Grid id="AnimalRegister-Forme">
+              
+                <FormControl sx={{ m: 1, minWidth: 150 }}>
+                  
                   <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
-
                   <Select
                     {...getControls(formCattle, "sex")}
                     label="Grouping"
@@ -108,7 +109,7 @@ const CreateCattleFormPage = (): ReactElement => {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  style={{ width: 268 }}
+                  style={{ width: 218 }}
                 />
                 <TextField
                   label="Nome do Animal "
@@ -117,18 +118,27 @@ const CreateCattleFormPage = (): ReactElement => {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  style={{ width: 340 }}
+                  style={{ width: 295 }}
+                />
+                 <TextField
+                  label="Peso Aproximadamente em Kg"
+                  type="number"
+                  {...getControls(formCattle, "weigth")}
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                 />
                 <TextField
                   label="Data de Nascimento"
                   type="date"
+                  sx={{ m: 1, minWidth: 335 }}
                   InputLabelProps={{
                     shrink: true,
                   }}
                   // name="birthday"
                   {...getControls(formCattle, "birthday")}
                 />
-                <FormControl sx={{ m: 1, minWidth: 270 }}>
+                <FormControl sx={{ m: 1, minWidth: 330 }}>
                   <InputLabel htmlFor="type">Tipo</InputLabel>
                   <Select
                     {...getControls(formCattle, "type")}
@@ -139,14 +149,7 @@ const CreateCattleFormPage = (): ReactElement => {
                     <MenuItem value={2}>Gado Leitero</MenuItem>
                   </Select>
                 </FormControl>
-                <TextField
-                  label="Peso Aproximadamente em Kg"
-                  type="number"
-                  {...getControls(formCattle, "weigth")}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
+               
                 <TextField
                   // disabled
                   label="Quantidade de cria"
@@ -156,8 +159,9 @@ const CreateCattleFormPage = (): ReactElement => {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  style={{ width: 268 }}
+                  style={{ width: 310 }}
                 />
+                
                 <Stack direction="row" spacing={2}>
                   <Grid
                     justifyContent="flex-end"
@@ -192,7 +196,7 @@ const CreateCattleFormPage = (): ReactElement => {
                         <Button
                           variant="contained"
                           color="success"
-                          sx={{ paddingTop: 2.3, paddingBottom: 2.3 }}
+                          sx={{ paddingLeft:3.5, paddingRight:3.5}}
                           type="submit"
                         >
                           Salvar
@@ -201,7 +205,7 @@ const CreateCattleFormPage = (): ReactElement => {
                     </Stack>
                   </Grid>
                 </Stack>
-              </Item>
+              
             </Grid>
           </Box>
         </form>
