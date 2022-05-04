@@ -124,8 +124,8 @@ const CreateCattleFormPage = (): ReactElement => {
                   shrink: true,
                 }}
                 inputProps={{ min: 1 }}
-                style={{ width: 268 }}
-                // style={{ width: 218 }}
+                // style={{ width: 268 }}
+                style={{ width: 218 }}
               />
               <TextField
                 label="Nome do Animal "
@@ -149,7 +149,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 type="date"
                 inputProps={{
                   min: "2000-01-01",
-                  max: Date.now().toLocaleString(),
+                  max: Date.now().toLocaleString("en-US"),
                 }}
                 sx={{ m: 1, minWidth: 335 }}
                 InputLabelProps={{
