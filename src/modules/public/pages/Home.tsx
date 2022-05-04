@@ -1,8 +1,7 @@
-import { Box, Typography, Container } from "@mui/material";
-import React, { ReactElement } from "react";
+import { Box, Button, Container } from "@mui/material";
+import { ReactElement } from "react";
 import "../styles/Home.css";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
-
 import logoPequena from "../../../assets/logoPequena.png";
 import meio from "../../../assets/meio.png";
 import vaca3 from "../../../assets/vaca3.png";
@@ -16,6 +15,7 @@ import george from "../../../assets/george.png";
 import footer from "../../../assets/footer.png";
 import pablo from "../../../assets/pablo.png";
 import { Link } from "react-router-dom";
+
 const HomePage = (): ReactElement => {
   return (
     <>
@@ -23,27 +23,51 @@ const HomePage = (): ReactElement => {
         <div id="img-logoPequena">
           <img src={logoPequena} alt="Erro..." />
         </div>
+
         <div id="cabecalho">
-          <a id="btn" href="#Home">
-            Home
-          </a>
-          <a id="btn" href="#projeto">
-            Projeto
-          </a>
-          <a id="btn" href="#inst">
-            Instituição
-          </a>
-          <a id="btn" href="#sobre_Nos">
-            Sobre
-          </a>
+          <Box>
+            <Button
+              sx={{ color: "black", fontSize: "20px" }}
+              id="btn-header"
+              href="#Home"
+            >
+              Home
+            </Button>
+            <Button
+              sx={{ color: "black", fontSize: "20px" }}
+              id="btn-header"
+              href="#projeto"
+            >
+              Projeto
+            </Button>
+            <Button
+              sx={{ color: "black", fontSize: "20px" }}
+              id="btn-header"
+              href="#inst"
+            >
+              Instituição
+            </Button>
+            <Button
+              sx={{ color: "black", fontSize: "20px" }}
+              id="btn-header"
+              href="#sobre_Nos"
+            >
+              Sobre
+            </Button>
+          </Box>
         </div>
+
         <div id="credenciais">
-          <button id="btn">
-            <Link to="/sign-up">Cadastrar</Link>
-          </button>
-          <button id="btn">
-            <Link to="/sign-in">Login</Link>
-          </button>
+          <Button sx={{ fontSize: "20px" }}>
+            <Link id="btn-header" to="/sign-up">
+              Cadastrar
+            </Link>
+          </Button>
+          <Button sx={{ left: "20px", fontSize: "20px" }}>
+            <Link id="btn-header" to="/sign-in">
+              Login
+            </Link>
+          </Button>
         </div>
       </header>
 
