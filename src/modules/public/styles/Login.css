@@ -61,27 +61,18 @@ span a {
 }
 
 #Footer {
-  position: absolute;
-  bottom: 0%;
-  z-index: 1;
+  position: relative;
 }
 
 #Vaca1 {
-  position: absolute;
-  right: 5%;
-  top: 45%;
-  background-color: antiquewhite;
+  position: relative;
 }
 
 #Vaca2 {
   position: absolute;
-  left: 2%;
-  top: 35%;
-  background-color: aquamarine;
 }
 
 #Footer img {
-  position: absolute;
   bottom: 0%;
   max-width: 100vw;
 }
