@@ -106,7 +106,7 @@ const UpdateCattle = (): ReactElement => {
                     "& .MuiTextField-root": { m: 1, width: "25ch" },
                   }}
                 >
-                  <FormControl sx={{ m: 1, minWidth: 260 }}>
+                  <FormControl sx={{ m: 1, minWidth: 150 }}>
                     <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
 
                     <Select
@@ -119,7 +119,7 @@ const UpdateCattle = (): ReactElement => {
                     </Select>
                   </FormControl>
                   <TextField
-                    style={{ width: 270 }}
+                    style={{ width: 218 }}
                     label="Identificador"
                     type="number"
                     InputLabelProps={{
@@ -129,7 +129,7 @@ const UpdateCattle = (): ReactElement => {
                   />
 
                   <TextField
-                    style={{ width: 300 }}
+                    style={{ width: 295 }}
                     label="Nome"
                     InputLabelProps={{
                       shrink: true,
@@ -137,29 +137,7 @@ const UpdateCattle = (): ReactElement => {
                     {...getControls(formik, "name")}
                   />
                   <TextField
-                    style={{ width: 280 }}
-                    label="Data de Nascimento"
-                    type="date"
-                    {...getControls(formik, "birthday")}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                  />
-
-                  <FormControl sx={{ m: 1, minWidth: 271 }}>
-                    <InputLabel htmlFor="type">Tipo</InputLabel>
-                    <Select
-                      {...getControls(formik, "type")}
-                      //   label="Grouping"
-                      // name="type"
-                    >
-                      <MenuItem value={1}>Gado de Corte</MenuItem>
-                      <MenuItem value={2}>Gado Leitero</MenuItem>
-                    </Select>
-                  </FormControl>
-
-                  <TextField
-                    style={{ width: 279 }}
+                    style={{ width: 238 }}
                     label="Peso"
                     {...getControls(formik, "weigth")}
                     InputLabelProps={{
@@ -168,6 +146,30 @@ const UpdateCattle = (): ReactElement => {
                     type="number"
                   />
                   <TextField
+                    style={{ width: 310 }}
+                    label="Data de Nascimento"
+                    type="date"
+                    {...getControls(formik, "birthday")}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+
+                  <FormControl sx={{ m: 1, minWidth: 299 }}>
+                    <InputLabel  htmlFor="type">Tipo</InputLabel>
+                    <Select
+                    
+                      {...getControls(formik, "type")}
+                         label="Grouping"
+                      // name="type"
+                    >
+                      <MenuItem value={1}>Gado de Corte</MenuItem>
+                      <MenuItem value={2}>Gado Leitero</MenuItem>
+                    </Select>
+                  </FormControl>
+
+                  
+                  <TextField
                     // disabled
                     label="Quantidade de cria"
                     type="number"
@@ -175,7 +177,7 @@ const UpdateCattle = (): ReactElement => {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    style={{ width: 268 }}
+                    style={{ width: 310 }}
                   />
 
                   <div id="Block-CowImage-EditAnimalData">
@@ -209,7 +211,6 @@ const UpdateCattle = (): ReactElement => {
                         color="success"
                         // onClick={salvarDadosAnimal}
                         type="submit"
-                        sx={{ paddingTop: 2.3, paddingBottom: 2.3 }}
                       >
                         Atualizar
                       </Button>

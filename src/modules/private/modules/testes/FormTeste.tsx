@@ -1,8 +1,27 @@
 import React, { ReactElement } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { Grid } from "@mui/material";
 
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 const FormTeste = (): ReactElement => {
+    const [openDeleteVaccine, setOpenDeleteVaccine] = React.useState(false);
+    const handleOpenDeleteVaccine = () => setOpenDeleteVaccine(true);
+    const handleCloseDeleteVaccine = () => setOpenDeleteVaccine(false);
 
 
 const formik = useFormik({  //essa variavel é um objeto com um monte de propriedades,
@@ -37,6 +56,65 @@ React.useEffect(() => {  //esse é o 1* argumento do useEffect q é uma função
         //coloco [] para q ele execute somente uma vez
 return(
     <>
+     <div>
+      <Button onClick={handleOpenDeleteVaccine}>Deletar</Button>
+      <Modal
+        open={openDeleteVaccine}
+        onClose={handleCloseDeleteVaccine}
+        
+      >
+        <Box sx={style}>
+        <Grid sx={{ margin: "2%  2%" }}>
+                <span>
+                  Você realmente deseja excluir essa vacina?
+                </span>
+              </Grid>
+              <Grid
+                sx={{
+                  margin: "2%  15% 2% 2%",
+                  display: "flex",
+                }}
+              >
+                <p>
+                  Após a exclusão não será possível recuperar os dados desta vacina
+                </p>
+              </Grid>
+
+              <Grid
+                sx={{
+                  display: "flex",
+                  margin: " 1%",
+                  justifyContent: "center",
+                }}
+              >
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalDelet"
+                  >
+                    Sim
+                  </Button>{" "}
+                </Grid>
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalCancel"
+                  >
+                    Não
+                  </Button>{" "}
+                </Grid>
+              </Grid>
+        </Box>
+      </Modal>
+    </div>
     <button onClick={() => setContar(contar +1)}>{contar}</button>
     
     <h2 style={{margin:"auto"}}>Formulário</h2>

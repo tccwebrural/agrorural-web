@@ -260,58 +260,58 @@ const CattleListPage = (): ReactElement => {
         >
           <Box>
             <div id="bloco-modal">
-              <Grid sx={{ margin: "2%  2%" }}>
-                <span>
-                  Você realmente deseja excluir esse animal ({" "}
-                  {selectedAnimal.name} )?
-                </span>
-              </Grid>
-              <Grid
-                sx={{
-                  margin: "2%  15% 2% 2%",
-                  display: "flex",
-                }}
-              >
-                <p>
-                  Após a exclusão não será possível recuperar os dados do animal
-                  ( {selectedAnimal.name} )
-                </p>
-              </Grid>
+                <Grid sx={{ margin: "2%  2%" }}>
+                  <span>
+                    Você realmente deseja excluir esse animal ({" "}
+                    {selectedAnimal.name} )?
+                  </span>
+                </Grid>
+                <Grid
+                  sx={{
+                    margin: "2%  15% 2% 2%",
+                    display: "flex",
+                  }}
+                >
+                  <p>
+                    Após a exclusão não será possível recuperar os dados do animal
+                    ( {selectedAnimal.name} )
+                  </p>
+                </Grid>
 
-              <Grid
-                sx={{
-                  display: "flex",
-                  margin: " 1%",
-                  justifyContent: "center",
-                }}
-              >
                 <Grid
                   sx={{
-                    margin: " 6% 1%",
-                    borderRadius: "10px",
+                    display: "flex",
+                    margin: " 1%",
+                    justifyContent: "center",
                   }}
                 >
-                  <Button
-                    id="btn-modalDelet"
-                    onClick={() => HandleDeleteAnimal(true)}
+                  <Grid
+                    sx={{
+                      margin: " 6% 1%",
+                      borderRadius: "10px",
+                    }}
                   >
-                    Sim
-                  </Button>{" "}
-                </Grid>
-                <Grid
-                  sx={{
-                    margin: " 6% 1%",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Button
-                    id="btn-modalCancel"
-                    onClick={() => HandleDeleteAnimal(false)}
+                    <Button
+                      id="btn-modalDelet"
+                      onClick={() => HandleDeleteAnimal(true)}
+                    >
+                      Sim
+                    </Button>{" "}
+                  </Grid>
+                  <Grid
+                    sx={{
+                      margin: " 6% 1%",
+                      borderRadius: "10px",
+                    }}
                   >
-                    Não
-                  </Button>{" "}
+                    <Button
+                      id="btn-modalCancel"
+                      onClick={() => HandleDeleteAnimal(false)}
+                    >
+                      Não
+                    </Button>{" "}
+                  </Grid>
                 </Grid>
-              </Grid>
             </div>
           </Box>
         </Modal>
