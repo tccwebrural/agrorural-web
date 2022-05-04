@@ -46,7 +46,7 @@ const CreateCattleFormPage = (): ReactElement => {
 
   const formCattle = useFormik({
     initialValues: {
-      identifier: 0,
+      identifier: 1,
       weigth: 0,
       name: "",
       type: 1,
@@ -60,9 +60,25 @@ const CreateCattleFormPage = (): ReactElement => {
     onSubmit: async (formValue: CattleModel) => {
       // Date.UTC(""),
       // formValue.birthday?.toDate();
+
+      // cattlehelpers
+      //   .createCattle(formValue)
+      //   .then(() => navigate("/private/cattles"))
+
+      //   .catch((err) => {
+      //     //TODO: Mensagem de erro
+      //     //toast erro
+      //     console.error(err);
+      //     toast.error(getFireError(err));
+
+      //   });
+
       cattlehelpers
         .createCattle(formValue)
-        .then(() => navigate("/private/cattles"))
+        .then(() => {
+          navigate("/private/cattles");
+          toast.success(`Animal cadastrado com sucesso!`);
+        })
 
         .catch((err) => {
           //TODO: Mensagem de erro
@@ -108,6 +124,7 @@ const CreateCattleFormPage = (): ReactElement => {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  inputProps={{ min: 1 }}
                   style={{ width: 268 }}
                 />
                 <TextField
@@ -122,6 +139,10 @@ const CreateCattleFormPage = (): ReactElement => {
                 <TextField
                   label="Data de Nascimento"
                   type="date"
+                  inputProps={{
+                    min: "2000-01-01",
+                    max: Date.now().toLocaleString(),
+                  }}
                   InputLabelProps={{
                     shrink: true,
                   }}
