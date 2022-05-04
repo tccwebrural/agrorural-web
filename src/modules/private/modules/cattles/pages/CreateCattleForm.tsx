@@ -86,7 +86,7 @@ const CreateCattleFormPage = (): ReactElement => {
 
         <form onSubmit={formCattle.handleSubmit}>
           <Box sx={{ "& .MuiTextField-root": { m: 1, width: "33ch" } }}>
-            <Grid id="AnimalRegister-Forme">
+            <Grid id="CattleForm">
               
                 <FormControl sx={{ m: 1, minWidth: 150 }}>
                   
@@ -163,15 +163,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 />
                 
                 <Stack direction="row" spacing={2}>
-                  <Grid
-                    justifyContent="flex-end"
-                    sx={{
-                      display: "flex",
-                      position: "relative",
-                      left: "15%",
-                      top: "-90px",
-                    }}
-                  >
+                  
                     <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
                       <div id="Block-CowImage-Form">
                         <img
@@ -203,7 +195,6 @@ const CreateCattleFormPage = (): ReactElement => {
                         </Button>
                       </div>
                     </Stack>
-                  </Grid>
                 </Stack>
               
             </Grid>
