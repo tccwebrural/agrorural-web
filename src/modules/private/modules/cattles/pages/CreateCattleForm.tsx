@@ -102,7 +102,7 @@ const CreateCattleFormPage = (): ReactElement => {
 
         <form onSubmit={formCattle.handleSubmit}>
           <Box sx={{ "& .MuiTextField-root": { m: 1, width: "33ch" } }}>
-            <Grid id="AnimalRegister-Forme">
+            <Grid id="CattleForm">
               <FormControl sx={{ m: 1, minWidth: 150 }}>
                 <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
                 <Select
@@ -123,8 +123,6 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                inputProps={{ min: 1 }}
-                // style={{ width: 268 }}
                 style={{ width: 218 }}
               />
               <TextField
@@ -147,10 +145,6 @@ const CreateCattleFormPage = (): ReactElement => {
               <TextField
                 label="Data de Nascimento"
                 type="date"
-                inputProps={{
-                  min: "2000-01-01",
-                  max: Date.now().toLocaleString("en-US"),
-                }}
                 sx={{ m: 1, minWidth: 335 }}
                 InputLabelProps={{
                   shrink: true,
@@ -183,47 +177,37 @@ const CreateCattleFormPage = (): ReactElement => {
               />
 
               <Stack direction="row" spacing={2}>
-                <Grid
-                  justifyContent="flex-end"
-                  sx={{
-                    display: "flex",
-                    position: "relative",
-                    left: "15%",
-                    top: "-90px",
-                  }}
-                >
-                  <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
-                    <div id="Block-CowImage-Form">
-                      <img
-                        id="CowImage-Form"
-                        src={vaca_com_chifre_andando}
-                        alt="vaca"
-                      />
-                    </div>
-                    <div id="Block-CalfImage-Form">
-                      <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
-                    </div>
-                    <div id="Btns-SaveCancel-Form">
-                      <Button
-                        sx={{ marginRight: 1 }}
-                        variant="contained"
-                        color="error"
-                        component={Link}
-                        to="/private/cattles"
-                      >
-                        Cancelar
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="success"
-                        sx={{ paddingLeft: 3.5, paddingRight: 3.5 }}
-                        type="submit"
-                      >
-                        Salvar
-                      </Button>
-                    </div>
-                  </Stack>
-                </Grid>
+                <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
+                  <div id="Block-CowImage-Form">
+                    <img
+                      id="CowImage-Form"
+                      src={vaca_com_chifre_andando}
+                      alt="vaca"
+                    />
+                  </div>
+                  <div id="Block-CalfImage-Form">
+                    <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
+                  </div>
+                  <div id="Btns-SaveCancel-Form">
+                    <Button
+                      sx={{ marginRight: 1 }}
+                      variant="contained"
+                      color="error"
+                      component={Link}
+                      to="/private/cattles"
+                    >
+                      Cancelar
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      sx={{ paddingLeft: 3.5, paddingRight: 3.5 }}
+                      type="submit"
+                    >
+                      Salvar
+                    </Button>
+                  </div>
+                </Stack>
               </Stack>
             </Grid>
           </Box>
