@@ -339,6 +339,7 @@ const CattleListPage = (): ReactElement => {
               rows={animals}
               columns={columns}
               localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
+              checkboxSelection
               sx={{
                 border: "none",
                 boxShadow: " 2px 2px 4px 2px var(--cor111)",

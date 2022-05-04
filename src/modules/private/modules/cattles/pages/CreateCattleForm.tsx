@@ -119,6 +119,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 label="Identificador"
                 type="number"
                 // name="identifier"
+                // inputProps={{ min: 1 }}
                 {...getControls(formCattle, "identifier")}
                 InputLabelProps={{
                   shrink: true,
@@ -146,6 +147,10 @@ const CreateCattleFormPage = (): ReactElement => {
                 label="Data de Nascimento"
                 type="date"
                 sx={{ m: 1, minWidth: 335 }}
+                inputProps={{
+                  min: "2000-01-01",
+                  max: "2022-12-31",
+                }}
                 InputLabelProps={{
                   shrink: true,
                 }}

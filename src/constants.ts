@@ -32,6 +32,7 @@ export const REQUIRED_FIELD = "O campo é obrigatório";
 export const CPF_INVALID = "Digite um cpf válido";
 export const INDENTIFER_INVALID = "Digite um identificador válido";
 export const PHONE_MIN_9_11 = "Numero de telefone deve possuir 11 digitos";
+export const INDENTIFIER_MIN_1 = "O identificador deve ser maior que 0";
 
 /* REGEXS */
 
