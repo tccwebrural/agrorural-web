@@ -23,26 +23,27 @@ function imprimir() {
 }
 
 const cattleViewVaccine = (): ReactElement => {
-  
   return (
     <>
       <Container
         sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
       >
-        <div id="blocoGeralVacina">
+        <div id="blocoGeral-viewCatlle">
           <section>
-            <div id="blocoTitulo-criacao">
-              <h2 id="blocoTituloTxt-criacao">Minha Criação &gt; Gado</h2>
-              <span id="blocoTituloLine-criacao">
+            <div id="blocoTitulo-criacao-viewCatlle">
+              <h2 id="blocoTituloTxt-criacao-viewCatlle">
+                Minha Criação &gt; Gado
+              </h2>
+              <span id="blocoTituloLine-criacao-viewCatlle">
                 <abbr title="Imprimir">
-                  <Fab id="icone" onClick={imprimir}>
+                  <Fab id="icone-imprimir-viewCatlle" onClick={imprimir}>
                     <BsPrinter size={20} />
                   </Fab>
                 </abbr>
               </span>
             </div>
 
-            <div id="infoGado">
+            <div id="infoGado-viewCatlle">
               <Box>
                 <FormControl
                   sx={{
@@ -111,11 +112,11 @@ const cattleViewVaccine = (): ReactElement => {
 
           <section>
             <div>
-              <div id="blocoTitulo-vacina">
-                <h2 id="blocoTituloTxt-vacina">Cartao de Vacina</h2>
-                <span id="blocoTituloLine-vacina"></span>
+              <div id="blocoTitulo-vacina-viewCatlle">
+                <h2 id="blocoTituloTxt-vacina-viewCatlle">Cartao de Vacina</h2>
+                <span id="blocoTituloLine-vacina-viewCatlle"></span>
               </div>
-              <div id="infoGado">
+              <div id="infoGado-viewCatlle">
                 <Box>
                   <FormControl
                     sx={{
@@ -173,14 +174,14 @@ const cattleViewVaccine = (): ReactElement => {
                   </FormControl>
                 </Box>
               </div>
-              <div id="blocoVacinas">
+              <div id="blocoVacinas-viewCatlle">
                 <Grid id="vacinas">
-                  <MdCoronavirus style={{marginTop:25}} size={80} />
+                  <MdCoronavirus style={{ marginTop: 25 }} size={80} />
                   <p>Virus 1</p>
                 </Grid>
               </div>
             </div>
-            <div id="button">
+            <div id="button-viewCatlle">
               <Button
                 variant="contained"
                 color="inherit"
