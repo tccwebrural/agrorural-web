@@ -14,9 +14,7 @@ import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdCoronavirus } from "react-icons/md";
 import { BsPrinter } from "react-icons/bs";
-import AddIcon from "@mui/icons-material/Add";
 import vaca1 from "../../../../../assets/vaca1.png";
-import "../../../styles/MyCattle.css";
 import { CattleModel } from "../models/CattleModel";
 import { CattleHelper } from "../helpers/CattleHelper";
 import toast from "react-hot-toast";
@@ -24,6 +22,8 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { Formik } from "formik";
 import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
+
+import "../../../styles/InfoGado.css";
 
 function imprimir() {
   window.print();
@@ -86,15 +86,15 @@ const CattleInfoGado = (): ReactElement => {
         <div className="imgGados">
           <img src={vaca1} alt="Erro..." />
         </div>
-        <div id="blocoGeral">
+        <div id="blocoGeral-infoGado">
           <section>
-            <div id="blocoTitulo-criacao">
-              <h2 id="blocoTituloTxt-criacao">
+            <div id="blocoTitulo-criacao-infoGado">
+              <h2 id="blocoTituloTxt-criacao-infoGado">
                 Informações do animal : {initialValues.name}
               </h2>
-              <span id="blocoTituloLine-criacao">
+              <span id="blocoTituloLine-criacao-infoGado">
                 <abbr title="Imprimir">
-                  <Fab id="icone" onClick={imprimir}>
+                  <Fab id="icone-imprimir" onClick={imprimir}>
                     <BsPrinter size={20} />
                   </Fab>
                 </abbr>
@@ -126,7 +126,7 @@ const CattleInfoGado = (): ReactElement => {
                           {...getControls(formik, "name")}
                         />
                       </Grid>
-                      <Grid sx={{ margin: "0.4%"}}>
+                      <Grid sx={{ margin: "0.4%" }}>
                         <TextField
                           style={{ width: 180 }}
                           id="outlined-disabled"
@@ -173,7 +173,7 @@ const CattleInfoGado = (): ReactElement => {
                           {...getControls(formik, "qtyChildren")}
                         />
                       </Grid>
-                      <Grid sx={{ margin: "0.4%"}}>
+                      <Grid sx={{ margin: "0.4%" }}>
                         <FormControl sx={{ minWidth: 100 }}>
                           <InputLabel htmlFor="type">Sexo</InputLabel>
                           <Select
@@ -196,9 +196,9 @@ const CattleInfoGado = (): ReactElement => {
 
           <section>
             <div>
-              <div id="blocoTitulo-vacina">
-                <h2 id="blocoTituloTxt-vacina">Cartao de Vacina</h2>
-                <span id="blocoTituloLine-vacina"></span>
+              <div id="blocoTitulo-vacina-infoGado">
+                <h2 id="blocoTituloTxt-vacina-infoGado">Cartao de Vacina</h2>
+                <span id="blocoTituloLine-vacina-infoGado"></span>
               </div>
 
               <div id="blocoVacinas">

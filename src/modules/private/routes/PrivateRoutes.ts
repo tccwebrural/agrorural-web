@@ -114,7 +114,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "TesteFormik",
     title: "teste formik",
     path: "testes/TesteFormik",
-    showHeaderBtn: true,
+    showHeaderBtn: false,
     component: TesteFormik,
   },
 ];

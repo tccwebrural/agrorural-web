@@ -16,7 +16,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdCoronavirus } from "react-icons/md";
 import AddIcon from "@mui/icons-material/Add";
 import vaca1 from "../../../../../assets/vaca1.png";
-import "../../../styles/MyCattle.css";
 import { CattleModel } from "../models/CattleModel";
 import { Formik } from "formik";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
@@ -26,6 +25,8 @@ import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Modal from "@mui/material/Modal";
+
+import "../../../styles/MyCattle.css";
 
 const MyCattle = (): ReactElement => {
   const [openDeleteVaccine, setOpenDeleteVaccine] = useState(false);
@@ -97,13 +98,13 @@ const MyCattle = (): ReactElement => {
         <div className="imgGados">
           <img src={vaca1} alt="Erro..." />
         </div>
-        <div id="blocoGeral">
+        <div id="blocoGeral-myCatlle">
           <section>
-            <div id="blocoTitulo-criacao">
-              <h2 id="blocoTituloTxt-criacao">
+            <div id="blocoTitulo-criacao-myCatlle">
+              <h2 id="blocoTituloTxt-criacao-myCatlle">
                 Minha Criação&gt;Animal : {initialValues.name}{" "}
               </h2>
-              <span id="blocoTituloLine-criacao"></span>
+              <span id="blocoTituloLine-criacao-myCatlle"></span>
             </div>
 
             <Formik
@@ -199,15 +200,15 @@ const MyCattle = (): ReactElement => {
 
           <section>
             <div>
-              <div id="blocoTitulo-vacina">
-                <h2 id="blocoTituloTxt-vacina">Cartao de Vacina</h2>
-                <span id="blocoTituloLine-vacina">
+              <div id="blocoTitulo-vacina-myCatlle">
+                <h2 id="blocoTituloTxt-vacina-myCatlle">Cartao de Vacina</h2>
+                <span id="blocoTituloLine-vacina-myCatlle">
                   <Fab
-                    id="icon-vaccine"
+                    id="icon-vaccine-myCatlle"
                     component={Link}
                     to={`/private/cattles/${id}/vacine/form`}
                   >
-                    <button id="btAdd-Vaccine">
+                    <button id="btAdd-Vaccine-myCatlle">
                       <abbr title="Adicionar Vacina">
                         <AddIcon />
                       </abbr>
@@ -216,8 +217,8 @@ const MyCattle = (): ReactElement => {
                 </span>
               </div>
 
-              <div id="blocoVacinas">
-                <Grid id="vacinas">
+              <div id="blocoVacinas-myCatlle">
+                <Grid id="vacinas-myCatlle">
                   <Button
                     style={{
                       width: 5,
@@ -246,11 +247,10 @@ const MyCattle = (): ReactElement => {
                       size={80}
                       style={{ margin: "-15 0 2 0", color: "black" }}
                     />
-
                     <p>Virus 1</p>
                   </abbr>
                 </Grid>
-                <Grid id="vacinas">
+                <Grid id="vacinas-myCatlle">
                   <Button
                     style={{
                       width: 5,
@@ -284,11 +284,12 @@ const MyCattle = (): ReactElement => {
                         size={80}
                         style={{ margin: "-20 0 2 0", color: "black" }}
                       />
+
                       <p>Virus 2</p>
                     </abbr>
                   </Button>
                 </Grid>
-                <Grid id="vacinas">
+                <Grid id="vacinas-myCatlle">
                   <Button
                     style={{
                       width: 5,
@@ -327,7 +328,7 @@ const MyCattle = (): ReactElement => {
                     </abbr>
                   </Button>
                 </Grid>
-                <Grid id="vacinas">
+                <Grid id="vacinas-myCatlle">
                   <Button
                     style={{
                       width: 5,
@@ -457,7 +458,7 @@ const MyCattle = (): ReactElement => {
                 </Grid>
               </div>
             </div>
-            <div id="button">
+            <div id="button-myCatlle">
               <Button
                 variant="contained"
                 color="inherit"

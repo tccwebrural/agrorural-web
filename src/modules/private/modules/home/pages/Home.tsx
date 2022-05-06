@@ -47,11 +47,11 @@ const HomePage = (): ReactElement => {
     <>
       <main>
         <div className="MainBlock">
-          <div id="blocoTitulo-criacao">
-            <h2 id="blocoTituloTxt-criacao">Meu Relatorio</h2>
-            <span id="blocoTituloLine-vacina">
+          <div id="blocoTitulo-criacao-home">
+            <h2 id="blocoTituloTxt-criacao-home">Meu Relatorio</h2>
+            <span id="blocoTituloLine-vacina-home">
               <abbr title="Imprimir">
-                <Fab id="icone" onClick={imprimir}>
+                <Fab id="icone-imprimir-Home" onClick={imprimir}>
                   <BsPrinter size={20} />
                 </Fab>
               </abbr>
