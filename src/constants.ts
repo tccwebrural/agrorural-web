@@ -33,7 +33,8 @@ export const CPF_INVALID = "Digite um cpf válido";
 export const INDENTIFER_INVALID = "Digite um identificador válido";
 export const PHONE_MIN_9_11 = "Numero de telefone deve possuir 11 digitos";
 export const INDENTIFIER_MIN_1 = "O identificador deve ser maior que 0";
-
+export const QTDY_CHILDREN_MIN_0="Valor inválido";
+export const QTDY_CHILDREN_MAX_15="Valor inválido";
 /* REGEXS */
 
 export const PHONE_REGEX =
