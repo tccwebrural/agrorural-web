@@ -51,7 +51,7 @@ export const VacineHelper = () => {
     const farmRef = await getFarmRef();
     const cattle = await getCattleById(cattleId);
 
-    if (farmRef && vacine.id) {
+    if (farmRef && cattle && vacine.id) {
       const vacinesCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
@@ -76,8 +76,8 @@ export const VacineHelper = () => {
     const farmRef = await getFarmRef();
     const cattle = await getCattleById(cattleId);
 
-    if (farmRef) {
-      const vacinesCollectionRef = collection(
+    if (farmRef && cattle) {
+      const vaccineCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
         farmRef.id,
@@ -85,9 +85,16 @@ export const VacineHelper = () => {
         cattleId,
         COLLECTION_VACINES
       );
-      const vacineRef = doc(firestore, vacinesCollectionRef.path, vacineId);
+      const vacineRef = doc(
+        firestore,
+        vaccineCollectionRef.path,
+
+        vacineId
+      );
 
       return deleteDoc(vacineRef);
+    } else {
+      throw "Algo não esperado ocorreu, não foi possível encontrar a referência da fazenda do usuário atual";
     }
   };
 
@@ -109,25 +116,30 @@ export const VacineHelper = () => {
     }
   };
 
-  const getAllVacines = async () => {
-    let cattles: Array<VacineModel> = [];
+  const getAllVacines = async (cattleId: string) => {
+    let vacines: Array<VacineModel> = [];
+
+    // aaaaaaa
     const farmRef = await getFarmRef();
-    if (farmRef) {
-      const vacinesCollectionRef = collection(
+    const cattle = await getCattleById(cattleId);
+
+    if (farmRef && cattle) {
+      const vaccineCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
         farmRef.id,
         COLLECTION_CATTLES,
-
+        cattleId,
         COLLECTION_VACINES
       );
-      const findByCollectionRef = query(vacinesCollectionRef);
+
+      const findByCollectionRef = query(vaccineCollectionRef);
       const response = await getDocs(findByCollectionRef);
-      cattles = response.docs.map((doc) => {
+      vacines = response.docs.map((doc) => {
         return { id: doc.id, ...doc.data() } as VacineModel;
       });
     }
-    return cattles;
+    return vacines;
   };
 
   return {

@@ -104,11 +104,12 @@ export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "CattleEditVaccine",
     title: "Editar Vacina",
-    path: "cattles/CattleEditVaccine:id",
+    // path: "cattles/CattleEditVaccine:id",
+    path: "cattle/:id/vacine/edit",
     showHeaderBtn: false,
     component: CattleEditVaccine,
   },
-/////////////////////////  TESTE  /////////////////////////////////
+  /////////////////////////  TESTE  /////////////////////////////////
   {
     key: "TesteFormik",
     title: "teste formik",
@@ -116,5 +117,4 @@ export const PRIVATE_ROUTES: Array<Route> = [
     showHeaderBtn: true,
     component: TesteFormik,
   },
-
 ];

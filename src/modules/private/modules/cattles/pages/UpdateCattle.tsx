@@ -25,6 +25,7 @@ import { CattleModel } from "../models/CattleModel";
 const UpdateCattle = (): ReactElement => {
   const cattleHelper = CattleHelper();
   const loadingHelper = useGlobalLoading();
+  // const today = new Date();
 
   const [initialValues, setInitialValues] = useState<CattleModel>({
     identifier: 0,
@@ -153,14 +154,17 @@ const UpdateCattle = (): ReactElement => {
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    // inputProps={{
+                    //   min: "2000-01-01",
+                    //   max: `${today.toISOString()}`,
+                    // }}
                   />
 
                   <FormControl sx={{ m: 1, minWidth: 299 }}>
-                    <InputLabel  htmlFor="type">Tipo</InputLabel>
+                    <InputLabel htmlFor="type">Tipo</InputLabel>
                     <Select
-                    
                       {...getControls(formik, "type")}
-                         label="Grouping"
+                      label="Grouping"
                       // name="type"
                     >
                       <MenuItem value={1}>Gado de Corte</MenuItem>
@@ -168,7 +172,6 @@ const UpdateCattle = (): ReactElement => {
                     </Select>
                   </FormControl>
 
-                  
                   <TextField
                     // disabled
                     label="Quantidade de cria"

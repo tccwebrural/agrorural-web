@@ -89,6 +89,8 @@ const CreateCattleFormPage = (): ReactElement => {
         });
     },
   });
+  const today = new Date().toLocaleDateString();
+  console.log(today);
 
   return (
     <>
@@ -149,7 +151,8 @@ const CreateCattleFormPage = (): ReactElement => {
                 sx={{ m: 1, minWidth: 335 }}
                 inputProps={{
                   min: "2000-01-01",
-                  max: "2022-12-31",
+                  max: "2022-05-06",
+                  // max: "2022-05-05",
                 }}
                 InputLabelProps={{
                   shrink: true,

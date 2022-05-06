@@ -27,7 +27,6 @@ import { getControls } from "utils/FormUtils";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Modal from "@mui/material/Modal";
 
-
 const MyCattle = (): ReactElement => {
   const [openDeleteVaccine, setOpenDeleteVaccine] = useState(false);
   const handleOpenDeleteVaccine = () => setOpenDeleteVaccine(true);
@@ -150,7 +149,7 @@ const MyCattle = (): ReactElement => {
                           label="Grouping"
                           name="tipo"
                         >
-                          <MenuItem value={1}>Gado de Corte</MenuItem>
+                          <MenuItem value={1}>Gado de Cortes</MenuItem>
                           <MenuItem value={2}>Gado Leitero</MenuItem>
                         </Select>
                       </FormControl>
@@ -355,32 +354,41 @@ const MyCattle = (): ReactElement => {
                     <MenuItem
                       onClick={handleClose}
                       component={Link}
-                      to="/private/cattles/CattleEditVaccine:id"
+                      // to="/private/cattles/CattleEditVaccine:id"
+                      to={`/private/cattle/${id}/vacine/edit`}
                     >
                       Editar Vacina
                     </MenuItem>
 
-                    <MenuItem onClick={handleOpenDeleteVaccine}>Deletar Vacina</MenuItem>
+                    <MenuItem onClick={handleOpenDeleteVaccine}>
+                      Deletar Vacina
+                    </MenuItem>
                     <Modal
                       open={openDeleteVaccine}
                       onClose={handleCloseDeleteVaccine}
-                     
                     >
-                      <Box  sx={{
-                        position: "absolute",
-                        top: "50%",
-                        left: "50%",
-                        transform: "translate(-50%, -50%)",
-                        width: 560,
-                        height: 250,
-                        bgcolor: "white",
-                        borderRadius: "10px",
-                        boxShadow: 11,
-                        p: 4,
-                  
-                      }} >
-                   
-                        <Grid sx={{ margin: "2%  2%",textAlign:"center", color: "var(--cor005)",  fontSize: 20}}>
+                      <Box
+                        sx={{
+                          position: "absolute",
+                          top: "50%",
+                          left: "50%",
+                          transform: "translate(-50%, -50%)",
+                          width: 560,
+                          height: 250,
+                          bgcolor: "white",
+                          borderRadius: "10px",
+                          boxShadow: 11,
+                          p: 4,
+                        }}
+                      >
+                        <Grid
+                          sx={{
+                            margin: "2%  2%",
+                            textAlign: "center",
+                            color: "var(--cor005)",
+                            fontSize: 20,
+                          }}
+                        >
                           <span>
                             Você realmente deseja excluir essa vacina?
                           </span>
@@ -389,8 +397,8 @@ const MyCattle = (): ReactElement => {
                           sx={{
                             margin: "2%  15% 2% 2%",
                             display: "flex",
-                            textAlign:"center",
-                            fontWeight:"lighter"
+                            textAlign: "center",
+                            fontWeight: "lighter",
                           }}
                         >
                           <p>
@@ -420,11 +428,14 @@ const MyCattle = (): ReactElement => {
                               borderRadius: "10px",
                             }}
                           >
-                            <Button id="btn-modalCancel" onClick={handleCloseDeleteVaccine}>Não</Button>{" "}
+                            <Button
+                              id="btn-modalCancel"
+                              onClick={handleCloseDeleteVaccine}
+                            >
+                              Não
+                            </Button>{" "}
                           </Grid>
-              
                         </Grid>
-                       
                       </Box>
                     </Modal>
                   </Menu>
