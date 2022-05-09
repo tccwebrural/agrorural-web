@@ -1,8 +1,10 @@
 import {
   Box,
   Button,
+  Grid,
   Menu,
   MenuItem,
+  Modal,
   TextField,
   Typography,
 } from "@mui/material";
@@ -70,6 +72,10 @@ const ViewProfilePage = (): ReactElement => {
   const submitForm = (user: PerfilModelUser) => {
     // user. = id;
   };
+  /** */
+  const [openModal, setOpen] = React.useState(false);
+  const handleOpenModal = () => setOpen(true);
+  const handleCloseDelete = () => setOpen(false);
 
   const [imgPreview] = useState(null);
 
@@ -89,6 +95,74 @@ const ViewProfilePage = (): ReactElement => {
   };
   return (
     <>
+      <div>
+        <Modal open={openModal} onClose={handleCloseDelete}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 530,
+              height: 240,
+              bgcolor: "white",
+              borderRadius: "10px",
+              boxShadow: 11,
+              p: 4,
+            }}
+          >
+            <div id="bloco-modal">
+              <Grid sx={{ margin: "2%  2%" }}>
+                <span>Você realmente deseja DESATIVAR sua conta?</span>
+              </Grid>
+              <Grid
+                sx={{
+                  margin: "2%  15% 2% 2%",
+                  display: "flex",
+                }}
+              >
+                <p>Sua conta será desativa até efetuar um novo Login</p>
+              </Grid>
+
+              <Grid
+                sx={{
+                  display: "flex",
+                  margin: " 1%",
+                  justifyContent: "center",
+                }}
+              >
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalDelet"
+                    onClick={() => handleCloseDelete()}
+                  >
+                    Sim
+                  </Button>{" "}
+                </Grid>
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalCancel"
+                    onClick={() => handleCloseDelete()}
+                  >
+                    Não
+                  </Button>{" "}
+                </Grid>
+              </Grid>
+            </div>
+          </Box>
+        </Modal>
+      </div>
+
       <Box
         sx={{
           flexGrow: 1,
@@ -127,10 +201,12 @@ const ViewProfilePage = (): ReactElement => {
                   }}
                 >
                   <MenuItem onClick={handleClose}>Editar Perfil</MenuItem>
+
                   <MenuItem onClick={() => auth.logout()}>
                     Sair da conta
                   </MenuItem>
-                  <MenuItem onClick={handleClose}>Desativar conta</MenuItem>
+
+                  <MenuItem onClick={handleOpenModal}>Desativar conta</MenuItem>
                 </Menu>
               </div>
 
