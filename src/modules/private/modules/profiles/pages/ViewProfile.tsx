@@ -44,7 +44,6 @@ const ViewProfilePage = (): ReactElement => {
     name: "",
     cpf: "",
     email: "",
-
     phone: "",
   });
 
@@ -72,6 +71,22 @@ const ViewProfilePage = (): ReactElement => {
     // user. = id;
   };
 
+  const [imgPreview] = useState(null);
+
+  const initialState = { alt: "", src: "" };
+  const [{ alt, src }, setPreview] = useState(initialState);
+
+  const fileHandler = (e: any) => {
+    const { files } = e.target;
+    setPreview(
+      files.length
+        ? {
+            src: URL.createObjectURL(files[0]),
+            alt: files[0].name,
+          }
+        : initialState
+    );
+  };
   return (
     <>
       <Box
@@ -120,13 +135,23 @@ const ViewProfilePage = (): ReactElement => {
               </div>
 
               <div id="imgProfile">
-                <fieldset id="img">
-                  <abbr title="Adicionar foto de perfil">
-                    <img id="imgUser" src={imgUser} />
-                  </abbr>
-                </fieldset>
+                <div className="imgPreview">
+                  {!imgPreview && (
+                    <>
+                      <label htmlFor="fileUpload">
+                        <img src={imgUser} id="imgProfile" />
+                      </label>
+                      <img className="preview" src={src} alt={alt} />
+                      <input
+                        id="fileUpload"
+                        accept="image/*"
+                        type="file"
+                        onChange={fileHandler}
+                      />
+                    </>
+                  )}
+                </div>
               </div>
-
               <span id="BlockNameProfile">
                 <input
                   id="nameProfile"

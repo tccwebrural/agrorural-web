@@ -12,7 +12,7 @@
   margin-top: -2%;
 }
 #SmallBlock-Profile {
-  height: 420px;
+  height: 460px;
   width: 450px;
   border: none;
   box-shadow: 0px 1px 5px 0px var(--cor033);
@@ -29,23 +29,34 @@
   margin-top: -4%;
 }
 #imgProfile {
-  display: flex;
-  justify-content: center;
-  margin-top: -8%;
-}
-fieldset#img {
-  width: 90px;
-  height: 95px;
-  border-radius: 70px;
   border: 1px solid var(--cor033);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#imgUser {
-  width: 95px;
-  height: 100px;
   border-radius: 70px;
+  width: 90px; 
+  height: 95px;
+  margin: auto;
+  margin-top: -5%;
+}
+#fileUpload{
+  margin-top: -200%;
+}
+.imgPreview {
+  display: flex;
+  margin-top: 4%;
+}
+.imgPreview input[type="file"]{
+  display: none;
+}
+.preview{
+  border-radius: 70px;
+  border: none; 
+  width: 90px; 
+  margin: auto;
+  margin-left: -103%;
+  margin-top: -30%;
+
+  /*
+  height: 95px;
+   */
 }
 #BlockNameProfile {
   display: flex;
@@ -58,6 +69,7 @@ fieldset#img {
   text-align: center;
   font-size: 17px;
   color: var(--cor004);
+  background-color: var(--cor001);
 }
 #FieldsProfile {
   margin-top: 10%;
