@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { BsPrinter } from "react-icons/bs";
 import "../../../styles/DeclareForm.css";
@@ -7,6 +7,13 @@ import Checkbox from "@mui/material/Checkbox";
 import vaca from "../../../../../assets/vaca-sem-chifre.png";
 import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
+import { useAuth } from "providers/AuthProvider";
+import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
+import { Formik } from "formik";
+import { getControls } from "utils/FormUtils";
+import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
+import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import toast from "react-hot-toast";
 
 const DeclareForm = (): ReactElement => {
   function imprimir() {
@@ -14,12 +21,28 @@ const DeclareForm = (): ReactElement => {
   }
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-  const userName = "George Michael";
-  const email = "george@gmail.com";
-  const cpf = "000.000.000.00";
-  const nameFarm = "Fazenda Olhos d`agua";
-  const tel = "(22) 99009900";
+  const auth = useAuth();
+  const [initialValues, setInitialValues] = useState<PerfilModelUser>({
+    name: "",
+    cpf: "",
+    email: "",
+    phone: "",
+  });
 
+  const loadingHelper = useGlobalLoading();
+
+  useEffect(() => {
+    auth.getUser().then((user?: UserModel) => {
+      if (user) {
+        toast.success("Pagina carregada!");
+        setInitialValues(user);
+      } else {
+        toast.error("Erro ao carregar a página!");
+      }
+      loadingHelper.stopLoading();
+    });
+  }, []);
+  const submitForm = (user: PerfilModelUser) => {};
   return (
     <>
       <Box
@@ -33,58 +56,80 @@ const DeclareForm = (): ReactElement => {
           <div id="Block-Txt-Line-CattleDeclaration">
             <h2 id="Block-Txt-CattleDeclaration">Declare do Rebanho</h2>
             <span id="Block-Line-CattleDeclaration">
-            <abbr title="Imprimir Declare do Rebanho">
-              <Fab id="printIcon" onClick={imprimir}>
-                <BsPrinter size={20} />
-              </Fab>
-            </abbr>
+              <abbr title="Imprimir Declare do Rebanho">
+                <Fab id="printIcon" onClick={imprimir}>
+                  <BsPrinter size={20} />
+                </Fab>
+              </abbr>
             </span>
           </div>
-
           <div>
-            <p className="CattleDeclaration">Dados do Proprietário</p>          {/* declare do gado */}
-            <div id="OwnerData">                                                {/* dados do proprietario */}
-              <TextField
-                label="Nome do Proprietário"
-                defaultValue={userName}
-                variant="standard"
-                sx={{ width: "100%" }}
-              />
-              <TextField
-                label="E-mail"
-                defaultValue={email}
-                variant="standard"
-                sx={{ width: "50%" }}
-              />
-              <TextField
-                label="CPF"
-                defaultValue={cpf}
-                size="small"
-                variant="standard"
-                sx={{ marginTop: 0.3, width: "50%" }}
-              />
-              <br />
-              <TextField
-                label="Telefone"
-                defaultValue={tel}
-                size="small"
-                variant="standard"
-                sx={{ marginTop: 0.3, width: "50%" }}
-              />
-              <TextField
-                label="Nome da Fazenda"
-                defaultValue={nameFarm}
-                variant="standard"
-                sx={{ width: "50%" }}
-              />
-            </div>
+            <p className="CattleDeclaration">Dados do Proprietário</p>{" "}
+            {/* declare do gado */}
+            <Formik
+              enableReinitialize={true}
+              onSubmit={submitForm}
+              validationSchema={RegisterValidatorSchema}
+              initialValues={initialValues}
+            >
+              {(formik) => (
+                <div id="OwnerData">
+                  {" "}
+                  {/* dados do proprietario */}
+                  <TextField
+                    label="Nome do Proprietário"
+                    variant="standard"
+                    {...getControls(formik, "name")}
+                    sx={{ width: "100%" }}
+                    disabled={true}
+                  />
+                  <TextField
+                    label="E-mail"
+                    variant="standard"
+                    {...getControls(formik, "email")}
+                    sx={{ width: "50%" }}
+                    disabled={true}
+                  />
+                  <TextField
+                    label="CPF"
+                    {...getControls(formik, "cpf")}
+                    size="small"
+                    variant="standard"
+                    sx={{ marginTop: 0.3, width: "50%" }}
+                    disabled={true}
+                  />
+                  <br />
+                  <TextField
+                    label="Telefone"
+                    {...getControls(formik, "phone")}
+                    size="small"
+                    variant="standard"
+                    sx={{ marginTop: 0.3, width: "50%" }}
+                    disabled={true}
+                  />
+                  <TextField
+                    label="Nome da Fazenda"
+                    {...getControls(formik, "Nome do proprietário:")}
+                    variant="standard"
+                    sx={{ width: "50%" }}
+                    disabled={true}
+                  />
+                </div>
+              )}
+            </Formik>
           </div>
 
           <div>
             <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
-            <div className="CurrentCattleHerd">                                 {/*rebanho bovino atual */}
-              <div className="Block-CurrentCattleHerd">                         {/*bloco rebanho bovino atual */}
-                <p className="SmallBlocks-CurrentCattleHerd">                   {/*blocos pequenos do rebanho bovino atual existente*/}
+            <div className="CurrentCattleHerd">
+              {" "}
+              {/*rebanho bovino atual */}
+              <div className="Block-CurrentCattleHerd">
+                {" "}
+                {/*bloco rebanho bovino atual */}
+                <p className="SmallBlocks-CurrentCattleHerd">
+                  {" "}
+                  {/*blocos pequenos do rebanho bovino atual existente*/}
                   Nascimento
                   <br />
                   (de 0 à 6 meses)
