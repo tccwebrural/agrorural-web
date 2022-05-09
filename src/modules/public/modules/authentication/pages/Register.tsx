@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterUserModel } from "../../../models/UserModel";
 import { useAuth } from "../../../../../providers/AuthProvider";
@@ -25,6 +25,8 @@ import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { IMaskInput } from "react-imask";
 import Input from "@mui/material/Input";
 import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
@@ -50,7 +52,16 @@ const RegisterPage = (): ReactElement => {
       );
     },
   });
-
+  const [show, setShow] = useState(false);
+  const handleClickPw = (e: any) => {
+    e.preventDefault();
+    setShow(!show);
+  };
+  const [showConfirmPw, setShowConfirmPw] = useState(false);
+  const handleClickConfirmPw = (e: any) => {
+    e.preventDefault();
+    setShowConfirmPw(!showConfirmPw);
+  };
   return (
     <>
       <div id="imgFooter">
@@ -125,19 +136,53 @@ const RegisterPage = (): ReactElement => {
                     <TextField
                       sx={{ width: "300px", margin: "1% 0%" }}
                       label="Senha"
-                      type="password"
+                      type={show ? "text" : "password"}
                       {...getControls(formRegisterUser, "password")}
                     />
+                    <div className="showPassword-Register">
+                      {show ? (
+                        <abbr title="Ocultar senha">
+                          <VisibilityIcon
+                            onClick={handleClickPw}
+                            style={{ color: "var(--cor003)" }}
+                          />
+                        </abbr>
+                      ) : (
+                        <abbr title="Exibir senha">
+                          <VisibilityOffIcon
+                            style={{ color: "var(--cor033)" }}
+                            onClick={handleClickPw}
+                          />
+                        </abbr>
+                      )}
+                    </div>
                   </Grid>
                   <Grid>
                     <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
+                      sx={{ width: "300px", margin: "-11% 0%" }}
                       label="Confirmar senha"
-                      type="password"
+                      type={showConfirmPw ? "text" : "password"}
                       {...getControls(formRegisterUser, "passwordConfirm")}
                     />
+                    <div className="showPassword-Register">
+                      {showConfirmPw ? (
+                        <abbr title="Ocultar senha">
+                          <VisibilityIcon
+                            onClick={handleClickConfirmPw}
+                            style={{ color: "var(--cor003)" }}
+                          />
+                        </abbr>
+                      ) : (
+                        <abbr title="Exibir senha">
+                          <VisibilityOffIcon
+                            style={{ color: "var(--cor033)" }}
+                            onClick={handleClickConfirmPw}
+                          />
+                        </abbr>
+                      )}
+                    </div>
                   </Grid>
-                  <Grid sx={{marginTop:-2}}>
+                  <Grid sx={{ marginTop: -5.8 }}>
                     <Button
                       sx={{ width: "300px" }}
                       type="submit"

@@ -41,7 +41,13 @@
   height: 20px;
   margin: 1%;
 }
-
+#showPassword{
+  display: flex;
+  justify-content: end;
+  position: relative;
+  margin: -13% 2% 15% 88%;
+  width: 25px;
+}
 #btnLogin {
   width: 200px;
   height: 40px;

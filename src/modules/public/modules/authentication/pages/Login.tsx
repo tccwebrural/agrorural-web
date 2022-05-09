@@ -1,6 +1,6 @@
 import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoMd from "../../../../../assets/logo-md.svg";
 import { useAuth } from "../../../../../providers/AuthProvider";
@@ -13,6 +13,9 @@ import vaca2 from "../../../../../assets/vaca2.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 import { Toaster } from "react-hot-toast";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
 const LoginPage = (): ReactElement => {
   const authContext = useAuth();
   const navigate = useNavigate();
@@ -36,6 +39,12 @@ const LoginPage = (): ReactElement => {
     },
   });
 
+  const [show, setShow] = useState(false);
+
+  const handleClickPw = (e: any) => {
+    e.preventDefault();
+    setShow(!show);
+  };
   return (
     <>
       <div id="Footer">
@@ -68,11 +77,28 @@ const LoginPage = (): ReactElement => {
                 <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <TextField
                     sx={{ width: "300px" }}
-                    type="Password"
+                    type={show ? "text" : "password"}
                     label="Senha"
                     variant="outlined"
                     {...getControls(formLoginUser, "password")}
                   />
+                  <div id="showPassword">
+                    {show ? (
+                      <abbr title="Ocultar senha">
+                        <VisibilityIcon
+                          onClick={handleClickPw}
+                          style={{ color: "var(--cor003)" }}
+                        />
+                      </abbr>
+                    ) : (
+                      <abbr title="Exibir senha">
+                        <VisibilityOffIcon
+                          style={{ color: "var(--cor033)" }}
+                          onClick={handleClickPw}
+                        />
+                      </abbr>
+                    )}
+                  </div>
                 </Grid>
                 <Grid sx={{ margin: "4% 0%", textAlign: "center" }}>
                   <Button id="btnLogin" variant="contained" type="submit">

@@ -29,6 +29,7 @@ import { RegisterValidatorSchema } from "modules/public/modules/authentication/v
 import { getControls } from "utils/FormUtils";
 import { DocumentReference } from "firebase/firestore";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
+import { AltRouteRounded } from "@mui/icons-material";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -170,7 +171,7 @@ const ViewProfilePage = (): ReactElement => {
           justifyContent: "center",
         }}
       >
-        <div className="MainBlock">
+        <div id="Block-Profile">
           <div className="Block-Txt-Line">
             <h2 className="Block-Line">
               <span className="Block-Txt">Meu Perfil</span>
@@ -228,7 +229,7 @@ const ViewProfilePage = (): ReactElement => {
                     <label htmlFor="fileUpload">
                       <img src={imgUser} className="imgProfile" />
                     </label>
-                    <img id="input-imgProfile" src={src} alt={alt} />
+                    <img  id="input-imgProfile" src={src} alt={alt} />
                     <input
                       id="fileUpload"
                       accept="image/*"

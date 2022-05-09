@@ -1,3 +1,13 @@
+#MainBlock-HomePrivate{
+  width: 1100px;
+  height: 550px;
+  margin: auto;
+  margin-top: -2.5%;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px 2px var(--cor111);
+  padding: 1px;
+  padding-bottom: 3%;
+}
 #Block-MyReports {
   display: flex;
   justify-content: center;
