@@ -210,23 +210,33 @@ const ViewProfilePage = (): ReactElement => {
                 </Menu>
               </div>
 
-              <div id="imgProfile">
-                <div className="imgPreview">
-                  {!imgPreview && (
-                    <>
-                      <label htmlFor="fileUpload">
-                        <img src={imgUser} id="imgProfile" />
-                      </label>
-                      <img className="preview" src={src} alt={alt} />
-                      <input
-                        id="fileUpload"
-                        accept="image/*"
-                        type="file"
-                        onChange={fileHandler}
-                      />
-                    </>
-                  )}
-                </div>
+              <div className="Block-imgPreview">
+                {imgPreview ? (
+                  <>
+                    <label htmlFor="fileUpload">
+                      <img className="imgProfile" src={src} alt={alt} />
+                    </label>
+                    <input
+                      id="fileUpload"
+                      accept="image/*"
+                      type="file"
+                      onChange={fileHandler}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <label htmlFor="fileUpload">
+                      <img src={imgUser} className="imgProfile" />
+                    </label>
+                    <img id="input-imgProfile" src={src} alt={alt} />
+                    <input
+                      id="fileUpload"
+                      accept="image/*"
+                      type="file"
+                      onChange={fileHandler}
+                    />
+                  </>
+                )}
               </div>
               <span id="BlockNameProfile">
                 <input

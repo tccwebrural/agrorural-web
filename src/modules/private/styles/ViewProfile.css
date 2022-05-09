@@ -28,36 +28,32 @@
   border: none;
   margin-top: -4%;
 }
-#imgProfile {
+.imgProfile {
   border: 1px solid var(--cor033);
   border-radius: 70px;
-  width: 90px; 
-  height: 95px;
-  margin: auto;
-  margin-top: -5%;
-}
-#fileUpload{
-  margin-top: -200%;
-}
-.imgPreview {
-  display: flex;
-  margin-top: 4%;
-}
-.imgPreview input[type="file"]{
-  display: none;
-}
-.preview{
+  width: 95px; 
+  max-height: 95px;
   border-radius: 70px;
-  border: none; 
-  width: 90px; 
-  margin: auto;
-  margin-left: -103%;
-  margin-top: -30%;
-
-  /*
-  height: 95px;
-   */
 }
+#input-imgProfile{
+  border-radius: 70px;
+  width: 95px; 
+  max-height: 95px;
+  border-radius: 70px;
+  position:fixed;
+}
+.Block-imgPreview {
+  display: flex;
+  justify-content: center;
+  margin-top: -5%;
+  position: relative;
+}
+
+.Block-imgPreview input[type="file"]{
+  display: none;
+
+}
+
 #BlockNameProfile {
   display: flex;
   justify-content: center;
