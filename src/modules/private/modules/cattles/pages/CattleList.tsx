@@ -416,7 +416,7 @@ const CattleListPage = (): ReactElement => {
           </span>
         </div>
         <Box id="table-MinhaCriacao">
-          <div style={{ height: 420, width: 1025 }}>
+          <div style={{ height: 420, width: 1060 }}>
             <DataGrid
               getRowId={(e: any) => e.id}
               rows={animals}

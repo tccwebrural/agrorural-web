@@ -1,5 +1,11 @@
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { Box, InputAdornment, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  InputAdornment,
+  Modal,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { ReactElement, useState } from "react";
 import "../../../styles/ResetPw.css";
 import Stack from "@mui/material/Stack";
@@ -27,13 +33,6 @@ const ResetPwPage = (): ReactElement => {
   });
   const navigate = useNavigate();
 
-  // const submitResetPassword = (email: string) => {
-  //   auth.sendPasswordReset(email).then(() => {
-  //     if (email) {
-  //       navigate("/sign-in");
-  //     }
-  //   });
-  // };
   console.log(initialValue);
   const submitForm = (email: PasswordResetModel) => {
     auth
@@ -43,16 +42,42 @@ const ResetPwPage = (): ReactElement => {
         //toast sucess
         navigate("/sign-in")
       );
-
-    // .catch((err) => {
-    //   //TODO: Mensagem de erro
-    //   //toast erro
-    //   console.error(err);
-    //   toast.error(getFireError(err));
-    // });
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpenModalResetPw = () => setOpen(true);
+  const handleCloseModal = () => setOpen(false);
+
   return (
     <>
+      <div>
+        <Modal open={open} onClose={handleCloseModal}>
+          <Box
+            sx={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+            }}
+          >
+            <div id="ModalBlocoGeral">
+              <h2>Foi enviado um Codigo para o Seu E-mail</h2>
+              <p id="ModalBlocoText">
+                Foi enviado um Codigo de redefinição de senha para o seu Email
+              </p>
+              <div id="ModalBlocoButton">
+                <Button
+                  id="btnModal"
+                  variant="contained"
+                  onClick={handleCloseModal}
+                >
+                  OK
+                </Button>
+              </div>
+            </div>
+          </Box>
+        </Modal>
+      </div>
+
       <Formik
         enableReinitialize={true}
         onSubmit={submitForm}
@@ -62,8 +87,8 @@ const ResetPwPage = (): ReactElement => {
         {(formik) => (
           <form onSubmit={formik.handleSubmit}>
             <div id="Block-ResetPassword">
-              <img style={{width:300,marginTop:"6%"}} src={logoPequena}  />
-  
+              <img style={{ width: 300, marginTop: "6%" }} src={logoPequena} />
+
               <Box sx={{ "& > :not(style)": { m: 1 } }}>
                 <h2 id="Txt-ForgotPassword">Esqueceu sua senha? </h2>
                 <p id="Txt-ResetPw">
@@ -90,6 +115,7 @@ const ResetPwPage = (): ReactElement => {
                     id="btn-ResetPassword"
                     variant="contained"
                     type="submit"
+                    onClick={handleOpenModalResetPw}
                   >
                     Recuperar acesso
                   </Button>
@@ -99,9 +125,12 @@ const ResetPwPage = (): ReactElement => {
                 </Link>
               </Box>
             </div>
-            <img style={{marginTop:"30%", width:"100%"}} src={footer} alt="" />
+            <img
+              style={{ marginTop: "30%", width: "100%" }}
+              src={footer}
+              alt=""
+            />
           </form>
-           
         )}
       </Formik>
     </>

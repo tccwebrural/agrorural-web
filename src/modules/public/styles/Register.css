@@ -48,7 +48,13 @@
   z-index: 1;
   border-radius: 10px;
 }
-
+.showPassword-Register{
+  display: flex;
+  justify-content: end;
+  position: relative;
+  margin: -13% 2% 15% 88%;
+  width: 25px;
+}
 /* button {
   width: 100px;
   height: 30px;
