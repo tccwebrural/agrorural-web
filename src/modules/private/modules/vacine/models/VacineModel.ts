@@ -2,7 +2,7 @@ import { Timestamp } from "firebase/firestore";
 class VacineModel {
   id?: string;
   name!: string;
-  lote!: string;
+  lote!: number;
   date_application!: string;
   expiration_date!: string;
   manufacturer!: string;

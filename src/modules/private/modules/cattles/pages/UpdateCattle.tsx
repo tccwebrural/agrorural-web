@@ -44,10 +44,6 @@ const UpdateCattle = (): ReactElement => {
     cattle.id = id;
     cattleHelper
       .updateCattleId(cattle)
-      .then(() =>
-        //toast sucess
-        navigate("/private/cattles")
-      )
 
       .catch((err) => {
         //TODO: Mensagem de erro

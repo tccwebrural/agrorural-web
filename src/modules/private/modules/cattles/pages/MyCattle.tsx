@@ -27,6 +27,8 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Modal from "@mui/material/Modal";
 
 import "../../../styles/MyCattle.css";
+import { VacineModel } from "../../vacine/models/VacineModel";
+import { VacineHelper } from "../../vacine/helpers/VacineHelpers";
 
 const MyCattle = (): ReactElement => {
   const [openDeleteVaccine, setOpenDeleteVaccine] = useState(false);
@@ -43,9 +45,26 @@ const MyCattle = (): ReactElement => {
     sex: 1,
     qtyChildren: 0,
   });
+  const [vacines, setVacines] = useState<VacineModel>();
   const cattleHelper = CattleHelper();
+  const vacineHelper = VacineHelper();
   const loadingHelper = useGlobalLoading();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (id) {
+      vacineHelper.getAllVacines(id);
+    }
+  });
+
+  const getAllVacines = () => {
+    if (id) {
+      vacineHelper.getAllVacines("1DpbNDXAu4ebmAZKgOb7");
+    }
+  };
+
+  console.log(vacineHelper.getAllVacines("1DpbNDXAu4ebmAZKgOb7"));
+  console.log();
 
   useEffect(() => {
     loadingHelper.startLoading();
@@ -66,20 +85,19 @@ const MyCattle = (): ReactElement => {
   }, []);
 
   const submitForm = (cattle: CattleModel) => {
-    cattle.id = id;
-    cattleHelper
-      .updateCattleId(cattle)
-      .then(() =>
-        //toast sucess
-        navigate("/private/cattles")
-      )
-
-      .catch((err) => {
-        //TODO: Mensagem de erro
-        //toast erro
-        console.error(err);
-        toast.error(getFireError(err));
-      });
+    // cattle.id = id;
+    // cattleHelper
+    //   .updateCattleId(cattle)
+    //   .then(() =>
+    //     //toast sucess
+    //     navigate("/private/cattles")
+    //   )
+    //   .catch((err) => {
+    //     //TODO: Mensagem de erro
+    //     //toast erro
+    //     console.error(err);
+    //     toast.error(getFireError(err));
+    //   });
   };
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -356,7 +374,7 @@ const MyCattle = (): ReactElement => {
                       onClick={handleClose}
                       component={Link}
                       // to="/private/cattles/CattleEditVaccine:id"
-                      to={`/private/cattle/${id}/vacine/edit`}
+                      to={`/private/cattle/${id}/vacine/${vacines?.id}/edit`}
                     >
                       Editar Vacina
                     </MenuItem>

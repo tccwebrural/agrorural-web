@@ -31,6 +31,7 @@ import {
   RegisterUserModel,
   UserModel,
 } from "../modules/public/models/UserModel";
+import { useGlobalLoading } from "./GlobalLoadingProvider";
 
 type AuthContext = {
   userState: UserModel | undefined;
@@ -56,11 +57,14 @@ const UserAuthProvider = (): AuthContext => {
    * @param password - Senha do usuário;
    */
   const signIn = async (email: string, password: string) => {
+    // const loadingHelper = useGlobalLoading();
+
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       await loadUserDataById(res.user.uid);
     } catch (err: any) {
       toast.error(getFireError(err));
+
       if (await isLoggedIn()) {
         logout(false);
       }

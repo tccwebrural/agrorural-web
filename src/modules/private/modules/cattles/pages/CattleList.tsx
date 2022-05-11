@@ -182,6 +182,7 @@ const CattleListPage = (): ReactElement => {
     }
     return age;
   };
+
   useEffect(() => {
     loadingHelper.startLoading();
     cattlehelpers
