@@ -168,20 +168,33 @@ const CattleListPage = (): ReactElement => {
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
   const cattlehelpers = CattleHelper();
   const loadingHelper = useGlobalLoading();
-
   const getSex = (sex: number): string => {
     return CATTLE_SEXS[sex];
   };
+
   const getAgeFromDate = (date: string) => {
     var today = new Date();
     var birthDate = new Date(date);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
+    var months;
+    months = ( today.getFullYear() - birthDate.getFullYear() ) * 12;
+    months -= birthDate.getMonth() +1 ;
+    months += birthDate.getMonth();
+
+    return months <= 0 ? 0 : months;
   };
+
+  // const getAgeFromDate = (date: string) => {  **********CODIGO ANTIGO PEGANDO A IDADE*****************
+  //   var today = new Date();
+  //   var birthDate = new Date(date);
+  //   var age = today.getFullYear() - birthDate.getFullYear();
+  //   var m = today.getMonth() - birthDate.getMonth();
+    
+  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  //     age--;
+  //   }
+  //   return age;
+  // };
+
   useEffect(() => {
     loadingHelper.startLoading();
     cattlehelpers
