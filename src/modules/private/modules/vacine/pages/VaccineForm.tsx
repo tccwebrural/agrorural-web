@@ -21,31 +21,34 @@ import { VacineValidatorSchema } from "../validators/VacineValidatorSchema";
 import { getControls } from "utils/FormUtils";
 import { CattleModel } from "../../cattles/models/CattleModel";
 import vaca1 from "../../../../../assets/vaca1.png";
+import { COLLECTION_VACINES } from "../../../../../constants";
 
 const VaccineFormPage = (): ReactElement => {
+  const { id } = useParams();
+
   const [initialValues, setInitialValues] = useState<VacineModel>({
     date_application: "",
     expiration_date: "",
-    lote: "",
+    lote: 0,
     manufacturer: "",
     name: "",
   });
 
   const navigate = useNavigate();
-  const { id } = useParams();
 
   const vacineHelper = VacineHelper();
 
   console.log(id);
 
-  const submitForm = (vacine: VacineModel) => {
-    vacine.id = id;
+  const submitForm = async (vacine: VacineModel) => {
     if (id) {
       vacineHelper
         .createVacine(id, vacine)
         .then(() =>
           //toast sucess
-          navigate("/private/cattles")
+          {
+            navigate("/private/cattles");
+          }
         )
         .catch((err) => {
           //TODO: Mensagem de erro
@@ -53,8 +56,11 @@ const VaccineFormPage = (): ReactElement => {
           console.error(err);
           toast.error(getFireError(err));
         });
+      // vacine.id = id;
     }
+    console.log("id da vacina :" + vacine.id + vacine.name);
   };
+
   return (
     <>
       <Box
@@ -96,6 +102,7 @@ const VaccineFormPage = (): ReactElement => {
                     <TextField
                       style={{ width: 140 }}
                       label="Lote"
+                      type="number"
                       InputLabelProps={{
                         shrink: true,
                       }}
@@ -141,7 +148,7 @@ const VaccineFormPage = (): ReactElement => {
                         </abbr>
                         <p id="VacinaIcon-Txt">Vírus 1</p>
                         <Checkbox
-                          {...label}
+                          // {...label}
                           sx={{ fontSize: 28, marginLeft: 6.5, marginTop: -1 }}
                         />
                       </fieldset>
@@ -162,8 +169,7 @@ const VaccineFormPage = (): ReactElement => {
                     </div>
 
                     <div id="Block-CowImage-CadastroVacina">
-                    <img style={{width:300}}src={vaca1} alt="Erro..." />
-
+                      <img style={{ width: 300 }} src={vaca1} alt="Erro..." />
                     </div>
 
                     <div id="Btns-Add-Cancel-CadastroVacina">

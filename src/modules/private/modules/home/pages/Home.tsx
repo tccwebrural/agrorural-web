@@ -10,10 +10,14 @@ import {
   Paper,
   Fab,
 } from "@mui/material";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import "../../../styles/Home.css";
 import { BsPrinter } from "react-icons/bs";
+import { CattleHelper } from "../../cattles/helpers/CattleHelper";
+import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import { CattleModel, CATTLE_TYPES } from "../../cattles/models/CattleModel";
+import toast from "react-hot-toast";
 
 function createData(
   periodo: Number,
@@ -42,6 +46,54 @@ const HomePage = (): ReactElement => {
   function imprimir() {
     window.print();
   }
+
+  const cattlehelpers = CattleHelper();
+  const loadingHelper = useGlobalLoading();
+  const [animals, setAnimals] = useState<CattleModel[]>([]);
+
+  const getAgeFromDate = (date: string) => {
+    var today = new Date();
+    var birthDate = new Date(date);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
+
+  useEffect(() => {
+    loadingHelper.startLoading();
+    cattlehelpers
+      .getAllCattles()
+      .then((cattles) => {
+        const listToDisplay: any[] = [];
+        for (let index = 0; index < cattles.length; index++) {
+          const cattle = cattles[index];
+
+          const cattleToDisplay = {
+            id: cattle.id,
+            identifier: cattle.identifier,
+            name: cattle.name,
+            // Exemplo 3 de como mudar o valor para exibir
+            age: getAgeFromDate(cattle.birthday),
+            // Exemplo 4 de como mudar o valor para exibir
+            type: CATTLE_TYPES[cattle.type],
+            sex: cattle.sex,
+            weigth: cattle.weigth,
+            qtyChildren: cattle.qtyChildren,
+          };
+
+          listToDisplay.push(cattleToDisplay);
+        }
+        setAnimals(listToDisplay);
+        loadingHelper.stopLoading();
+      })
+      .catch((err: any) => {
+        toast.error(err);
+        loadingHelper.stopLoading();
+      });
+  }, []);
 
   return (
     <>

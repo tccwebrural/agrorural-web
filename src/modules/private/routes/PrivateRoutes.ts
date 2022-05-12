@@ -17,6 +17,7 @@ import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
 import DeclareForm from "../modules/cattles/pages/DeclareForm";
 import TesteFormik from "../modules/testes/TesteFormik";
 import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
+import VaccineFormPagetst from "../modules/vacine/pages/Vacineformtst";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "home",
@@ -105,7 +106,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "CattleEditVaccine",
     title: "Editar Vacina",
     // path: "cattles/CattleEditVaccine:id",
-    path: "cattle/:id/vacine/edit",
+    path: "cattle/:id/vacine/:idVacine/edit",
     showHeaderBtn: false,
     component: CattleEditVaccine,
   },

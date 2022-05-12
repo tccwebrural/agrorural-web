@@ -13,7 +13,7 @@ import {
   styled,
 } from "@mui/material";
 
-import { Timestamp } from "firebase/firestore";
+import { DocumentReference, Timestamp } from "firebase/firestore";
 import React, { ReactElement, useState } from "react";
 import { CattleHelper } from "../helpers/CattleHelper";
 import { CattleModel } from "../models/CattleModel";
@@ -59,21 +59,6 @@ const CreateCattleFormPage = (): ReactElement => {
     validationSchema: CattleValidatorSchema,
 
     onSubmit: async (formValue: CattleModel) => {
-      // Date.UTC(""),
-      // formValue.birthday?.toDate();
-
-      // cattlehelpers
-      //   .createCattle(formValue)
-      //   .then(() => navigate("/private/cattles"))
-
-      //   .catch((err) => {
-      //     //TODO: Mensagem de erro
-      //     //toast erro
-      //     console.error(err);
-      //     toast.error(getFireError(err));
-
-      //   });
-
       cattlehelpers
         .createCattle(formValue)
         .then(() => {

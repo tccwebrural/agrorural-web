@@ -13,6 +13,8 @@ import vaca2 from "../../../../../assets/vaca2.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 import { Toaster } from "react-hot-toast";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import { trackPromise } from "react-promise-tracker";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
@@ -32,10 +34,21 @@ const LoginPage = (): ReactElement => {
     },
     validationSchema: LoginValidatorSchema,
     onSubmit: async (formValue) => {
-      loadingHelper.startLoading();
-      await authContext.signIn(formValue.email, formValue.password);
-      navigate("/private");
-      loadingHelper.stopLoading();
+      // loadingHelper.startLoading();
+      // await authContext.signIn(formValue.email, formValue.password).then(() => {
+      //   navigate("/private");
+      //   loadingHelper.stopLoading();
+      // });
+
+      trackPromise(
+        authContext.signIn(formValue.email, formValue.password).then(() => {
+          navigate("/private");
+        }),
+        GLOBAL_LOADING_KEY
+      );
+      // .catch() {
+      //   loadingHelper.stopLoading()
+      // };
     },
   });
 
