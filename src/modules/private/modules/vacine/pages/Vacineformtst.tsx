@@ -46,7 +46,7 @@ const VaccineFormPagetst = (): ReactElement => {
         vacineHelper
           .createVacine(id, formValue)
           .then(() => {
-            navigate("/private/cattles");
+            navigate(`private/cattle/${id}/Vaccine`);
             toast.success(`Animal cadastrado com sucesso!`);
           })
 

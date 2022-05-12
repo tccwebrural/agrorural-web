@@ -172,11 +172,22 @@ const CattleListPage = (): ReactElement => {
   const getSex = (sex: number): string => {
     return CATTLE_SEXS[sex];
   };
+
   const getAgeFromDate = (date: string) => {
-    var today = new Date();
-    var birthDate = new Date(date);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
+    var today = new Date(); // variavel para armazenar a data atual
+    var birthDate = new Date(date); // variavel para armazenar a data
+    var age = today.getFullYear() - birthDate.getFullYear(); //2010 - 2011 = 1 ano
+
+    var m = today.getMonth() - birthDate.getMonth(); // 10 - 8 = 1 mes
+    var day = today.getDay() - birthDate.getDay();
+
+    // -> Se o m for menor que 0 ou m for igual a 0 e a data atual de hoje for menor que a do aniversario
+    //-> decremente a idade
+    // -> no final retorne a idade
+    //   if (mes_atual < mes_aniversario || mes_atual == mes_aniversario && dia_atual < dia_aniversario) {
+    //     quantos_anos--;
+    // }
+    // no final retorne
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
@@ -323,7 +334,7 @@ const CattleListPage = (): ReactElement => {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Modal open={open} onClose={handleCloseDelete}>
           <Box
             sx={{
@@ -392,7 +403,7 @@ const CattleListPage = (): ReactElement => {
             </div>
           </Box>
         </Modal>
-      </div>
+      </div> */}
 
       <div className="MainBlock">
         <div id="Block-Txt-Line-List">

@@ -90,7 +90,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "VaccineView",
     title: "detalhes Vacina ",
-    path: "cattle/vaccine/view",
+    path: "cattle/:id/vaccine/:idVacine/view",
     showHeaderBtn: false,
     component: cattleViewVaccine,
   },
