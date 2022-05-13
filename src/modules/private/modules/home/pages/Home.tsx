@@ -19,6 +19,15 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleModel, CATTLE_TYPES } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
 
+var  today = new Date();
+var currentYear = today.getFullYear();
+var lastYear = today.getFullYear()-1;
+var twoYearsAgo = today.getFullYear()-2;
+var threeYearsAgo = today.getFullYear()-3;
+var fourYearsAgo = today.getFullYear()-4;
+var periodo = [currentYear,lastYear,twoYearsAgo,threeYearsAgo,fourYearsAgo];
+
+const HomePage = (): ReactElement => {
 function createData(
   periodo: Number,
   bezerros: number,
@@ -27,40 +36,29 @@ function createData(
   novilhos: number,
   acimaDe: number,
   total: number
-) {
-  return { periodo, bezerros, desmamados, garrotes, novilhos, acimaDe, total };
-}
-
+) {  return { periodo, bezerros, desmamados, garrotes, novilhos, acimaDe, total };}
 const rows = [
-  createData(2021, 159, 6.0, 24, 4.0, 10, 150),
-  createData(2021, 237, 9.0, 37, 4.3, 10, 150),
-  createData(2021, 262, 16.0, 24, 6.0, 10, 150),
-  createData(2021, 305, 3.7, 67, 4.3, 10, 150),
-  createData(2021, 356, 16.0, 49, 3.9, 10, 150),
-  createData(2021, 356, 16.0, 49, 3.9, 10, 150),
+  createData(periodo[0], 159, 6.0, 24, 4.0, 10, 150),
+  createData(periodo[1], 237, 9.0, 37, 4.3, 10, 150),
+  createData(periodo[2], 262, 16.0, 24, 6.0, 10, 150),
+  createData(periodo[3], 305, 3.7, 67, 4.3, 10, 150),
+ 
 ];
 
-const HomePage = (): ReactElement => {
-  const authContext = useAuth();
+const getAgeFromDate = (date: string) => {
+    var today = new Date();
+    var birthDate = new Date(date);
+    var months;
+    months = ( today.getFullYear() - birthDate.getFullYear() ) * 12;
+    months -= birthDate.getMonth() +1 ;
+    months += birthDate.getMonth();
 
-  function imprimir() {
-    window.print();
-  }
-
+    return months <= 0 ? 0 : months;
+  };
+  
   const cattlehelpers = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const [animals, setAnimals] = useState<CattleModel[]>([]);
-
-  const getAgeFromDate = (date: string) => {
-    var today = new Date();
-    var birthDate = new Date(date);
-    var age = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
-    }
-    return age;
-  };
 
   useEffect(() => {
     loadingHelper.startLoading();
@@ -68,22 +66,55 @@ const HomePage = (): ReactElement => {
       .getAllCattles()
       .then((cattles) => {
         const listToDisplay: any[] = [];
+
         for (let index = 0; index < cattles.length; index++) {
           const cattle = cattles[index];
+          const cattleToGetAge = {age: getAgeFromDate(cattle.birthday)};
 
+          let bezerros = 0;
+          let desmamados = 0;
+          let garrotes = 0;
+          let novilhos = 0;
+          let acimaDe = 0;
+          
+          
+          if(cattleToGetAge.age >= 0 && cattleToGetAge.age <= 6){
+            for(var cont=0; cont<cattles.length; cont++){
+              bezerros++;
+            
+            }
+          }else if(cattleToGetAge.age > 6 && cattleToGetAge.age <= 12){
+            for(var cont=0; cont < cattles.length; cont++){
+              desmamados++;
+            }
+          }else if(cattleToGetAge.age > 12 && cattleToGetAge.age <= 24){
+            for(var cont=0; cont<cattles.length; cont++){
+              garrotes++;
+            }
+          }else if(cattleToGetAge.age > 24 && cattleToGetAge.age <= 36){
+            for(var cont=0; cont<cattles.length; cont++){
+              novilhos++;
+            }
+          }else if(cattleToGetAge.age > 36){
+            for(var cont=0; cont<cattles.length; cont++){
+              acimaDe++;
+            }
+          }
+         var total = bezerros + desmamados + garrotes + novilhos + acimaDe;
+        
           const cattleToDisplay = {
             id: cattle.id,
-            identifier: cattle.identifier,
-            name: cattle.name,
+            periodo: periodo,
             // Exemplo 3 de como mudar o valor para exibir
-            age: getAgeFromDate(cattle.birthday),
+            bezerros: bezerros,
             // Exemplo 4 de como mudar o valor para exibir
-            type: CATTLE_TYPES[cattle.type],
-            sex: cattle.sex,
-            weigth: cattle.weigth,
-            qtyChildren: cattle.qtyChildren,
+            desmamados: desmamados,
+            garrotes: garrotes,
+            novilhos: novilhos,
+            acimaDe: acimaDe,
+            total:total
           };
-
+         
           listToDisplay.push(cattleToDisplay);
         }
         setAnimals(listToDisplay);
@@ -95,6 +126,14 @@ const HomePage = (): ReactElement => {
       });
   }, []);
 
+  
+
+
+  function imprimir() {
+    window.print();
+  }
+
+  
   return (
     <>
       <main>

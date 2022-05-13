@@ -53,7 +53,7 @@ console.log("executou fora")
 React.useEffect(() => {  //esse é o 1* argumento do useEffect q é uma função q esta sendo executada
     console.log('Executou')
 },[] ); //a vantagem do useEffect esta nesse segundo argumento dele q é um array de dependencia (quando mudar o item q eu colocar dentro [] execute todo esse useEffect novamente, e senao mudar nao execute novamente )
-        //coloco [] para q ele execute somente uma vez
+        //coloco [] para q ele execute somente uma vezzz
 return(
     <>
      <div>
