@@ -75,6 +75,8 @@ const CattleListPage = (): ReactElement => {
       align: "center",
       width: 110,
       sortable: false,
+      valueGetter: (params: GridValueGetterParams) =>
+        `${params.row.age}(a) e ${params.row.month}(m)`,
     },
     {
       field: "type",
@@ -113,6 +115,7 @@ const CattleListPage = (): ReactElement => {
       width: 210,
       renderCell: (params: GridRenderCellParams) => {
         const currentAnimalRow = params.row as CattleModel;
+
         return (
           <>
             <Link to={`/private/cattle/${currentAnimalRow.id}/infoGado`}>
@@ -172,47 +175,58 @@ const CattleListPage = (): ReactElement => {
     return CATTLE_SEXS[sex];
   };
 
-  const getAgeFromDate = (date: string) => {
-    // var today = new Date(); // variavel para armazenar a data atual
-    // var birthDate = new Date(date); // variavel para armazenar a data
-    // var age = today.getFullYear() - birthDate.getFullYear(); //2010 - 2011 = 1 ano
-
-    // var m = today.getMonth() - birthDate.getMonth(); // 10 - 8 = 1 mes
-    // var day = today.getDay() - birthDate.getDay();
-
-    // // -> Se o m for menor que 0 ou m for igual a 0 e a data atual de hoje for menor que a do aniversario
-    // //-> decremente a idade
-    // // -> no final retorne a idade
-    // //   if (mes_atual < mes_aniversario || mes_atual == mes_aniversario && dia_atual < dia_aniversario) {
-    // //     quantos_anos--;
-    // // }
-    // // no final retorne
-    // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    //   age--;
-    // }
-    // return age;
+  const getMonthFromDate = (date: string) => {
     var today = new Date();
     var birthDate = new Date(date);
-    var months;
-    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
-    months -= birthDate.getMonth() + 1;
-    months += birthDate.getMonth();
 
-    return months <= 0 ? 0 : months;
+    // var today = new Date();
+    // var birthDate = new Date(date);
+    // var months;
+    // months = (today.getFullYear() - birthDate.getFullYear()) * 12;
+    // months += birthDate.getMonth();
+    // months -= birthDate.getMonth();
+    // return months <= 0 ? 0 : months;
+    // if (months <= 12) {
+    //   return months <= 0 ? 0 : months;
+    // }
+    var d1 = new Date(date);
+    var d2 = new Date();
+    var d1Y = d1.getFullYear();
+    var d2Y = d2.getFullYear();
+    var d1M = d1.getMonth();
+    var d2M = d2.getMonth();
+    return d2M + 12 * d2Y - (d1M + 12 * d1Y);
+    var d1 = new Date(date);
+    var d2 = new Date();
+    // var months;
+    // months =
+    //   (d1.getFullYear() - d1.getFullYear()) * 12 -
+    //   (d1.getFullYear() - d1.getFullYear()) * 12;
+    // months -= d1.getMonth();
+    // months += d2.getMonth();
+    // return months <= 0 ? 0 : months;
   };
 
-  // const getAgeFromDate = (date: string) => {  **********CODIGO ANTIGO PEGANDO A IDADE*****************
+  const getAgeFromDate = (date: string) => {
+    var today = new Date();
+    var birthDate = new Date(date);
+    console.log(today.getMonth());
+    return Math.floor(
+      Math.ceil(
+        Math.abs(birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24)
+      ) / 365.25
+    );
+  };
+
+  // const getAgeFromDate = (date: string) => {
   //   var today = new Date();
   //   var birthDate = new Date(date);
   //   var age = today.getFullYear() - birthDate.getFullYear();
   //   var m = today.getMonth() - birthDate.getMonth();
-
   //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
   //     age--;
   //   }
   //   return age;
-  // };
-
   useEffect(() => {
     loadingHelper.startLoading();
     cattlehelpers
@@ -228,6 +242,7 @@ const CattleListPage = (): ReactElement => {
             name: cattle.name,
             // Exemplo 3 de como mudar o valor para exibir
             age: getAgeFromDate(cattle.birthday),
+            month: getMonthFromDate(cattle.birthday),
             // Exemplo 4 de como mudar o valor para exibir
             type: CATTLE_TYPES[cattle.type],
             sex: cattle.sex,
@@ -434,7 +449,7 @@ const CattleListPage = (): ReactElement => {
               </Fab>
             </abbr>
             <Button
-              onClick={handleOpen}
+              // onClick={() => openDeleteAnimalModal(selectedAnimal.id)}
               sx={{ display: "flex", top: " 10px", left: "-135px" }}
             >
               <abbr title="Deletar Animal">

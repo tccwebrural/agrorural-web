@@ -40,17 +40,38 @@ const UpdateCattle = (): ReactElement => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const submitForm = (cattle: CattleModel) => {
-    cattle.id = id;
-    cattleHelper
-      .updateCattleId(cattle)
+  // const submitForm = (cattle: CattleModel) => {
+  //   cattle.id = id;
+  //   cattleHelper
+  //     .updateCattleId(cattle)
 
-      .catch((err) => {
-        //TODO: Mensagem de erro
-        //toast erro
-        console.error(err);
-        toast.error(getFireError(err));
-      });
+  //     .catch((err) => {
+  //       //TODO: Mensagem de erro
+  //       //toast erro
+  //       console.error(err);
+  //       toast.error(getFireError(err));
+  //     });
+  // };
+
+  const submitForm = async (cattle: CattleModel) => {
+    if (id) {
+      cattleHelper
+        .updateCattleId(cattle)
+        .then(() =>
+          //toast sucess
+          {
+            navigate("/private/cattles");
+            // navigate(`private/cattle/${id}/Vaccine`);
+          }
+        )
+        .catch((err) => {
+          //TODO: Mensagem de erro
+          //toast erro
+          console.error(err);
+          toast.error(getFireError(err));
+        });
+    }
+    // vacine.id = id;
   };
 
   useEffect(() => {

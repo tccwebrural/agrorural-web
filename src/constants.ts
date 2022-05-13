@@ -23,6 +23,7 @@ export const COLLECTION_CATTLES = "cattles";
 export const COLLECTION_DECLARATIONS = "declarations";
 export const COLLECTION_USERS = "users";
 export const COLLECTION_VACINES = "vacines";
+export const COLLECTION_REPORTS = "reports";
 
 /* MENSAGENS DE ERRO DO FORMULÁRIO */
 export const EMAIL_INVALID = "Digite um email válido";
