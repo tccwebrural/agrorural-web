@@ -24,6 +24,8 @@ import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
 
 import "../../../styles/InfoGado.css";
+import VaccineCardView from "../../vacine/Components/VaccineCardView";
+import VaccineCardInfoCattle from "../../vacine/Components/VaccineCardInfoCattle";
 
 function imprimir() {
   window.print();
@@ -195,14 +197,17 @@ const CattleInfoGado = (): ReactElement => {
           </section>
 
           <section>
+            {/* {VaccineCardView()} */}
             <div>
               <div id="blocoTitulo-vacina-infoGado">
-                <h2 id="blocoTituloTxt-vacina-infoGado">Cartao de Vacina</h2>
+                <h2 id="blocoTituloTxt-vacina-infoGado">
+                  Vacinas do animal : {initialValues.name}
+                </h2>
                 <span id="blocoTituloLine-vacina-infoGado"></span>
               </div>
 
               <div id="blocoVacinas">
-                <Grid id="vacinas">
+                {/* <Grid id="vacinas">
                   <abbr title="Detalhes da vacina">
                     <MdCoronavirus
                       size={80}
@@ -211,8 +216,8 @@ const CattleInfoGado = (): ReactElement => {
 
                     <p>Virus 1</p>
                   </abbr>
-                </Grid>
-                <Grid id="vacinas">
+                </Grid> */}
+                {/* <Grid id="vacinas">
                   <abbr title="Detalhes da vacina">
                     <MdCoronavirus
                       size={80}
@@ -241,9 +246,11 @@ const CattleInfoGado = (): ReactElement => {
 
                     <p>Virus 4</p>
                   </abbr>
-                </Grid>
+                </Grid> */}
+                {VaccineCardInfoCattle()}
               </div>
             </div>
+
             <div id="button">
               <Button
                 variant="contained"

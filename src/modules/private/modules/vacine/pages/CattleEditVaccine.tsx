@@ -44,39 +44,51 @@ const CattleEditVaccine = (): ReactElement => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  const { idVacine } = useParams();
+
+  console.log("ID VACINA " + "= " + idVacine);
 
   console.log(vacineHelpers.getAllVacines("1DpbNDXAu4ebmAZKgOb7"));
   console.log(id);
 
-  // useEffect(() => {
-  //   loadingHelper.startLoading();
-  //   if (id) {
-  //     cattleHelper.getCattleById(id).then((cattle?: CattleModel) => {
-  //       if (cattle) {
-  //         setInitialValues(cattle);
-  //       } else {
-  //         //TODO: Volta para listagem
-  //         toast.error("VACA NAO ENCONTRADA");
-  //       }
-  //       loadingHelper.stopLoading();
-  //     });
-  //   } else {
-  //     //TODO: Volta para listagem
-  //     loadingHelper.stopLoading();
-  //   }
-  // }, []);
+  useEffect(() => {
+    // if (id) {
+    //   cattleHelper.getCattleById(id).then((cattle?: CattleModel) => {
+    //     if (cattle) {
+    //       setInitialValues(cattle);
+    //     } else {
+    //       //TODO: Volta para listagem
+    //       toast.error("VACA NAO ENCONTRADA");
+    //     }
+    //     loadingHelper.stopLoading();
+    //   });
+    // } else {
+    //   //TODO: Volta para listagem
+    //   loadingHelper.stopLoading();
+    // }
+    if (id && idVacine) {
+      vacineHelpers.getVacineById(idVacine, id).then((vacine?: VacineModel) => {
+        if (vacine) {
+          setInitialValues(vacine);
+        } else {
+          //TODO: Volta para listagem
+          toast.error("vacina NAO ENCONTRADA");
+        }
+      });
+    } else {
+      //TODO: Volta para listagem
+    }
+  }, []);
 
   const getActualVacine = (vacine: VacineModel) => {
     navigate(`/private/cattle/${id}/vacine/${vacine.id}/edit`);
   };
   const submitForm = (vacine: VacineModel) => {
-    if (id) {
-      vacineHelpers
-        .updateVacineId(vacine, id, "O7zm2DxvU6PQSvMgYLg0")
-        .then(() =>
-          //toast sucess
-          navigate("/private/cattles")
-        );
+    if (id && idVacine) {
+      vacineHelpers.updateVacineId(vacine, id, idVacine).then(() =>
+        //toast sucess
+        navigate(`/private/cattle/${id}/Vaccine`)
+      );
     }
   };
   return (
@@ -90,7 +102,7 @@ const CattleEditVaccine = (): ReactElement => {
       >
         <Formik
           enableReinitialize={true}
-          onSubmit={getActualVacine}
+          onSubmit={submitForm}
           validationSchema={VacineValidatorSchema}
           initialValues={initialValues}
         >
@@ -210,7 +222,7 @@ const CattleEditVaccine = (): ReactElement => {
                           type="submit"
                           sx={{ paddingTop: 0.8, paddingBottom: 0.8 }}
                         >
-                          Adicionar
+                          Atualizar
                         </Button>
                       </Grid>
                     </div>

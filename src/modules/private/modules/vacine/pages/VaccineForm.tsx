@@ -48,6 +48,7 @@ const VaccineFormPage = (): ReactElement => {
           //toast sucess
           {
             navigate("/private/cattles");
+            // navigate(`private/cattle/${id}/Vaccine`);
           }
         )
         .catch((err) => {
