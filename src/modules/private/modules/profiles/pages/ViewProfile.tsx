@@ -14,7 +14,7 @@ import rodape from "../../../../../assets/rodape.png";
 import { BiMenu } from "react-icons/bi";
 import "../../../styles/ViewProfile.css";
 import { auth } from "configs/Firebase";
-import { ProviderAuth, useAuth } from "providers/AuthProvider";
+import { ProviderAuth, updateUserId, useAuth } from "providers/AuthProvider";
 import {
   PerfilModelUser,
   RegisterUserModel,
@@ -51,6 +51,11 @@ const ViewProfilePage = (): ReactElement => {
     email: "",
     phone: "",
   });
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleClickTextField = () => {
+    setIsDisabled(!isDisabled);
+  };
 
   // const [initialValues, setInitialValues] = useState<UserModel>();
   const loadingHelper = useGlobalLoading();
@@ -72,10 +77,19 @@ const ViewProfilePage = (): ReactElement => {
     });
   }, []);
 
-  const submitForm = (user: PerfilModelUser) => {
-    // user. = id;
-  };
+  const updateUser = updateUserId;
 
+  // const submitForm = (idUser: UserModel, user: PerfilModelUser) => {
+  //   updateUser(idUser.id, user).then(() =>
+  //     //toast sucess
+  //     {
+  //       navigate("/private/cattles");
+  //       // navigate(`private/cattle/${id}/Vaccine`);
+  //     }
+  //   );
+  // };
+
+  const submitForm = () => {};
   /** modalDesativar */
   const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
   const handleOpenModalDesativar = () => setOpenDesativar(true);
@@ -212,7 +226,9 @@ const ViewProfilePage = (): ReactElement => {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  <MenuItem onClick={ModalEditarPerfil}>Editar Perfil</MenuItem>
+                  <MenuItem onClick={handleClickTextField}>
+                    Editar Perfil
+                  </MenuItem>
 
                   <MenuItem onClick={() => auth.logout()}>
                     Sair da conta
@@ -273,7 +289,7 @@ const ViewProfilePage = (): ReactElement => {
                       size="small"
                       variant="standard"
                       className="txt-FieldsProfile"
-                      disabled={true}
+                      disabled={isDisabled}
                       {...getControls(formik, "cpf")}
                     />
                     <TextField
@@ -281,7 +297,7 @@ const ViewProfilePage = (): ReactElement => {
                       variant="standard"
                       className="txt-FieldsProfile"
                       {...getControls(formik, "email")}
-                      disabled={true}
+                      disabled={isDisabled}
                     />
                     <TextField
                       label="Telefone"
@@ -289,15 +305,16 @@ const ViewProfilePage = (): ReactElement => {
                       variant="standard"
                       className="txt-FieldsProfile"
                       {...getControls(formik, "phone")}
-                      disabled={true}
+                      disabled={isDisabled}
                     />
                     <TextField
                       label="Nome da Fazenda"
                       variant="standard"
                       className="txt-FieldsProfile"
-                      disabled={true}
+                      disabled={isDisabled}
                       {...getControls(formik, "farmName ")}
                     />
+                    <Button type="submit">EDITAR TST</Button>
                     <div></div>
                   </div>
                 )}
