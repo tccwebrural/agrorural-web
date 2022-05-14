@@ -31,6 +31,8 @@ import { DocumentReference } from "firebase/firestore";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { AltRouteRounded } from "@mui/icons-material";
 
+import ModalEditarPerfil from "../components/ModalEditarPerfil";
+
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -73,10 +75,16 @@ const ViewProfilePage = (): ReactElement => {
   const submitForm = (user: PerfilModelUser) => {
     // user. = id;
   };
-  /** */
-  const [openModal, setOpen] = React.useState(false);
-  const handleOpenModal = () => setOpen(true);
-  const handleCloseDelete = () => setOpen(false);
+
+  /** modalDesativar */
+  const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
+  const handleOpenModalDesativar = () => setOpenDesativar(true);
+  const handleCloseDesativarPerfil = () => setOpenDesativar(false);
+
+  /** Modal Editar */
+  const [openModalEditarPerfil, setOpenEditar] = React.useState(false);
+  const handleOpenModalEditar = () => setOpenEditar(true);
+  const handleCloseEditarPerfil = () => setOpenEditar(false);
 
   const [imgPreview] = useState(null);
 
@@ -97,7 +105,10 @@ const ViewProfilePage = (): ReactElement => {
   return (
     <>
       <div>
-        <Modal open={openModal} onClose={handleCloseDelete}>
+        <Modal
+          open={openModalDesativarPerfil}
+          onClose={handleCloseDesativarPerfil}
+        >
           <Box
             sx={{
               position: "absolute",
@@ -140,7 +151,7 @@ const ViewProfilePage = (): ReactElement => {
                 >
                   <Button
                     id="btn-modalDelet"
-                    onClick={() => handleCloseDelete()}
+                    onClick={() => handleCloseDesativarPerfil()}
                   >
                     Sim
                   </Button>{" "}
@@ -153,7 +164,7 @@ const ViewProfilePage = (): ReactElement => {
                 >
                   <Button
                     id="btn-modalCancel"
-                    onClick={() => handleCloseDelete()}
+                    onClick={() => handleCloseDesativarPerfil()}
                   >
                     Não
                   </Button>{" "}
@@ -201,13 +212,15 @@ const ViewProfilePage = (): ReactElement => {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  <MenuItem onClick={handleClose}>Editar Perfil</MenuItem>
+                  <MenuItem onClick={ModalEditarPerfil}>Editar Perfil</MenuItem>
 
                   <MenuItem onClick={() => auth.logout()}>
                     Sair da conta
                   </MenuItem>
 
-                  <MenuItem onClick={handleOpenModal}>Desativar conta</MenuItem>
+                  <MenuItem onClick={handleOpenModalDesativar}>
+                    Desativar conta
+                  </MenuItem>
                 </Menu>
               </div>
 
@@ -229,7 +242,7 @@ const ViewProfilePage = (): ReactElement => {
                     <label htmlFor="fileUpload">
                       <img src={imgUser} className="imgProfile" />
                     </label>
-                    <img  id="input-imgProfile" src={src} alt={alt} />
+                    <img id="input-imgProfile" src={src} alt={alt} />
                     <input
                       id="fileUpload"
                       accept="image/*"
