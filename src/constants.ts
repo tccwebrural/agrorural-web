@@ -25,6 +25,9 @@ export const COLLECTION_USERS = "users";
 export const COLLECTION_VACINES = "vacines";
 export const COLLECTION_REPORTS = "reports";
 
+export const MALE = 1;
+export const FEMALE = 2;
+
 /* MENSAGENS DE ERRO DO FORMULÁRIO */
 export const EMAIL_INVALID = "Digite um email válido";
 export const PASSWORD_MIN_8 = "A senha deve conter no mínimo 8 caracteres";

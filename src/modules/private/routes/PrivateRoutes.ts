@@ -14,10 +14,11 @@ import CattleInfoGado from "../modules/cattles/pages/cattleInfoGado";
 import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
 import notifyVaccine from "../modules/vacine/pages/NotifyVaccine";
 import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
-import DeclareForm from "../modules/cattles/pages/DeclareForm";
+import DeclareForm from "../modules/reports/pages/DeclareForm";
 import TesteFormik from "../modules/testes/TesteFormik";
 import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
 import VaccineFormPagetst from "../modules/vacine/pages/Vacineformtst";
+import ReportPage from "../modules/reports/pages/ReportPage";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "home",
@@ -62,6 +63,13 @@ export const PRIVATE_ROUTES: Array<Route> = [
     path: "cattle/DeclareForm",
     showHeaderBtn: true,
     component: DeclareForm,
+  },
+  {
+    key: "REPORT TS",
+    title: "REPORTTST",
+    path: "cattle/Reporttst",
+    showHeaderBtn: true,
+    component: ReportPage,
   },
   {
     key: "Notify Vaccine",
