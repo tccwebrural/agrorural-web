@@ -41,7 +41,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { MdCoronavirus } from "react-icons/md";
 import AddIcon from "@mui/icons-material/Add";
 import vaca1 from "../../../../../assets/vaca1.png";
-import { CattleModel } from "../models/CattleModel";
+import { CattleModel, CATTLE_SEXS } from "../models/CattleModel";
 import { Formik } from "formik";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleHelper } from "../helpers/CattleHelper";

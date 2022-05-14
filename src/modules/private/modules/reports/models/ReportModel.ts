@@ -1,24 +1,24 @@
 import { Timestamp } from "firebase/firestore";
 
-type Detail = {
+export type Sex = {
   macho: number;
   femea: number;
 };
 
-class ReportDetail {
-  garrotes?: Detail;
-  desmamados?: Detail;
-  bezerros?: Detail;
-  novilhos?: Detail;
-  outros?: Detail;
-  total?: Detail;
+class Report_cattle_cattegory {
+  garrotes!: Sex;
+  desmamados!: Sex;
+  bezerros!: Sex;
+  novilhos!: Sex;
+  outros!: Sex;
+  total!: Sex;
 }
 
 class ReportModel {
   id?: string;
   createdAt?: Timestamp;
-  rebanhoAtual?: ReportDetail;
-  rebanhoComCausas?: ReportDetail;
+  rebanhoAtual?: Report_cattle_cattegory;
+  rebanhoComCausas?: Report_cattle_cattegory;
 }
 
-export { ReportModel };
+export { ReportModel, Report_cattle_cattegory };

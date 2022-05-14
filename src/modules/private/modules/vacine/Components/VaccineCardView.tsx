@@ -146,9 +146,9 @@ const VaccineCardView = (): ReactElement => {
   };
   return (
     <>
-      {vacines.map((vacine) => (
+      {vacines.map((vacine, index) => (
         // <h1></h1>
-        <Card sx={{ maxWidth: 300, alignContent: "center" }}>
+        <Card key={index} sx={{ maxWidth: 300, alignContent: "center" }}>
           <CardHeader
             avatar={
               <Avatar

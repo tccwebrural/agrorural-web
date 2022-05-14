@@ -31,6 +31,7 @@ import { TodayTwoTone } from "@mui/icons-material";
 import { object } from "yup/lib/locale";
 import { CattleValidatorSchema } from "modules/private/modules/cattles/validators/CattleValidatorSchema";
 import { getFireError } from "utils/HandleFirebaseError";
+import { ReportHelper } from "../../reports/helpers/ReportHelper";
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   margin: "auto",
@@ -43,6 +44,10 @@ const Item = styled(Paper)(({ theme }) => ({
 const CreateCattleFormPage = (): ReactElement => {
   const cattlehelpers = CattleHelper();
 
+  const reportHelpers = ReportHelper();
+  reportHelpers.getAllReports();
+
+  console.log(reportHelpers.getAllReports());
   const navigate = useNavigate();
 
   const formCattle = useFormik({
