@@ -39,7 +39,7 @@ type AuthContext = {
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (formData: RegisterUserModel) => Promise<void>;
   logout: (redirectToHome?: boolean) => void;
-  deactiveUser: () => Promise<void>;
+  desactiverUser: () => Promise<void>;
   // sendPasswordReset: (email: string) => {};
   // loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
   loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
@@ -215,7 +215,7 @@ const UserAuthProvider = (): AuthContext => {
     });
   };
 
-  const deactiveUser = async () => {
+  const desactiverUser = async () => {
     const user = await getUser();
     const userRef = doc(firestore, COLLECTION_USERS, user.id);
 
@@ -229,7 +229,7 @@ const UserAuthProvider = (): AuthContext => {
     signUp,
     logout,
     sendPasswordReset,
-    deactiveUser,
+    desactiverUser,
     loadUserDataById,
   };
 };

@@ -19,111 +19,118 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleModel, CATTLE_TYPES } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
 
-var  today = new Date();
+var today = new Date();
 var currentYear = today.getFullYear();
-var lastYear = today.getFullYear()-1;
-var twoYearsAgo = today.getFullYear()-2;
-var threeYearsAgo = today.getFullYear()-3;
-var fourYearsAgo = today.getFullYear()-4;
-var periodo = [currentYear,lastYear,twoYearsAgo,threeYearsAgo,fourYearsAgo];
-
-
+var lastYear = today.getFullYear() - 1;
+var twoYearsAgo = today.getFullYear() - 2;
+var threeYearsAgo = today.getFullYear() - 3;
+var fourYearsAgo = today.getFullYear() - 4;
+var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
 const HomePage = (): ReactElement => {
+  const getAgeFromDate = (date: string) => {
+    var today = new Date();
+    var birthDate = new Date(date);
+    var months;
+    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
+    months -= birthDate.getMonth() + 1;
+    months += birthDate.getMonth();
 
-  
-const getAgeFromDate = (date: string) => {
-  var today = new Date();
-  var birthDate = new Date(date);
-  var months;
-  months = ( today.getFullYear() - birthDate.getFullYear() ) * 12;
-  months -= birthDate.getMonth() +1 ;
-  months += birthDate.getMonth();
+    return months <= 0 ? 0 : months;
+  };
 
-  return months <= 0 ? 0 : months;
-};
+  const cattlehelpers = CattleHelper();
+  const loadingHelper = useGlobalLoading();
+  const [animals, setAnimals] = useState<CattleModel[]>([]);
+  var [totalBezerros, setTotalBezerros] = useState(0);
+  var [totalDesmamados, setTotalDesmamados] = useState(0);
+  var [totalGarrotes, setTotalGarrotes] = useState(0);
+  var [totalNovilhos, setTotalNovilhos] = useState(0);
+  var [totalAcimaDe36, setTotalAcimaDe36] = useState(0);
+  var totalDeAnimais = 0;
 
-const cattlehelpers = CattleHelper();
-const loadingHelper = useGlobalLoading();
-const [animals, setAnimals] = useState<CattleModel[]>([]);
-var [totalBezerros, setTotalBezerros ] = useState(0);
-var [totalDesmamados, setTotalDesmamados ] = useState(0);
-var [totalGarrotes, setTotalGarrotes ] = useState(0);
-var [totalNovilhos, setTotalNovilhos ] = useState(0);
-var [totalAcimaDe36, setTotalAcimaDe36 ] = useState(0);
-var totalDeAnimais  = 0;
+  useEffect(() => {
+    loadingHelper.startLoading();
+    cattlehelpers
+      .getAllCattles()
+      .then((cattles) => {
+        const listToDisplay: any[] = [];
 
-useEffect(() => {
-  loadingHelper.startLoading();
-  cattlehelpers
-    .getAllCattles()
-    .then((cattles) => {
-      const listToDisplay: any[] = [];
+        for (let index = 0; index < cattles.length; index++) {
+          const cattle = cattles[index];
+          const cattleToGetAge = { age: getAgeFromDate(cattle.birthday) };
 
-      for (let index = 0; index < cattles.length; index++) {
-        const cattle = cattles[index];
-        const cattleToGetAge = {age: getAgeFromDate(cattle.birthday)};   
-        
-        if(cattleToGetAge.age >= 0 && cattleToGetAge.age <= 6){
-          setTotalBezerros(totalBezerros+=1);
-            
+          if (cattleToGetAge.age >= 0 && cattleToGetAge.age <= 6) {
+            setTotalBezerros((totalBezerros += 1));
+          } else if (cattleToGetAge.age > 6 && cattleToGetAge.age <= 12) {
+            setTotalDesmamados((totalDesmamados += 1));
+          }
+
+          if (cattleToGetAge.age >= 13 && cattleToGetAge.age <= 24) {
+            setTotalGarrotes((totalGarrotes += 1));
+          }
+          if (cattleToGetAge.age > 24 && cattleToGetAge.age <= 36) {
+            setTotalNovilhos((totalNovilhos += 1));
+          } else if (cattleToGetAge.age > 36) {
+            setTotalAcimaDe36((totalAcimaDe36 += 1));
+          }
         }
-         else if(cattleToGetAge.age >6 && cattleToGetAge.age <= 12){
-          setTotalDesmamados(totalDesmamados+=1);
-      }
-        else if(cattleToGetAge.age >12 && cattleToGetAge.age <= 24){
-          setTotalGarrotes(totalGarrotes+=1);
-      }
-      else if(cattleToGetAge.age >24 && cattleToGetAge.age <= 36){
-        setTotalNovilhos(totalNovilhos+=1);
-    }
-    else if(cattleToGetAge.age >36 ){
-      setTotalAcimaDe36(totalAcimaDe36+=1);
-  }
-        }
-      
-      loadingHelper.stopLoading();
-    return{
+
+        loadingHelper.stopLoading();
+        return {
+          totalBezerros,
+          totalDesmamados,
+          totalGarrotes,
+          totalNovilhos,
+          totalAcimaDe36,
+        };
+      })
+      .catch((err: any) => {
+        toast.error(err);
+        loadingHelper.stopLoading();
+      });
+  }, []);
+  console.log("Bezerros: " + totalBezerros);
+  console.log("Desmamados: " + totalDesmamados);
+  console.log("Garrotes: " + totalGarrotes);
+  console.log("Novilhos: " + totalNovilhos);
+  console.log("A cima de 36 meses: " + totalAcimaDe36);
+
+  function createData(
+    periodo: Number,
+    totalBezerros = 0,
+    totalDesmamados = 0,
+    totalGarrotes = 0,
+    totalNovilhos = 0,
+    totalAcimaDe36 = 0,
+    totalDeAnimais = 0
+  ) {
+    return {
+      periodo,
       totalBezerros,
       totalDesmamados,
       totalGarrotes,
       totalNovilhos,
       totalAcimaDe36,
-    }
-   
-  })
-    .catch((err: any) => {
-      toast.error(err);
-      loadingHelper.stopLoading();
-    });
-}, []);
-console.log("Bezerros: "+ totalBezerros)
-console.log("Desmamados: "+ totalDesmamados)
-console.log("Garrotes: "+ totalGarrotes)
-console.log("Novilhos: "+ totalNovilhos)
-console.log("A cima de 36 meses: "+ totalAcimaDe36)
-
-function createData(
-  periodo: Number,
-  totalBezerros = 0,
-  totalDesmamados = 0,
-  totalGarrotes = 0,
-  totalNovilhos = 0,
-  totalAcimaDe36 = 0,
-  totalDeAnimais = 0,
-) {  
-  return { periodo,totalBezerros, totalDesmamados, totalGarrotes, totalNovilhos, totalAcimaDe36, totalDeAnimais };
+      totalDeAnimais,
+    };
   }
 
-const rows = [
-  createData(periodo[0], totalBezerros, totalDesmamados, totalGarrotes, totalNovilhos , totalAcimaDe36 , totalDeAnimais),
- 
-];
+  const rows = [
+    createData(
+      periodo[0],
+      totalBezerros,
+      totalDesmamados,
+      totalGarrotes,
+      totalNovilhos,
+      totalAcimaDe36,
+      totalDeAnimais
+    ),
+  ];
   function imprimir() {
     window.print();
   }
 
-  
   return (
     <>
       <main>
@@ -149,15 +156,14 @@ const rows = [
                   boxShadow: " 2px 2px 4px 2px var(--cor111)",
                 }}
               >
-                <Table  style={{ maxWidth: 1000 }}>
-                  <TableHead >
-                    <TableRow >
+                <Table style={{ maxWidth: 1000 }}>
+                  <TableHead>
+                    <TableRow>
                       <TableCell
                         style={{
                           color: "var(--cor005)",
                           fontSize: 18,
                           textAlign: "center",
-                          
                         }}
                       >
                         Período
@@ -216,15 +222,14 @@ const rows = [
                         style={{
                           color: "var(--cor005)",
                           fontSize: 18,
-                          textAlign: "center",                          
-
+                          textAlign: "center",
                         }}
                       >
                         TOTAL
                       </TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody >
+                  <TableBody>
                     {rows.map((row, i) => (
                       <TableRow
                         key={i}
@@ -235,12 +240,24 @@ const rows = [
                         <TableCell component="th" scope="row" align="center">
                           {row.periodo}
                         </TableCell>
-                        <TableCell align="center">{row.totalBezerros}</TableCell>
-                        <TableCell align="center">{row.totalDesmamados}</TableCell>
-                        <TableCell align="center">{row.totalGarrotes}</TableCell>
-                        <TableCell align="center">{row.totalNovilhos}</TableCell>
-                        <TableCell align="center">{row.totalAcimaDe36}</TableCell>
-                        <TableCell align="center">{row.totalDeAnimais}</TableCell>
+                        <TableCell align="center">
+                          {row.totalBezerros}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.totalDesmamados}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.totalGarrotes}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.totalNovilhos}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.totalAcimaDe36}
+                        </TableCell>
+                        <TableCell align="center">
+                          {row.totalDeAnimais}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

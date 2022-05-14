@@ -229,7 +229,7 @@ const ViewProfilePage = (): ReactElement => {
                     <label htmlFor="fileUpload">
                       <img src={imgUser} className="imgProfile" />
                     </label>
-                    <img  id="input-imgProfile" src={src} alt={alt} />
+                    <img id="input-imgProfile" src={src} alt={alt} />
                     <input
                       id="fileUpload"
                       accept="image/*"
