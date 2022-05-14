@@ -14,7 +14,7 @@ import rodape from "../../../../../assets/rodape.png";
 import { BiMenu } from "react-icons/bi";
 import "../../../styles/ViewProfile.css";
 import { auth } from "configs/Firebase";
-import { ProviderAuth, useAuth } from "providers/AuthProvider";
+import { ProviderAuth, updateUserId, useAuth } from "providers/AuthProvider";
 import {
   PerfilModelUser,
   RegisterUserModel,
@@ -30,6 +30,8 @@ import { getControls } from "utils/FormUtils";
 import { DocumentReference } from "firebase/firestore";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { AltRouteRounded } from "@mui/icons-material";
+
+import ModalEditarPerfil from "../components/ModalEditarPerfil";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -49,6 +51,11 @@ const ViewProfilePage = (): ReactElement => {
     email: "",
     phone: "",
   });
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleClickTextField = () => {
+    setIsDisabled(!isDisabled);
+  };
 
   // const [initialValues, setInitialValues] = useState<UserModel>();
   const loadingHelper = useGlobalLoading();
@@ -70,13 +77,28 @@ const ViewProfilePage = (): ReactElement => {
     });
   }, []);
 
-  const submitForm = (user: PerfilModelUser) => {
-    // user. = id;
-  };
-  /** */
-  const [openModal, setOpen] = React.useState(false);
-  const handleOpenModal = () => setOpen(true);
-  const handleCloseDelete = () => setOpen(false);
+  const updateUser = updateUserId;
+
+  // const submitForm = (idUser: UserModel, user: PerfilModelUser) => {
+  //   updateUser(idUser.id, user).then(() =>
+  //     //toast sucess
+  //     {
+  //       navigate("/private/cattles");
+  //       // navigate(`private/cattle/${id}/Vaccine`);
+  //     }
+  //   );
+  // };
+
+  const submitForm = () => {};
+  /** modalDesativar */
+  const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
+  const handleOpenModalDesativar = () => setOpenDesativar(true);
+  const handleCloseDesativarPerfil = () => setOpenDesativar(false);
+
+  /** Modal Editar */
+  const [openModalEditarPerfil, setOpenEditar] = React.useState(false);
+  const handleOpenModalEditar = () => setOpenEditar(true);
+  const handleCloseEditarPerfil = () => setOpenEditar(false);
 
   const [imgPreview] = useState(null);
 
@@ -97,7 +119,10 @@ const ViewProfilePage = (): ReactElement => {
   return (
     <>
       <div>
-        <Modal open={openModal} onClose={handleCloseDelete}>
+        <Modal
+          open={openModalDesativarPerfil}
+          onClose={handleCloseDesativarPerfil}
+        >
           <Box
             sx={{
               position: "absolute",
@@ -140,7 +165,7 @@ const ViewProfilePage = (): ReactElement => {
                 >
                   <Button
                     id="btn-modalDelet"
-                    onClick={() => handleCloseDelete()}
+                    onClick={() => handleCloseDesativarPerfil()}
                   >
                     Sim
                   </Button>{" "}
@@ -153,7 +178,7 @@ const ViewProfilePage = (): ReactElement => {
                 >
                   <Button
                     id="btn-modalCancel"
-                    onClick={() => handleCloseDelete()}
+                    onClick={() => handleCloseDesativarPerfil()}
                   >
                     Não
                   </Button>{" "}
@@ -201,13 +226,17 @@ const ViewProfilePage = (): ReactElement => {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  <MenuItem onClick={handleClose}>Editar Perfil</MenuItem>
+                  <MenuItem onClick={handleClickTextField}>
+                    Editar Perfil
+                  </MenuItem>
 
                   <MenuItem onClick={() => auth.logout()}>
                     Sair da conta
                   </MenuItem>
 
-                  <MenuItem onClick={handleOpenModal}>Desativar conta</MenuItem>
+                  <MenuItem onClick={handleOpenModalDesativar}>
+                    Desativar conta
+                  </MenuItem>
                 </Menu>
               </div>
 
@@ -229,7 +258,7 @@ const ViewProfilePage = (): ReactElement => {
                     <label htmlFor="fileUpload">
                       <img src={imgUser} className="imgProfile" />
                     </label>
-                    <img  id="input-imgProfile" src={src} alt={alt} />
+                    <img id="input-imgProfile" src={src} alt={alt} />
                     <input
                       id="fileUpload"
                       accept="image/*"
@@ -260,7 +289,7 @@ const ViewProfilePage = (): ReactElement => {
                       size="small"
                       variant="standard"
                       className="txt-FieldsProfile"
-                      disabled={true}
+                      disabled={isDisabled}
                       {...getControls(formik, "cpf")}
                     />
                     <TextField
@@ -268,7 +297,7 @@ const ViewProfilePage = (): ReactElement => {
                       variant="standard"
                       className="txt-FieldsProfile"
                       {...getControls(formik, "email")}
-                      disabled={true}
+                      disabled={isDisabled}
                     />
                     <TextField
                       label="Telefone"
@@ -276,15 +305,16 @@ const ViewProfilePage = (): ReactElement => {
                       variant="standard"
                       className="txt-FieldsProfile"
                       {...getControls(formik, "phone")}
-                      disabled={true}
+                      disabled={isDisabled}
                     />
                     <TextField
                       label="Nome da Fazenda"
                       variant="standard"
                       className="txt-FieldsProfile"
-                      disabled={true}
+                      disabled={isDisabled}
                       {...getControls(formik, "farmName ")}
                     />
+                    <Button type="submit">EDITAR TST</Button>
                     <div></div>
                   </div>
                 )}

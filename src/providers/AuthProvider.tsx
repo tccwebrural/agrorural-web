@@ -28,6 +28,7 @@ import {
   USUARIO_CADASTRADO_COM_SUCESSO,
 } from "../constants";
 import {
+  PerfilModelUser,
   RegisterUserModel,
   UserModel,
 } from "../modules/public/models/UserModel";
@@ -38,8 +39,9 @@ type AuthContext = {
   getUser: () => Promise<UserModel | undefined>;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (formData: RegisterUserModel) => Promise<void>;
+
   logout: (redirectToHome?: boolean) => void;
-  deactiveUser: () => Promise<void>;
+  desactiverUser: () => Promise<void>;
   // sendPasswordReset: (email: string) => {};
   // loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
   loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
@@ -215,7 +217,7 @@ const UserAuthProvider = (): AuthContext => {
     });
   };
 
-  const deactiveUser = async () => {
+  const desactiverUser = async () => {
     const user = await getUser();
     const userRef = doc(firestore, COLLECTION_USERS, user.id);
 
@@ -229,7 +231,7 @@ const UserAuthProvider = (): AuthContext => {
     signUp,
     logout,
     sendPasswordReset,
-    deactiveUser,
+    desactiverUser,
     loadUserDataById,
   };
 };
@@ -254,5 +256,13 @@ const useAuth = () => {
   return useContext(authContext) as AuthContext;
 };
 
+const updateUserId = async (uid: string, formData: PerfilModelUser) => {
+  const userRef = doc(firestore, COLLECTION_USERS, uid);
+  const userDoc = await getDoc(userRef);
+
+  await updateDoc(userRef, { ...formData });
+
+  return userRef;
+};
 // Apenas o acesso ao contexto e o provider
-export { useAuth, ProviderAuth };
+export { useAuth, ProviderAuth, updateUserId };
