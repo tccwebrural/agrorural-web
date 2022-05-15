@@ -92,11 +92,14 @@ const HomePage = (): ReactElement => {
               <h1>O que é o AGRO RURAL?</h1>
 
               <span>
-               O sistema que veio para trazer mais praticidade e facilidade a vida do produtor rural,
-               ajudando com o gerenciamento do seu gado.<br/> O AgroRural foca na gestão e no controle de vacinação do gado onde o pecuarista 
-               possa cadastrar seus animais podendo assim ter uma visão ampla de seu rebanho, e tendo acesso aos relatórios
-               que o próprio sistema fornece, além de também ser notificado quando o animal estiver
-               no período de vacinação.
+                O sistema que veio para trazer mais praticidade e facilidade a
+                vida do produtor rural, ajudando com o gerenciamento do seu
+                gado.
+                <br /> O AgroRural foca na gestão e no controle de vacinação do
+                gado onde o pecuarista possa cadastrar seus animais podendo
+                assim ter uma visão ampla de seu rebanho, e tendo acesso aos
+                relatórios que o próprio sistema fornece, além de também ser
+                notificado quando o animal estiver no período de vacinação.
               </span>
             </div>
 
@@ -105,13 +108,14 @@ const HomePage = (): ReactElement => {
                 <h1>Como Surgiu a Ideia?</h1>
 
                 <span>
-                  A ideia surgiu no momento que foi visto a dificuldade que os pecuaristas
-                  possui em relação ao controle do seu gado, um dos principais fatores é a perda
-                  dos dados dos animais que muita das vezes acaba ocasionando vários prejuízos
-                  como por exemplo não saber a data que o bezerro nasceu. Com o controle do nascimento
-                  o produtor rural consegue saber o momento exato de quando vacinar o animal, fazendo com que
-                  não perca a data de vacinação. 
-                  
+                  A ideia surgiu no momento que foi visto a dificuldade que os
+                  pecuaristas possui em relação ao controle do seu gado, um dos
+                  principais fatores é a perda dos dados dos animais que muita
+                  das vezes acaba ocasionando vários prejuízos como por exemplo
+                  não saber a data que o bezerro nasceu. Com o controle do
+                  nascimento o produtor rural consegue saber o momento exato de
+                  quando vacinar o animal, fazendo com que não perca a data de
+                  vacinação.
                 </span>
               </div>
             </section>
@@ -120,8 +124,9 @@ const HomePage = (): ReactElement => {
 
               <span>
                 O AgroRural tem como objetivo fazer com que o pecuarista consiga
-                ter uma visão ampla e melhor controle do seu rebanho, sendo também 
-                notificado quando o animal estiver no período exato de vacinação.
+                ter uma visão ampla e melhor controle do seu rebanho, sendo
+                também notificado quando o animal estiver no período exato de
+                vacinação.
               </span>
               <div>
                 <Box
@@ -133,32 +138,29 @@ const HomePage = (): ReactElement => {
                 >
                   <div id="teste">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "2%" }} />
+                    <p>Controle do rebanho.</p>
+                  </div>
+                  <div id="teste">
+                    <CheckOutlinedIcon sx={{ color: "green", margin: "2%" }} />
+                    <p>Notificar o período de vacinação de cada animal.</p>
+                  </div>
+                  <div id="teste">
+                    <CheckOutlinedIcon sx={{ color: "green", margin: "2%" }} />
                     <p>
-                      Controle do rebanho.
+                      Gerar a declaração do rebanho facilitando quando o
+                      pecuarista for declarar o gado no órgão de fiscalização
+                      agropecuário.
                     </p>
                   </div>
                   <div id="teste">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "2%" }} />
-                    <p>
-                      Notificar o período de vacinação de cada animal.
-                     </p>
+                    <p>Gerar Relatórios da quantidade de animais.</p>
                   </div>
                   <div id="teste">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "2%" }} />
                     <p>
-                       Gerar a declaração do rebanho facilitando quando o pecuarista for declarar o gado no órgão de fiscalização agropecuário.
-                    </p>
-                  </div>
-                  <div id="teste">
-                    <CheckOutlinedIcon sx={{ color: "green", margin: "2%" }} />
-                    <p>
-                      Gerar Relatórios da quantidade de animais.
-                    </p>
-                  </div>
-                  <div id="teste">
-                    <CheckOutlinedIcon sx={{ color: "green", margin: "2%" }} />
-                    <p>
-                    Visão ampla do negócio facilitando com a tomada de decisão.
+                      Visão ampla do negócio facilitando com a tomada de
+                      decisão.
                     </p>
                   </div>
                 </Box>
@@ -168,11 +170,16 @@ const HomePage = (): ReactElement => {
 
           <section id="inst">
             <div id="instituicao">
-              <h1 >Instituição</h1>
+              <h1>Instituição</h1>
               <div className="conjunto">
-               <span>
-                 Universidade Estácio de Sá (UNESA).<br/>Universidade privada brasileira fundada em 1970
-               </span>
+                <span>
+                  Universidade Estácio de Sá (UNESA). Universidade privada
+                  brasileira fundada em 1970, no bairro de Rio Comprido, Foi
+                  fundada como uma Faculdade de Direito e hoje possui mais de 39
+                  Campos universitários espalhados pelo Brasil com diversos
+                  Cursos; Nesse projeto (AgroRural), o projeto ficará Alocado no
+                  Campos de Cabo Frio{" "}
+                </span>
                 <div id="img-instituicao">
                   <img src={estacio} alt="Erro..." />
                 </div>
@@ -183,13 +190,24 @@ const HomePage = (): ReactElement => {
           <section id="sobre_Nos">
             <h1>Orientador</h1>
             <div id="orientador">
-              <div>
-                <img id="img-sobre" src={laranjeira} alt="Erro..." />
-              </div>
               <h2>Alessandro Laranjeiras</h2>
-              <span>
-              Professor de Ensino Superior e Técnico | Arquiteto de Sistemas | Analista de Sistemas<br/>
-              Bacharel em Sistemas de Informação e tecnólogo em Sistemas Móveis Celulares (Telecomunicações), pela Universidade Estácio de Sá, e especialista em Arquitetura de Software Distribuído, pela Pontifícia Universidade Católica de Minas Gerais – PUC Minas.
+
+              <div>
+                <img id="img-sobreOrientador" src={laranjeira} alt="Erro..." />
+              </div>
+
+              <span id="sobreOrientador">
+                Professor de Ensino Superior e Técnico | Arquiteto de Sistemas |
+                Analista de Sistemas
+                <br />
+                Bacharel em Sistemas de Informação e tecnólogo em Sistemas
+                Móveis Celulares (Telecomunicações),
+                <br />
+                pela Universidade Estácio de Sá, e especialista em Arquitetura
+                de Software Distribuído,
+                <br />
+                pela Pontifícia Universidade Católica de Minas Gerais – PUC
+                Minas.
               </span>
             </div>
 
@@ -198,46 +216,46 @@ const HomePage = (): ReactElement => {
               <div id="sobre-nos">
                 <div className="sobre">
                   <div>
-                    <img id="img-sobre" src={beatriz} alt="Erro..." />
+                    <img className="img-sobre" src={beatriz} alt="Erro..." />
                   </div>
                   <h2>Beatriz Ferrete</h2>
                   <span>
-                  Estudante de Sistemas de Informação pela instituição Estácio de Sá.
-                  Responsável pela documentação do sistema AgroRural.
+                    Estudante de Sistemas de Informação pela instituição Estácio
+                    de Sá. Responsável pela documentação do sistema AgroRural.
                   </span>
                 </div>
 
                 <div className="sobre">
                   <div>
-                    <img id="img-sobre" src={george} alt="Erro..." />
+                    <img className="img-sobre" src={george} alt="Erro..." />
                   </div>
                   <h2>Georger Michael</h2>
                   <span>
-                  Estudante de Sistemas de Informação pela instituição Estácio de Sá.
-                  Atua na área do back-end e banco de dados do sistema AgroRural.
+                    Estudante de Sistemas de Informação pela instituição Estácio
+                    de Sá. Atua na área do back-end e banco de dados do sistema
+                    AgroRural.
                   </span>
                 </div>
 
                 <div className="sobre">
                   <div>
-                    <img id="img-sobre" src={leticia} alt="Erro..." />
+                    <img className="img-sobre" src={leticia} alt="Erro..." />
                   </div>
                   <h2>Letícia Santana</h2>
                   <span>
-                  Estudante de Sistemas de Informação pela instituição Estácio de Sá.
-                  Atua na área do front-end do sistema AgroRural.
+                    Estudante de Sistemas de Informação pela instituição Estácio
+                    de Sá. Atua na área do front-end do sistema AgroRural.
                   </span>
                 </div>
 
                 <div className="sobre">
                   <div>
-                    <img id="img-sobre" src={pablo} alt="Erro..." />
+                    <img className="img-sobre" src={pablo} alt="Erro..." />
                   </div>
                   <h2>Pablo Redig</h2>
                   <span>
-                  Estudante de Sistemas de Informação pela instituição Estácio de Sá.
-                  Atua na área do front-end do sistema AgroRural.
-
+                    Estudante de Sistemas de Informação pela instituição Estácio
+                    de Sá. Atua na área do front-end do sistema AgroRural.
                   </span>
                 </div>
               </div>

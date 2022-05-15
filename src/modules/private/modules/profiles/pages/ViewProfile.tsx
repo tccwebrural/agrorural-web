@@ -111,8 +111,9 @@ const ViewProfilePage = (): ReactElement => {
   const [{ alt, src }, setPreview] = useState(initialState);
 
   const handleOpenClickMenu = async () => {
-    await setIsDisabled(!isDisabled);
-    await setShow(false);
+    setIsDisabled(!isDisabled);
+
+    await setShow(!show);
   };
 
   const handleCloseClickMenu = () => {
