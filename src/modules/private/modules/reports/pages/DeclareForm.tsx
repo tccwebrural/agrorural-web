@@ -15,6 +15,7 @@ import { RegisterValidatorSchema } from "modules/public/modules/authentication/v
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
+import ProprietarieData from "../components/ProprietarieData";
 
 const DeclareForm = (): ReactElement => {
   function imprimir() {
@@ -28,7 +29,7 @@ const DeclareForm = (): ReactElement => {
     cpf: "",
     email: "",
     phone: "",
-    farmName:"",
+    farmName: "",
   });
 
   const getAgeFromDate = (date: string) => {
@@ -168,61 +169,8 @@ const DeclareForm = (): ReactElement => {
               </abbr>
             </span>
           </div>
-          <div>
-            <p className="CattleDeclaration">Dados do Proprietário</p>{" "}
-            {/* declare do gado */}
-            <Formik
-              enableReinitialize={true}
-              onSubmit={submitForm}
-              validationSchema={RegisterValidatorSchema}
-              initialValues={initialValues}
-            >
-              {(formik) => (
-                <div id="OwnerData">
-                  {" "}
-                  {/* dados do proprietario */}
-                  <TextField
-                    label="Nome do Proprietário"
-                    variant="standard"
-                    {...getControls(formik, "name")}
-                    sx={{ width: "100%" }}
-                    disabled={true}
-                  />
-                  <TextField
-                    label="E-mail"
-                    variant="standard"
-                    {...getControls(formik, "email")}
-                    sx={{ width: "50%" }}
-                    disabled={true}
-                  />
-                  <TextField
-                    label="CPF"
-                    {...getControls(formik, "cpf")}
-                    size="small"
-                    variant="standard"
-                    sx={{ marginTop: 0.3, width: "50%" }}
-                    disabled={true}
-                  />
-                  <br />
-                  <TextField
-                    label="Telefone"
-                    {...getControls(formik, "phone")}
-                    size="small"
-                    variant="standard"
-                    sx={{ marginTop: 0.3, width: "50%" }}
-                    disabled={true}
-                  />
-                  <TextField
-                    label="Nome da Fazenda"
-                    {...getControls(formik, "Nome do proprietário:")}
-                    variant="standard"
-                    sx={{ width: "50%" }}
-                    disabled={true}
-                  />
-                </div>
-              )}
-            </Formik>
-          </div>
+          {/* COMPONENTE DADOS DO PROPRIETARIO AQUI */}
+          {ProprietarieData()}
 
           <div>
             <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
