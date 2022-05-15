@@ -17,6 +17,7 @@ const ModalEditarPerfil = (): ReactElement => {
     cpf: "",
     email: "",
     phone: "",
+    farmName: "",
   });
 
   // const [initialValues, setInitialValues] = useState<UserModel>();

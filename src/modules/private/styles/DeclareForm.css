@@ -94,6 +94,7 @@
 
 }
 
+
 #total{
     background-color: var(--cor005);
     width: 161px;
@@ -219,6 +220,138 @@
     border-bottom: 1px solid var(--cor002);
 }
 #txt-DeathVariousCauses{
+    font-size: 14.5px;
+    margin-top: 4px;
+}
+/* //////////////////////////////////////////////////////////// */
+.CurrentCattleHerd-RA{
+    background-color: var(--cor011);
+    height: 250px;
+    border: 1px solid var(--cor002);
+    display: flex; 
+    align-items: center;
+    width: 898px;
+    margin: auto;
+    padding-left: 12.5px;
+
+}
+.SmallBlocks-CurrentCattleHerd-RA{
+    background-color: var(--cor005);
+    width: 145px;
+    text-align: center;
+    color: var(--cor001);
+    font-weight: bold;
+    font-size: 15px;
+    height: 54px;
+    border: 1px solid var(--cor002);
+}
+#total-RA{
+    background-color: var(--cor005);
+    width: 145px;
+    text-align: center;
+    color: var(--cor001);
+    font-weight: bold;
+    height:53px;
+    padding-top: 15px;
+    border: 1px solid var(--cor002);
+
+}
+.FieldMF-alt-Left-RA{
+    height: 71px;
+    margin-top: -71px;
+    width: 73.1px;
+    border-bottom: 1px solid var(--cor002);
+    border-left: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 23.5%;
+}
+
+.FieldMF-alt-Rigth-RA{
+    height: 40px;
+    margin-top: -40px;
+    margin-left: 67px;
+    width: 77px;
+    border-bottom: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.MF-RA{
+    display: flex;
+    justify-content: space-around;
+    background-color:var(--cor001);
+    height: 80px;
+    width: 144px;
+}
+.M-txt-RA{
+    border-bottom: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    border-left: 1px solid var(--cor002);
+    height: 40px;
+    width: 110px;
+    text-align: center;
+    background-color: var(--cor001);
+    padding-top: 5%;
+}
+
+.F-txt-RA{
+    border-bottom:1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+    /* border-left: 1px solid var(--cor002); */
+    height: 40px;
+    width: 109px;
+    text-align: center;
+    background-color: var(--cor001);
+    padding-top: 5%;
+}
+#CurrentCattleHerd-Mortality-RA{
+    background-color:var(--cor006);
+    text-align: center;
+    font-size: 16px;
+    color: var(--cor001);
+    font-weight: bold;
+    height: 50px;
+    width: 898px;
+    margin: auto;
+    margin-top: 4%;
+    border-left: 1px solid var(--cor002);
+    border-top: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);
+
+
+}
+#causes-txt-RA{
+    background-color: var(--cor005);
+    border-left: 1px solid var(--cor002);
+    border-top: 1px solid var(--cor002);
+    border-right: 1px solid var(--cor002);    width: 161px;
+    text-align: center;
+    color: var(--cor001);
+    font-weight: bold;
+    height: 70px;
+    padding-top: 23px;
+    
+}
+#causes-RA{
+    display: block;
+    background-color:var(--cor001);
+    height: 70px;
+    border:1px solid var(--cor002);
+    text-align: center;
+    width: 161px;
+}
+#txt-ownConsumption-RA{
+    height: 32px;
+    margin-top: 1px;
+    border-bottom: 1px solid var(--cor002);
+}
+#txt-DeathVariousCauses-RA{
     font-size: 14.5px;
     margin-top: 4px;
 }

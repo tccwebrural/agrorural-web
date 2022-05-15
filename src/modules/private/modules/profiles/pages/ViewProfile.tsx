@@ -44,12 +44,12 @@ const ViewProfilePage = (): ReactElement => {
   };
   const auth = useAuth();
   const { getFarmRef, getFarmValues } = FarmHelper();
-  const farmRef = getFarmRef();
   const [initialValues, setInitialValues] = useState<PerfilModelUser>({
     name: "",
     cpf: "",
     email: "",
     phone: "",
+    farmName: "",
   });
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -65,8 +65,13 @@ const ViewProfilePage = (): ReactElement => {
 
   console.log(id);
   useEffect(() => {
-    auth.getUser().then((user?: UserModel) => {
+    auth.getUser().then(async(user?: UserModel) => {
       if (user) {
+        const farmValues = await getFarmValues();
+          farmValues?.name
+          if(farmValues){
+          user.farmName = farmValues?.name;
+          }
         toast.success("Perfil carregado!");
         setInitialValues(user);
       } else {
@@ -311,8 +316,9 @@ const ViewProfilePage = (): ReactElement => {
                       label="Nome da Fazenda"
                       variant="standard"
                       className="txt-FieldsProfile"
+                      {...getControls(formik, "farmName")}
                       disabled={isDisabled}
-                      {...getControls(formik, "farmName ")}
+
                     />
                     <Button type="submit">EDITAR TST</Button>
                     <div></div>
