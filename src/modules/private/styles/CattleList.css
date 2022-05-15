@@ -78,3 +78,8 @@
 #btn-modalDelet:hover {
   background-color: rgb(75, 134, 75);
 }
+#bloco-modal-AnimalDeath{
+  font-size: 20px;
+  color: var(--cor005);
+
+}
