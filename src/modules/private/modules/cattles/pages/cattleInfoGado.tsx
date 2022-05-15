@@ -92,7 +92,7 @@ const CattleInfoGado = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
-                Informações do animal : {initialValues.name}
+                Informações do animal: {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-infoGado">
                 <abbr title="Imprimir">
@@ -139,7 +139,7 @@ const CattleInfoGado = (): ReactElement => {
                         />
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
-                        <FormControl sx={{ minWidth: 221 }}>
+                        <FormControl sx={{ minWidth: 160 }}>
                           <InputLabel>Tipo</InputLabel>
                           <Select
                             disabled={true}
@@ -197,58 +197,15 @@ const CattleInfoGado = (): ReactElement => {
           </section>
 
           <section>
-            {/* {VaccineCardView()} */}
             <div>
               <div id="blocoTitulo-vacina-infoGado">
                 <h2 id="blocoTituloTxt-vacina-infoGado">
-                  Vacinas do animal : {initialValues.name}
+                  Vacinas do animal: {initialValues.name}
                 </h2>
                 <span id="blocoTituloLine-vacina-infoGado"></span>
               </div>
 
-              <div id="blocoVacinas">
-                {/* <Grid id="vacinas">
-                  <abbr title="Detalhes da vacina">
-                    <MdCoronavirus
-                      size={80}
-                      style={{ margin: "10 0", color: "black" }}
-                    />
-
-                    <p>Virus 1</p>
-                  </abbr>
-                </Grid> */}
-                {/* <Grid id="vacinas">
-                  <abbr title="Detalhes da vacina">
-                    <MdCoronavirus
-                      size={80}
-                      style={{ margin: "10 0", color: "black" }}
-                    />
-                    <p>Virus 2</p>
-                  </abbr>
-                </Grid>
-                <Grid id="vacinas">
-                  <abbr title="Detalhes da vacina">
-                    <MdCoronavirus
-                      size={80}
-                      style={{ margin: "10 0", color: "black" }}
-                    />
-
-                    <p>Virus 3</p>
-                  </abbr>
-                </Grid>
-                <Grid id="vacinas">
-                  {" "}
-                  <abbr title="Detalhes da vacina">
-                    <MdCoronavirus
-                      size={80}
-                      style={{ margin: "10 0", color: "black" }}
-                    />
-
-                    <p>Virus 4</p>
-                  </abbr>
-                </Grid> */}
-                {VaccineCardInfoCattle()}
-              </div>
+              <div id="blocoVacinas">{VaccineCardInfoCattle()}</div>
             </div>
 
             <div id="button">

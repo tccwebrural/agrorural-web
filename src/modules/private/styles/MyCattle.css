@@ -115,3 +115,25 @@ abbr {
   color: black;
   border: none;
 }
+
+#Card {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  margin: 1%;
+}
+
+#avatar {
+  background-color: red;
+}
+
+#cardAvatar {
+  width: 50%;
+  margin: auto;
+}
+
+#cardName {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
