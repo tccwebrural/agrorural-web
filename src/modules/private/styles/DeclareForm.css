@@ -34,6 +34,21 @@
     margin-top: -25px;
     margin-left: 1240%;
 }
+#bloco-modal-GerarRelatóri{
+    font-size: 20px;
+    color: var(--cor005);    
+}
+#txt-GerarRelatorio{
+    color: #33658a;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+#txt-p-btnGerarRelatório{
+    color: var(--cor003);
+    font-size: 17.4px;
+    margin-top: 2%;
+}
 .CattleDeclaration{
     background-color:var(--cor006);
     text-align: center;
