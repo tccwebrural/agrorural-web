@@ -93,7 +93,7 @@ const ReportPage = (): ReactElement => {
             </span>
           </div>
           <div>
-            <p className="CattleDeclaration">Dados do Proprietário</p>{" "}
+            <p className="CattleDeclaration">Dados do Proprietáriossss</p>{" "}
             {/* declare do gado */}
             <Formik
               enableReinitialize={true}

@@ -189,15 +189,15 @@ const CattleListPage = (): ReactElement => {
     // if (months <= 12) {
     //   return months <= 0 ? 0 : months;
     // }
-    var d1 = new Date(date);
-    var d2 = new Date();
-    var d1Y = d1.getFullYear();
-    var d2Y = d2.getFullYear();
-    var d1M = d1.getMonth();
-    var d2M = d2.getMonth();
-    return d2M + 12 * d2Y - (d1M + 12 * d1Y);
-    var d1 = new Date(date);
-    var d2 = new Date();
+    var birthDay = new Date(date);
+    var today = new Date();
+    var birthDayYear = birthDay.getFullYear();
+    var todayYear = today.getFullYear();
+    var birthDayMonth = birthDay.getMonth();
+    var todayMonth = today.getMonth();
+    return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
+    var birthDay = new Date(date);
+    var today = new Date();
     // var months;
     // months =
     //   (d1.getFullYear() - d1.getFullYear()) * 12 -
@@ -448,16 +448,13 @@ const CattleListPage = (): ReactElement => {
                 <AddIcon />
               </Fab>
             </abbr>
-            <Button
-              // onClick={() => openDeleteAnimalModal(selectedAnimal.id)}
-              sx={{ display: "flex", top: " 10px", left: "-135px" }}
-            >
-              <abbr title="Deletar Animal">
-                <Fab id="AddIcon">
-                  <DeleteIcon />
-                </Fab>
-              </abbr>
-            </Button>
+            {/* BOTAO DELETAR AQ */}
+            <abbr title="Deletar Animal">
+              <Fab id="AddIcon">
+                <DeleteIcon />
+              </Fab>
+            </abbr>
+            {/* FIM DO BOTAO DELETAR */}
           </span>
         </div>
         <Box id="table-MinhaCriacao">

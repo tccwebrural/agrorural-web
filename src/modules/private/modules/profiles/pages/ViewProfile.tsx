@@ -79,17 +79,21 @@ const ViewProfilePage = (): ReactElement => {
 
   const updateUser = updateUserId;
 
-  // const submitForm = (idUser: UserModel, user: PerfilModelUser) => {
-  //   updateUser(idUser.id, user).then(() =>
-  //     //toast sucess
-  //     {
-  //       navigate("/private/cattles");
-  //       // navigate(`private/cattle/${id}/Vaccine`);
-  //     }
-  //   );
-  // };
+  console.log(updateUser("WBseF9tM77VzzwGcCeeAzzYCTZU2", initialValues));
 
-  const submitForm = () => {};
+  console.log();
+  const submitForm = () => {
+    // if(u)
+    // updateUser("", user).then(() =>
+    //   //toast sucess
+    //   {
+    //     navigate("/private/cattles");
+    //     // navigate(`private/cattle/${id}/Vaccine`);
+    //   }
+    // );
+  };
+
+  // const submitForm = () => {};
   /** modalDesativar */
   const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
   const handleOpenModalDesativar = () => setOpenDesativar(true);
