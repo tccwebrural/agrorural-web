@@ -3,6 +3,7 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
+  User,
 } from "firebase/auth";
 import {
   addDoc,
@@ -44,7 +45,7 @@ type AuthContext = {
   desactiverUser: () => Promise<void>;
   // sendPasswordReset: (email: string) => {};
   // loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
-  loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
+  loadUserDataById: (user: User) => Promise<UserModel | undefined>;
   sendPasswordReset: (email: string) => Promise<void>;
 };
 
@@ -63,7 +64,7 @@ const UserAuthProvider = (): AuthContext => {
 
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
-      await loadUserDataById(res.user.uid);
+      await loadUserDataById(res.user);
     } catch (err: any) {
       toast.error(getFireError(err));
 
@@ -132,22 +133,26 @@ const UserAuthProvider = (): AuthContext => {
   //     throw NOT_FOUND_USER;
   //   }
   // };
-  const loadUserDataById = async (uid: string) => {
-    const userDocRef = doc(firestore, COLLECTION_USERS, uid);
-    const userData = await getDoc(userDocRef);
-    if (!userData.exists()) {
+  const loadUserDataById = async (user: User) => {
+    const userDocRef = doc(firestore, COLLECTION_USERS, user.uid);
+    const userDoc = await getDoc(userDocRef);
+    if (!userDoc.exists()) {
       throw NOT_FOUND_USER;
     }
 
     //Salva os dados do usuário encontrado na coleção COLLECTION_USERS
-    const user = { id: userData.id, ...userData.data() } as UserModel;
+    const userData = { id: userDoc.id, ...userDoc.data() } as UserModel;
+    if(user.email){
+      userData.email = user.email;
+
+    }
     //Caso o usuário não esteja ativo, é retornado um erro;
-    if (!user.active) {
+    if (!userData.active) {
       logout(false);
       throw DISABLED_USER;
     }
-    setUser(user);
-    return user;
+    setUser(userData);
+    return userData;
   };
 
   /**
@@ -202,7 +207,7 @@ const UserAuthProvider = (): AuthContext => {
       const unsubscribe = auth.onAuthStateChanged(
         (user) => {
           if (user) {
-            loadUserDataById(user.uid).then(resolve).catch(reject);
+            loadUserDataById(user).then(resolve).catch(reject);
           } else {
             unsubscribe();
             reject(ATUH_INTERNAL_ERROR);
@@ -260,9 +265,17 @@ const updateUserId = async (uid: string, formData: PerfilModelUser) => {
   const userRef = doc(firestore, COLLECTION_USERS, uid);
   const userDoc = await getDoc(userRef);
 
-  await updateDoc(userRef, { ...formData });
+  // return updateDoc(userRef, { ...formData });
+  // AAAA
 
-  return userRef;
+  if (userRef) {
+    const userCollectionRef = collection(firestore, COLLECTION_USERS, uid);
+
+    const userRef = await doc(firestore, userCollectionRef.path, uid);
+    return updateDoc(userRef, { ...formData });
+  }
+
+  // return userRef;
 };
 // Apenas o acesso ao contexto e o provider
 export { useAuth, ProviderAuth, updateUserId };

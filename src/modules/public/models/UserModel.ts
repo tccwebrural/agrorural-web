@@ -20,7 +20,8 @@ export interface PerfilModelUser {
   email: string;
   cpf: string;
   phone: string;
-  // farmRef: DocumentReference;
+  farmName: string;
+  //farmRef: DocumentReference;
 }
 export interface RegisterUserModel {
   name: string;

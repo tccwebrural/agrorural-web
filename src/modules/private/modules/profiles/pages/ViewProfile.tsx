@@ -32,6 +32,8 @@ import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { AltRouteRounded } from "@mui/icons-material";
 
 import ModalEditarPerfil from "../components/ModalEditarPerfil";
+import { updateProfile } from "firebase/auth";
+import ButtonEditProfile from "../components/ButtonEditProfile";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -44,18 +46,14 @@ const ViewProfilePage = (): ReactElement => {
   };
   const auth = useAuth();
   const { getFarmRef, getFarmValues } = FarmHelper();
-  const farmRef = getFarmRef();
   const [initialValues, setInitialValues] = useState<PerfilModelUser>({
     name: "",
     cpf: "",
     email: "",
     phone: "",
+    farmName: "",
   });
   const [isDisabled, setIsDisabled] = useState(true);
-
-  const handleClickTextField = () => {
-    setIsDisabled(!isDisabled);
-  };
 
   // const [initialValues, setInitialValues] = useState<UserModel>();
   const loadingHelper = useGlobalLoading();
@@ -65,8 +63,13 @@ const ViewProfilePage = (): ReactElement => {
 
   console.log(id);
   useEffect(() => {
-    auth.getUser().then((user?: UserModel) => {
+    auth.getUser().then(async (user?: UserModel) => {
       if (user) {
+        const farmValues = await getFarmValues();
+        farmValues?.name;
+        if (farmValues) {
+          user.farmName = farmValues?.name;
+        }
         toast.success("Perfil carregado!");
         setInitialValues(user);
       } else {
@@ -79,17 +82,19 @@ const ViewProfilePage = (): ReactElement => {
 
   const updateUser = updateUserId;
 
-  // const submitForm = (idUser: UserModel, user: PerfilModelUser) => {
-  //   updateUser(idUser.id, user).then(() =>
-  //     //toast sucess
-  //     {
-  //       navigate("/private/cattles");
-  //       // navigate(`private/cattle/${id}/Vaccine`);
-  //     }
-  //   );
-  // };
+  console.log(updateUser("WBseF9tM77VzzwGcCeeAzzYCTZU2", initialValues));
 
-  const submitForm = () => {};
+  const [show, setShow] = useState(false);
+
+  console.log();
+
+  const submitForm = () => {
+    // updateUser().then({
+    //   navigate("/private/cattles")
+    // })
+  };
+
+  // const submitForm = () => {};
   /** modalDesativar */
   const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
   const handleOpenModalDesativar = () => setOpenDesativar(true);
@@ -104,6 +109,17 @@ const ViewProfilePage = (): ReactElement => {
 
   const initialState = { alt: "", src: "" };
   const [{ alt, src }, setPreview] = useState(initialState);
+
+  const handleOpenClickMenu = async () => {
+    setIsDisabled(!isDisabled);
+
+    await setShow(!show);
+  };
+
+  const handleCloseClickMenu = () => {
+    setIsDisabled(!isDisabled);
+    setShow(true);
+  };
 
   const fileHandler = (e: any) => {
     const { files } = e.target;
@@ -226,9 +242,14 @@ const ViewProfilePage = (): ReactElement => {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  <MenuItem onClick={handleClickTextField}>
+                  <MenuItem
+                    // onClick={() => setShow((prev) => !prev)}
+                    onClick={handleOpenClickMenu}
+                  >
+                    {">"}
                     Editar Perfil
                   </MenuItem>
+                  {/* COLAR COMPONENTE  BUTTONEDITPROFILE */}
 
                   <MenuItem onClick={() => auth.logout()}>
                     Sair da conta
@@ -238,6 +259,10 @@ const ViewProfilePage = (): ReactElement => {
                     Desativar conta
                   </MenuItem>
                 </Menu>
+
+                {/* COMPONENTE MENU */}
+
+                {/* FIM DO COMPONENTE DO MENU */}
               </div>
 
               <div className="Block-imgPreview">
@@ -311,24 +336,11 @@ const ViewProfilePage = (): ReactElement => {
                       label="Nome da Fazenda"
                       variant="standard"
                       className="txt-FieldsProfile"
+                      {...getControls(formik, "farmName")}
                       disabled={isDisabled}
-                      {...getControls(formik, "farmName ")}
                     />
-                    <Grid
-                      sx={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        margin: "1% 0%",
-                      }}
-                    >
-                      <Button
-                        type="submit"
-                        disabled={isDisabled}
-                        onClick={handleClickTextField}
-                      >
-                        Salvar Alterações
-                      </Button>
-                    </Grid>
+
+                    {show && <Button type="submit">EDITAR TST</Button>}
                     <div></div>
                   </div>
                 )}

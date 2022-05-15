@@ -11,13 +11,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { ImEye } from "react-icons/im";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
+import { FaSkullCrossbones } from "react-icons/fa";
 import {
   Box,
   Button,
   Container,
   Fab,
   Grid,
+  MenuItem,
   Modal,
+  Select,
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -29,11 +32,29 @@ import { FarmModel } from "modules/private/models/FarmModel";
 import { Timestamp } from "firebase/firestore";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
+import Checkbox from "@mui/material/Checkbox";
 
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 // import { ptBR } from "@mui/material/locale";
 
 import { bgcolor } from "@mui/system";
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 const CattleListPage = (): ReactElement => {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const columns: GridColDef[] = [
     {
       field: "identifier",
@@ -112,7 +133,7 @@ const CattleListPage = (): ReactElement => {
         "Nos botões abaixo você pode visualizar os dados do animal,visualizar o cartão de vacina, editar e deletar os dados do animal selecionado.",
       sortable: false,
       headerAlign: "center",
-      width: 210,
+      width: 260,
       renderCell: (params: GridRenderCellParams) => {
         const currentAnimalRow = params.row as CattleModel;
 
@@ -160,6 +181,19 @@ const CattleListPage = (): ReactElement => {
                 <DeleteIcon />
               </abbr>
             </Fab>
+            <Fab
+              id="btn-AnimalDeath"
+              size="small"
+              style={{ backgroundColor: "black", marginLeft: 7 }}
+              onClick={handleOpen}
+            >
+              <abbr title="Morte do Animal">
+                <FaSkullCrossbones
+                  size={18}
+                  style={{ color: "white", marginTop: 4 }}
+                />
+              </abbr>
+            </Fab>
           </>
         );
       },
@@ -176,35 +210,15 @@ const CattleListPage = (): ReactElement => {
   };
 
   const getMonthFromDate = (date: string) => {
+    var birthDay = new Date(date);
     var today = new Date();
-    var birthDate = new Date(date);
-
-    // var today = new Date();
-    // var birthDate = new Date(date);
-    // var months;
-    // months = (today.getFullYear() - birthDate.getFullYear()) * 12;
-    // months += birthDate.getMonth();
-    // months -= birthDate.getMonth();
-    // return months <= 0 ? 0 : months;
-    // if (months <= 12) {
-    //   return months <= 0 ? 0 : months;
-    // }
-    var d1 = new Date(date);
-    var d2 = new Date();
-    var d1Y = d1.getFullYear();
-    var d2Y = d2.getFullYear();
-    var d1M = d1.getMonth();
-    var d2M = d2.getMonth();
-    return d2M + 12 * d2Y - (d1M + 12 * d1Y);
-    var d1 = new Date(date);
-    var d2 = new Date();
-    // var months;
-    // months =
-    //   (d1.getFullYear() - d1.getFullYear()) * 12 -
-    //   (d1.getFullYear() - d1.getFullYear()) * 12;
-    // months -= d1.getMonth();
-    // months += d2.getMonth();
-    // return months <= 0 ? 0 : months;
+    var birthDayYear = birthDay.getFullYear();
+    var todayYear = today.getFullYear();
+    var birthDayMonth = birthDay.getMonth();
+    var todayMonth = today.getMonth();
+    return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
+    var birthDay = new Date(date);
+    var today = new Date();
   };
 
   const getAgeFromDate = (date: string) => {
@@ -218,15 +232,6 @@ const CattleListPage = (): ReactElement => {
     );
   };
 
-  // const getAgeFromDate = (date: string) => {
-  //   var today = new Date();
-  //   var birthDate = new Date(date);
-  //   var age = today.getFullYear() - birthDate.getFullYear();
-  //   var m = today.getMonth() - birthDate.getMonth();
-  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  //     age--;
-  //   }
-  //   return age;
   useEffect(() => {
     loadingHelper.startLoading();
     cattlehelpers
@@ -359,8 +364,158 @@ const CattleListPage = (): ReactElement => {
     }
   };
 
+  /**
+   * Modal de excluçao do botao de fora da tabela
+   */
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleCloseDelete = () => setOpen(false);
+
   return (
     <>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 530,
+            height: 240,
+            bgcolor: "white",
+            borderRadius: "10px",
+            boxShadow: 11,
+            p: 4,
+          }}
+        >
+          <div id="bloco-modal-AnimalDeath">
+            <Grid sx={{ margin: "2%  2%" }}>
+              <span style={{ fontWeight: "bold" }}>
+                Selecione abaixo o motivo da morte do animal
+              </span>
+            </Grid>
+            <Grid
+              sx={{
+                margin: "2%  15% 2% 2%",
+              }}
+            >
+              {/* <Checkbox {...label} />
+              <span style={{ color: "var(--cor004", fontSize: 18 }}>
+                Causas Diversas
+              </span>
+              <br />
+              <Checkbox {...label} />
+              <span style={{ color: "var(--cor004", fontSize: 18 }}>
+                Consumo Próprio
+              </span> */}
+              <Select fullWidth={true} label="Grouping" name="type">
+                <MenuItem value={1}>Causas Diversa</MenuItem>
+                <MenuItem value={2}>Consumo Próprio</MenuItem>
+              </Select>
+            </Grid>
+
+            <Grid
+              sx={{
+                display: "flex",
+                justifyContent: "end",
+              }}
+            >
+              <Grid
+                sx={{
+                  margin: " 3% 6%",
+                  borderRadius: "10px",
+                }}
+              >
+                <Button>Salvar</Button>{" "}
+              </Grid>
+              <Grid
+                sx={{
+                  margin: " 3% -5%",
+                  borderRadius: "10px",
+                }}
+              >
+                <Button onClick={handleClose}>cancelar</Button>{" "}
+              </Grid>
+            </Grid>
+          </div>
+        </Box>
+      </Modal>
+      {/* <div>
+        <Modal open={open} onClose={handleCloseDelete}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 510,
+              height: 240,
+              bgcolor: "white",
+              borderRadius: "10px",
+              boxShadow: 11,
+              p: 4,
+            }}
+          >
+            <div id="bloco-modal">
+              <Grid sx={{ margin: "2%  2%" }}>
+                <span>Você realmente deseja excluir esses animais?</span>
+              </Grid>
+              <Grid
+                sx={{
+                  margin: "2%  15% 2% 2%",
+                  display: "flex",
+                }}
+              >
+                <p>
+                  Após a exclusão não será possível recuperar os dados dos
+                  animais!
+                </p>
+              </Grid>
+
+              <Grid
+                sx={{
+                  display: "flex",
+                  margin: " 1%",
+                  justifyContent: "center",
+                }}
+              >
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalDelet"
+                    onClick={() => handleCloseDelete()}
+                  >
+                    Sim
+                  </Button>{" "}
+                </Grid>
+                <Grid
+                  sx={{
+                    margin: " 6% 1%",
+                    borderRadius: "10px",
+                  }}
+                >
+                  <Button
+                    id="btn-modalCancel"
+                    onClick={() => handleCloseDelete()}
+                  >
+                    Não
+                  </Button>{" "}
+                </Grid>
+              </Grid>
+            </div>
+          </Box>
+        </Modal>
+      </div> */}
+
       <div className="MainBlock">
         <div id="Block-Txt-Line-List">
           <h2 id="Block-Txt-List">Minha Criação</h2>
@@ -370,16 +525,13 @@ const CattleListPage = (): ReactElement => {
                 <AddIcon />
               </Fab>
             </abbr>
-            <Button
-              // onClick={() => openDeleteAnimalModal(selectedAnimal.id)}
-              sx={{ display: "flex", top: " 10px", left: "-135px" }}
-            >
-              <abbr title="Deletar Animal">
-                <Fab id="AddIcon">
-                  <DeleteIcon />
-                </Fab>
-              </abbr>
-            </Button>
+            {/* BOTAO DELETAR AQ */}
+            <abbr title="Deletar Animal">
+              <Fab id="AddIcon">
+                <DeleteIcon />
+              </Fab>
+            </abbr>
+            {/* FIM DO BOTAO DELETAR */}
           </span>
         </div>
         <Box id="table-MinhaCriacao">

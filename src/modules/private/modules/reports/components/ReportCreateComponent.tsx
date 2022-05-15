@@ -23,7 +23,7 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportModel, Report_cattle_cattegory } from "../models/ReportModel";
+import { ReportModel, ReportCattleCategory } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined } from "@mui/icons-material";
@@ -37,8 +37,8 @@ var fourYearsAgo = today.getFullYear() - 4;
 var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
 const ReportComponentCreate = (): ReactElement => {
-  var [cattlesCattegory, setCattlesCattegory] =
-    useState<Report_cattle_cattegory>({
+  const [cattlesCattegory, setCattlesCattegory] =
+    useState<ReportCattleCategory>({
       bezerros: {
         macho: 1,
         femea: 2,
@@ -50,7 +50,7 @@ const ReportComponentCreate = (): ReactElement => {
       total: { macho: 0, femea: 0 },
     });
 
-  const [category, setCattegory] = useState<Report_cattle_cattegory>();
+  const [category, setCattegory] = useState<ReportCattleCategory>();
   const cattlehelpers = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const [animals, setAnimals] = useState<CattleModel[]>([]);
