@@ -1,3 +1,13 @@
+#MainBlockCattleList {
+  background-color: var(--cor0101);
+  width: 1200px;
+  height: 530px;
+  margin: auto;
+  margin-top: 3%;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px 2px var(--cor111);
+}
+
 #Block-Txt-Line-List {
   display: flex;
   justify-content: space-around;
@@ -25,10 +35,14 @@
   margin-left: -200px;
 }
 
+#iconsList {
+  position: relative;
+  left: 1010px;
+  top: -28px;
+}
+
 #AddIcon {
   background-color: var(--cor001);
-  margin-top: -30px;
-  margin-left: 1650%;
 }
 
 #table-MinhaCriacao {
@@ -86,8 +100,8 @@
 #btn-modalDelet:hover {
   background-color: rgb(75, 134, 75);
 }
-#bloco-modal-AnimalDeath{
+
+#bloco-modal-AnimalDeath {
   font-size: 20px;
   color: var(--cor005);
-
 }

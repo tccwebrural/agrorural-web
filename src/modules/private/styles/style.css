@@ -19,8 +19,8 @@
 
 .MainBlock {
   background-color: var(--cor0101);
-  width: 1100px;
-  height: 530px;
+  width: 1200px;
+  height: auto;
   margin: auto;
   margin-top: 3%;
   border-radius: 10px;
