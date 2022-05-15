@@ -4,8 +4,6 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  Collapse,
-  Typography,
   Modal,
   Box,
   Grid,
@@ -17,19 +15,15 @@ import VaccinesIcon from "@mui/icons-material/Vaccines";
 import { red } from "@mui/material/colors";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-import { alpha } from "@mui/material/styles";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { CattleModel } from "../../cattles/models/CattleModel";
-import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import "../../../styles/MyCattle.css";
 import { VacineModel } from "../models/VacineModel";
 import { VacineHelper } from "../helpers/VacineHelpers";
-import VaccineModalDelete from "../../cattles/components/VaccineModalDelete";
 import toast from "react-hot-toast";
 
 const VaccineCardView = (): ReactElement => {
@@ -67,28 +61,28 @@ const VaccineCardView = (): ReactElement => {
       return (
         <>
           <Modal
-            hideBackdrop
             open={modalDeleteOpen}
             onClose={() => HandleDeleteVacine(false)}
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 560,
-              height: 250,
-              bgcolor: "white",
-              borderRadius: "10px",
-              boxShadow: 11,
-              p: 4,
-            }}
           >
-            <Box>
+            <Box
+              sx={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: 600,
+                height: 250,
+                bgcolor: "white",
+                borderRadius: "10px",
+                boxShadow: 11,
+                p: 4,
+              }}
+            >
               <div id="bloco-modal">
                 <Grid sx={{ margin: "2%  2%" }}>
                   <span>
-                    Você realmente deseja excluir esse vacina ({" "}
-                    {selectedVacine.name} )?
+                    Você realmente deseja excluir esse vacina "{" "}
+                    {selectedVacine.name}"?
                   </span>
                 </Grid>
                 <Grid
@@ -99,20 +93,19 @@ const VaccineCardView = (): ReactElement => {
                 >
                   <p>
                     Após a exclusão não será possível recuperar os dados da
-                    vacina ( {selectedVacine.name} )
+                    vacina "{selectedVacine.name}"
                   </p>
                 </Grid>
 
                 <Grid
                   sx={{
                     display: "flex",
-                    margin: " 1%",
-                    justifyContent: "center",
+                    justifyContent: "flex-end",
                   }}
                 >
                   <Grid
                     sx={{
-                      margin: " 6% 1%",
+                      margin: " 2% 1%",
                       borderRadius: "10px",
                     }}
                   >
@@ -125,7 +118,7 @@ const VaccineCardView = (): ReactElement => {
                   </Grid>
                   <Grid
                     sx={{
-                      margin: " 6% 1%",
+                      margin: " 2% 1%",
                       borderRadius: "10px",
                     }}
                   >
@@ -147,37 +140,27 @@ const VaccineCardView = (): ReactElement => {
   return (
     <>
       {vacines.map((vacine, index) => (
-        // <h1></h1>
-        <Card key={index} sx={{ maxWidth: 300, alignContent: "center" }}>
+        <Card key={index} id="CardView">
           <CardHeader
+            id="CardAvatar"
             avatar={
-              <Avatar
-                sx={{
-                  bgcolor: red[900],
-                  // alignContent: "center",
-                  // justifyContent: "center",
-                  alignItems: "center",
-                  display: "flex",
-                }}
-                aria-label="recipe"
-              >
-                <VaccinesIcon fontSize="large" />
+              <Avatar id="Avatar">
+                <VaccinesIcon />
               </Avatar>
             }
           />
-
-          <CardContent>
-            <h3> Vacina: {vacine.name}</h3>
+          <CardContent id="CardName">
+            <h3>Vacina: {vacine.name}</h3>
           </CardContent>
 
-          <CardActions disableSpacing>
+          <CardActions id="CardIcon" disableSpacing>
             <IconButton
               onClick={() => openDeleteVacineModal(vacine)}
               aria-label="add to favorites"
             >
               <DeleteIcon />
-              {/* {VaccineModalDelete()} */}
             </IconButton>
+
             <IconButton
               aria-label="share"
               component={Link}
@@ -185,11 +168,10 @@ const VaccineCardView = (): ReactElement => {
             >
               <EditIcon />
             </IconButton>
+
             <IconButton
               aria-label="share"
               component={Link}
-              // to={`/private/cattle/${id}/infoGado`}
-
               to={`/private/cattle/${id}/vaccine/${vacine.id}/view`}
             >
               <VisibilityIcon />
