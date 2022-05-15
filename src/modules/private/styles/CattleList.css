@@ -6,27 +6,31 @@
   margin: auto;
   height: 90px;
 }
+
 #Block-Txt-List {
   color: var(--cor005);
   padding: 10px 10px;
-  width: 45%;
   font-size: 22px;
-  background-color: var(--cor001);
+  background-color: var(--cor0101);
+  z-index: 1;
 }
+
 #Block-Line-List {
   background-color: var(--cor007);
   display: flex;
   height: 3px;
-  width: 100%;
+  width: 98%;
   margin-top: 8px;
-  margin-right: 5px;
-  margin-left: -232px;
+  margin-right: -10px;
+  margin-left: -200px;
 }
+
 #AddIcon {
   background-color: var(--cor001);
-  margin-top: -24px;
-  margin-left: 1362%;
+  margin-top: -30px;
+  margin-left: 1650%;
 }
+
 #table-MinhaCriacao {
   display: flex;
   justify-content: center;
@@ -34,19 +38,23 @@
   height: 600px;
   margin-top: -90px;
 }
+
 #btn-ViewAnimalData {
   background-color: var(--cor006);
   margin: 8px;
   padding-top: 7px;
 }
+
 #btn-ViewVaccine {
   padding-top: 7px;
 }
+
 #btn-EditAnimalData {
   background-color: var(--cor007);
   margin: 8px;
   padding-top: 7px;
 }
+
 #btn-DeleteAnimal {
   padding-top: 7px;
 }

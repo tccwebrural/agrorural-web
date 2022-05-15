@@ -359,86 +359,8 @@ const CattleListPage = (): ReactElement => {
     }
   };
 
-  /**
-   * Modal de excluçao do botao de fora da tabela
-   */
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleCloseDelete = () => setOpen(false);
-
   return (
     <>
-      {/* <div>
-        <Modal open={open} onClose={handleCloseDelete}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 510,
-              height: 240,
-              bgcolor: "white",
-              borderRadius: "10px",
-              boxShadow: 11,
-              p: 4,
-            }}
-          >
-            <div id="bloco-modal">
-              <Grid sx={{ margin: "2%  2%" }}>
-                <span>Você realmente deseja excluir esses animais?</span>
-              </Grid>
-              <Grid
-                sx={{
-                  margin: "2%  15% 2% 2%",
-                  display: "flex",
-                }}
-              >
-                <p>
-                  Após a exclusão não será possível recuperar os dados dos
-                  animais!
-                </p>
-              </Grid>
-
-              <Grid
-                sx={{
-                  display: "flex",
-                  margin: " 1%",
-                  justifyContent: "center",
-                }}
-              >
-                <Grid
-                  sx={{
-                    margin: " 6% 1%",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Button
-                    id="btn-modalDelet"
-                    onClick={() => handleCloseDelete()}
-                  >
-                    Sim
-                  </Button>{" "}
-                </Grid>
-                <Grid
-                  sx={{
-                    margin: " 6% 1%",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Button
-                    id="btn-modalCancel"
-                    onClick={() => handleCloseDelete()}
-                  >
-                    Não
-                  </Button>{" "}
-                </Grid>
-              </Grid>
-            </div>
-          </Box>
-        </Modal>
-      </div> */}
-
       <div className="MainBlock">
         <div id="Block-Txt-Line-List">
           <h2 id="Block-Txt-List">Minha Criação</h2>

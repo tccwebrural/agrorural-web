@@ -314,7 +314,21 @@ const ViewProfilePage = (): ReactElement => {
                       disabled={isDisabled}
                       {...getControls(formik, "farmName ")}
                     />
-                    <Button type="submit">EDITAR TST</Button>
+                    <Grid
+                      sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        margin: "1% 0%",
+                      }}
+                    >
+                      <Button
+                        type="submit"
+                        disabled={isDisabled}
+                        onClick={handleClickTextField}
+                      >
+                        Salvar Alterações
+                      </Button>
+                    </Grid>
                     <div></div>
                   </div>
                 )}
