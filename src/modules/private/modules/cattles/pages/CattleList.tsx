@@ -379,7 +379,7 @@ const CattleListPage = (): ReactElement => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 530,
-            height: 240,
+            height: "auto",
             bgcolor: "white",
             borderRadius: "10px",
             boxShadow: 11,
@@ -392,40 +392,26 @@ const CattleListPage = (): ReactElement => {
                 Selecione abaixo o motivo da morte do animal
               </span>
             </Grid>
-            <Grid
-              sx={{
-                margin: "2%  15% 2% 2%",
-              }}
-            >
-              <Select fullWidth={true} label="Grouping" name="type">
+            <Grid sx={{ margin: "3%" }}>
+              <Select fullWidth={true} name="type">
                 <MenuItem value={1}>Causas Diversa</MenuItem>
                 <MenuItem value={2}>Consumo Próprio</MenuItem>
               </Select>
             </Grid>
 
-            <Grid
-              sx={{
-                display: "flex",
-                justifyContent: "end",
-              }}
-            >
-              <Grid
-                sx={{
-                  margin: " 3% 6%",
-                  borderRadius: "10px",
-                }}
-              >
-                <Button>Salvar</Button>{" "}
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Grid sx={{ margin: "0% 1%" }}>
+                <Button id="btn-modalSalvarDeath" onClick={handleClose}>
+                  Salvar
+                </Button>{" "}
               </Grid>
-              <Grid
-                sx={{
-                  margin: " 3% -5%",
-                  borderRadius: "10px",
-                }}
-              >
-                <Button onClick={handleClose}>cancelar</Button>{" "}
+
+              <Grid sx={{ margin: "0% 1%" }}>
+                <Button id="btn-modalCancelarDeath" onClick={handleClose}>
+                  cancelar
+                </Button>{" "}
               </Grid>
-            </Grid>
+            </Box>
           </div>
         </Box>
       </Modal>
