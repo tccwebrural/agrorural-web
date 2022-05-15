@@ -265,9 +265,17 @@ const updateUserId = async (uid: string, formData: PerfilModelUser) => {
   const userRef = doc(firestore, COLLECTION_USERS, uid);
   const userDoc = await getDoc(userRef);
 
-  await updateDoc(userRef, { ...formData });
+  // return updateDoc(userRef, { ...formData });
+  // AAAA
 
-  return userRef;
+  if (userRef) {
+    const userCollectionRef = collection(firestore, COLLECTION_USERS, uid);
+
+    const userRef = await doc(firestore, userCollectionRef.path, uid);
+    return updateDoc(userRef, { ...formData });
+  }
+
+  // return userRef;
 };
 // Apenas o acesso ao contexto e o provider
 export { useAuth, ProviderAuth, updateUserId };
