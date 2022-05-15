@@ -286,29 +286,26 @@ const CattleListPage = (): ReactElement => {
   const renderDeleteAnimalModal = () => {
     if (selectedAnimal) {
       return (
-        <Modal
-          hideBackdrop
-          open={modalDeleteOpen}
-          onClose={() => HandleDeleteAnimal(false)}
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 560,
-            height: 250,
-            bgcolor: "white",
-            borderRadius: "10px",
-            boxShadow: 11,
-            p: 4,
-          }}
-        >
-          <Box>
+        <Modal open={modalDeleteOpen} onClose={() => HandleDeleteAnimal(false)}>
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: 500,
+              height: 250,
+              bgcolor: "white",
+              borderRadius: "10px",
+              boxShadow: 11,
+              p: 4,
+            }}
+          >
             <div id="bloco-modal">
               <Grid sx={{ margin: "2%  2%" }}>
                 <span>
-                  Você realmente deseja excluir esse animal ({" "}
-                  {selectedAnimal.name} )?
+                  Você realmente deseja excluir esse animal "
+                  {selectedAnimal.name}"?
                 </span>
               </Grid>
               <Grid
@@ -319,7 +316,7 @@ const CattleListPage = (): ReactElement => {
               >
                 <p>
                   Após a exclusão não será possível recuperar os dados do animal
-                  ( {selectedAnimal.name} )
+                  "{selectedAnimal.name}".
                 </p>
               </Grid>
 
@@ -327,12 +324,12 @@ const CattleListPage = (): ReactElement => {
                 sx={{
                   display: "flex",
                   margin: " 1%",
-                  justifyContent: "center",
+                  justifyContent: "flex-end",
                 }}
               >
                 <Grid
                   sx={{
-                    margin: " 6% 1%",
+                    margin: " 3% 1%",
                     borderRadius: "10px",
                   }}
                 >
@@ -345,7 +342,7 @@ const CattleListPage = (): ReactElement => {
                 </Grid>
                 <Grid
                   sx={{
-                    margin: " 6% 1%",
+                    margin: " 3% 1%",
                     borderRadius: "10px",
                   }}
                 >
