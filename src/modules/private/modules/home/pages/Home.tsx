@@ -16,7 +16,6 @@ import "../../../styles/Home.css";
 import { BsPrinter } from "react-icons/bs";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import { CattleModel, CATTLE_TYPES } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
 
 var today = new Date();
@@ -30,71 +29,29 @@ var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 const HomePage = (): ReactElement => {
   const getAgeFromDate = (date: string) => {
     var today = new Date();
-    var birthDate = new Date(date);
+    const dataSeparada = date.split("-");
+    const ano = parseInt(dataSeparada[0]);
+    const mes = parseInt(dataSeparada[1]);
+    const dia = parseInt(dataSeparada[2]);
+
+    var birthDate = new Date(ano, mes, dia);
+
     var months;
     months = (today.getFullYear() - birthDate.getFullYear()) * 12;
     months -= birthDate.getMonth() + 1;
-    months += birthDate.getMonth();
+    months += today.getMonth();
 
     return months <= 0 ? 0 : months;
   };
 
   const cattlehelpers = CattleHelper();
-  const loadingHelper = useGlobalLoading();
-  const [animals, setAnimals] = useState<CattleModel[]>([]);
-  var [totalBezerros, setTotalBezerros] = useState(0);
-  var [totalDesmamados, setTotalDesmamados] = useState(0);
-  var [totalGarrotes, setTotalGarrotes] = useState(0);
-  var [totalNovilhos, setTotalNovilhos] = useState(0);
-  var [totalAcimaDe36, setTotalAcimaDe36] = useState(0);
-  var totalDeAnimais = 0;
+  const [totalBezerros, setTotalBezerros] = useState(0);
+  const [totalDesmamados, setTotalDesmamados] = useState(0);
+  const [totalGarrotes, setTotalGarrotes] = useState(0);
+  const [totalNovilhos, setTotalNovilhos] = useState(0);
+  const [totalAcimaDe36, setTotalAcimaDe36] = useState(0);
 
-  useEffect(() => {
-    loadingHelper.startLoading();
-    cattlehelpers
-      .getAllCattles()
-      .then((cattles) => {
-        const listToDisplay: any[] = [];
-
-        for (let index = 0; index < cattles.length; index++) {
-          const cattle = cattles[index];
-          const cattleToGetAge = { age: getAgeFromDate(cattle.birthday) };
-
-          if (cattleToGetAge.age >= 0 && cattleToGetAge.age <= 6) {
-            setTotalBezerros((totalBezerros += 1));
-          } else if (cattleToGetAge.age > 6 && cattleToGetAge.age <= 12) {
-            setTotalDesmamados((totalDesmamados += 1));
-          }
-
-          if (cattleToGetAge.age >= 13 && cattleToGetAge.age <= 24) {
-            setTotalGarrotes((totalGarrotes += 1));
-          }
-          if (cattleToGetAge.age > 24 && cattleToGetAge.age <= 36) {
-            setTotalNovilhos((totalNovilhos += 1));
-          } else if (cattleToGetAge.age > 36) {
-            setTotalAcimaDe36((totalAcimaDe36 += 1));
-          }
-        }
-
-        loadingHelper.stopLoading();
-        return {
-          totalBezerros,
-          totalDesmamados,
-          totalGarrotes,
-          totalNovilhos,
-          totalAcimaDe36,
-        };
-      })
-      .catch((err: any) => {
-        toast.error(err);
-        loadingHelper.stopLoading();
-      });
-  }, []);
-  console.log("Bezerros: " + totalBezerros);
-  console.log("Desmamados: " + totalDesmamados);
-  console.log("Garrotes: " + totalGarrotes);
-  console.log("Novilhos: " + totalNovilhos);
-  console.log("A cima de 36 meses: " + totalAcimaDe36);
+  
 
   function createData(
     periodo: Number,
@@ -102,9 +59,14 @@ const HomePage = (): ReactElement => {
     totalDesmamados = 0,
     totalGarrotes = 0,
     totalNovilhos = 0,
-    totalAcimaDe36 = 0,
-    totalDeAnimais = 0
+    totalAcimaDe36 = 0
   ) {
+    const totalDeAnimais =
+      totalBezerros +
+      totalDesmamados +
+      totalGarrotes +
+      totalNovilhos +
+      totalAcimaDe36;
     return {
       periodo,
       totalBezerros,
@@ -115,7 +77,6 @@ const HomePage = (): ReactElement => {
       totalDeAnimais,
     };
   }
-
   const rows = [
     createData(
       periodo[0],
@@ -123,14 +84,13 @@ const HomePage = (): ReactElement => {
       totalDesmamados,
       totalGarrotes,
       totalNovilhos,
-      totalAcimaDe36,
-      totalDeAnimais
+      totalAcimaDe36
     ),
   ];
+
   function imprimir() {
     window.print();
   }
-
   return (
     <>
       <main>

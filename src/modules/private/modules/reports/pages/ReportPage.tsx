@@ -51,6 +51,7 @@ const ReportPage = (): ReactElement => {
     cpf: "",
     email: "",
     phone: "",
+    farmName:"",
   });
 
   const loadingHelper = useGlobalLoading();

@@ -23,7 +23,7 @@ const FormTeste = (): ReactElement => {
     const handleOpenDeleteVaccine = () => setOpenDeleteVaccine(true);
     const handleCloseDeleteVaccine = () => setOpenDeleteVaccine(false);
 
-
+    
 const formik = useFormik({  //essa variavel é um objeto com um monte de propriedades,
                             // uma das propriedades será o "values" q é um objeto em si que contem os valores abaixo do initialValues (user, email...)
     initialValues: {  //defini os valores iniciais
@@ -53,7 +53,7 @@ console.log("executou fora")
 React.useEffect(() => {  //esse é o 1* argumento do useEffect q é uma função q esta sendo executada
     console.log('Executou')
 },[] ); //a vantagem do useEffect esta nesse segundo argumento dele q é um array de dependencia (quando mudar o item q eu colocar dentro [] execute todo esse useEffect novamente, e senao mudar nao execute novamente )
-        //coloco [] para q ele execute somente uma vezzz
+        //coloco [] para q ele execute somente uma vezyarzz
 return(
     <>
      <div>

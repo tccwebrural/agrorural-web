@@ -14,6 +14,7 @@ import { getControls } from "utils/FormUtils";
 import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
+import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 
 const DeclareForm = (): ReactElement => {
   function imprimir() {
@@ -27,21 +28,125 @@ const DeclareForm = (): ReactElement => {
     cpf: "",
     email: "",
     phone: "",
+    farmName:"",
   });
 
+  const getAgeFromDate = (date: string) => {
+    var today = new Date();
+    const dataSeparada = date.split("-");
+    const ano = parseInt(dataSeparada[0]);
+    const mes = parseInt(dataSeparada[1]);
+    const dia = parseInt(dataSeparada[2]);
+
+    var birthDate = new Date(ano, mes, dia);
+
+    var months;
+    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
+    months -= birthDate.getMonth() + 1;
+    months += today.getMonth();
+
+    return months <= 0 ? 0 : months;
+  };
+  const cattlehelpers = CattleHelper();
+  var [totalBezerrosM, setTotalBezerrosM] = useState(0);
+  var [totalDesmamadosM, setTotalDesmamadosM] = useState(0);
+  var [totalGarrotesM, setTotalGarrotesM] = useState(0);
+  var [totalNovilhosM, setTotalNovilhosM] = useState(0);
+  var [totalAcimaDe36M, setTotalAcimaDe36M] = useState(0);
+  var [totalDeAnimaisM, setTotalDeAnimaisM] = useState(0);
+
+  var [totalBezerrosF, setTotalBezerrosF] = useState(0);
+  var [totalDesmamadosF, setTotalDesmamadosF] = useState(0);
+  var [totalGarrotesF, setTotalGarrotesF] = useState(0);
+  var [totalNovilhosF, setTotalNovilhosF] = useState(0);
+  var [totalAcimaDe36F, setTotalAcimaDe36F] = useState(0);
+  var [totalDeAnimaisF, setTotalDeAnimaisF] = useState(0);
   const loadingHelper = useGlobalLoading();
 
   useEffect(() => {
-    auth.getUser().then((user?: UserModel) => {
-      if (user) {
-        toast.success("Pagina carregada!");
-        setInitialValues(user);
-      } else {
-        toast.error("Erro ao carregar a página!");
-      }
-      loadingHelper.stopLoading();
-    });
+    loadingHelper.startLoading();
+    cattlehelpers
+      .getAllCattles()
+      .then((cattles) => {
+        let tempTotalBezerrosM = 0;
+        let tempTotalDesmamadosM = 0;
+        let tempTotalGarrotesM = 0;
+        let tempTotalNovilhosM = 0;
+        let tempTotalAcimaDe36M = 0;
+
+        let tempTotalBezerrosF = 0;
+        let tempTotalDesmamadosF = 0;
+        let tempTotalGarrotesF = 0;
+        let tempTotalNovilhosF = 0;
+        let tempTotalAcimaDe36F = 0;
+
+        for (let index = 0; index < cattles.length; index++) {
+          const cattle = {
+            ...cattles[index],
+            age: getAgeFromDate(cattles[index].birthday),
+          };
+
+          if (cattle.sex === 1) {
+            if (cattle.age >= 0 && cattle.age <= 6) {
+              tempTotalBezerrosM++;
+            } else if (cattle.age > 6 && cattle.age <= 12) {
+              tempTotalDesmamadosM++;
+            } else if (cattle.age > 12 && cattle.age <= 24) {
+              tempTotalGarrotesM++;
+            } else if (cattle.age > 24 && cattle.age <= 36) {
+              tempTotalNovilhosM++;
+            } else {
+              tempTotalAcimaDe36M++;
+            }
+          } else {
+            if (cattle.age >= 0 && cattle.age <= 6) {
+              tempTotalBezerrosF++;
+            } else if (cattle.age > 6 && cattle.age <= 12) {
+              tempTotalDesmamadosF++;
+            } else if (cattle.age > 12 && cattle.age <= 24) {
+              tempTotalGarrotesF++;
+            } else if (cattle.age > 24 && cattle.age <= 36) {
+              tempTotalNovilhosF++;
+            } else {
+              tempTotalAcimaDe36F++;
+            }
+          }
+        }
+        setTotalBezerrosM(tempTotalBezerrosM);
+        setTotalDesmamadosM(tempTotalDesmamadosM);
+        setTotalGarrotesM(tempTotalGarrotesM);
+        setTotalNovilhosM(tempTotalNovilhosM);
+        setTotalAcimaDe36M(tempTotalAcimaDe36M);
+        setTotalDeAnimaisM(
+          tempTotalBezerrosM +
+            tempTotalDesmamadosM +
+            tempTotalGarrotesM +
+            tempTotalNovilhosM +
+            tempTotalAcimaDe36M
+        );
+
+        setTotalBezerrosF(tempTotalBezerrosF);
+        setTotalDesmamadosF(tempTotalDesmamadosF);
+        setTotalGarrotesF(tempTotalGarrotesF);
+        setTotalNovilhosF(tempTotalNovilhosF);
+        setTotalAcimaDe36F(tempTotalAcimaDe36F);
+        setTotalDeAnimaisF(
+          tempTotalBezerrosF +
+            tempTotalDesmamadosF +
+            tempTotalGarrotesF +
+            tempTotalNovilhosF +
+            tempTotalAcimaDe36F
+        );
+
+        loadingHelper.stopLoading();
+        console.log(cattles);
+      })
+      .catch((err: any) => {
+        toast.error(err);
+        loadingHelper.stopLoading();
+      });
   }, []);
+
   const submitForm = (user: PerfilModelUser) => {};
   return (
     <>
@@ -121,83 +226,85 @@ const DeclareForm = (): ReactElement => {
 
           <div>
             <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
-            <div className="CurrentCattleHerd">
+            <div className="CurrentCattleHerd-RA">
               {" "}
               {/*rebanho bovino atual */}
-              <div className="Block-CurrentCattleHerd">
+              <div className="Block-CurrentCattleHerd-RA">
                 {" "}
                 {/*bloco rebanho bovino atual */}
-                <p className="SmallBlocks-CurrentCattleHerd">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
                   {" "}
                   {/*blocos pequenos do rebanho bovino atual existente*/}
-                  Nascimento
+                  Bezerros
                   <br />
                   (de 0 à 6 meses)
                 </p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
                 </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>
+                <div className="FieldMF-alt-Left-RA">{totalBezerrosM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalBezerrosF}</div>
               </div>
-              <div className="Block-CurrentCattleHerd">
-                <p className="SmallBlocks-CurrentCattleHerd">
-                  Animais Desmamados
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
+                  Desmamados
                   <br />
                   (de 7 à 12 meses)
                 </p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
                 </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>{" "}
+                <div className="FieldMF-alt-Left-RA">{totalDesmamadosM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalDesmamadosF}</div>
               </div>
-              <div className="Block-CurrentCattleHerd">
-                <p className="SmallBlocks-CurrentCattleHerd">
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
                   Garrotes
                   <br />
                   (de 13 à 24 meses)
                 </p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
                 </div>
-                <div className="FieldMF-alt-Left"> </div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>{" "}
+                <div className="FieldMF-alt-Left-RA">{totalGarrotesM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalGarrotesF}</div>
               </div>
-              <div className="Block-CurrentCattleHerd">
-                <p className="SmallBlocks-CurrentCattleHerd">
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
                   Novilhos
                   <br />
                   (de 25 à 36 meses)
                 </p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
                 </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>{" "}
+                <div className="FieldMF-alt-Left-RA">{totalNovilhosM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalNovilhosF}</div>
               </div>
-              <div className="Block-CurrentCattleHerd">
-                <p id="total">Total de Bovinos</p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
+                  Acima de <br /> (36 meses)
+                  <br />
+                </p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
                 </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>{" "}
+                <div className="FieldMF-alt-Left-RA">{totalAcimaDe36M}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalAcimaDe36F}</div>
+              </div>
+              <div className="Block-CurrentCattleHerd-RA">
+                <p id="total-RA">Total de Bovinos</p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
+                </div>
+                <div className="FieldMF-alt-Left-RA">{totalDeAnimaisM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalDeAnimaisF}</div>
               </div>
             </div>
           </div>
