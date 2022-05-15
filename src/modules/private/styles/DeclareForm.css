@@ -29,6 +29,11 @@
     margin-top: -25px;
     margin-left: 1447%;
 }
+#reportIcon{
+    background-color: var(--cor005);
+    margin-top: -25px;
+    margin-left: 1240%;
+}
 .CattleDeclaration{
     background-color:var(--cor006);
     text-align: center;

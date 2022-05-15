@@ -16,6 +16,7 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import ProprietarieData from "../components/ProprietarieData";
+import AssignmentIcon from '@mui/icons-material/Assignment';
 
 const DeclareForm = (): ReactElement => {
   function imprimir() {
@@ -165,6 +166,11 @@ const DeclareForm = (): ReactElement => {
               <abbr title="Imprimir Declare do Rebanho">
                 <Fab id="printIcon" onClick={imprimir}>
                   <BsPrinter size={20} />
+                </Fab>
+              </abbr>
+              <abbr title="Gerar Relatório do Animal">
+                <Fab id="reportIcon">
+                  <AssignmentIcon style={{color:"var(--cor001"}}/>
                 </Fab>
               </abbr>
             </span>
