@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import vaca_sem_chifre from "../../../../../assets/vaca-sem-chifre.png";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import vaca from "../../../../../assets/vaca-sem-chifre.png";
 
 import React, { ReactElement, useEffect, useState } from "react";
 import { useAuth } from "../../../../../providers/AuthProvider";
@@ -30,6 +31,8 @@ import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
 import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
 import { Formik } from "formik";
 import { getControls } from "utils/FormUtils";
+import ProprietarieData from "../components/ProprietarieData";
+import ButtonReportDeclare from "../components/ButtonReportDeclare";
 
 var today = new Date();
 var currentYear = today.getFullYear();
@@ -46,29 +49,123 @@ const ReportPage = (): ReactElement => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const auth = useAuth();
-  const [initialValues, setInitialValues] = useState<PerfilModelUser>({
-    name: "",
-    cpf: "",
-    email: "",
-    phone: "",
-    farmName:"",
-  });
 
+  const getMonthFromDate = (date: string) => {
+    var today = new Date();
+    const dataSeparada = date.split("-");
+    const ano = parseInt(dataSeparada[0]);
+    const mes = parseInt(dataSeparada[1]);
+    const dia = parseInt(dataSeparada[2]);
+
+    var birthDate = new Date(ano, mes, dia);
+
+    var months;
+    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
+    months -= birthDate.getMonth() + 1;
+    months += today.getMonth();
+
+    return months <= 0 ? 0 : months;
+  };
+  const cattlehelpers = CattleHelper();
+  var [totalBezerrosM, setTotalBezerrosM] = useState(0);
+  var [totalDesmamadosM, setTotalDesmamadosM] = useState(0);
+  var [totalGarrotesM, setTotalGarrotesM] = useState(0);
+  var [totalNovilhosM, setTotalNovilhosM] = useState(0);
+  var [totalAcimaDe36M, setTotalAcimaDe36M] = useState(0);
+  var [totalDeAnimaisM, setTotalDeAnimaisM] = useState(0);
+
+  var [totalBezerrosF, setTotalBezerrosF] = useState(0);
+  var [totalDesmamadosF, setTotalDesmamadosF] = useState(0);
+  var [totalGarrotesF, setTotalGarrotesF] = useState(0);
+  var [totalNovilhosF, setTotalNovilhosF] = useState(0);
+  var [totalAcimaDe36F, setTotalAcimaDe36F] = useState(0);
+  var [totalDeAnimaisF, setTotalDeAnimaisF] = useState(0);
   const loadingHelper = useGlobalLoading();
 
   useEffect(() => {
-    auth.getUser().then((user?: UserModel) => {
-      if (user) {
-        toast.success("Pagina carregada!");
-        setInitialValues(user);
-      } else {
-        toast.error("Erro ao carregar a página!");
-      }
-      loadingHelper.stopLoading();
-    });
+    loadingHelper.startLoading();
+    cattlehelpers
+      .getAllCattles()
+      .then((cattles) => {
+        let tempTotalBezerrosM = 0;
+        let tempTotalDesmamadosM = 0;
+        let tempTotalGarrotesM = 0;
+        let tempTotalNovilhosM = 0;
+        let tempTotalAcimaDe36M = 0;
+
+        let tempTotalBezerrosF = 0;
+        let tempTotalDesmamadosF = 0;
+        let tempTotalGarrotesF = 0;
+        let tempTotalNovilhosF = 0;
+        let tempTotalAcimaDe36F = 0;
+
+        for (let index = 0; index < cattles.length; index++) {
+          const cattle = {
+            ...cattles[index],
+            age: getMonthFromDate(cattles[index].birthday),
+          };
+
+          if (cattle.sex === 1) {
+            if (cattle.age >= 0 && cattle.age <= 6) {
+              tempTotalBezerrosM++;
+            } else if (cattle.age > 6 && cattle.age <= 12) {
+              tempTotalDesmamadosM++;
+            } else if (cattle.age > 12 && cattle.age <= 24) {
+              tempTotalGarrotesM++;
+            } else if (cattle.age > 24 && cattle.age <= 36) {
+              tempTotalNovilhosM++;
+            } else {
+              tempTotalAcimaDe36M++;
+            }
+          } else {
+            if (cattle.age >= 0 && cattle.age <= 6) {
+              tempTotalBezerrosF++;
+            } else if (cattle.age > 6 && cattle.age <= 12) {
+              tempTotalDesmamadosF++;
+            } else if (cattle.age > 12 && cattle.age <= 24) {
+              tempTotalGarrotesF++;
+            } else if (cattle.age > 24 && cattle.age <= 36) {
+              tempTotalNovilhosF++;
+            } else {
+              tempTotalAcimaDe36F++;
+            }
+          }
+        }
+        setTotalBezerrosM(tempTotalBezerrosM);
+        setTotalDesmamadosM(tempTotalDesmamadosM);
+        setTotalGarrotesM(tempTotalGarrotesM);
+        setTotalNovilhosM(tempTotalNovilhosM);
+        setTotalAcimaDe36M(tempTotalAcimaDe36M);
+        setTotalDeAnimaisM(
+          tempTotalBezerrosM +
+            tempTotalDesmamadosM +
+            tempTotalGarrotesM +
+            tempTotalNovilhosM +
+            tempTotalAcimaDe36M
+        );
+
+        setTotalBezerrosF(tempTotalBezerrosF);
+        setTotalDesmamadosF(tempTotalDesmamadosF);
+        setTotalGarrotesF(tempTotalGarrotesF);
+        setTotalNovilhosF(tempTotalNovilhosF);
+        setTotalAcimaDe36F(tempTotalAcimaDe36F);
+        setTotalDeAnimaisF(
+          tempTotalBezerrosF +
+            tempTotalDesmamadosF +
+            tempTotalGarrotesF +
+            tempTotalNovilhosF +
+            tempTotalAcimaDe36F
+        );
+
+        loadingHelper.stopLoading();
+        console.log(cattles);
+      })
+      .catch((err: any) => {
+        toast.error(err);
+        loadingHelper.stopLoading();
+      });
   }, []);
 
-  //   const metodoParavoce = () => {};
   const submitForm = (user: PerfilModelUser) => {};
   return (
     <>
@@ -87,72 +184,96 @@ const ReportPage = (): ReactElement => {
                 <Fab id="printIcon" onClick={imprimir}>
                   <BsPrinter size={20} />
                 </Fab>
-                <Button>
-                  <AssignmentIcon />
-                </Button>
+                {ButtonReportDeclare()}
               </abbr>
             </span>
           </div>
-          <div>
-            <p className="CattleDeclaration">Dados do Proprietáriossss</p>{" "}
-            {/* declare do gado */}
-            <Formik
-              enableReinitialize={true}
-              onSubmit={submitForm}
-              validationSchema={RegisterValidatorSchema}
-              initialValues={initialValues}
-            >
-              {(formik) => (
-                <div id="OwnerData">
-                  {" "}
-                  {/* dados do proprietario */}
-                  <TextField
-                    label="Nome do Proprietário"
-                    variant="standard"
-                    {...getControls(formik, "name")}
-                    sx={{ width: "100%" }}
-                    disabled={true}
-                  />
-                  <TextField
-                    label="E-mail"
-                    variant="standard"
-                    {...getControls(formik, "email")}
-                    sx={{ width: "50%" }}
-                    disabled={true}
-                  />
-                  <TextField
-                    label="CPF"
-                    {...getControls(formik, "cpf")}
-                    size="small"
-                    variant="standard"
-                    sx={{ marginTop: 0.3, width: "50%" }}
-                    disabled={true}
-                  />
-                  <br />
-                  <TextField
-                    label="Telefone"
-                    {...getControls(formik, "phone")}
-                    size="small"
-                    variant="standard"
-                    sx={{ marginTop: 0.3, width: "50%" }}
-                    disabled={true}
-                  />
-                  <TextField
-                    label="Nome da Fazenda"
-                    {...getControls(formik, "Nome do proprietário:")}
-                    variant="standard"
-                    sx={{ width: "50%" }}
-                    disabled={true}
-                  />
-                </div>
-              )}
-            </Formik>
-          </div>
+          {/* COMPONENTE DADOS DO PROPRIETARIO AQUI */}
+          {ProprietarieData()}
 
           <div>
             <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
-            {/* colar o componente aqui dentro */}
-            {ReportComponentCreate()}
+            <div className="CurrentCattleHerd-RA">
+              {" "}
+              {/*rebanho bovino atual */}
+              <div className="Block-CurrentCattleHerd-RA">
+                {" "}
+                {/*bloco rebanho bovino atual */}
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
+                  {" "}
+                  {/*blocos pequenos do rebanho bovino atual existente*/}
+                  Bezerros
+                  <br />
+                  (de 0 à 6 meses)
+                </p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
+                </div>
+                <div className="FieldMF-alt-Left-RA">{totalBezerrosM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalBezerrosF}</div>
+              </div>
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
+                  Desmamados
+                  <br />
+                  (de 7 à 12 meses)
+                </p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
+                </div>
+                <div className="FieldMF-alt-Left-RA">{totalDesmamadosM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalDesmamadosF}</div>
+              </div>
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
+                  Garrotes
+                  <br />
+                  (de 13 à 24 meses)
+                </p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
+                </div>
+                <div className="FieldMF-alt-Left-RA">{totalGarrotesM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalGarrotesF}</div>
+              </div>
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
+                  Novilhos
+                  <br />
+                  (de 25 à 36 meses)
+                </p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
+                </div>
+                <div className="FieldMF-alt-Left-RA">{totalNovilhosM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalNovilhosF}</div>
+              </div>
+              <div className="Block-CurrentCattleHerd-RA">
+                <p className="SmallBlocks-CurrentCattleHerd-RA">
+                  Acima de <br /> (36 meses)
+                  <br />
+                </p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
+                </div>
+                <div className="FieldMF-alt-Left-RA">{totalAcimaDe36M}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalAcimaDe36F}</div>
+              </div>
+              <div className="Block-CurrentCattleHerd-RA">
+                <p id="total-RA">Total de Bovinos</p>
+                <div className="MF-RA">
+                  <p className="M-txt-RA">Macho</p>
+                  <p className="F-txt-RA">Fêmea</p>
+                </div>
+                <div className="FieldMF-alt-Left-RA">{totalDeAnimaisM}</div>
+                <div className="FieldMF-alt-Rigth-RA">{totalDeAnimaisF}</div>
+              </div>
+            </div>
           </div>
           <div>
             <p id="CurrentCattleHerd-Mortality">
@@ -236,7 +357,7 @@ const ReportPage = (): ReactElement => {
                     sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
                     style={{ marginRight: -35, marginTop: -80 }}
                   />
-                  <img id="CowImage-CattleDeclaration" src={vaca_sem_chifre} />
+                  <img id="CowImage-CattleDeclaration" src={vaca} />
                 </div>
               </div>
             </div>

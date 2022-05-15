@@ -1,34 +1,12 @@
-import {
-  Box,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  Typography,
-  TableRow,
-  TableBody,
-  Paper,
-  Fab,
-  Button,
-  TextField,
-} from "@mui/material";
+import { TextField } from "@mui/material";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import "../../../styles/Home.css";
-import { BsPrinter } from "react-icons/bs";
-import { CattleHelper } from "../../cattles/helpers/CattleHelper";
+
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import {
-  CattleModel,
-  CATTLE_SEXS,
-  CATTLE_TYPES,
-} from "../../cattles/models/CattleModel";
+
 import toast from "react-hot-toast";
-import { ReportModel, Report_cattle_cattegory } from "../models/ReportModel";
-import { Agent } from "https";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import { CompressOutlined } from "@mui/icons-material";
-import { MALE, FEMALE } from "../../../../../constants";
+
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
 import { Formik } from "formik";

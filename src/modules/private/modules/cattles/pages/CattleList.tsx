@@ -18,7 +18,9 @@ import {
   Container,
   Fab,
   Grid,
+  MenuItem,
   Modal,
+  Select,
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -208,19 +210,6 @@ const CattleListPage = (): ReactElement => {
   };
 
   const getMonthFromDate = (date: string) => {
-    var today = new Date();
-    var birthDate = new Date(date);
-
-    // var today = new Date();
-    // var birthDate = new Date(date);
-    // var months;
-    // months = (today.getFullYear() - birthDate.getFullYear()) * 12;
-    // months += birthDate.getMonth();
-    // months -= birthDate.getMonth();
-    // return months <= 0 ? 0 : months;
-    // if (months <= 12) {
-    //   return months <= 0 ? 0 : months;
-    // }
     var birthDay = new Date(date);
     var today = new Date();
     var birthDayYear = birthDay.getFullYear();
@@ -230,13 +219,6 @@ const CattleListPage = (): ReactElement => {
     return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
     var birthDay = new Date(date);
     var today = new Date();
-    // var months;
-    // months =
-    //   (d1.getFullYear() - d1.getFullYear()) * 12 -
-    //   (d1.getFullYear() - d1.getFullYear()) * 12;
-    // months -= d1.getMonth();
-    // months += d2.getMonth();
-    // return months <= 0 ? 0 : months;
   };
 
   const getAgeFromDate = (date: string) => {
@@ -250,15 +232,6 @@ const CattleListPage = (): ReactElement => {
     );
   };
 
-  // const getAgeFromDate = (date: string) => {
-  //   var today = new Date();
-  //   var birthDate = new Date(date);
-  //   var age = today.getFullYear() - birthDate.getFullYear();
-  //   var m = today.getMonth() - birthDate.getMonth();
-  //   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-  //     age--;
-  //   }
-  //   return age;
   useEffect(() => {
     loadingHelper.startLoading();
     cattlehelpers
@@ -422,18 +395,28 @@ const CattleListPage = (): ReactElement => {
         >
           <div id="bloco-modal-AnimalDeath">
             <Grid sx={{ margin: "2%  2%" }}>
-              <span style={{fontWeight:"bold"}}>Selecione abaixo o motivo da morte do animal</span>
+              <span style={{ fontWeight: "bold" }}>
+                Selecione abaixo o motivo da morte do animal
+              </span>
             </Grid>
             <Grid
               sx={{
                 margin: "2%  15% 2% 2%",
               }}
             >
-              <Checkbox {...label} />
-              <span style={{color:"var(--cor004", fontSize:18}}>Causas Diversas</span>
+              {/* <Checkbox {...label} />
+              <span style={{ color: "var(--cor004", fontSize: 18 }}>
+                Causas Diversas
+              </span>
               <br />
-              <Checkbox {...label}  />
-              <span style={{color:"var(--cor004", fontSize:18}}>Consumo Próprio</span>
+              <Checkbox {...label} />
+              <span style={{ color: "var(--cor004", fontSize: 18 }}>
+                Consumo Próprio
+              </span> */}
+              <Select fullWidth={true} label="Grouping" name="type">
+                <MenuItem value={1}>Causas Diversa</MenuItem>
+                <MenuItem value={2}>Consumo Próprio</MenuItem>
+              </Select>
             </Grid>
 
             <Grid
@@ -448,9 +431,7 @@ const CattleListPage = (): ReactElement => {
                   borderRadius: "10px",
                 }}
               >
-                <Button >
-                  Salvar
-                </Button>{" "}
+                <Button>Salvar</Button>{" "}
               </Grid>
               <Grid
                 sx={{
@@ -458,9 +439,7 @@ const CattleListPage = (): ReactElement => {
                   borderRadius: "10px",
                 }}
               >
-                <Button onClick={handleClose}>
-                  cancelar
-                </Button>{" "}
+                <Button onClick={handleClose}>cancelar</Button>{" "}
               </Grid>
             </Grid>
           </div>

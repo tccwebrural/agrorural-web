@@ -32,6 +32,8 @@ import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { AltRouteRounded } from "@mui/icons-material";
 
 import ModalEditarPerfil from "../components/ModalEditarPerfil";
+import { updateProfile } from "firebase/auth";
+import ButtonEditProfile from "../components/ButtonEditProfile";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -53,10 +55,6 @@ const ViewProfilePage = (): ReactElement => {
   });
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const handleClickTextField = () => {
-    setIsDisabled(!isDisabled);
-  };
-
   // const [initialValues, setInitialValues] = useState<UserModel>();
   const loadingHelper = useGlobalLoading();
 
@@ -65,13 +63,13 @@ const ViewProfilePage = (): ReactElement => {
 
   console.log(id);
   useEffect(() => {
-    auth.getUser().then(async(user?: UserModel) => {
+    auth.getUser().then(async (user?: UserModel) => {
       if (user) {
         const farmValues = await getFarmValues();
-          farmValues?.name
-          if(farmValues){
+        farmValues?.name;
+        if (farmValues) {
           user.farmName = farmValues?.name;
-          }
+        }
         toast.success("Perfil carregado!");
         setInitialValues(user);
       } else {
@@ -86,16 +84,14 @@ const ViewProfilePage = (): ReactElement => {
 
   console.log(updateUser("WBseF9tM77VzzwGcCeeAzzYCTZU2", initialValues));
 
+  const [show, setShow] = useState(false);
+
   console.log();
+
   const submitForm = () => {
-    // if(u)
-    // updateUser("", user).then(() =>
-    //   //toast sucess
-    //   {
-    //     navigate("/private/cattles");
-    //     // navigate(`private/cattle/${id}/Vaccine`);
-    //   }
-    // );
+    // updateUser().then({
+    //   navigate("/private/cattles")
+    // })
   };
 
   // const submitForm = () => {};
@@ -113,6 +109,16 @@ const ViewProfilePage = (): ReactElement => {
 
   const initialState = { alt: "", src: "" };
   const [{ alt, src }, setPreview] = useState(initialState);
+
+  const handleOpenClickMenu = async () => {
+    await setIsDisabled(!isDisabled);
+    await setShow(false);
+  };
+
+  const handleCloseClickMenu = () => {
+    setIsDisabled(!isDisabled);
+    setShow(true);
+  };
 
   const fileHandler = (e: any) => {
     const { files } = e.target;
@@ -235,9 +241,14 @@ const ViewProfilePage = (): ReactElement => {
                     "aria-labelledby": "basic-button",
                   }}
                 >
-                  <MenuItem onClick={handleClickTextField}>
+                  <MenuItem
+                    // onClick={() => setShow((prev) => !prev)}
+                    onClick={handleOpenClickMenu}
+                  >
+                    {">"}
                     Editar Perfil
                   </MenuItem>
+                  {/* COLAR COMPONENTE  BUTTONEDITPROFILE */}
 
                   <MenuItem onClick={() => auth.logout()}>
                     Sair da conta
@@ -247,6 +258,10 @@ const ViewProfilePage = (): ReactElement => {
                     Desativar conta
                   </MenuItem>
                 </Menu>
+
+                {/* COMPONENTE MENU */}
+
+                {/* FIM DO COMPONENTE DO MENU */}
               </div>
 
               <div className="Block-imgPreview">
@@ -322,9 +337,9 @@ const ViewProfilePage = (): ReactElement => {
                       className="txt-FieldsProfile"
                       {...getControls(formik, "farmName")}
                       disabled={isDisabled}
-
                     />
-                    <Button type="submit">EDITAR TST</Button>
+
+                    {show && <Button type="submit">EDITAR TST</Button>}
                     <div></div>
                   </div>
                 )}
