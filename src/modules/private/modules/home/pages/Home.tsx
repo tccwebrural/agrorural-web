@@ -45,13 +45,14 @@ const HomePage = (): ReactElement => {
   };
 
   const cattlehelpers = CattleHelper();
+  const loadingHelper = useGlobalLoading();
   const [totalBezerros, setTotalBezerros] = useState(0);
   const [totalDesmamados, setTotalDesmamados] = useState(0);
   const [totalGarrotes, setTotalGarrotes] = useState(0);
   const [totalNovilhos, setTotalNovilhos] = useState(0);
   const [totalAcimaDe36, setTotalAcimaDe36] = useState(0);
 
-  
+ 
 
   function createData(
     periodo: Number,
