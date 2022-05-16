@@ -365,7 +365,7 @@ const ViewProfilePage = (): ReactElement => {
                     
                    
                     </div>
-                    {/* {show && (
+                    {show && (
                       <Button variant="contained" color="success" type="submit">
                         Salvar
                       </Button>
