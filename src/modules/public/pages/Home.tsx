@@ -92,14 +92,13 @@ const HomePage = (): ReactElement => {
               <h1>O que é o AGRO RURAL?</h1>
 
               <span>
-                O sistema que veio para trazer mais praticidade e facilidade a
-                vida do produtor rural, ajudando com o gerenciamento do seu
-                gado.
-                <br /> O AgroRural foca na gestão e no controle de vacinação do
-                gado onde o pecuarista possa cadastrar seus animais podendo
-                assim ter uma visão ampla de seu rebanho, e tendo acesso aos
-                relatórios que o próprio sistema fornece, além de também ser
-                notificado quando o animal estiver no período de vacinação.
+                É um sistema que veio para trazer mais praticidade e agilidade
+                ao negócio do produtor rural, facilitando o gerenciamento do seu
+                gado. O AgroRural foca na gestão e no controle de vacinação do
+                gado, onde o pecuarista pode cadastrar seus animais e ter fácil
+                acesso à esses dados, e por meio de relatórios que o próprio sistema fornece ter uma
+                visão ampla do seu rebanho, além de também notificar o pecuarista 
+                quando os animais estiverem no período de vacinação.
               </span>
             </div>
 
@@ -108,14 +107,14 @@ const HomePage = (): ReactElement => {
                 <h1>Como Surgiu a Ideia?</h1>
 
                 <span>
-                  A ideia surgiu no momento que foi visto a dificuldade que os
-                  pecuaristas possui em relação ao controle do seu gado, um dos
-                  principais fatores é a perda dos dados dos animais que muita
-                  das vezes acaba ocasionando vários prejuízos como por exemplo
-                  não saber a data que o bezerro nasceu. Com o controle do
-                  nascimento o produtor rural consegue saber o momento exato de
-                  quando vacinar o animal, fazendo com que não perca a data de
-                  vacinação.
+                  A ideia surgiu no momento que foi estudada a dificuldade que
+                  os pecuaristas possuem em relação ao gerenciamento do gado. Um
+                  exemplo de problema enfrentado pelo produtor, é anotar os
+                  dados do animal em um papel que se perde facilmente e não
+                  sabendo a data que o bezerro nasceu. Com o controle do
+                  nascimento, o produtor rural consegue saber o período exato de
+                  quando vacinar os animais e o sistema irá notificar para que
+                  ele não perca a data de vacinação.
                 </span>
               </div>
             </section>
