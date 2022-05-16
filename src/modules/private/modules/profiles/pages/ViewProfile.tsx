@@ -359,10 +359,7 @@ const ViewProfilePage = (): ReactElement => {
                         disabled={isDisabled}
                       />
 
-<<<<<<< HEAD
                       {show && <Button id="btn-SaveProfile" type="submit">Salvar</Button>}
-=======
->>>>>>> f72595d5fc725a43bb38badcf360144597588a7f
                       <div></div>
                     </div>
                     {/* {show && (
