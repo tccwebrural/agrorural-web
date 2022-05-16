@@ -255,6 +255,7 @@ const cattleViewVaccine = (): ReactElement => {
                 color="inherit"
                 component={Link}
                 to="/private/cattles"
+                style={{marginTop:"13%"}}
               >
                 Voltar
               </Button>

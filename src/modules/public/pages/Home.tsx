@@ -97,7 +97,7 @@ const HomePage = (): ReactElement => {
                 gado. O AgroRural foca na gestão e no controle de vacinação do
                 gado, onde o pecuarista pode cadastrar seus animais e ter fácil
                 acesso à esses dados, e por meio de relatórios que o próprio sistema fornece ter uma
-                visão ampla do seu rebanho, além de também notificar o pecuarista 
+                visão ampla do seu rebanho, além de notificar o pecuarista 
                 quando os animais estiverem no período de vacinação.
               </span>
             </div>

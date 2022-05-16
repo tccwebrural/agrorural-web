@@ -4,8 +4,8 @@
   max-height: 550px;
   margin: 3%;
   border-radius: 8px;
-  box-shadow: 0px 2px 0px 2px rgb(236, 236, 236);
-  background-color: var(--cor0101);
+  box-shadow: 2px 2px 4px 2px var(--cor111);
+  background-color: var(--cor0011);
 }
 
 #blocoTitulo-criacao-infoGado {
@@ -21,12 +21,12 @@
   padding: 10px 10px;
   margin-right: 5%;
   font-size: 22px;
-  background-color: var(--cor0101);
+  background-color: var(--cor001);
   position: relative;
 }
 
 #blocoTituloLine-criacao-infoGado {
-  background-color: #fad400;
+  background-color: var(--cor007);
   display: flex;
   height: 3px;
   width: 70%;
@@ -50,11 +50,11 @@
   width: auto;
   font-size: 22px;
   z-index: 1;
-  background-color: var(--cor0101);
+  background-color: var(--cor001);
 }
 
 #blocoTituloLine-vacina-infoGado {
-  background-color: #fad400;
+  background-color:var(--cor007);
   display: flex;
   height: 3px;
   width: 76%;
@@ -71,18 +71,37 @@
   flex-direction: row;
   justify-content: flex-start;
   margin: 0% 2.5%;
+  
 }
-
+#Card{
+  margin: 0.8%;
+  min-width: 160px;
+  height: 170px;
+  box-shadow: 1px 1px 5px 2px var(--cor033);
+  border: 1px solid var(--cor033);
+}
+#vaccineIcons-InfoGado{
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  margin-top: 10%;
+}
 #vacinas {
-  width: 150px;
-  height: 150px;
-  border-radius: 12px;
-  margin: 1%;
-  text-align: center;
-  background-color: var(--cor0101);
-  box-shadow: 0px 0px 4px 4px var(--cor111);
+  margin: 0.8%;
+  min-width: 160px;
+  height: 170px;
+  box-shadow: 1px 1px 5px 2px var(--cor033);
+  border: 1px solid var(--cor033);
 }
-
+#cardNameInfoGado{
+  width: 100%;
+  margin: auto;
+  margin-top:7%;
+  text-align: center;
+  color: var(--cor001);
+  background-color: var(--cor005);
+  padding: 8px 8px;
+}
 #button {
   display: flex;
   justify-content: flex-end;

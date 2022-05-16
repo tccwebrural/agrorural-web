@@ -141,40 +141,39 @@ const VaccineCardView = (): ReactElement => {
     <>
       {vacines.map((vacine, index) => (
         <Card key={index} id="CardView">
-          <CardHeader
-            id="CardAvatar"
-            avatar={
-              <Avatar id="Avatar">
-                <VaccinesIcon />
-              </Avatar>
-            }
-          />
+                <div id="vaccineIcons">   
+                <VaccinesIcon style={{ color: "var(--cor008)",height:50,width:50, margin:"auto"}}/>
+                </div>
+          
           <CardContent id="CardName">
-            <h3>Vacina: {vacine.name}</h3>
+            <h3> {vacine.name}</h3>
           </CardContent>
 
           <CardActions id="CardIcon" disableSpacing>
             <IconButton
               onClick={() => openDeleteVacineModal(vacine)}
               aria-label="add to favorites"
+              style={{ backgroundColor: "var(--cor009)",width:30,height:30}}
             >
-              <DeleteIcon />
+              <DeleteIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
             </IconButton>
 
             <IconButton
               aria-label="share"
               component={Link}
               to={`/private/cattle/${id}/vacine/${vacine.id}/edit`}
+              style={{ backgroundColor: "var(--cor007)",width:30,height:30,margin:2}}
             >
-              <EditIcon />
+              <EditIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
             </IconButton>
 
             <IconButton
               aria-label="share"
               component={Link}
               to={`/private/cattle/${id}/vaccine/${vacine.id}/view`}
+              style={{ backgroundColor: "var(--cor006)",width:30,height:30}}
             >
-              <VisibilityIcon />
+              <VisibilityIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
             </IconButton>
           </CardActions>
         </Card>

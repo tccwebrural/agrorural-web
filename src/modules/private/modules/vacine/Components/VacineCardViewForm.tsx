@@ -58,9 +58,9 @@ const VaccineCardViewForm = (): ReactElement => {
                 justifyContent: "center",
               }}
             >
-              <Grid item xs={2} sx={{ margin: "1%" }}>
+              <Grid item xs={2} sx={{ margin: "0.4%", marginLeft:2}}>
                 <TextField
-                  style={{ width: 180 }}
+                  style={{ width: 205 }}
                   id="outlined-disabled"
                   label="Nome"
                   type="text"
@@ -68,9 +68,9 @@ const VaccineCardViewForm = (): ReactElement => {
                   {...getControls(formik, "name")}
                 />
               </Grid>
-              <Grid sx={{ margin: "1%" }}>
+              <Grid sx={{ margin: "0.4%" }}>
                 <TextField
-                  style={{ width: 150 }}
+                  style={{ width: 180 }}
                   id="outlined-disabled"
                   label="Lote"
                   disabled={true}
@@ -78,9 +78,9 @@ const VaccineCardViewForm = (): ReactElement => {
                   type="number"
                 />
               </Grid>
-              <Grid sx={{ margin: "1%" }}>
+              <Grid sx={{ margin: "0.4%" }}>
                 <TextField
-                  style={{ width: 180 }}
+                  style={{ width: 210 }}
                   id="outlined-disabled"
                   label="Fabricante"
                   disabled={true}
@@ -88,9 +88,9 @@ const VaccineCardViewForm = (): ReactElement => {
                   type="text"
                 />
               </Grid>
-              <Grid sx={{ margin: "1%" }}>
+              <Grid sx={{ margin: "0.4%" }}>
                 <TextField
-                  style={{ width: 180 }}
+                  style={{ width: 200 }}
                   id="outlined-disabled"
                   label="Data da Aplicação"
                   disabled={true}
@@ -101,9 +101,9 @@ const VaccineCardViewForm = (): ReactElement => {
                   }}
                 />
               </Grid>
-              <Grid sx={{ margin: "1%" }}>
+              <Grid sx={{ margin: "0.4%" }}>
                 <TextField
-                  style={{ width: 180 }}
+                  style={{ width: 200 }}
                   id="outlined-disabled"
                   label="Data da Validade"
                   disabled={true}

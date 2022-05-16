@@ -37,18 +37,6 @@ import Checkbox from "@mui/material/Checkbox";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 // import { ptBR } from "@mui/material/locale";
 
-import { bgcolor } from "@mui/system";
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 const CattleListPage = (): ReactElement => {
   const [open, setOpen] = React.useState(false);
@@ -391,7 +379,7 @@ const CattleListPage = (): ReactElement => {
             </Grid>
             <Grid sx={{ margin: "3%" }}>
               <Select fullWidth={true} name="type">
-                <MenuItem value={1}>Causas Diversa</MenuItem>
+                <MenuItem value={1}>Causas Diversas</MenuItem>
                 <MenuItem value={2}>Consumo Próprio</MenuItem>
               </Select>
             </Grid>
@@ -423,8 +411,8 @@ const CattleListPage = (): ReactElement => {
                   <AddIcon />
                 </Fab>
               </abbr>
-              <abbr title="Deletar Animal">
-                <Fab id="AddIcon" sx={{ position: "relative", left: "-120px" }}>
+              <abbr title="Deletar animais">
+                <Fab id="DeleteIcon-txt-line">
                   <DeleteIcon />
                 </Fab>
               </abbr>
@@ -435,7 +423,7 @@ const CattleListPage = (): ReactElement => {
           <div
             style={{
               height: 420,
-              width: 1105,
+              width: 1125,
               backgroundColor: "white",
               borderRadius: "10px",
             }}
