@@ -34,6 +34,7 @@ import { AltRouteRounded } from "@mui/icons-material";
 import ModalEditarPerfil from "../components/ModalEditarPerfil";
 import { updateProfile } from "firebase/auth";
 import ButtonEditProfile from "../components/ButtonEditProfile";
+import { EditProfileValidatorSchema } from "../validators/EditProfileValidatorSschema";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -67,6 +68,7 @@ const ViewProfilePage = (): ReactElement => {
       if (user) {
         const farmValues = await getFarmValues();
         farmValues?.name;
+
         if (farmValues) {
           user.farmName = farmValues?.name;
         }
@@ -80,38 +82,37 @@ const ViewProfilePage = (): ReactElement => {
     });
   }, []);
 
+  // ESCOPO PARA IMAGENS
+
+  // FIM DO ESCOPO PARA IMAGENS
+
   const [show, setShow] = useState(false);
 
   console.log();
 
   console.log(auth.updateUserId(initialValues));
-  const submitForm = (user: PerfilModelUser) => {
-    // if (user) {
-    //   auth
-    //     .updateUserId(user)
-    //     .then(() =>
-    //       //toast sucess
-    //       {
-    //         navigate("/private/cattles");
-    //         // navigate(`private/cattle/${id}/Vaccine`);
-    //       }
-    //     )
-    //     .catch((err) => {
-    //       //TODO: Mensagem de erro
-    //       //toast erro
-    //       console.error(err);
-    //       toast.error(getFireError(err));
-    //     });
-    // }
-    if (user) {
-      auth.updateUserId(user).then(() =>
-        //toast sucess
-        navigate(`/private/cattle/`)
-      );
-    }
-  };
-  console.log(submitForm + "SUBMIT FORM");
+  const submitForm = async (user: PerfilModelUser) => {
+    const userId = await auth.getUser();
 
+    auth
+      .updateUserId(user)
+      .then(() =>
+        //toast sucess
+        {
+          navigate("/private/cattles");
+          // navigate(`private/cattle/${id}/Vaccine`);
+        }
+      )
+      .catch((err: any) => {
+        //TODO: Mensagem de erro
+        //toast erro
+        console.error(err);
+        toast.error(getFireError(err));
+      });
+
+    // vacine.id = id;
+  };
+  console.log("SUBIT= " + submitForm);
   // const submitForm = () => {};
   /** modalDesativar */
   const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
@@ -132,11 +133,6 @@ const ViewProfilePage = (): ReactElement => {
     setIsDisabled(!isDisabled);
 
     await setShow(!show);
-  };
-
-  const handleCloseClickMenu = () => {
-    setIsDisabled(!isDisabled);
-    setShow(true);
   };
 
   const fileHandler = (e: any) => {
@@ -199,7 +195,8 @@ const ViewProfilePage = (): ReactElement => {
                 >
                   <Button
                     id="btn-modalDelet"
-                    onClick={() => handleCloseDesativarPerfil()}
+                    // onClick={() => handleCloseDesativarPerfil()}
+                    onClick={() => auth.desactiverUser()}
                   >
                     Sim
                   </Button>{" "}
@@ -287,6 +284,10 @@ const ViewProfilePage = (): ReactElement => {
                   <>
                     <label htmlFor="fileUpload">
                       <img className="imgProfile" src={src} alt={alt} />
+
+                      {/* ESCOPO DA IMAGEM */}
+
+                      {/* FIM DA IMAGEM */}
                     </label>
                     <input
                       id="fileUpload"
@@ -321,7 +322,7 @@ const ViewProfilePage = (): ReactElement => {
               <Formik
                 enableReinitialize={true}
                 onSubmit={submitForm}
-                validationSchema={RegisterValidatorSchema}
+                validationSchema={EditProfileValidatorSchema}
                 initialValues={initialValues}
               >
                 {(formik) => (
@@ -358,9 +359,25 @@ const ViewProfilePage = (): ReactElement => {
                         disabled={isDisabled}
                       />
 
+<<<<<<< HEAD
                       {show && <Button id="btn-SaveProfile" type="submit">Salvar</Button>}
+=======
+>>>>>>> f72595d5fc725a43bb38badcf360144597588a7f
                       <div></div>
                     </div>
+                    {/* {show && (
+                      <Button variant="contained" color="success" type="submit">
+                        Salvar
+                      </Button>
+                    )} */}
+                    <Button
+                      variant="contained"
+                      color="success"
+                      // onClick={salvarDadosAnimal}
+                      type="submit"
+                    >
+                      Atualizar
+                    </Button>
                   </form>
                 )}
               </Formik>

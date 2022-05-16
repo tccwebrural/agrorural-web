@@ -43,6 +43,9 @@ type AuthContext = {
 
   logout: (redirectToHome?: boolean) => void;
   desactiverUser: () => Promise<void>;
+  activerUser: (email: string) => Promise<void>;
+  // desactiverUser: (redirectToHome?: boolean) => Promise<void>;
+
   // sendPasswordReset: (email: string) => {};
   // loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
   loadUserDataById: (user: User) => Promise<UserModel | undefined>;
@@ -227,10 +230,17 @@ const UserAuthProvider = (): AuthContext => {
     const userRef = doc(firestore, COLLECTION_USERS, user.id);
 
     await updateDoc(userRef, { active: false });
+    await logout();
+  };
+  const activerUser = async (email: string) => {
+    await activerUser(email);
+    const user = await getUser();
+    const userRef = doc(firestore, COLLECTION_USERS, user.id);
+
+    await updateDoc(userRef, { active: true });
   };
   const updateUserId = async (formData: PerfilModelUser) => {
     const user = await getUser();
-
     const userRef = doc(firestore, COLLECTION_USERS, user.id);
     const userDoc = await getDoc(userRef);
     await updateDoc(userRef, { ...formData });
@@ -261,6 +271,7 @@ const UserAuthProvider = (): AuthContext => {
     desactiverUser,
     loadUserDataById,
     updateUserId,
+    activerUser,
   };
 };
 
