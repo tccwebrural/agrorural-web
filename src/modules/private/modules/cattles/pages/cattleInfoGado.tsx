@@ -115,6 +115,8 @@ const CattleInfoGado = (): ReactElement => {
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "center",
+                        width:1005,
+                        marginLeft:5
                       }}
                     >
                       <Grid item xs={2} sx={{ margin: "0.4%" }}>
