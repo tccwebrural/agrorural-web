@@ -14,7 +14,7 @@ import rodape from "../../../../../assets/rodape.png";
 import { BiMenu } from "react-icons/bi";
 import "../../../styles/ViewProfile.css";
 import { auth } from "configs/Firebase";
-import { ProviderAuth, updateUserId, useAuth } from "providers/AuthProvider";
+import { ProviderAuth, useAuth } from "providers/AuthProvider";
 import {
   PerfilModelUser,
   RegisterUserModel,
@@ -80,19 +80,37 @@ const ViewProfilePage = (): ReactElement => {
     });
   }, []);
 
-  const updateUser = updateUserId;
-
-  console.log(updateUser("WBseF9tM77VzzwGcCeeAzzYCTZU2", initialValues));
-
   const [show, setShow] = useState(false);
 
   console.log();
 
-  const submitForm = () => {
-    // updateUser().then({
-    //   navigate("/private/cattles")
-    // })
+  console.log(auth.updateUserId(initialValues));
+  const submitForm = (user: PerfilModelUser) => {
+    // if (user) {
+    //   auth
+    //     .updateUserId(user)
+    //     .then(() =>
+    //       //toast sucess
+    //       {
+    //         navigate("/private/cattles");
+    //         // navigate(`private/cattle/${id}/Vaccine`);
+    //       }
+    //     )
+    //     .catch((err) => {
+    //       //TODO: Mensagem de erro
+    //       //toast erro
+    //       console.error(err);
+    //       toast.error(getFireError(err));
+    //     });
+    // }
+    if (user) {
+      auth.updateUserId(user).then(() =>
+        //toast sucess
+        navigate(`/private/cattle/`)
+      );
+    }
   };
+  console.log(submitForm + "SUBMIT FORM");
 
   // const submitForm = () => {};
   /** modalDesativar */
@@ -246,7 +264,6 @@ const ViewProfilePage = (): ReactElement => {
                     // onClick={() => setShow((prev) => !prev)}
                     onClick={handleOpenClickMenu}
                   >
-                    {">"}
                     Editar Perfil
                   </MenuItem>
                   {/* COLAR COMPONENTE  BUTTONEDITPROFILE */}
@@ -308,41 +325,43 @@ const ViewProfilePage = (): ReactElement => {
                 initialValues={initialValues}
               >
                 {(formik) => (
-                  <div id="FieldsProfile">
-                    <TextField
-                      label="CPF"
-                      size="small"
-                      variant="standard"
-                      className="txt-FieldsProfile"
-                      disabled={isDisabled}
-                      {...getControls(formik, "cpf")}
-                    />
-                    <TextField
-                      label="E-mail"
-                      variant="standard"
-                      className="txt-FieldsProfile"
-                      {...getControls(formik, "email")}
-                      disabled={isDisabled}
-                    />
-                    <TextField
-                      label="Telefone"
-                      size="small"
-                      variant="standard"
-                      className="txt-FieldsProfile"
-                      {...getControls(formik, "phone")}
-                      disabled={isDisabled}
-                    />
-                    <TextField
-                      label="Nome da Fazenda"
-                      variant="standard"
-                      className="txt-FieldsProfile"
-                      {...getControls(formik, "farmName")}
-                      disabled={isDisabled}
-                    />
+                  <form onSubmit={formik.handleSubmit}>
+                    <div id="FieldsProfile">
+                      <TextField
+                        label="CPF"
+                        size="small"
+                        variant="standard"
+                        className="txt-FieldsProfile"
+                        disabled={isDisabled}
+                        {...getControls(formik, "cpf")}
+                      />
+                      <TextField
+                        label="E-mail"
+                        variant="standard"
+                        className="txt-FieldsProfile"
+                        {...getControls(formik, "email")}
+                        disabled={isDisabled}
+                      />
+                      <TextField
+                        label="Telefone"
+                        size="small"
+                        variant="standard"
+                        className="txt-FieldsProfile"
+                        {...getControls(formik, "phone")}
+                        disabled={isDisabled}
+                      />
+                      <TextField
+                        label="Nome da Fazenda"
+                        variant="standard"
+                        className="txt-FieldsProfile"
+                        {...getControls(formik, "farmName")}
+                        disabled={isDisabled}
+                      />
 
-                    {show && <Button type="submit">EDITAR TST</Button>}
-                    <div></div>
-                  </div>
+                      {show && <Button type="submit">Salvar</Button>}
+                      <div></div>
+                    </div>
+                  </form>
                 )}
               </Formik>
             </div>
