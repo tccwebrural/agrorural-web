@@ -369,7 +369,7 @@ const ViewProfilePage = (): ReactElement => {
                       <Button variant="contained" color="success" type="submit">
                         Salvar
                       </Button>
-                    )} */}
+                    )} 
      
                     <Button
                       variant="contained"
