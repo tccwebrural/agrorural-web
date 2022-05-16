@@ -358,15 +358,19 @@ const ViewProfilePage = (): ReactElement => {
                         {...getControls(formik, "farmName")}
                         disabled={isDisabled}
                       />
+                    {show && <Button id="btn-SaveProfile" type="submit">Salvar</Button>}
+                      <div>
 
-                      {show && <Button id="btn-SaveProfile" type="submit">Salvar</Button>}
-                      <div></div>
+                      </div>
+                    
+                   
                     </div>
                     {/* {show && (
                       <Button variant="contained" color="success" type="submit">
                         Salvar
                       </Button>
                     )} */}
+     
                     <Button
                       variant="contained"
                       color="success"
@@ -376,6 +380,7 @@ const ViewProfilePage = (): ReactElement => {
                       Atualizar
                     </Button>
                   </form>
+                  
                 )}
               </Formik>
             </div>

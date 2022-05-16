@@ -85,10 +85,9 @@ const CattleInfoGado = (): ReactElement => {
       <Container
         sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
       >
-        <div className="imgGados">
-          <img src={vaca1} alt="Erro..." />
-        </div>
+       
         <div id="blocoGeral-infoGado">
+        
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
@@ -118,9 +117,9 @@ const CattleInfoGado = (): ReactElement => {
                         justifyContent: "center",
                       }}
                     >
-                      <Grid item xs={2} sx={{ margin: "0.2%" }}>
+                      <Grid item xs={2} sx={{ margin: "0.4%" }}>
                         <TextField
-                          style={{ width: 180 }}
+                          style={{ width: 200 }}
                           id="outlined-disabled"
                           label="Nome"
                           type="text"
@@ -130,7 +129,7 @@ const CattleInfoGado = (): ReactElement => {
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
                         <TextField
-                          style={{ width: 180 }}
+                          style={{ width: 190 }}
                           id="outlined-disabled"
                           label="Peso"
                           type="number"
@@ -139,7 +138,7 @@ const CattleInfoGado = (): ReactElement => {
                         />
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
-                        <FormControl sx={{ minWidth: 160 }}>
+                        <FormControl sx={{ minWidth: 180 }}>
                           <InputLabel>Tipo</InputLabel>
                           <Select
                             disabled={true}
@@ -176,7 +175,7 @@ const CattleInfoGado = (): ReactElement => {
                         />
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
-                        <FormControl sx={{ minWidth: 100 }}>
+                        <FormControl sx={{ minWidth: 120 }}>
                           <InputLabel htmlFor="type">Sexo</InputLabel>
                           <Select
                             disabled={true}
@@ -207,7 +206,9 @@ const CattleInfoGado = (): ReactElement => {
 
               <div id="blocoVacinas">{VaccineCardInfoCattle()}</div>
             </div>
-
+            <div id="imgVaca-InfoGado">
+              <img src={vaca1} style={{width:280}} alt="Erro..." />
+            </div>
             <div id="button">
               <Button
                 variant="contained"

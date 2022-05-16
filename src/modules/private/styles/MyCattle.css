@@ -79,12 +79,12 @@ abbr {
 #button-myCatlle {
   display: flex;
   justify-content: flex-end;
-  margin: 1% 3%;
+  margin: -20% 5% 0% 0%;
 }
 .imgGados {
   position: absolute;
 }
-.imgGados img {
+.imgGados{
   width: 300px;
   position: relative;
   top: 350px;
@@ -139,4 +139,11 @@ abbr {
   display: flex;
   justify-content: center;
   margin-top: 7%;
+}
+#imgVacaLeiteira-MYCATTLE{
+  width: 250px;
+  position: relative;
+  top: -150px;
+  left: 55%;
+  
 }

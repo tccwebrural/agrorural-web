@@ -85,14 +85,14 @@ const VaccineFormPage = (): ReactElement => {
                 </h2>
               </div>
               <div id="Block-AnimalData">
-                <form onSubmit={formik.handleSubmit}>
+                <form style={{width:1020,marginLeft:-1}} onSubmit={formik.handleSubmit}>
                   <Box
                     sx={{
-                      "& .MuiTextField-root": { m: 1, width: "25ch" },
+                      "& .MuiTextField-root": { m: 1, width: "26ch",margin:"0.4%" },
                     }}
                   >
                     <TextField
-                      style={{ width: 220 }}
+                      style={{ width: 230 }}
                       label="Nome"
                       type="text"
                       InputLabelProps={{
@@ -101,7 +101,7 @@ const VaccineFormPage = (): ReactElement => {
                       {...getControls(formik, "name")}
                     />
                     <TextField
-                      style={{ width: 140 }}
+                      style={{ width: 160 }}
                       label="Lote"
                       type="number"
                       InputLabelProps={{
@@ -110,7 +110,7 @@ const VaccineFormPage = (): ReactElement => {
                       {...getControls(formik, "lote")}
                     />
                     <TextField
-                      style={{ width: 200 }}
+                      style={{ width: 218 }}
                       label="Fabricante"
                       type="text"
                       InputLabelProps={{
@@ -119,7 +119,7 @@ const VaccineFormPage = (): ReactElement => {
                       {...getControls(formik, "manufacturer")}
                     />
                     <TextField
-                      style={{ width: 180 }}
+                      style={{ width: 185 }}
                       label="Data de Aplicação"
                       type="date"
                       InputLabelProps={{
@@ -128,7 +128,7 @@ const VaccineFormPage = (): ReactElement => {
                       {...getControls(formik, "date_application")}
                     />
                     <TextField
-                      style={{ width: 180 }}
+                      style={{ width: 185 }}
                       label="Validade da Vacina"
                       type="date"
                       InputLabelProps={{

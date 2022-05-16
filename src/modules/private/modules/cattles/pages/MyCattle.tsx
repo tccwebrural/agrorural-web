@@ -84,9 +84,7 @@ const MyCattle = (): ReactElement => {
       <Container
         sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
       >
-        <div className="imgGados">
-          <img src={vaca1} alt="Erro..." />
-        </div>
+      
         <div id="blocoGeral-myCatlle">
           <section>
             <div id="blocoTitulo-criacao-myCatlle">
@@ -209,6 +207,9 @@ const MyCattle = (): ReactElement => {
               </div>
 
               <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
+            </div>
+            <div id="imgVacaLeiteira-MYCATTLE">
+              <img style={{width:280}} src={vaca1} alt="Erro..." />
             </div>
             <div id="button-myCatlle">
               <Button

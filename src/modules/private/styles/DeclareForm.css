@@ -12,7 +12,7 @@
   margin-right: -5%;
   width: 26%;
   font-size: 22px;
-  background-color: var(--cor0101);
+  background-color: var(--cor001);
   position: relative;
 }
 #Block-Line-CattleDeclaration {
@@ -21,7 +21,7 @@
   height: 3px;
   width: 100%;
   margin-top: 8px;
-  margin-right: 5px;
+  margin-right: 2px;
   margin-left: -60px;
 }
 #printIcon {
@@ -32,7 +32,7 @@
 #reportIcon {
   background-color: var(--cor005);
   margin-top: -25px;
-  margin-left: 1240%;
+  margin-left: 1246%;
 }
 #bloco-modal-GerarRelatóri {
   font-size: 20px;
@@ -234,7 +234,7 @@
   font-size: 14.5px;
   margin-top: 4px;
 }
-/* //////////////////////////////////////////////////////////// */
+/* ************** blocos do Rebanho Bovino Atual Existente*****************/
 .CurrentCattleHerd-RA {
   background-color: var(--cor011);
   height: 250px;
