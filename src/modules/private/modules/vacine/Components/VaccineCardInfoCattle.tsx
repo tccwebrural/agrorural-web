@@ -136,15 +136,11 @@ const VaccineCardInfoCattle = (): ReactElement => {
     <>
       {vacines.map((vacine) => (
         <Card id="Card">
-          <CardHeader
-            id="cardAvatar"
-            avatar={
-              <Avatar id="avatar">
-                <VaccinesIcon sx={{ size: "100px" }} />
-              </Avatar>
-            }
-          />
-          <CardContent id="cardName">
+        
+        <div id="vaccineIcons-InfoGado">  
+          <VaccinesIcon style={{ color: "var(--cor008)",height:50,width:50, margin:"auto"}}/>
+        </div>
+          <CardContent id="cardNameInfoGado">
             <h3>{vacine.name}</h3>
           </CardContent>
         </Card>

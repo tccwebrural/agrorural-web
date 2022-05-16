@@ -233,7 +233,7 @@ const ViewProfilePage = (): ReactElement => {
         <div id="Block-Profile">
           <div className="Block-Txt-Line">
             <h2 className="Block-Line">
-              <span className="Block-Txt">Meu Perfil</span>
+              <span id="Block-Txt-Profile">Meu Perfil</span>
             </h2>
           </div>
 
@@ -358,7 +358,7 @@ const ViewProfilePage = (): ReactElement => {
                         disabled={isDisabled}
                       />
 
-                      {show && <Button type="submit">Salvar</Button>}
+                      {show && <Button id="btn-SaveProfile" type="submit">Salvar</Button>}
                       <div></div>
                     </div>
                   </form>

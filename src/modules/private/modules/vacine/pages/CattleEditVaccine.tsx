@@ -26,6 +26,7 @@ import { getFireError } from "utils/HandleFirebaseError";
 import { Formik } from "formik";
 import { VacineValidatorSchema } from "../validators/VacineValidatorSchema";
 import { getControls } from "utils/FormUtils";
+import bezerro from "../../../../../assets/bezerro.png";
 
 const CattleEditVaccine = (): ReactElement => {
   function UpdateVaccineData() {
@@ -96,7 +97,7 @@ const CattleEditVaccine = (): ReactElement => {
             <div id="MainBlock-VaccineForm">
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
-                  <span className="Block-Txt">
+                  <span id="Block-Txt-CattleEditVaccine">
                     Editar Vacina : {initialValues.name}
                   </span>
                 </h2>
@@ -153,40 +154,10 @@ const CattleEditVaccine = (): ReactElement => {
                       }}
                       {...getControls(formik, "expiration_date")}
                     />
-                    <div id="Block-VaccineIcons">
-                      <fieldset id="FieldVaccineIcons">
-                        <abbr title="Vacina contra doenças">
-                          <VaccinesIcon
-                            style={{
-                              fontSize: 75,
-                              marginTop: 10,
-                              marginLeft: 35,
-                            }}
-                          />
-                        </abbr>
-                        <p id="VacinaIcon-Txt">Vírus 1</p>
-                        <Checkbox
-                          {...label}
-                          sx={{ fontSize: 28, marginLeft: 6.5, marginTop: -1 }}
-                        />
-                      </fieldset>
-
-                      <fieldset id="FieldVirus">
-                        <abbr title="Vacina contra vírus">
-                          <MdCoronavirus
-                            size={80}
-                            style={{ marginTop: 5, marginLeft: 35 }}
-                          />
-                        </abbr>
-                        <p id="VacinaIcon-Txt">Vírus 2</p>
-                        <Checkbox
-                          {...label}
-                          sx={{ fontSize: 28, marginLeft: 6.5, marginTop: -1 }}
-                        />
-                      </fieldset>
+                    <div id="Block-CalfImage-EditVaccine">
+                      <img style={{ width: 120 }} src={bezerro} alt="Erro..." />
                     </div>
-
-                    <div id="Block-CowImage-CadastroVacina">
+                    <div id="Block-CowImage-EditVaccine">
                       <img style={{ width: 300 }} src={vaca1} alt="Erro..." />
                     </div>
 
@@ -206,7 +177,7 @@ const CattleEditVaccine = (): ReactElement => {
                           variant="contained"
                           color="success"
                           type="submit"
-                          sx={{ paddingTop: 0.8, paddingBottom: 0.8 }}
+                          sx={{ paddingTop: 0.7, paddingBottom: 0.8 }}
                         >
                           Atualizar
                         </Button>
