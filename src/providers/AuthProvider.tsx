@@ -47,6 +47,7 @@ type AuthContext = {
   // loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
   loadUserDataById: (user: User) => Promise<UserModel | undefined>;
   sendPasswordReset: (email: string) => Promise<void>;
+  updateUserId: (formData: PerfilModelUser) => Promise<void>;
 };
 
 const UserAuthProvider = (): AuthContext => {
@@ -142,9 +143,8 @@ const UserAuthProvider = (): AuthContext => {
 
     //Salva os dados do usuário encontrado na coleção COLLECTION_USERS
     const userData = { id: userDoc.id, ...userDoc.data() } as UserModel;
-    if(user.email){
+    if (user.email) {
       userData.email = user.email;
-
     }
     //Caso o usuário não esteja ativo, é retornado um erro;
     if (!userData.active) {
@@ -228,7 +228,29 @@ const UserAuthProvider = (): AuthContext => {
 
     await updateDoc(userRef, { active: false });
   };
+  const updateUserId = async (formData: PerfilModelUser) => {
+    const user = await getUser();
 
+    const userRef = doc(firestore, COLLECTION_USERS, user.id);
+    const userDoc = await getDoc(userRef);
+    await updateDoc(userRef, { ...formData });
+
+    // return updateDoc(userRef, { ...formData });
+    // AAAA
+
+    // if (userRef) {
+    //   const userCollectionRef = collection(
+    //     firestore,
+    //     COLLECTION_USERS,
+    //     user.id
+    //   );
+
+    //   const userRef = await doc(firestore, userCollectionRef.path, user.id);
+    //   return updateDoc(userRef, { ...formData });
+    // }
+
+    // return userRef;
+  };
   return {
     userState: user,
     getUser,
@@ -238,6 +260,7 @@ const UserAuthProvider = (): AuthContext => {
     sendPasswordReset,
     desactiverUser,
     loadUserDataById,
+    updateUserId,
   };
 };
 
@@ -261,21 +284,5 @@ const useAuth = () => {
   return useContext(authContext) as AuthContext;
 };
 
-const updateUserId = async (uid: string, formData: PerfilModelUser) => {
-  const userRef = doc(firestore, COLLECTION_USERS, uid);
-  const userDoc = await getDoc(userRef);
-
-  // return updateDoc(userRef, { ...formData });
-  // AAAA
-
-  if (userRef) {
-    const userCollectionRef = collection(firestore, COLLECTION_USERS, uid);
-
-    const userRef = await doc(firestore, userCollectionRef.path, uid);
-    return updateDoc(userRef, { ...formData });
-  }
-
-  // return userRef;
-};
 // Apenas o acesso ao contexto e o provider
-export { useAuth, ProviderAuth, updateUserId };
+export { useAuth, ProviderAuth };

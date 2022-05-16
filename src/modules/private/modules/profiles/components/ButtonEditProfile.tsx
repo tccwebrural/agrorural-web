@@ -14,7 +14,7 @@ import rodape from "../../../../../assets/rodape.png";
 import { BiMenu } from "react-icons/bi";
 import "../../../styles/ViewProfile.css";
 import { auth } from "configs/Firebase";
-import { ProviderAuth, updateUserId, useAuth } from "providers/AuthProvider";
+import { ProviderAuth, useAuth } from "providers/AuthProvider";
 import {
   PerfilModelUser,
   RegisterUserModel,
