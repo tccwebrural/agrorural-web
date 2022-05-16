@@ -3,18 +3,15 @@
   padding: 0%;
 }
 
-h4,
-h3 {
-  color: #33658a;
-}
 #Bloco-Geral {
+  background-color: var(--cor0101);
   border-radius: 10px;
   margin: 3%;
   box-shadow: 0px 2px 0px 2px rgb(236, 236, 236);
 }
 
 #Bloco-Notificacoes {
-  width: 70%;
+  width: 57%;
   margin: auto;
   display: flex;
   box-shadow: 2px 2px 2px 2px rgb(236, 236, 236);
@@ -34,6 +31,7 @@ h3 {
   display: flex;
   justify-content: flex-start;
   margin: 0% 2%;
+  color: #1a2b38;
 }
 
 #text-notify {
@@ -55,4 +53,5 @@ h3 {
   flex-direction: column;
   padding: 1%;
   align-items: flex-start;
+  color: #173f5eb4;
 }

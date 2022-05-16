@@ -1,10 +1,11 @@
-#MainBlock-HomePrivate{
+#MainBlock-HomePrivate {
   width: 1100px;
   height: 550px;
   margin: auto;
   margin-top: -2.5%;
   border-radius: 8px;
   box-shadow: 2px 2px 4px 2px var(--cor111);
+  background-color: var(--cor0101);
   padding: 1px;
   padding-bottom: 3%;
 }
@@ -17,7 +18,7 @@
   border: 1px solid var(--cor002);
   width: 900px;
   padding: 1.5%;
-  background-color: var(--cor0101);
+  background-color: var(--cor001);
 }
 .Table-MyReports-Itens-txt {
   font-size: 18px;
@@ -41,7 +42,7 @@
   padding: 10px 10px;
   margin-right: 10%;
   font-size: 22px;
-  background-color: var(--cor001);
+  background-color: var(--cor0101);
   position: relative;
 }
 

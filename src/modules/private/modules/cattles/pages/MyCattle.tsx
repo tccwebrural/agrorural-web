@@ -9,36 +9,9 @@ import {
   Select,
   MenuItem,
   Button,
-  Menu,
-  Avatar,
-  Card,
-  CardHeader,
-  CardMedia,
-  CardContent,
-  styled,
-  CardActions,
-  Collapse,
-  Typography,
 } from "@mui/material";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
-import VaccinesIcon from "@mui/icons-material/Vaccines";
-
-import { red } from "@mui/material/colors";
-import DeleteIcon from "@mui/icons-material/Delete";
-
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Coronavirus from "@mui/icons-material/Coronavirus";
-
-import { alpha } from "@mui/material/styles";
-import EditIcon from "@mui/icons-material/Edit";
-import Divider from "@mui/material/Divider";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { MdCoronavirus } from "react-icons/md";
 import AddIcon from "@mui/icons-material/Add";
 import vaca1 from "../../../../../assets/vaca1.png";
 import { CattleModel, CATTLE_SEXS } from "../models/CattleModel";
@@ -46,15 +19,9 @@ import { Formik } from "formik";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleHelper } from "../helpers/CattleHelper";
 import toast from "react-hot-toast";
-import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
-import Modal from "@mui/material/Modal";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import "../../../styles/MyCattle.css";
 import { VacineModel } from "../../vacine/models/VacineModel";
-import { VacineHelper } from "../../vacine/helpers/VacineHelpers";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { CustomizedMenus } from "../components/CustomizedMenusFromCattle";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
 
 const MyCattle = (): ReactElement => {
@@ -124,7 +91,7 @@ const MyCattle = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-myCatlle">
               <h2 id="blocoTituloTxt-criacao-myCatlle">
-                Dados do animal : {initialValues.name}{" "}
+                Dados do animal: {initialValues.name}{" "}
               </h2>
               <span id="blocoTituloLine-criacao-myCatlle"></span>
             </div>

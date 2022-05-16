@@ -3,34 +3,22 @@ import {
   Card,
   CardHeader,
   CardContent,
-  CardActions,
-  Collapse,
-  Typography,
   Modal,
   Box,
   Grid,
   Button,
 } from "@mui/material";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 
 import { red } from "@mui/material/colors";
-import DeleteIcon from "@mui/icons-material/Delete";
-
-import { alpha } from "@mui/material/styles";
-import EditIcon from "@mui/icons-material/Edit";
 
 import { ReactElement, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { CattleModel } from "../../cattles/models/CattleModel";
-import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import "../../../styles/MyCattle.css";
+import { useParams } from "react-router-dom";
 import { VacineModel } from "../models/VacineModel";
 import { VacineHelper } from "../helpers/VacineHelpers";
-import VaccineModalDelete from "../../cattles/components/VaccineModalDelete";
 import toast from "react-hot-toast";
+
+import "../../../styles/MyCattle.css";
 
 const VaccineCardInfoCattle = (): ReactElement => {
   const { id } = useParams();
@@ -147,28 +135,18 @@ const VaccineCardInfoCattle = (): ReactElement => {
   return (
     <>
       {vacines.map((vacine) => (
-        // <h1></h1>
-        <Card sx={{ maxWidth: 345 }}>
+        <Card id="Card">
           <CardHeader
+            id="cardAvatar"
             avatar={
-              <Avatar
-                sx={{
-                  bgcolor: red[500],
-                  alignContent: "center",
-                  justifyContent: "center",
-                }}
-                aria-label="recipe"
-              >
-                <VaccinesIcon />
+              <Avatar id="avatar">
+                <VaccinesIcon sx={{ size: "100px" }} />
               </Avatar>
             }
           />
-
-          <CardContent>
-            <h3> {vacine.name}</h3>
+          <CardContent id="cardName">
+            <h3>{vacine.name}</h3>
           </CardContent>
-
-          {/* <CardActions disableSpacing></CardActions> */}
         </Card>
       ))}
       {renderDeleteVacineModal()}

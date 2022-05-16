@@ -1,5 +1,13 @@
 import React, { ReactElement, useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  MenuItem,
+  Modal,
+  Select,
+  Typography,
+} from "@mui/material";
 import { BsPrinter } from "react-icons/bs";
 import "../../../styles/DeclareForm.css";
 import "../../../styles/style.css";
@@ -16,6 +24,7 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import ProprietarieData from "../components/ProprietarieData";
+import AssignmentIcon from "@mui/icons-material/Assignment";
 
 const DeclareForm = (): ReactElement => {
   function imprimir() {
@@ -148,9 +157,81 @@ const DeclareForm = (): ReactElement => {
       });
   }, []);
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const submitForm = (user: PerfilModelUser) => {};
   return (
     <>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 530,
+            height: 240,
+            bgcolor: "white",
+            borderRadius: "10px",
+            boxShadow: 11,
+            p: 4,
+          }}
+        >
+          <div id="bloco-modal-GerarRelatório">
+            <Grid sx={{ margin: "2%  2%" }}>
+              <span id="txt-GerarRelatorio">
+                Tem certeza que deseja Gerar o Relatório?
+              </span>
+              <p id="txt-p-btnGerarRelatório">
+                Após gerar o relatório você só poderar gerar novamente no mês
+                seguinte!
+              </p>
+            </Grid>
+
+            <Grid
+              sx={{
+                display: "flex",
+                justifyContent: "end",
+                marginTop: 6,
+                marginRight: 2,
+              }}
+            >
+              <Grid
+                sx={{
+                  margin: " 3% 6%",
+                  borderRadius: "5px",
+                  backgroundColor: "rgba(0, 128, 0, 0.795)",
+                }}
+              >
+                <Button style={{ color: "var(--cor001)" }}>
+                  Gerar Relatório
+                </Button>{" "}
+              </Grid>
+              <Grid
+                sx={{
+                  margin: " 3% -5%",
+                  borderRadius: "5px",
+                  backgroundColor: "rgba(255, 0, 0, 0.849)",
+                }}
+              >
+                <Button
+                  onClick={handleClose}
+                  style={{ color: "var(--cor001)" }}
+                >
+                  cancelar
+                </Button>{" "}
+              </Grid>
+            </Grid>
+          </div>
+        </Box>
+      </Modal>
       <Box
         sx={{
           flexGrow: 1,
@@ -165,6 +246,11 @@ const DeclareForm = (): ReactElement => {
               <abbr title="Imprimir Declare do Rebanho">
                 <Fab id="printIcon" onClick={imprimir}>
                   <BsPrinter size={20} />
+                </Fab>
+              </abbr>
+              <abbr title="Gerar Relatório do Animal">
+                <Fab id="reportIcon" onClick={handleOpen}>
+                  <AssignmentIcon style={{ color: "var(--cor001" }} />
                 </Fab>
               </abbr>
             </span>

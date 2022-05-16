@@ -182,12 +182,18 @@ const RegisterPage = (): ReactElement => {
                       )}
                     </div>
                   </Grid>
-                  <Grid sx={{ marginTop: -5.8 }}>
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginTop: -7.8,
+                    }}
+                  >
                     <Button
-                      sx={{ width: "300px" }}
                       type="submit"
                       className="register_submit"
                       variant="contained"
+                      id="btnRegistrar"
                     >
                       Cadastrar-se
                     </Button>
