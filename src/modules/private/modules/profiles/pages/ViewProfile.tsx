@@ -365,20 +365,16 @@ const ViewProfilePage = (): ReactElement => {
                     
                    
                     </div>
-                    {show && (
-                      <Button variant="contained" color="success" type="submit">
-                        Salvar
-                      </Button>
-                    )} 
+                  
      
-                    <Button
+                    {/* <Button
                       variant="contained"
                       color="success"
                       // onClick={salvarDadosAnimal}
                       type="submit"
                     >
                       Atualizar
-                    </Button>
+                    </Button> */}
                   </form>
                   
                 )}
