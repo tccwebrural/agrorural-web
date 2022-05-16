@@ -66,14 +66,14 @@ const ButtonReportDeclare = (): ReactElement => {
   const [cattlesCattegory, setCattlesCattegory] =
     useState<ReportCattleCategory>({
       bezerros: {
-        macho: 100,
-        femea: FEMALE,
+        macho: totalBezerrosM,
+        femea: totalBezerrosF,
       },
-      desmamados: { macho: MALE, femea: FEMALE },
-      garrotes: { macho: MALE, femea: FEMALE },
-      novilhos: { macho: MALE, femea: FEMALE },
-      outros: { macho: MALE, femea: FEMALE },
-      total: { macho: MALE, femea: FEMALE },
+      desmamados: { macho: totalDesmamadosM, femea: totalDesmamadosF },
+      garrotes: { macho: totalGarrotesM, femea: totalGarrotesF },
+      novilhos: { macho: totalNovilhosF, femea: totalNovilhosF },
+      outros: { macho: totalAcimaDe36M, femea: totalAcimaDe36F },
+      total: { macho: totalDeAnimaisM, femea: totalDeAnimaisF },
     });
 
   const [initialValues, setInitialValues] = useState<ReportModel>({
@@ -215,7 +215,7 @@ const ButtonReportDeclare = (): ReactElement => {
       <Formik onSubmit={submitSave} initialValues={initialValues}>
         {(formik) => (
           <form id="Block-EditAnimalData" onSubmit={formik.handleSubmit}>
-            <Button type="submit">SALVAR ESSA PORRA</Button>
+            <Button type="submit">SALVAR</Button>
           </form>
         )}
       </Formik>

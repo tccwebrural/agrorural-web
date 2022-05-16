@@ -361,19 +361,11 @@ const ViewProfilePage = (): ReactElement => {
 
                       <div></div>
                     </div>
-                    {/* {show && (
+                    {show && (
                       <Button variant="contained" color="success" type="submit">
                         Salvar
                       </Button>
-                    )} */}
-                    <Button
-                      variant="contained"
-                      color="success"
-                      // onClick={salvarDadosAnimal}
-                      type="submit"
-                    >
-                      Atualizar
-                    </Button>
+                    )}
                   </form>
                 )}
               </Formik>
