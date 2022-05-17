@@ -43,15 +43,15 @@ export const getTotaCattle = () => {
       let tempTotalAcimaDe36F = 0;
       let totalMale = 10;
       let totalFemale = 10;
-      return cattles
-        .map((i) => {
-          const cattle = {
-            ...cattles[index],
-            age: getMonthFromDate(cattles[index].birthday),
-          };
+      return cattles;
+      // .map((i) => {
+      //   const cattle = {
+      //     ...cattles[index],
+      //     age: getMonthFromDate(cattles[index].birthday),
+      //   };
 
-        )
-        .reduce((cattles) => cattles);
+      // )
+      // .reduce((cattles) => cattles);
     }
     console.log("CATTLES :" + cattles);
   });
