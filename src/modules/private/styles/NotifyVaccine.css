@@ -4,43 +4,65 @@
 }
 
 #Bloco-Geral {
-  background-color: var(--cor0101);
+  background-color: var(--cor001);
+  padding-bottom: 4%;
   border-radius: 10px;
   margin: 3%;
-  box-shadow: 0px 2px 0px 2px rgb(236, 236, 236);
+  box-shadow: 0px 0px 6px 2px var(--cor111);
 }
-
+#Block-Txt-Notify{
+  background: var(--cor001);
+  padding: 0px 10px 0px 0px;
+  font-size: 23px;
+  color: var(--cor005);
+  background-color: var(--cor001);
+}
 #Bloco-Notificacoes {
   width: 57%;
   margin: auto;
+  height: 105px;
   display: flex;
-  box-shadow: 2px 2px 2px 2px rgb(236, 236, 236);
+  box-shadow: 2px 2px 4px 2px var(--cor111);
 }
 
 #color {
-  background-color: #33658a;
-  width: 40px;
+  background-color: var(--cor005);
+  width: 35px;
+  height: 105px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 #color2 {
-  background-color: rgb(221, 3, 3);
-  width: 40px;
+  background-color: var(--cor009);
+  width: 35px;
+  height: 105px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
 #text-notify-title {
   display: flex;
   justify-content: flex-start;
   margin: 0% 2%;
-  color: #1a2b38;
+  color: var(--cor005);
 }
-
+#text-notify-title-Red{
+  display: flex;
+  justify-content: flex-start;
+  margin: 0% 2%;
+  color: var(--cor009);
+}
 #text-notify {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 2%;
+  margin: 2% 0% -2% 2%;
 }
-
+.Txt-NotifyVaccine{
+  color: var(--cor008);
+  font-weight: bold;
+}
 #text-notify-dados {
   display: flex;
   flex-direction: row;
@@ -53,5 +75,6 @@
   flex-direction: column;
   padding: 1%;
   align-items: flex-start;
-  color: #173f5eb4;
+  color: var(--cor003);
+
 }

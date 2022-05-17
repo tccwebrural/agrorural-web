@@ -4,7 +4,7 @@
   margin: auto;
   margin-top: 2%;
   border-radius: 8px;
-  box-shadow: 2px 2px 4px 2px var(--cor111);
+  box-shadow: 0px 0px 6px 2px var(--cor111);
 }
 #Block-Txt-Profile{
   background: var(--cor001);
@@ -20,12 +20,12 @@
 }
 
 #SmallBlock-Profile {
-  height: 495px;
+  height: 487px;
   width: 450px;
   border: none;
   box-shadow: 0px 1px 5px 0px var(--cor033);
   border-radius: 8px;
-  padding: 3%;
+  padding: 3% 3% 7% 3%;
   background-color: var(--cor001);
   position: relative;
   box-sizing: border-box;
@@ -130,4 +130,5 @@
   width: 30%;
   border-radius: 50px;
   margin-left: 36%;
+  margin-bottom: 2%;
 }

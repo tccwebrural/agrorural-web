@@ -4,7 +4,7 @@
     margin: auto;
     margin-top: 5%;
     border-radius: 8px;
-    box-shadow: 2px 2px 4px 2px var(--cor111);
+    box-shadow: 0px 0px 6px 2px var(--cor111);
     padding: 1px;
     padding-bottom: 3%;
 }
@@ -33,20 +33,20 @@
   margin-left: -220px;
 }
 #Block-AnimalData {
-  width: 1025px;
+  width: 1035px;
   height: 400px;
   margin: auto;
   padding: 1%;
 }
 #Block-CalfImage-CadastroVacina{
-  margin-top: -10.5%;
+  margin-top: -10%;
   margin-left: 5%;
 }
 #Block-CowImage-CadastroVacina {
   display: flex;
   justify-content: end;
   margin-right: 49%;
-  margin-top: 7.5%;
+  margin-top: 8%;
 }
 #Btns-Add-Cancel-CadastroVacina {
   display: flex;

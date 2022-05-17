@@ -5,7 +5,7 @@
   margin: auto;
   margin-top: 3%;
   border-radius: 10px;
-  box-shadow: 2px 2px 4px 2px var(--cor111);
+  box-shadow: 0px 0px 6px 2px var(--cor111);
 }
 
 #Block-Txt-Line-List {
@@ -45,7 +45,7 @@
 #DeleteIcon-txt-line{
   background-color: var(--cor001);
   position: relative;
-  left: -145px;
+  left: -149px;
 }
 #AddIcon {
   background-color: var(--cor001);

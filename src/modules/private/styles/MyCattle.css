@@ -4,7 +4,7 @@
   max-height: auto;
   margin: 5% 3%;
   border-radius: 8px;
-  box-shadow: 2px 2px 4px 2px var(--cor111);
+  box-shadow: 0px 0px 6px 2px var(--cor111);
   background-color: var(--cor001);
 }
 
@@ -79,12 +79,12 @@ abbr {
 #button-myCatlle {
   display: flex;
   justify-content: flex-end;
-  margin: 1% 3%;
+  margin: -20% 5% 0% 0%;
 }
 .imgGados {
   position: absolute;
 }
-.imgGados img {
+.imgGados{
   width: 300px;
   position: relative;
   top: 350px;
@@ -139,4 +139,11 @@ abbr {
   display: flex;
   justify-content: center;
   margin-top: 7%;
+}
+#imgVacaLeiteira-MYCATTLE{
+  width: 250px;
+  position: relative;
+  top: -150px;
+  left: 55%;
+  
 }

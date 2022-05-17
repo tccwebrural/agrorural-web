@@ -124,9 +124,27 @@ const UpdateCattle = (): ReactElement => {
                     "& .MuiTextField-root": { m: 1, width: "25ch" },
                   }}
                 >
-                  <FormControl sx={{ m: 1, minWidth: 150 }}>
-                    <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
+                  <TextField
+                    style={{ width: 205,margin:"0.4%" }}
+                    label="Nome"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...getControls(formik, "name")}
+                  />
 
+                  <TextField
+                    style={{ width: 118,margin:"0.4%" }}
+                    label="Identificador"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...getControls(formik, "identifier")}
+                  />
+
+                  <FormControl sx={{ m: 1, minWidth: 110,margin:"0.4%" }}>
+                    <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
                     <Select
                       {...getControls(formik, "sex")}
                       label="Grouping"
@@ -137,25 +155,7 @@ const UpdateCattle = (): ReactElement => {
                     </Select>
                   </FormControl>
                   <TextField
-                    style={{ width: 218 }}
-                    label="Identificador"
-                    type="number"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    {...getControls(formik, "identifier")}
-                  />
-
-                  <TextField
-                    style={{ width: 295 }}
-                    label="Nome"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    {...getControls(formik, "name")}
-                  />
-                  <TextField
-                    style={{ width: 238 }}
+                    style={{ width: 88,margin:"0.4%" }}
                     label="Peso"
                     {...getControls(formik, "weigth")}
                     InputLabelProps={{
@@ -163,8 +163,18 @@ const UpdateCattle = (): ReactElement => {
                     }}
                     type="number"
                   />
+                   <TextField
+                    // disabled
+                    label="Quantidade de cria"
+                    type="number"
+                    {...getControls(formik, "qtyChildren")}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    style={{ width:130,margin:" 0.4%" }}
+                  />
                   <TextField
-                    style={{ width: 310 }}
+                    style={{ width: 140,margin:" 0.4%" }}
                     label="Data de Nascimento"
                     type="date"
                     {...getControls(formik, "birthday")}
@@ -177,7 +187,7 @@ const UpdateCattle = (): ReactElement => {
                     // }}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 299 }}>
+                  <FormControl sx={{ m: 1, minWidth: 140,margin:" 0.4%" }}>
                     <InputLabel htmlFor="type">Tipo</InputLabel>
                     <Select
                       {...getControls(formik, "type")}
@@ -188,17 +198,6 @@ const UpdateCattle = (): ReactElement => {
                       <MenuItem value={2}>Gado Leitero</MenuItem>
                     </Select>
                   </FormControl>
-
-                  <TextField
-                    // disabled
-                    label="Quantidade de cria"
-                    type="number"
-                    {...getControls(formik, "qtyChildren")}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    style={{ width: 310 }}
-                  />
 
                   <div id="Block-CowImage-EditAnimalData">
                     <img

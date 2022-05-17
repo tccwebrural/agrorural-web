@@ -154,8 +154,9 @@ const VaccineCardView = (): ReactElement => {
               onClick={() => openDeleteVacineModal(vacine)}
               aria-label="add to favorites"
               style={{ backgroundColor: "var(--cor009)",width:30,height:30}}
-            >
+            ><abbr title="Deletar vacina">
               <DeleteIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
+            </abbr>
             </IconButton>
 
             <IconButton
@@ -164,7 +165,9 @@ const VaccineCardView = (): ReactElement => {
               to={`/private/cattle/${id}/vacine/${vacine.id}/edit`}
               style={{ backgroundColor: "var(--cor007)",width:30,height:30,margin:2}}
             >
+              <abbr title="Editar vacina">
               <EditIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
+              </abbr>
             </IconButton>
 
             <IconButton
@@ -173,7 +176,9 @@ const VaccineCardView = (): ReactElement => {
               to={`/private/cattle/${id}/vaccine/${vacine.id}/view`}
               style={{ backgroundColor: "var(--cor006)",width:30,height:30}}
             >
+              <abbr title="Visualizar dados da vacina">
               <VisibilityIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
+              </abbr>
             </IconButton>
           </CardActions>
         </Card>

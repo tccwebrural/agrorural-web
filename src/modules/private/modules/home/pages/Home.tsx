@@ -94,7 +94,7 @@ const HomePage = (): ReactElement => {
       <main>
         <div id="MainBlock-HomePrivate">
           <div id="blocoTitulo-criacao-home">
-            <h2 id="blocoTituloTxt-criacao-home">Meu Relatorio</h2>
+            <h2 id="blocoTituloTxt-criacao-home">Meu Relatório</h2>
             <span id="blocoTituloLine-vacina-home">
               <abbr title="Imprimir">
                 <Fab id="icone-imprimir-Home" onClick={imprimir}>
