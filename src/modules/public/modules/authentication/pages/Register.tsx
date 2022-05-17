@@ -132,9 +132,9 @@ const RegisterPage = (): ReactElement => {
                       type="email"
                     />
                   </Grid>
-                  <Grid>
+                  <Grid sx={{margin: "12% 0%", }}>
                     <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
+                      sx={{ width: "300px", margin: "-11% 0%" }}
                       label="Senha"
                       type={show ? "text" : "password"}
                       {...getControls(formRegisterUser, "password")}
@@ -157,7 +157,7 @@ const RegisterPage = (): ReactElement => {
                       )}
                     </div>
                   </Grid>
-                  <Grid>
+                  <Grid >
                     <TextField
                       sx={{ width: "300px", margin: "-11% 0%" }}
                       label="Confirmar senha"
@@ -190,6 +190,7 @@ const RegisterPage = (): ReactElement => {
                     }}
                   >
                     <Button
+                      style={{ margin: "1% 0%"}}
                       type="submit"
                       className="register_submit"
                       variant="contained"
