@@ -35,6 +35,9 @@ import ModalEditarPerfil from "../components/ModalEditarPerfil";
 import { updateProfile } from "firebase/auth";
 import ButtonEditProfile from "../components/ButtonEditProfile";
 import { EditProfileValidatorSchema } from "../validators/EditProfileValidatorSschema";
+import { FarmModel } from "modules/private/models/FarmModel";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+import { trackPromise } from "react-promise-tracker";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -60,26 +63,27 @@ const ViewProfilePage = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
   const navigate = useNavigate();
-  const { id } = useParams();
 
-  console.log(id);
   useEffect(() => {
-    auth.getUser().then(async (user?: UserModel) => {
-      if (user) {
-        const farmValues = await getFarmValues();
-        farmValues?.name;
+    trackPromise(
+      auth.getUser().then(async (user?: UserModel) => {
+        if (user) {
+          const farmValues = await getFarmValues();
+          farmValues?.name;
 
-        if (farmValues) {
-          user.farmName = farmValues?.name;
+          if (farmValues) {
+            user.farmName = farmValues?.name;
+          }
+          toast.success("Perfil carregado!");
+          setInitialValues(user);
+        } else {
+          //TODO: Volta para listagem
+          toast.error("Erro ao carregar  credenciais");
         }
-        toast.success("Perfil carregado!");
-        setInitialValues(user);
-      } else {
-        //TODO: Volta para listagem
-        toast.error("Erro ao carregar  credenciais");
-      }
-      loadingHelper.stopLoading();
-    });
+        loadingHelper.stopLoading();
+      }),
+      GLOBAL_LOADING_KEY
+    );
   }, []);
 
   // ESCOPO PARA IMAGENS
@@ -88,31 +92,48 @@ const ViewProfilePage = (): ReactElement => {
 
   const [show, setShow] = useState(false);
 
-  console.log();
-
+  const farmHelp = FarmHelper();
   console.log(auth.updateUserId(initialValues));
   const submitForm = async (user: PerfilModelUser) => {
     const userId = await auth.getUser();
 
-    auth
-      .updateUserId(user)
-      .then(() =>
-        //toast sucess
-        {
-          navigate("/private/cattles");
-          // navigate(`private/cattle/${id}/Vaccine`);
-        }
-      )
-      .catch((err: any) => {
-        //TODO: Mensagem de erro
-        //toast erro
-        console.error(err);
-        toast.error(getFireError(err));
-      });
+    trackPromise(
+      auth
+        .updateUserId(user)
+        .then(() =>
+          //toast sucess
+          {
+            navigate("/private/cattles");
+            // navigate(`private/cattle/${id}/Vaccine`);
+          }
+        )
+        .catch((err: any) => {
+          //TODO: Mensagem de erro
+          //toast erro
+          toast.error(getFireError(err));
+        }),
+      GLOBAL_LOADING_KEY
+    );
+
+    // await farmHelp
+    //   .updateFarm(user, farm)
+    //   .then(() =>
+    //     //toast sucess
+    //     {
+    //       navigate("/private/cattles");
+    //       // navigate(`private/cattle/${id}/Vaccine`);
+    //     }
+    //   )
+    //   .catch((err: any) => {
+    //     //TODO: Mensagem de erro
+    //     //toast erro
+    //     console.error(err);
+    //     toast.error(getFireError(err));
+    //   });
 
     // vacine.id = id;
   };
-  console.log("SUBIT= " + submitForm);
+  console.log("SUBIT= " + initialValues);
   // const submitForm = () => {};
   /** modalDesativar */
   const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
@@ -358,9 +379,12 @@ const ViewProfilePage = (): ReactElement => {
                         {...getControls(formik, "farmName")}
                         disabled={isDisabled}
                       />
-                    {show && <Button id="btn-SaveProfile" type="submit">Salvar</Button>}
-                      <div>
-                      </div>
+                      {show && (
+                        <Button id="btn-SaveProfile" type="submit">
+                          Salvar
+                        </Button>
+                      )}
+                      <div></div>
                     </div>
                     {/* <Button
                       variant="contained"
@@ -371,7 +395,6 @@ const ViewProfilePage = (): ReactElement => {
                       Atualizar
                     </Button> */}
                   </form>
-                  
                 )}
               </Formik>
             </div>

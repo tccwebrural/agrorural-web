@@ -66,20 +66,26 @@ const ButtonReportDeclare = (): ReactElement => {
   const [cattlesCattegory, setCattlesCattegory] =
     useState<ReportCattleCategory>({
       bezerros: {
-        macho: totalBezerrosM,
-        femea: totalBezerrosF,
+        macho: 1,
+        femea: 10,
       },
-      desmamados: { macho: totalDesmamadosM, femea: totalDesmamadosF },
-      garrotes: { macho: totalGarrotesM, femea: totalGarrotesF },
-      novilhos: { macho: totalNovilhosF, femea: totalNovilhosF },
-      outros: { macho: totalAcimaDe36M, femea: totalAcimaDe36F },
-      total: { macho: totalDeAnimaisM, femea: totalDeAnimaisF },
+      desmamados: { macho: 10, femea: 0 },
+      garrotes: { macho: 10, femea: 10 },
+      novilhos: { macho: 10, femea: 10 },
+      outros: { macho: 10, femea: 10 },
+      total: { macho: 10, femea: 10 },
     });
 
   const [initialValues, setInitialValues] = useState<ReportModel>({
     rebanhoAtual: cattlesCattegory,
     rebanhoComCausas: cattlesCattegory,
   });
+  var total = [0, 1, 2, 3].reduce(
+    (acumulador, valorAtual) => acumulador + valorAtual,
+    0
+  );
+
+  console.log("VALOR TOTAL " + total);
 
   const getSexFromCattle = () => {
     const getMonthFromDate = (date: string) => {
@@ -116,37 +122,89 @@ const ButtonReportDeclare = (): ReactElement => {
           let tempTotalNovilhosF = 0;
           let tempTotalAcimaDe36F = 0;
 
-          for (let index = 0; index < cattles.length; index++) {
-            const cattle = {
-              ...cattles[index],
-              age: getMonthFromDate(cattles[index].birthday),
-            };
+          // for (let index = 0; index < cattles.length; index++) {
+          //   const cattle = {
+          //     ...cattles[index],
+          //     age: getMonthFromDate(cattles[index].birthday),
+          //   };
 
-            if (cattle.sex === 1) {
-              if (cattle.age >= 0 && cattle.age <= 6) {
-                tempTotalBezerrosM++;
-              } else if (cattle.age > 6 && cattle.age <= 12) {
-                tempTotalDesmamadosM++;
-              } else if (cattle.age > 12 && cattle.age <= 24) {
-                tempTotalGarrotesM++;
-              } else if (cattle.age > 24 && cattle.age <= 36) {
-                tempTotalNovilhosM++;
+          //   if (cattle.sex === 1) {
+          //     if (cattle.age >= 0 && cattle.age <= 6) {
+          //       tempTotalBezerrosM++;
+          //     } else if (cattle.age > 6 && cattle.age <= 12) {
+          //       tempTotalDesmamadosM++;
+          //     } else if (cattle.age > 12 && cattle.age <= 24) {
+          //       tempTotalGarrotesM++;
+          //     } else if (cattle.age > 24 && cattle.age <= 36) {
+          //       tempTotalNovilhosM++;
+          //     } else {
+          //       tempTotalAcimaDe36M++;
+          //     }
+          //   } else {
+          //     if (cattle.age >= 0 && cattle.age <= 6) {
+          //       tempTotalBezerrosF++;
+          //     } else if (cattle.age > 6 && cattle.age <= 12) {
+          //       tempTotalDesmamadosF++;
+          //     } else if (cattle.age > 12 && cattle.age <= 24) {
+          //       tempTotalGarrotesF++;
+          //     } else if (cattle.age > 24 && cattle.age <= 36) {
+          //       tempTotalNovilhosF++;
+          //     } else {
+          //       tempTotalAcimaDe36F++;
+          //     }
+          //   }
+          // }
+
+          for (let index = 0; index < cattles.length; index++) {
+            // const cattle = {
+            //   ...cattles[index],
+            //   age: getMonthFromDate(cattles[index].birthday),
+            // };
+            let tempTotalBezerrosM = 0;
+            let tempTotalDesmamadosM = 0;
+            let tempTotalGarrotesM = 0;
+            let tempTotalNovilhosM = 0;
+            let tempTotalAcimaDe36M = 0;
+
+            let tempTotalBezerrosF = 0;
+            let tempTotalDesmamadosF = 0;
+            let tempTotalGarrotesF = 0;
+            let tempTotalNovilhosF = 0;
+            let tempTotalAcimaDe36F = 0;
+            let totalMale = 10;
+            let totalFemale = 10;
+            return cattles.map((i) => {
+              const cattle = {
+                ...cattles[index],
+                age: getMonthFromDate(cattles[index].birthday),
+              };
+
+              if (cattle.sex === 1) {
+                if (cattle.age >= 0 && cattle.age <= 6) {
+                  tempTotalBezerrosM++;
+                } else if (cattle.age > 6 && cattle.age <= 12) {
+                  tempTotalDesmamadosM++;
+                } else if (cattle.age > 12 && cattle.age <= 24) {
+                  tempTotalGarrotesM++;
+                } else if (cattle.age > 24 && cattle.age <= 36) {
+                  tempTotalNovilhosM++;
+                } else {
+                  tempTotalAcimaDe36M++;
+                }
               } else {
-                tempTotalAcimaDe36M++;
+                if (cattle.age >= 0 && cattle.age <= 6) {
+                  tempTotalBezerrosF++;
+                } else if (cattle.age > 6 && cattle.age <= 12) {
+                  tempTotalDesmamadosF++;
+                } else if (cattle.age > 12 && cattle.age <= 24) {
+                  tempTotalGarrotesF++;
+                } else if (cattle.age > 24 && cattle.age <= 36) {
+                  tempTotalNovilhosF++;
+                } else {
+                  tempTotalAcimaDe36F++;
+                }
               }
-            } else {
-              if (cattle.age >= 0 && cattle.age <= 6) {
-                tempTotalBezerrosF++;
-              } else if (cattle.age > 6 && cattle.age <= 12) {
-                tempTotalDesmamadosF++;
-              } else if (cattle.age > 12 && cattle.age <= 24) {
-                tempTotalGarrotesF++;
-              } else if (cattle.age > 24 && cattle.age <= 36) {
-                tempTotalNovilhosF++;
-              } else {
-                tempTotalAcimaDe36F++;
-              }
-            }
+            });
           }
           setTotalBezerrosM(tempTotalBezerrosM);
           setTotalDesmamadosM(tempTotalDesmamadosM);
@@ -195,7 +253,8 @@ const ButtonReportDeclare = (): ReactElement => {
       .createReport(reports)
       .then(() => {
         navigate("/private/home");
-
+        let cancel = false;
+        if (cancel) return;
         setInitialValues(initialValues);
       })
       .catch((err) => {

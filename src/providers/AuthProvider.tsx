@@ -242,18 +242,18 @@ const UserAuthProvider = (): AuthContext => {
   const updateUserId = async (formData: PerfilModelUser) => {
     const user = await getUser();
     const userRef = doc(firestore, COLLECTION_USERS, user.id);
-    const userDoc = await getDoc(userRef);
-    await updateDoc(userRef, { ...formData });
+    // const userDoc = await getDoc(userRef);
+
+    await updateDoc(userRef, {
+      cpf: formData.cpf,
+      name: formData.name,
+      phone: formData.phone,
+    });
 
     // return updateDoc(userRef, { ...formData });
     // AAAA
-
-    // if (userRef) {
-    //   const userCollectionRef = collection(
-    //     firestore,
-    //     COLLECTION_USERS,
-    //     user.id
-    //   );
+    // if (userRef && user.id) {
+    //   const userCollectionRef = collection(firestore, COLLECTION_USERS);
 
     //   const userRef = await doc(firestore, userCollectionRef.path, user.id);
     //   return updateDoc(userRef, { ...formData });
