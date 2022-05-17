@@ -37,7 +37,6 @@ import Checkbox from "@mui/material/Checkbox";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 // import { ptBR } from "@mui/material/locale";
 
-
 const CattleListPage = (): ReactElement => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);

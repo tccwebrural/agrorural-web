@@ -1,3 +1,4 @@
+import { map } from "@firebase/util";
 import { useState } from "react";
 import { CattleModel } from "../../cattles/models/CattleModel";
 import { CattleHelper } from "./../../cattles/helpers/CattleHelper";
@@ -25,40 +26,33 @@ export const getTotaCattle = () => {
   const [cattlesState, setCattlesState] = useState<CattleModel[]>([]);
   getAllCattle.getAllCattles().then((cattles) => {
     for (let index = 0; index < cattles.length; index++) {
-      for (let index = 0; index < cattles.length; index++) {
-        const cattle = {
-          ...cattles[index],
-          age: getMonthFromDate(cattles[index].birthday),
-        };
+      // const cattle = {
+      //   ...cattles[index],
+      //   age: getMonthFromDate(cattles[index].birthday),
+      // };
+      let tempTotalBezerrosM = 0;
+      let tempTotalDesmamadosM = 0;
+      let tempTotalGarrotesM = 0;
+      let tempTotalNovilhosM = 0;
+      let tempTotalAcimaDe36M = 0;
 
-        // cattles.map((cattleI) => cattle.age).reduce();
+      let tempTotalBezerrosF = 0;
+      let tempTotalDesmamadosF = 0;
+      let tempTotalGarrotesF = 0;
+      let tempTotalNovilhosF = 0;
+      let tempTotalAcimaDe36F = 0;
+      let totalMale = 10;
+      let totalFemale = 10;
+      return cattles
+        .map((i) => {
+          const cattle = {
+            ...cattles[index],
+            age: getMonthFromDate(cattles[index].birthday),
+          };
 
-        // if (cattle.sex === 1) {
-        //   if (cattle.age >= 0 && cattle.age <= 6) {
-        //     tempTotalBezerrosM++;
-        //   } else if (cattle.age > 6 && cattle.age <= 12) {
-        //     tempTotalDesmamadosM++;
-        //   } else if (cattle.age > 12 && cattle.age <= 24) {
-        //     tempTotalGarrotesM++;
-        //   } else if (cattle.age > 24 && cattle.age <= 36) {
-        //     tempTotalNovilhosM++;
-        //   } else {
-        //     tempTotalAcimaDe36M++;
-        //   }
-        // } else {
-        //   if (cattle.age >= 0 && cattle.age <= 6) {
-        //     tempTotalBezerrosF++;
-        //   } else if (cattle.age > 6 && cattle.age <= 12) {
-        //     tempTotalDesmamadosF++;
-        //   } else if (cattle.age > 12 && cattle.age <= 24) {
-        //     tempTotalGarrotesF++;
-        //   } else if (cattle.age > 24 && cattle.age <= 36) {
-        //     tempTotalNovilhosF++;
-        //   } else {
-        //     tempTotalAcimaDe36F++;
-        //   }
-        // }
-      }
+        )
+        .reduce((cattles) => cattles);
     }
+    console.log("CATTLES :" + cattles);
   });
 };
