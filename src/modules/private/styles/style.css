@@ -24,7 +24,7 @@
   margin: auto;
   margin-top: 3%;
   border-radius: 10px;
-  box-shadow: 2px 2px 4px 2px var(--cor111);
+  box-shadow: 0px 0px 6px 2px var(--cor111);
 }
 
 .Block-Txt-Line {
@@ -40,7 +40,7 @@
   padding: 0px 10px 0px 0px;
   font-size: 23px;
   color: var(--cor005);
-  background-color: var(--cor0101);
+  background-color: var(--cor001);
 }
 
 .Block-Line {

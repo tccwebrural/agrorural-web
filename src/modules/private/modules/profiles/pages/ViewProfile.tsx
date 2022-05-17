@@ -360,13 +360,8 @@ const ViewProfilePage = (): ReactElement => {
                       />
                     {show && <Button id="btn-SaveProfile" type="submit">Salvar</Button>}
                       <div>
-
                       </div>
-                    
-                   
                     </div>
-                  
-     
                     {/* <Button
                       variant="contained"
                       color="success"
