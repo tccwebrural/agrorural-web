@@ -102,7 +102,7 @@ const ResetPwPage = (): ReactElement => {
                   type="email"
                   {...getControls(formik, "email")}
                   placeholder="E-mail cadastrado"
-                  style={{ width: "95%", marginTop: "10%" }}
+                  style={{ width: "95%", marginTop: "6%" }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -128,7 +128,7 @@ const ResetPwPage = (): ReactElement => {
               </Box>
             </div>
             <img
-              style={{ marginTop: "30%", width: "100%" }}
+              style={{ width: "100vw", position: "absolute", bottom: "0" }}
               src={footer}
               alt=""
             />
