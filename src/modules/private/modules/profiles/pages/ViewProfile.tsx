@@ -38,6 +38,7 @@ import { EditProfileValidatorSchema } from "../validators/EditProfileValidatorSs
 import { FarmModel } from "modules/private/models/FarmModel";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { trackPromise } from "react-promise-tracker";
+import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -66,18 +67,6 @@ const ViewProfilePage = (): ReactElement => {
   const [show, setShow] = useState(false);
 
   const farmHelp = FarmHelper();
-
-  const submitForm = async (formData: PerfilModelUser) => {
-    try {
-      await auth.updateUserId(formData);
-      // await farmHelp.updateFarmName(formData);
-      toast.success("Informações atualizadas com sucesso.");
-    } catch (err: any) {
-      console.error(err);
-      toast.error(getFireError(err));
-    }
-    // vacine.id = id;
-  };
   useEffect(() => {
     trackPromise(
       auth.getUser().then(async (user?: UserModel) => {
@@ -99,7 +88,23 @@ const ViewProfilePage = (): ReactElement => {
       GLOBAL_LOADING_KEY
     );
   }, []);
-  console.log("SUBIT= " + initialValues);
+
+  const submitForm = async (formData: PerfilModelUser) => {
+    try {
+      await auth.updateUserId(formData);
+
+      await farmHelp.updateFarmName(formData);
+      await auth.getUser();
+
+      toast.success("Informações atualizadas com sucesso.");
+    } catch (err: any) {
+      console.error(err);
+      toast.error(getFireError(err));
+    }
+    // vacine.id = id;
+  };
+  console.log(submitForm);
+
   // const submitForm = () => {};
   /** modalDesativar */
   const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
@@ -323,6 +328,7 @@ const ViewProfilePage = (): ReactElement => {
                         variant="standard"
                         className="txt-FieldsProfile"
                         disabled={isDisabled}
+                        // disabled={true}
                         {...getControls(formik, "cpf")}
                       />
                       <TextField
@@ -330,7 +336,7 @@ const ViewProfilePage = (): ReactElement => {
                         variant="standard"
                         className="txt-FieldsProfile"
                         {...getControls(formik, "email")}
-                        disabled={isDisabled}
+                        disabled={true}
                       />
                       <TextField
                         label="Telefone"
@@ -340,6 +346,9 @@ const ViewProfilePage = (): ReactElement => {
                         className="txt-FieldsProfile"
                         {...getControls(formik, "phone")}
                         disabled={isDisabled}
+                        InputProps={{
+                          inputComponent: PhoneMaskCustom as any,
+                        }}
                       />
                       <TextField
                         label="Nome da Fazenda"

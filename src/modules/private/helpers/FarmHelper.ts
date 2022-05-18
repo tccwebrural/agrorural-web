@@ -1,6 +1,6 @@
+import { COLLECTION_FARMS } from "./../../../constants";
 import { PerfilModelUser } from "modules/public/models/UserModel";
 import { firestore } from "configs/Firebase";
-import { COLLECTION_FARMS } from "../../../constants";
 import {
   collection,
   doc,
@@ -29,17 +29,41 @@ export const FarmHelper = () => {
       return { id: farmDoc.id, ...farmDoc.data() } as FarmModel;
     }
   };
+  // const user = await getUser();
+  // const userRef = doc(firestore, COLLECTION_USERS, user.id);
+  // // const userDoc = await getDoc(userRef);
 
+  // return updateDoc(userRef, {
+  //   cpf: formData.cpf,
+  //   name: formData.name,
+  //   phone: formData.phone,
+  //   // ...formData,
+  // });
   const updateFarmName = async (farm: PerfilModelUser) => {
-    const farmRef = await getFarmRef();
-    if (farmRef) {
-      // const farmDoc = await doc(farmRef);
-      // return { id: farmDoc.id, ...farmDoc.data() } as FarmModel;
-      const farmCollectionRef = collection(firestore, COLLECTION_FARMS);
+    const farmId = await getFarmRef();
 
-      const farmRef = await doc(firestore, farmCollectionRef.path);
-      return updateDoc(farmRef, { name: farm.name });
+    if (farmId?.id) {
+      const farmRef = doc(firestore, COLLECTION_FARMS, farmId.id);
+
+      return updateDoc(farmRef, { name: farm.farmName });
     }
+
+    // if (farmRefId) {
+    //   // const farmDoc = await doc(farmRef);
+    //   // return { id: farmDoc.id, ...farmDoc.data() } as FarmModel;
+    //   const farmCollectionRef = collection(
+    //     firestore,
+    //     COLLECTION_FARMS,
+    //     farmRefId.id
+    //   );
+
+    //   const farmRef = await doc(
+    //     firestore,
+    //     farmCollectionRef.path,
+    //     farmRefId.id
+    //   );
+    //   return updateDoc(farmRef, { name: farm.name });
   };
+
   return { getFarmRef, getFarmValues, updateFarmName };
 };
