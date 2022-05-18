@@ -43,7 +43,7 @@ type AuthContext = {
 
   logout: (redirectToHome?: boolean) => void;
   desactiverUser: () => Promise<void>;
-  activerUser: (email: string) => Promise<void>;
+  // activerUser: (email: string) => Promise<void>;
   // desactiverUser: (redirectToHome?: boolean) => Promise<void>;
 
   // sendPasswordReset: (email: string) => {};
@@ -232,35 +232,31 @@ const UserAuthProvider = (): AuthContext => {
     await updateDoc(userRef, { active: false });
     await logout();
   };
-  const activerUser = async (email: string) => {
-    await activerUser(email);
-    const user = await getUser();
-    const userRef = doc(firestore, COLLECTION_USERS, user.id);
 
-    await updateDoc(userRef, { active: true });
-  };
+  // ACTIVER USER ???
+  // const activerUser = async (email: string) => {
+  //   await activerUser(email);
+  //   const user = await getUser();
+  //   const userRef = doc(firestore, COLLECTION_USERS, user.id);
+
+  //   await updateDoc(userRef, { active: true });
+  // };
+
   const updateUserId = async (formData: PerfilModelUser) => {
+    // await updateUserId(formData);
+
     const user = await getUser();
     const userRef = doc(firestore, COLLECTION_USERS, user.id);
     // const userDoc = await getDoc(userRef);
 
-    await updateDoc(userRef, {
+    return updateDoc(userRef, {
       cpf: formData.cpf,
       name: formData.name,
       phone: formData.phone,
+      // ...formData,
     });
-
-    // return updateDoc(userRef, { ...formData });
-    // AAAA
-    // if (userRef && user.id) {
-    //   const userCollectionRef = collection(firestore, COLLECTION_USERS);
-
-    //   const userRef = await doc(firestore, userCollectionRef.path, user.id);
-    //   return updateDoc(userRef, { ...formData });
-    // }
-
-    // return userRef;
   };
+
   return {
     userState: user,
     getUser,
@@ -271,7 +267,6 @@ const UserAuthProvider = (): AuthContext => {
     desactiverUser,
     loadUserDataById,
     updateUserId,
-    activerUser,
   };
 };
 

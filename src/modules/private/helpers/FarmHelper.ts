@@ -25,24 +25,21 @@ export const FarmHelper = () => {
     const farmRef = await getFarmRef();
     if (farmRef) {
       const farmDoc = await getDoc(farmRef);
+
       return { id: farmDoc.id, ...farmDoc.data() } as FarmModel;
     }
   };
 
-  const updateFarm = async (farm: PerfilModelUser, farmId: FarmModel) => {
+  const updateFarmName = async (farm: PerfilModelUser) => {
     const farmRef = await getFarmRef();
     if (farmRef) {
       // const farmDoc = await doc(farmRef);
       // return { id: farmDoc.id, ...farmDoc.data() } as FarmModel;
-      const farmCollectionRef = collection(
-        firestore,
-        COLLECTION_FARMS,
-        farmId.id
-      );
+      const farmCollectionRef = collection(firestore, COLLECTION_FARMS);
 
       const farmRef = await doc(firestore, farmCollectionRef.path);
       return updateDoc(farmRef, { name: farm.name });
     }
   };
-  return { getFarmRef, getFarmValues, updateFarm };
+  return { getFarmRef, getFarmValues, updateFarmName };
 };

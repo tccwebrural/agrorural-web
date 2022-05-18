@@ -16,8 +16,7 @@ const EditProfileValidatorSchema = object({
   farmName: string().required(REQUIRED_FIELD),
   name: string().required(REQUIRED_FIELD),
   phone: string().required(REQUIRED_FIELD).matches(PHONE_REGEX, PHONE_INVALID),
-  // .max(11, PHONE_MIN_9_11)
-  // .min(11, PHONE_MIN_9_11),
+
   cpf: string().required(REQUIRED_FIELD).matches(CPF_REGEX, CPF_INVALID),
 });
 

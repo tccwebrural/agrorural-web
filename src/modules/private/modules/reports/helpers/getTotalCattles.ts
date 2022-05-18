@@ -51,7 +51,7 @@ export const getTotaCattle = () => {
       //   };
 
       // )
-      // .reduce((cattles) => cattles);
+      // .reduce((cattles) => cattle);s
     }
     console.log("CATTLES :" + cattles);
   });
