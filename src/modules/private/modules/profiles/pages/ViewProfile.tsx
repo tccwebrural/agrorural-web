@@ -9,10 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { ReactElement, useEffect, useState } from "react";
-import imgUser from "../../../../../assets/imgUser.png";
-import rodape from "../../../../../assets/rodape.png";
 import { BiMenu } from "react-icons/bi";
-import "../../../styles/ViewProfile.css";
 import { auth } from "configs/Firebase";
 import { ProviderAuth, useAuth } from "providers/AuthProvider";
 import {
@@ -30,7 +27,6 @@ import { getControls } from "utils/FormUtils";
 import { DocumentReference } from "firebase/firestore";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { AltRouteRounded } from "@mui/icons-material";
-
 import ModalEditarPerfil from "../components/ModalEditarPerfil";
 import { updateProfile } from "firebase/auth";
 import ButtonEditProfile from "../components/ButtonEditProfile";
@@ -39,6 +35,11 @@ import { FarmModel } from "modules/private/models/FarmModel";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { trackPromise } from "react-promise-tracker";
 import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
+
+import imgUser from "../../../../../assets/imgUser.png";
+import rodape from "../../../../../assets/rodape.png";
+
+import "../../../styles/ViewProfile.css";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -315,6 +316,7 @@ const ViewProfilePage = (): ReactElement => {
                     <span id="BlockNameProfile">
                       <TextField
                         id="nameProfile"
+                        variant="standard"
                         defaultValue={initialValues.name}
                         disabled={isDisabled}
                         {...getControls(formik, "name")}
@@ -369,9 +371,9 @@ const ViewProfilePage = (): ReactElement => {
               </Formik>
             </div>
           </div>
-          <img id="imgFooter-Profile" src={rodape} />
         </div>
       </Box>
+      <img id="imgFooter-Profile" src={rodape} />
     </>
   );
 };
