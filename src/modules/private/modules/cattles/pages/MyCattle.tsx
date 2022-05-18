@@ -206,15 +206,8 @@ const MyCattle = (): ReactElement => {
               </div>
 
               <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
-<<<<<<< HEAD
             
             
-=======
-            </div>
-            <div id="imgVacaLeiteira-MYCATTLE">
-              <img style={{ width: 280 }} src={vaca1} alt="Erro..." />
-            </div>
->>>>>>> aa9cc9a5e550e390326fdd20217616133852da43
             <div id="button-myCatlle">
               <Button
                 variant="contained"
