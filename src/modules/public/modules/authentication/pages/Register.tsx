@@ -96,6 +96,7 @@ const RegisterPage = (): ReactElement => {
                       type="text"
                     />
                   </Grid>
+
                   <Grid>
                     <TextField
                       sx={{ width: "300px", margin: "1% 0%" }}
@@ -104,6 +105,7 @@ const RegisterPage = (): ReactElement => {
                       type="text"
                     />
                   </Grid>
+
                   <Grid>
                     <TextField
                       sx={{ width: "300px", margin: "1% 0%" }}
@@ -134,9 +136,10 @@ const RegisterPage = (): ReactElement => {
                       type="email"
                     />
                   </Grid>
-                  <Grid sx={{ margin: "12% 0%" }}>
+
+                  <Grid sx={{ position: "relative" }}>
                     <TextField
-                      sx={{ width: "300px", margin: "-11% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Senha"
                       type={show ? "text" : "password"}
                       {...getControls(formRegisterUser, "password")}
@@ -159,9 +162,10 @@ const RegisterPage = (): ReactElement => {
                       )}
                     </div>
                   </Grid>
-                  <Grid>
+
+                  <Grid sx={{ position: "relative" }}>
                     <TextField
-                      sx={{ width: "300px", margin: "-11% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Confirmar senha"
                       type={showConfirmPw ? "text" : "password"}
                       {...getControls(formRegisterUser, "passwordConfirm")}
@@ -184,15 +188,15 @@ const RegisterPage = (): ReactElement => {
                       )}
                     </div>
                   </Grid>
+
                   <Grid
                     sx={{
                       display: "flex",
                       justifyContent: "center",
-                      marginTop: -7.8,
+                      marginTop: -4,
                     }}
                   >
                     <Button
-                      style={{ margin: "1% 0%" }}
                       type="submit"
                       className="register_submit"
                       variant="contained"
@@ -201,7 +205,7 @@ const RegisterPage = (): ReactElement => {
                       Cadastrar-se
                     </Button>
                   </Grid>
-                  <Grid sx={{ textAlign: "center", margin: " 2% 0%" }}>
+                  <Grid sx={{ textAlign: "center", margin: "5% 0%" }}>
                     <span>
                       Já possui Cadastro ? <a href="sign-in">Entrar</a>
                     </span>

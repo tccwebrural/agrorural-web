@@ -89,7 +89,7 @@ const LoginPage = (): ReactElement => {
                     {...getControls(formLoginUser, "email")}
                   />
                 </Grid>
-                <Grid sx={{ margin: "4% 0%", textAlign: "center" }}>
+                <Grid sx={{ position: "relative" }}>
                   <TextField
                     sx={{ width: "300px" }}
                     type={show ? "text" : "password"}
