@@ -84,7 +84,7 @@ const CreateCattleFormPage = (): ReactElement => {
 
   return (
     <>
-      <div className="MainBlock">
+      <div id="MainBlock-CreateCattleForm">
         <div className="Block-Txt-Line">
           <h2 className="Block-Line">
             {/* <span className="Block-Txt">Minha Criação &gt; Cadastrar Gado</span> */}
@@ -95,7 +95,28 @@ const CreateCattleFormPage = (): ReactElement => {
         <form onSubmit={formCattle.handleSubmit}>
           <Box sx={{ "& .MuiTextField-root": { m: 1, width: "33ch" } }}>
             <Grid id="CattleForm">
-              <FormControl sx={{ m: 1, minWidth: 150 }}>
+              <TextField
+                label="Nome do Animal "
+                type="text"
+                {...getControls(formCattle, "name")}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={{ width: 310 }}
+              />
+              <TextField
+                // disabled
+                label="Identificador"
+                type="number"
+                // name="identifier"
+                // inputProps={{ min: 1 }}
+                {...getControls(formCattle, "identifier")}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                style={{ width: 219 }}
+              />
+              <FormControl sx={{ m: 1, minWidth: 250 }}>
                 <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
                 <Select
                   {...getControls(formCattle, "sex")}
@@ -107,38 +128,18 @@ const CreateCattleFormPage = (): ReactElement => {
                 </Select>
               </FormControl>
               <TextField
-                // disabled
-                label="Identificador"
-                type="number"
-                // name="identifier"
-                // inputProps={{ min: 1 }}
-                {...getControls(formCattle, "identifier")}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                style={{ width: 218 }}
-              />
-              <TextField
-                label="Nome do Animal "
-                type="text"
-                {...getControls(formCattle, "name")}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                style={{ width: 295 }}
-              />
-              <TextField
                 label="Peso Aproximadamente em Kg"
                 type="number"
                 {...getControls(formCattle, "weigth")}
                 InputLabelProps={{
                   shrink: true,
                 }}
+                style={{ width: 200, margin: "0.6%" }}
               />
               <TextField
                 label="Data de Nascimento"
                 type="date"
-                sx={{ m: 1, minWidth: 335 }}
+                sx={{ m: 1, minWidth: 340 }}
                 inputProps={{
                   min: "2000-01-01",
                   // max: "2022-05-06",
@@ -150,7 +151,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 // name="birthday"
                 {...getControls(formCattle, "birthday")}
               />
-              <FormControl sx={{ m: 1, minWidth: 330 }}>
+              <FormControl sx={{ m: 1, minWidth: 341 }}>
                 <InputLabel htmlFor="type">Tipo</InputLabel>
                 <Select
                   {...getControls(formCattle, "type")}
@@ -173,19 +174,18 @@ const CreateCattleFormPage = (): ReactElement => {
                 }}
                 style={{ width: 310 }}
               />
-
+              <div id="Block-CowImage-Form">
+                <img
+                  id="CowImage-Form"
+                  src={vaca_com_chifre_andando}
+                  alt="vaca"
+                />
+              </div>
+              <div id="Block-CalfImage-Form">
+                <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
+              </div>
               <Stack direction="row" spacing={2}>
                 <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
-                  <div id="Block-CowImage-Form">
-                    <img
-                      id="CowImage-Form"
-                      src={vaca_com_chifre_andando}
-                      alt="vaca"
-                    />
-                  </div>
-                  <div id="Block-CalfImage-Form">
-                    <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
-                  </div>
                   <div id="Btns-SaveCancel-Form">
                     <Button
                       sx={{ marginRight: 1 }}

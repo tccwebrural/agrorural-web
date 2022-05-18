@@ -39,17 +39,25 @@
   padding: 1%;
 }
 #Block-CalfImage-CadastroVacina{
-  margin-top: -10%;
-  margin-left: 5%;
+  display: flex;
+  justify-content: end;
+  position: absolute;
+  top:73.5%;
+  left: 20%;
 }
 #Block-CowImage-CadastroVacina {
   display: flex;
   justify-content: end;
-  margin-right: 49%;
-  margin-top: 8%;
+  position: absolute;
+  top: 58.5%;
+  left: 35%;
 }
 #Btns-Add-Cancel-CadastroVacina {
+  height: 60px;
   display: flex;
   justify-content: end;
-  margin-top: -7.5%;
+  align-items: flex-end;
+  position: absolute;
+  right: 12%;
+  top: 80%;
 }

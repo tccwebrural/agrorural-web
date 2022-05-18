@@ -109,11 +109,11 @@ const UpdateCattle = (): ReactElement => {
           initialValues={initialValues}
         >
           {(formik) => (
-            <div className="MainBlock">
+            <div id="MainBlock-UpdateCattle">
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
                   <span className="Block-Txt">
-                    Editar dados do Animal : {initialValues.name}
+                    Editar dados do Animal &gt; {initialValues.name}
                   </span>
                 </h2>
               </div>
@@ -125,7 +125,7 @@ const UpdateCattle = (): ReactElement => {
                   }}
                 >
                   <TextField
-                    style={{ width: 205,margin:"0.4%" }}
+                    style={{ width: 310,margin:"0.6%" }}
                     label="Nome"
                     InputLabelProps={{
                       shrink: true,
@@ -134,7 +134,7 @@ const UpdateCattle = (): ReactElement => {
                   />
 
                   <TextField
-                    style={{ width: 118,margin:"0.4%" }}
+                    style={{ width: 219,margin:"0.6%" }}
                     label="Identificador"
                     type="number"
                     InputLabelProps={{
@@ -143,7 +143,7 @@ const UpdateCattle = (): ReactElement => {
                     {...getControls(formik, "identifier")}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 110,margin:"0.4%" }}>
+                  <FormControl sx={{ m: 1, minWidth: 250,margin:"0.6%" }}>
                     <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
                     <Select
                       {...getControls(formik, "sex")}
@@ -155,7 +155,7 @@ const UpdateCattle = (): ReactElement => {
                     </Select>
                   </FormControl>
                   <TextField
-                    style={{ width: 88,margin:"0.4%" }}
+                    style={{ width: 210,margin:"0.6%" }}
                     label="Peso"
                     {...getControls(formik, "weigth")}
                     InputLabelProps={{
@@ -163,18 +163,9 @@ const UpdateCattle = (): ReactElement => {
                     }}
                     type="number"
                   />
-                   <TextField
-                    // disabled
-                    label="Quantidade de cria"
-                    type="number"
-                    {...getControls(formik, "qtyChildren")}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    style={{ width:130,margin:" 0.4%" }}
-                  />
+                  
                   <TextField
-                    style={{ width: 140,margin:" 0.4%" }}
+                    style={{ width: 340,margin:" 0.6%" }}
                     label="Data de Nascimento"
                     type="date"
                     {...getControls(formik, "birthday")}
@@ -187,7 +178,7 @@ const UpdateCattle = (): ReactElement => {
                     // }}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 140,margin:" 0.4%" }}>
+                  <FormControl sx={{ m: 1, minWidth: 341,margin:" 0.6%" }}>
                     <InputLabel htmlFor="type">Tipo</InputLabel>
                     <Select
                       {...getControls(formik, "type")}
@@ -198,7 +189,16 @@ const UpdateCattle = (): ReactElement => {
                       <MenuItem value={2}>Gado Leitero</MenuItem>
                     </Select>
                   </FormControl>
-
+                  <TextField
+                    // disabled
+                    label="Quantidade de cria"
+                    type="number"
+                    {...getControls(formik, "qtyChildren")}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    style={{ width:320,margin:" 0.6%" }}
+                  />
                   <div id="Block-CowImage-EditAnimalData">
                     <img
                       id="CowImage-EditAnimalData"

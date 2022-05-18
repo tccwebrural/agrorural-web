@@ -13,7 +13,6 @@ import {
 import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import vaca1 from "../../../../../assets/vaca1.png";
 import { CattleModel, CATTLE_SEXS } from "../models/CattleModel";
 import { Formik } from "formik";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
@@ -89,7 +88,7 @@ const MyCattle = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-myCatlle">
               <h2 id="blocoTituloTxt-criacao-myCatlle">
-                Dados do animal: {initialValues.name}{" "}
+                Dados do animal &gt; {initialValues.name}{" "}
               </h2>
               <span id="blocoTituloLine-criacao-myCatlle"></span>
             </div>
@@ -185,11 +184,9 @@ const MyCattle = (): ReactElement => {
             </Formik>
           </section>
 
-          <section>
-            <div>
               <div id="blocoTitulo-vacina-myCatlle">
                 <h2 id="blocoTituloTxt-vacina-myCatlle">
-                  Cartao de Vacina: {initialValues.name}
+                  Cartão de Vacina &gt; {initialValues.name}
                 </h2>
                 <span id="blocoTituloLine-vacina-myCatlle">
                   <Fab
@@ -207,10 +204,8 @@ const MyCattle = (): ReactElement => {
               </div>
 
               <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
-            </div>
-            <div id="imgVacaLeiteira-MYCATTLE">
-              <img style={{width:280}} src={vaca1} alt="Erro..." />
-            </div>
+            
+            
             <div id="button-myCatlle">
               <Button
                 variant="contained"
@@ -221,7 +216,6 @@ const MyCattle = (): ReactElement => {
                 Voltar
               </Button>
             </div>
-          </section>
         </div>
       </Container>
     </>

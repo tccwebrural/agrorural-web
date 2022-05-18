@@ -91,7 +91,7 @@ const CattleInfoGado = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
-                Informações do animal: {initialValues.name}
+                Informações do animal &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-infoGado">
                 <abbr title="Imprimir">
@@ -201,16 +201,14 @@ const CattleInfoGado = (): ReactElement => {
             <div>
               <div id="blocoTitulo-vacina-infoGado">
                 <h2 id="blocoTituloTxt-vacina-infoGado">
-                  Vacinas do animal: {initialValues.name}
+                  Vacinas do animal &gt; {initialValues.name}
                 </h2>
                 <span id="blocoTituloLine-vacina-infoGado"></span>
               </div>
 
               <div id="blocoVacinas">{VaccineCardInfoCattle()}</div>
             </div>
-            <div id="imgVaca-InfoGado">
-              <img src={vaca1} style={{width:280}} alt="Erro..." />
-            </div>
+           
             <div id="button">
               <Button
                 variant="contained"

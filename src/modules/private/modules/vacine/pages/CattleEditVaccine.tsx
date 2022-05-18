@@ -98,7 +98,7 @@ const CattleEditVaccine = (): ReactElement => {
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
                   <span id="Block-Txt-CattleEditVaccine">
-                    Editar Vacina : {initialValues.name}
+                    Editar Vacina &gt;  {initialValues.name}
                   </span>
                 </h2>
               </div>

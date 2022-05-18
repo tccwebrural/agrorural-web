@@ -75,7 +75,7 @@ const cattleViewVaccine = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-viewCatlle">
               <h2 id="blocoTituloTxt-criacao-viewCatlle">
-                Cartão do Gado : {initialValues.name}
+                Cartão do Gado &gt;  {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-viewCatlle">
                 <abbr title="Imprimir">
