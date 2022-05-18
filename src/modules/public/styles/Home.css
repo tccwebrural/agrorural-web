@@ -3,13 +3,12 @@
   padding: 0%;
 }
 
-h1 {
+.textTittle {
   color: #33658a;
   padding: 2% 0%;
   font-size: 30px;
 }
-
-h2 {
+.textSubTittle {
   color: #33658a;
   padding: 2% 6%;
   font-size: 20px;
@@ -176,28 +175,27 @@ section {
 }
 
 #imgfooter img {
-  width: 100%;
-  position: absolute;
+  width: 100vw;
 }
 
 #imgMeio {
   position: absolute;
-  top: 660px;
+  top: 600px;
 }
 
 #imgMeio img {
-  width: 100%;
+  width: 100vw;
 }
 
 #imgMeio1 {
   position: absolute;
-  top: 300px;
-  right: 0;
+  top: 430px;
+  right: 40px;
   z-index: -1;
 }
 
 #imgMeio1 img {
-  width: 100%;
+  width: 500px;
 }
 
 #imgMeio2 {

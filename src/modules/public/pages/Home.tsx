@@ -89,7 +89,7 @@ const HomePage = (): ReactElement => {
             </div>
 
             <div id="agroRural">
-              <h1>O que é o AGRO RURAL?</h1>
+              <h1 className="textTittle">O que é o AGRO RURAL?</h1>
 
               <span>
                 É um sistema que veio para trazer mais praticidade e agilidade
@@ -105,7 +105,7 @@ const HomePage = (): ReactElement => {
 
             <section id="projeto">
               <div id="ideia">
-                <h1>Como Surgiu a Ideia?</h1>
+                <h1 className="textTittle">Como Surgiu a Ideia?</h1>
 
                 <span>
                   A ideia surgiu no momento que foi estudada a dificuldade que
@@ -120,7 +120,7 @@ const HomePage = (): ReactElement => {
               </div>
             </section>
             <div id="objetivo">
-              <h1>Nosso objetivo</h1>
+              <h1 className="textTittle">Nosso objetivo</h1>
 
               <span>
                 O AgroRural tem como objetivo fazer com que o pecuarista consiga
@@ -170,7 +170,7 @@ const HomePage = (): ReactElement => {
 
           <section id="inst">
             <div id="instituicao">
-              <h1>Instituição</h1>
+              <h1 className="textTittle">Instituição</h1>
               <div className="conjunto">
                 <span id="textInstituicao">
                   Universidade Estácio de Sá (UNESA). Universidade privada
@@ -188,9 +188,9 @@ const HomePage = (): ReactElement => {
           </section>
 
           <section id="sobre_Nos">
-            <h1>Orientador</h1>
+            <h1 className="textTittle">Orientador</h1>
             <div id="orientador">
-              <h2>Alessandro Laranjeiras</h2>
+              <h2 className="textSubTittle">Alessandro Laranjeiras</h2>
 
               <div>
                 <img id="img-sobreOrientador" src={laranjeira} alt="Erro..." />
@@ -207,13 +207,13 @@ const HomePage = (): ReactElement => {
             </div>
 
             <div id="sobreNos">
-              <h1>Sobre nós</h1>
+              <h1 className="textTittle">Sobre nós</h1>
               <div id="sobre-nos">
                 <div className="sobre">
                   <div className="imgSobre">
                     <img className="img-sobre" src={beatriz} alt="Erro..." />
                   </div>
-                  <h2>Beatriz Ferrete</h2>
+                  <h2 className="textSubTittle">Beatriz Ferrete</h2>
                   <span>
                     Estudante de Sistemas de Informação pela instituição Estácio
                     de Sá. Responsável pela documentação do sistema AgroRural.
@@ -224,7 +224,7 @@ const HomePage = (): ReactElement => {
                   <div className="imgSobre">
                     <img className="img-sobre" src={george} alt="Erro..." />
                   </div>
-                  <h2>Georger Michael</h2>
+                  <h2 className="textSubTittle">Georger Michael</h2>
                   <span>
                     Estudante de Sistemas de Informação pela instituição Estácio
                     de Sá. Atua na área do back-end e banco de dados do sistema
@@ -236,7 +236,7 @@ const HomePage = (): ReactElement => {
                   <div className="imgSobre">
                     <img className="img-sobre" src={leticia} alt="Erro..." />
                   </div>
-                  <h2>Letícia Santana</h2>
+                  <h2 className="textSubTittle">Letícia Santana</h2>
                   <span>
                     Estudante de Sistemas de Informação pela instituição Estácio
                     de Sá. Atua na área do front-end do sistema AgroRural.
@@ -247,7 +247,7 @@ const HomePage = (): ReactElement => {
                   <div className="imgSobre">
                     <img className="img-sobre" src={pablo} alt="Erro..." />
                   </div>
-                  <h2>Pablo Redig</h2>
+                  <h2 className="textSubTittle">Pablo Redig</h2>
                   <span>
                     Estudante de Sistemas de Informação pela instituição Estácio
                     de Sá. Atua na área do front-end do sistema AgroRural.

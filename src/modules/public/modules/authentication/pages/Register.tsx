@@ -14,11 +14,6 @@ import { RegisterUserModel } from "../../../models/UserModel";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { RegisterValidatorSchema } from "../validators/RegisterValidatorSchema";
-import footer from "../../../../../assets/footer.png";
-import vaca2 from "../../../../../assets/vaca2.png";
-import vaca3 from "../../../../../assets/vaca3.png";
-import logoPequena from "../../../../../assets/logoPequena.png";
-import "../../../styles/Register.css";
 import { Toaster } from "react-hot-toast";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
@@ -27,6 +22,13 @@ import Input from "@mui/material/Input";
 import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
+import footer from "../../../../../assets/footer.png";
+import vaca2 from "../../../../../assets/vaca2.png";
+import vaca3 from "../../../../../assets/vaca3.png";
+import logoPequena from "../../../../../assets/logoPequena.png";
+
+import "../../../styles/Register.css";
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
@@ -94,6 +96,7 @@ const RegisterPage = (): ReactElement => {
                       type="text"
                     />
                   </Grid>
+
                   <Grid>
                     <TextField
                       sx={{ width: "300px", margin: "1% 0%" }}
@@ -102,6 +105,7 @@ const RegisterPage = (): ReactElement => {
                       type="text"
                     />
                   </Grid>
+
                   <Grid>
                     <TextField
                       sx={{ width: "300px", margin: "1% 0%" }}
@@ -132,7 +136,8 @@ const RegisterPage = (): ReactElement => {
                       type="email"
                     />
                   </Grid>
-                  <Grid>
+
+                  <Grid sx={{ position: "relative" }}>
                     <TextField
                       sx={{ width: "300px", margin: "1% 0%" }}
                       label="Senha"
@@ -157,9 +162,10 @@ const RegisterPage = (): ReactElement => {
                       )}
                     </div>
                   </Grid>
-                  <Grid>
+
+                  <Grid sx={{ position: "relative" }}>
                     <TextField
-                      sx={{ width: "300px", margin: "-11% 0%" }}
+                      sx={{ width: "300px", margin: "1% 0%" }}
                       label="Confirmar senha"
                       type={showConfirmPw ? "text" : "password"}
                       {...getControls(formRegisterUser, "passwordConfirm")}
@@ -182,11 +188,12 @@ const RegisterPage = (): ReactElement => {
                       )}
                     </div>
                   </Grid>
+
                   <Grid
                     sx={{
                       display: "flex",
                       justifyContent: "center",
-                      marginTop: -7.8,
+                      marginTop: -4,
                     }}
                   >
                     <Button
@@ -198,7 +205,7 @@ const RegisterPage = (): ReactElement => {
                       Cadastrar-se
                     </Button>
                   </Grid>
-                  <Grid sx={{ textAlign: "center", margin: " 2% 0%" }}>
+                  <Grid sx={{ textAlign: "center", margin: "5% 0%" }}>
                     <span>
                       Já possui Cadastro ? <a href="sign-in">Entrar</a>
                     </span>

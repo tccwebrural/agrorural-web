@@ -71,7 +71,7 @@ const ProprietarieData = (): ReactElement => {
                 label="Nome do Proprietário"
                 variant="standard"
                 {...getControls(formik, "name")}
-                sx={{ width: "100%" }}
+                sx={{ marginBottom: 0.4, width: "100%" }}
                 disabled={true}
               />
               <TextField
@@ -86,7 +86,7 @@ const ProprietarieData = (): ReactElement => {
                 {...getControls(formik, "cpf")}
                 size="small"
                 variant="standard"
-                sx={{ marginTop: 0.3, width: "50%" }}
+                sx={{ marginTop: 0.4, width: "50%" }}
                 disabled={true}
               />
               <br />
@@ -95,14 +95,14 @@ const ProprietarieData = (): ReactElement => {
                 {...getControls(formik, "phone")}
                 size="small"
                 variant="standard"
-                sx={{ marginTop: 0.3, width: "50%" }}
+                sx={{  marginTop: 0.5, width: "50%" }}
                 disabled={true}
               />
               <TextField
                 label="Nome da Fazenda"
                 {...getControls(formik, "farmName")}
                 variant="standard"
-                sx={{ width: "50%" }}
+                sx={{marginTop: 0.1, width: "50%" }}
                 disabled={true}
               />
             </div>
