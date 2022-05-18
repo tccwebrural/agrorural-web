@@ -38,6 +38,7 @@ import { EditProfileValidatorSchema } from "../validators/EditProfileValidatorSs
 import { FarmModel } from "modules/private/models/FarmModel";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { trackPromise } from "react-promise-tracker";
+import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
 
 const ViewProfilePage = (): ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -51,26 +52,28 @@ const ViewProfilePage = (): ReactElement => {
   const auth = useAuth();
   const { getFarmRef, getFarmValues } = FarmHelper();
   const [initialValues, setInitialValues] = useState<PerfilModelUser>({
-    name: "",
     cpf: "",
+    name: "",
     email: "",
     phone: "",
     farmName: "",
   });
   const [isDisabled, setIsDisabled] = useState(true);
 
-  // const [initialValues, setInitialValues] = useState<UserModel>();
   const loadingHelper = useGlobalLoading();
 
   const navigate = useNavigate();
 
+  const [show, setShow] = useState(false);
+
+  const farmHelp = FarmHelper();
   useEffect(() => {
     trackPromise(
       auth.getUser().then(async (user?: UserModel) => {
         if (user) {
           const farmValues = await getFarmValues();
           farmValues?.name;
-
+          loadingHelper.startLoading();
           if (farmValues) {
             user.farmName = farmValues?.name;
           }
@@ -86,54 +89,22 @@ const ViewProfilePage = (): ReactElement => {
     );
   }, []);
 
-  // ESCOPO PARA IMAGENS
+  const submitForm = async (formData: PerfilModelUser) => {
+    try {
+      await auth.updateUserId(formData);
 
-  // FIM DO ESCOPO PARA IMAGENS
+      await farmHelp.updateFarmName(formData);
+      await auth.getUser();
 
-  const [show, setShow] = useState(false);
-
-  const farmHelp = FarmHelper();
-  console.log(auth.updateUserId(initialValues));
-  const submitForm = async (user: PerfilModelUser) => {
-    const userId = await auth.getUser();
-
-    trackPromise(
-      auth
-        .updateUserId(user)
-        .then(() =>
-          //toast sucess
-          {
-            navigate("/private/cattles");
-            // navigate(`private/cattle/${id}/Vaccine`);
-          }
-        )
-        .catch((err: any) => {
-          //TODO: Mensagem de erro
-          //toast erro
-          toast.error(getFireError(err));
-        }),
-      GLOBAL_LOADING_KEY
-    );
-
-    // await farmHelp
-    //   .updateFarm(user, farm)
-    //   .then(() =>
-    //     //toast sucess
-    //     {
-    //       navigate("/private/cattles");
-    //       // navigate(`private/cattle/${id}/Vaccine`);
-    //     }
-    //   )
-    //   .catch((err: any) => {
-    //     //TODO: Mensagem de erro
-    //     //toast erro
-    //     console.error(err);
-    //     toast.error(getFireError(err));
-    //   });
-
+      toast.success("Informações atualizadas com sucesso.");
+    } catch (err: any) {
+      console.error(err);
+      toast.error(getFireError(err));
+    }
     // vacine.id = id;
   };
-  console.log("SUBIT= " + initialValues);
+  console.log(submitForm);
+
   // const submitForm = () => {};
   /** modalDesativar */
   const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
@@ -332,13 +303,6 @@ const ViewProfilePage = (): ReactElement => {
                   </>
                 )}
               </div>
-              <span id="BlockNameProfile">
-                <input
-                  id="nameProfile"
-                  disabled={true}
-                  defaultValue={initialValues.name}
-                />
-              </span>
 
               <Formik
                 enableReinitialize={true}
@@ -348,6 +312,15 @@ const ViewProfilePage = (): ReactElement => {
               >
                 {(formik) => (
                   <form onSubmit={formik.handleSubmit}>
+                    <span id="BlockNameProfile">
+                      <TextField
+                        id="nameProfile"
+                        defaultValue={initialValues.name}
+                        disabled={isDisabled}
+                        {...getControls(formik, "name")}
+                      />
+                    </span>
+
                     <div id="FieldsProfile">
                       <TextField
                         label="CPF"
@@ -355,6 +328,7 @@ const ViewProfilePage = (): ReactElement => {
                         variant="standard"
                         className="txt-FieldsProfile"
                         disabled={isDisabled}
+                        // disabled={true}
                         {...getControls(formik, "cpf")}
                       />
                       <TextField
@@ -362,15 +336,19 @@ const ViewProfilePage = (): ReactElement => {
                         variant="standard"
                         className="txt-FieldsProfile"
                         {...getControls(formik, "email")}
-                        disabled={isDisabled}
+                        disabled={true}
                       />
                       <TextField
                         label="Telefone"
                         size="small"
+                        type="tel"
                         variant="standard"
                         className="txt-FieldsProfile"
                         {...getControls(formik, "phone")}
                         disabled={isDisabled}
+                        InputProps={{
+                          inputComponent: PhoneMaskCustom as any,
+                        }}
                       />
                       <TextField
                         label="Nome da Fazenda"
@@ -386,14 +364,6 @@ const ViewProfilePage = (): ReactElement => {
                       )}
                       <div></div>
                     </div>
-                    {/* <Button
-                      variant="contained"
-                      color="success"
-                      // onClick={salvarDadosAnimal}
-                      type="submit"
-                    >
-                      Atualizar
-                    </Button> */}
                   </form>
                 )}
               </Formik>

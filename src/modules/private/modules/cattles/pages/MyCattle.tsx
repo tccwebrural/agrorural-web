@@ -22,6 +22,8 @@ import { getControls } from "utils/FormUtils";
 import "../../../styles/MyCattle.css";
 import { VacineModel } from "../../vacine/models/VacineModel";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
+import { trackPromise } from "react-promise-tracker";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 
 const MyCattle = (): ReactElement => {
   const { id } = useParams();
@@ -43,6 +45,7 @@ const MyCattle = (): ReactElement => {
 
   useEffect(() => {
     loadingHelper.startLoading();
+
     if (id) {
       cattleHelper.getCattleById(id).then((cattle?: CattleModel) => {
         if (cattle) {
@@ -83,7 +86,6 @@ const MyCattle = (): ReactElement => {
       <Container
         sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
       >
-      
         <div id="blocoGeral-myCatlle">
           <section>
             <div id="blocoTitulo-criacao-myCatlle">
@@ -204,8 +206,15 @@ const MyCattle = (): ReactElement => {
               </div>
 
               <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
+<<<<<<< HEAD
             
             
+=======
+            </div>
+            <div id="imgVacaLeiteira-MYCATTLE">
+              <img style={{ width: 280 }} src={vaca1} alt="Erro..." />
+            </div>
+>>>>>>> aa9cc9a5e550e390326fdd20217616133852da43
             <div id="button-myCatlle">
               <Button
                 variant="contained"

@@ -40,14 +40,14 @@ const ReportComponentCreate = (): ReactElement => {
   const [cattlesCattegory, setCattlesCattegory] =
     useState<ReportCattleCategory>({
       bezerros: {
-        macho: 1,
-        femea: 2,
+        male: 1,
+        female: 2,
       },
-      desmamados: { macho: 1, femea: 2 },
-      garrotes: { macho: 1, femea: 2 },
-      novilhos: { macho: 0, femea: 0 },
-      outros: { macho: 0, femea: 0 },
-      total: { macho: 0, femea: 0 },
+      desmamados: { male: 1, female: 2 },
+      garrotes: { male: 1, female: 2 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
     });
 
   const [category, setCattegory] = useState<ReportCattleCategory>();
@@ -119,7 +119,7 @@ const ReportComponentCreate = (): ReactElement => {
             if (getMonthFromCattle.age === 0 && getMonthFromCattle.age <= 6) {
               totalCattle += 1;
               setCattle((cattlesR += 1));
-              //   setCattlesCattegory((cattlesCattegory.bezerros.macho += 1));
+              //   setCattlesCattegory((cattlesCattegory.bezerros.male += 1));
             } else if (
               getMonthFromCattle.age > 6 &&
               getMonthFromCattle.age <= 12

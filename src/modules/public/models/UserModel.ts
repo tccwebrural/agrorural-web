@@ -16,6 +16,7 @@ export interface PasswordResetModel {
   email: string;
 }
 export interface PerfilModelUser {
+  id?: string;
   name: string;
   email: string;
   cpf: string;

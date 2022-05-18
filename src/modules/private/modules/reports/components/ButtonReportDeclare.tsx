@@ -50,197 +50,135 @@ const ButtonReportDeclare = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
   const cattlehelpers = CattleHelper();
-  var [totalBezerrosM, setTotalBezerrosM] = useState(0);
-  var [totalDesmamadosM, setTotalDesmamadosM] = useState(0);
-  var [totalGarrotesM, setTotalGarrotesM] = useState(0);
-  var [totalNovilhosM, setTotalNovilhosM] = useState(0);
-  var [totalAcimaDe36M, setTotalAcimaDe36M] = useState(0);
-  var [totalDeAnimaisM, setTotalDeAnimaisM] = useState(0);
-
-  var [totalBezerrosF, setTotalBezerrosF] = useState(0);
-  var [totalDesmamadosF, setTotalDesmamadosF] = useState(0);
-  var [totalGarrotesF, setTotalGarrotesF] = useState(0);
-  var [totalNovilhosF, setTotalNovilhosF] = useState(0);
-  var [totalAcimaDe36F, setTotalAcimaDe36F] = useState(0);
-  var [totalDeAnimaisF, setTotalDeAnimaisF] = useState(0);
-  const [cattlesCattegory, setCattlesCattegory] =
-    useState<ReportCattleCategory>({
+  const [report, setReport] = useState<ReportModel>({
+    rebanhoAtual: {
       bezerros: {
-        macho: 1,
-        femea: 10,
+        male: 1,
+        female: 10,
       },
-      desmamados: { macho: 10, femea: 0 },
-      garrotes: { macho: 10, femea: 10 },
-      novilhos: { macho: 10, femea: 10 },
-      outros: { macho: 10, femea: 10 },
-      total: { macho: 10, femea: 10 },
-    });
-
-  const [initialValues, setInitialValues] = useState<ReportModel>({
-    rebanhoAtual: cattlesCattegory,
-    rebanhoComCausas: cattlesCattegory,
+      desmamados: { male: 10, female: 0 },
+      garrotes: { male: 10, female: 10 },
+      novilhos: { male: 10, female: 10 },
+      outros: { male: 10, female: 10 },
+      total: { male: 10, female: 10 },
+    },
+    rebanhoComCausas: {
+      bezerros: {
+        male: 1,
+        female: 10,
+      },
+      desmamados: { male: 10, female: 0 },
+      garrotes: { male: 10, female: 10 },
+      novilhos: { male: 10, female: 10 },
+      outros: { male: 10, female: 10 },
+      total: { male: 10, female: 10 },
+    },
   });
-  var total = [0, 1, 2, 3].reduce(
-    (acumulador, valorAtual) => acumulador + valorAtual,
-    0
-  );
 
-  console.log("VALOR TOTAL " + total);
+  const getMonthFromDate = (date: string) => {
+    var today = new Date();
+    const dataSeparada = date.split("-");
+    const ano = parseInt(dataSeparada[0]);
+    const mes = parseInt(dataSeparada[1]);
+    const dia = parseInt(dataSeparada[2]);
 
-  const getSexFromCattle = () => {
-    const getMonthFromDate = (date: string) => {
-      var today = new Date();
-      const dataSeparada = date.split("-");
-      const ano = parseInt(dataSeparada[0]);
-      const mes = parseInt(dataSeparada[1]);
-      const dia = parseInt(dataSeparada[2]);
+    var birthDate = new Date(ano, mes, dia);
 
-      var birthDate = new Date(ano, mes, dia);
+    var months;
+    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
+    months -= birthDate.getMonth() + 1;
+    months += today.getMonth();
 
-      var months;
-      months = (today.getFullYear() - birthDate.getFullYear()) * 12;
-      months -= birthDate.getMonth() + 1;
-      months += today.getMonth();
-
-      return months <= 0 ? 0 : months;
-    };
-
-    useEffect(() => {
-      loadingHelper.startLoading();
-      cattlehelpers
-        .getAllCattles()
-        .then((cattles) => {
-          let tempTotalBezerrosM = 0;
-          let tempTotalDesmamadosM = 0;
-          let tempTotalGarrotesM = 0;
-          let tempTotalNovilhosM = 0;
-          let tempTotalAcimaDe36M = 0;
-
-          let tempTotalBezerrosF = 0;
-          let tempTotalDesmamadosF = 0;
-          let tempTotalGarrotesF = 0;
-          let tempTotalNovilhosF = 0;
-          let tempTotalAcimaDe36F = 0;
-
-          // for (let index = 0; index < cattles.length; index++) {
-          //   const cattle = {
-          //     ...cattles[index],
-          //     age: getMonthFromDate(cattles[index].birthday),
-          //   };
-
-          //   if (cattle.sex === 1) {
-          //     if (cattle.age >= 0 && cattle.age <= 6) {
-          //       tempTotalBezerrosM++;
-          //     } else if (cattle.age > 6 && cattle.age <= 12) {
-          //       tempTotalDesmamadosM++;
-          //     } else if (cattle.age > 12 && cattle.age <= 24) {
-          //       tempTotalGarrotesM++;
-          //     } else if (cattle.age > 24 && cattle.age <= 36) {
-          //       tempTotalNovilhosM++;
-          //     } else {
-          //       tempTotalAcimaDe36M++;
-          //     }
-          //   } else {
-          //     if (cattle.age >= 0 && cattle.age <= 6) {
-          //       tempTotalBezerrosF++;
-          //     } else if (cattle.age > 6 && cattle.age <= 12) {
-          //       tempTotalDesmamadosF++;
-          //     } else if (cattle.age > 12 && cattle.age <= 24) {
-          //       tempTotalGarrotesF++;
-          //     } else if (cattle.age > 24 && cattle.age <= 36) {
-          //       tempTotalNovilhosF++;
-          //     } else {
-          //       tempTotalAcimaDe36F++;
-          //     }
-          //   }
-          // }
-
-          for (let index = 0; index < cattles.length; index++) {
-            // const cattle = {
-            //   ...cattles[index],
-            //   age: getMonthFromDate(cattles[index].birthday),
-            // };
-            let tempTotalBezerrosM = 0;
-            let tempTotalDesmamadosM = 0;
-            let tempTotalGarrotesM = 0;
-            let tempTotalNovilhosM = 0;
-            let tempTotalAcimaDe36M = 0;
-
-            let tempTotalBezerrosF = 0;
-            let tempTotalDesmamadosF = 0;
-            let tempTotalGarrotesF = 0;
-            let tempTotalNovilhosF = 0;
-            let tempTotalAcimaDe36F = 0;
-            let totalMale = 10;
-            let totalFemale = 10;
-            return cattles.map((i) => {
-              const cattle = {
-                ...cattles[index],
-                age: getMonthFromDate(cattles[index].birthday),
-              };
-
-              if (cattle.sex === 1) {
-                if (cattle.age >= 0 && cattle.age <= 6) {
-                  tempTotalBezerrosM++;
-                } else if (cattle.age > 6 && cattle.age <= 12) {
-                  tempTotalDesmamadosM++;
-                } else if (cattle.age > 12 && cattle.age <= 24) {
-                  tempTotalGarrotesM++;
-                } else if (cattle.age > 24 && cattle.age <= 36) {
-                  tempTotalNovilhosM++;
-                } else {
-                  tempTotalAcimaDe36M++;
-                }
-              } else {
-                if (cattle.age >= 0 && cattle.age <= 6) {
-                  tempTotalBezerrosF++;
-                } else if (cattle.age > 6 && cattle.age <= 12) {
-                  tempTotalDesmamadosF++;
-                } else if (cattle.age > 12 && cattle.age <= 24) {
-                  tempTotalGarrotesF++;
-                } else if (cattle.age > 24 && cattle.age <= 36) {
-                  tempTotalNovilhosF++;
-                } else {
-                  tempTotalAcimaDe36F++;
-                }
-              }
-            });
-          }
-          setTotalBezerrosM(tempTotalBezerrosM);
-          setTotalDesmamadosM(tempTotalDesmamadosM);
-          setTotalGarrotesM(tempTotalGarrotesM);
-          setTotalNovilhosM(tempTotalNovilhosM);
-          setTotalAcimaDe36M(tempTotalAcimaDe36M);
-          setTotalDeAnimaisM(
-            tempTotalBezerrosM +
-              tempTotalDesmamadosM +
-              tempTotalGarrotesM +
-              tempTotalNovilhosM +
-              tempTotalAcimaDe36M
-          );
-
-          setTotalBezerrosF(tempTotalBezerrosF);
-          setTotalDesmamadosF(tempTotalDesmamadosF);
-          setTotalGarrotesF(tempTotalGarrotesF);
-          setTotalNovilhosF(tempTotalNovilhosF);
-          setTotalAcimaDe36F(tempTotalAcimaDe36F);
-          setTotalDeAnimaisF(
-            tempTotalBezerrosF +
-              tempTotalDesmamadosF +
-              tempTotalGarrotesF +
-              tempTotalNovilhosF +
-              tempTotalAcimaDe36F
-          );
-
-          loadingHelper.stopLoading();
-          console.log(cattles);
-        })
-        .catch((err: any) => {
-          toast.error(err);
-          loadingHelper.stopLoading();
-        });
-    }, []);
+    return months <= 0 ? 0 : months;
   };
+
+  useEffect(() => {
+    loadingHelper.startLoading();
+    const resultado = cattlehelpers.getAllCattles().then((cattles) => {
+      const resultado = cattles
+        .map((cattle) => ({
+          ...cattle,
+          age: getMonthFromDate(cattle.birthday),
+        }))
+        .reduce(
+          (previousValues: any, currentValue: any) => {
+            if (currentValue.sex === 1) {
+              if (currentValue.age >= 0 && currentValue.age <= 6) {
+                previousValues.totalBezerros = previousValues.totalBezerros + 1;
+              } else if (currentValue.age > 6 && currentValue.age <= 12) {
+                previousValues.totalDesmamados =
+                  previousValues.totalDesmamados + 1;
+              } else if (currentValue.age >= 13 && currentValue.age <= 24) {
+                previousValues.totalGarrotes = previousValues.totalGarrotes + 1;
+              } else if (currentValue.age >= 25 && currentValue.age <= 36) {
+                previousValues.totalNovilhos = previousValues.totalNovilhos + 1;
+              } else {
+                previousValues.totalAcimaDe36 =
+                  previousValues.totalAcimaDe36 + 1;
+              }
+            }
+
+            if (currentValue.sex === 2) {
+              if (currentValue.age >= 0 && currentValue.age <= 6) {
+                previousValues.totalBezerros = previousValues.totalBezerros + 1;
+              } else if (currentValue.age > 6 && currentValue.age <= 12) {
+                previousValues.totalDesmamados =
+                  previousValues.totalDesmamados + 1;
+              } else if (currentValue.age >= 13 && currentValue.age <= 24) {
+                previousValues.totalGarrotes = previousValues.totalGarrotes + 1;
+              } else if (currentValue.age >= 25 && currentValue.age <= 36) {
+                previousValues.totalNovilhos = previousValues.totalNovilhos + 1;
+              } else {
+                previousValues.totalAcimaDe36 =
+                  previousValues.totalAcimaDe36 + 1;
+              }
+              currentReport.rebanhoAtual.bezerros.male =
+                resultado.totalBezerrosM;
+              currentReport.rebanhoAtual.bezerros.female =
+                resultado.tempTotalBezerrosF;
+              currentReport.rebanhoAtual.desmamados.male =
+                resultado.tempTotalDesmamadosM;
+              currentReport.rebanhoAtual.desmamados.female =
+                resultado.tempTotalDesmamadosF;
+              currentReport.rebanhoAtual.garrotes.male =
+                resultado.tempTotalGarrotesM;
+              currentReport.rebanhoAtual.garrotes.female =
+                resultado.tempTotalGarrotesM;
+              //...
+              currentReport.rebanhoComCausas.bezerros.male =
+                resultado.tempTotalBezerrosM;
+              currentReport.rebanhoComCausas.bezerros.female =
+                resultado.tempTotalBezerrosF;
+              currentReport.rebanhoComCausas.desmamados.male =
+                resultado.tempTotalDesmamadosM;
+              currentReport.rebanhoComCausas.desmamados.female =
+                resultado.tempTotalDesmamadosF;
+              currentReport.rebanhoComCausas.garrotes.male =
+                resultado.tempTotalGarrotesM;
+              currentReport.rebanhoComCausas.garrotes.female =
+                resultado.tempTotalGarrotesM;
+            }
+
+            return previousValues;
+          },
+          {
+            totalBezerros: 0,
+            totalDesmamados: 0,
+            totalGarrotes: 0,
+            totalNovilhos: 0,
+            totalAcimaDe36: 0,
+          }
+        );
+      return resultado;
+    });
+    const currentReport = report;
+
+    //...
+    setReport(currentReport);
+
+    loadingHelper.stopLoading();
+    console.log(currentReport);
+  }, []);
 
   const reportHelper = ReportHelper();
 
@@ -248,14 +186,14 @@ const ButtonReportDeclare = (): ReactElement => {
 
   const navigate = useNavigate();
 
-  const submitSave = async (reports: ReportModel) => {
-    reportHelper
-      .createReport(reports)
+  const submitSave = async () => {
+    await reportHelper
+      .createReport(report)
       .then(() => {
         navigate("/private/home");
         let cancel = false;
         if (cancel) return;
-        setInitialValues(initialValues);
+        setReport(report);
       })
       .catch((err) => {
         //TODO: Mensagem de erro
@@ -271,13 +209,9 @@ const ButtonReportDeclare = (): ReactElement => {
 
   return (
     <>
-      <Formik onSubmit={submitSave} initialValues={initialValues}>
-        {(formik) => (
-          <form id="Block-EditAnimalData" onSubmit={formik.handleSubmit}>
-            <Button type="submit">SALVAR</Button>
-          </form>
-        )}
-      </Formik>
+      <Button type="submit" onClick={submitSave}>
+        SALVAR
+      </Button>
     </>
   );
 };

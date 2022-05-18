@@ -254,8 +254,8 @@ const cattleViewVaccine = (): ReactElement => {
                 variant="contained"
                 color="inherit"
                 component={Link}
-                to="/private/cattles"
-                style={{marginTop:"13%"}}
+                to={`/private/cattle/${id}/Vaccine`}
+                style={{ marginTop: "13%" }}
               >
                 Voltar
               </Button>
