@@ -6,17 +6,19 @@ import logoMd from "../../../../../assets/logo-md.svg";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { LoginValidatorSchema } from "../validators/LoginValidatorSchema";
-import "../../../styles/Login.css";
-import footer from "../../../../../assets/footer.png";
-import vaca1 from "../../../../../assets/vaca1.png";
-import vaca2 from "../../../../../assets/vaca2.png";
-import logoPequena from "../../../../../assets/logoPequena.png";
 import { Toaster } from "react-hot-toast";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
+import footer from "../../../../../assets/footer.png";
+import vaca1 from "../../../../../assets/vaca1.png";
+import vaca2 from "../../../../../assets/vaca2.png";
+import logoPequena from "../../../../../assets/logoPequena.png";
+
+import "../../../styles/Login.css";
 
 const LoginPage = (): ReactElement => {
   const authContext = useAuth();

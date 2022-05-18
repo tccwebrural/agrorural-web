@@ -7,7 +7,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { ReactElement, useState } from "react";
-import "../../../styles/ResetPw.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,8 +14,11 @@ import { useAuth } from "providers/AuthProvider";
 import { Formik } from "formik";
 import { ResetPwValidatorSchema } from "../validators/ResetPwValidatorSchema";
 import { getControls } from "utils/FormUtils";
+
 import logoPequena from "../../../../../assets/logoPequena.png";
 import footer from "../../../../../assets/footer.png";
+
+import "../../../styles/ResetPw.css";
 
 import {
   PasswordResetModel,

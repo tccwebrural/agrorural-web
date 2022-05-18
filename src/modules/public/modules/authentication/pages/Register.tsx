@@ -14,11 +14,6 @@ import { RegisterUserModel } from "../../../models/UserModel";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { RegisterValidatorSchema } from "../validators/RegisterValidatorSchema";
-import footer from "../../../../../assets/footer.png";
-import vaca2 from "../../../../../assets/vaca2.png";
-import vaca3 from "../../../../../assets/vaca3.png";
-import logoPequena from "../../../../../assets/logoPequena.png";
-import "../../../styles/Register.css";
 import { Toaster } from "react-hot-toast";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
@@ -27,6 +22,13 @@ import Input from "@mui/material/Input";
 import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+
+import footer from "../../../../../assets/footer.png";
+import vaca2 from "../../../../../assets/vaca2.png";
+import vaca3 from "../../../../../assets/vaca3.png";
+import logoPequena from "../../../../../assets/logoPequena.png";
+
+import "../../../styles/Register.css";
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
@@ -132,7 +134,7 @@ const RegisterPage = (): ReactElement => {
                       type="email"
                     />
                   </Grid>
-                  <Grid sx={{margin: "12% 0%", }}>
+                  <Grid sx={{ margin: "12% 0%" }}>
                     <TextField
                       sx={{ width: "300px", margin: "-11% 0%" }}
                       label="Senha"
@@ -157,7 +159,7 @@ const RegisterPage = (): ReactElement => {
                       )}
                     </div>
                   </Grid>
-                  <Grid >
+                  <Grid>
                     <TextField
                       sx={{ width: "300px", margin: "-11% 0%" }}
                       label="Confirmar senha"
@@ -190,7 +192,7 @@ const RegisterPage = (): ReactElement => {
                     }}
                   >
                     <Button
-                      style={{ margin: "1% 0%"}}
+                      style={{ margin: "1% 0%" }}
                       type="submit"
                       className="register_submit"
                       variant="contained"
