@@ -140,15 +140,15 @@ const HomePage = (): ReactElement => {
                     margin: "2%",
                   }}
                 >
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>Controle do rebanho.</p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>Notificar o período de vacinação de cada animal.</p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>
                       Gerar a declaração do rebanho facilitando quando o
@@ -156,11 +156,11 @@ const HomePage = (): ReactElement => {
                       agropecuário.
                     </p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>Gerar Relatórios da quantidade de animais.</p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>
                       Visão ampla do negócio facilitando com a tomada de

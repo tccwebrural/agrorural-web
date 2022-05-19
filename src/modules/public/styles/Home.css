@@ -177,6 +177,7 @@ header {
 #imgMeio {
   position: absolute;
   top: 600px;
+  z-index: -1;
 }
 
 #imgMeio img {
@@ -203,4 +204,10 @@ header {
 
 #imgMeio2 img {
   width: 100%;
+}
+
+.text-CheckBox {
+  display: flex;
+  align-items: center;
+  margin: 1%;
 }
