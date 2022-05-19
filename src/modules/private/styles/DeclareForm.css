@@ -374,7 +374,7 @@
 
 #CattleDeclaration-Goal {
   background-color: var(--cor011);
-  height: 200px;
+  height: 110px;
   border: 1px solid var(--cor002);
   width: 898px;
   margin: auto;
@@ -382,11 +382,11 @@
 #BeefCattle-DairyCattle {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 12%;
   text-align: center;
+  margin: 2% auto;
 }
-#CowImage-CattleDeclaration {
-  margin-top: -160%;
-  margin-right: -180px;
-  width: 220px;
+
+#text-OU {
+  position: relative;
+  top: 20px;
 }

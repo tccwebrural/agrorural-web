@@ -9,10 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { BsPrinter } from "react-icons/bs";
-import "../../../styles/DeclareForm.css";
-import "../../../styles/style.css";
 import Checkbox from "@mui/material/Checkbox";
-import vaca from "../../../../../assets/vaca-sem-chifre.png";
 import Fab from "@mui/material/Fab";
 import TextField from "@mui/material/TextField";
 import { useAuth } from "providers/AuthProvider";
@@ -25,6 +22,11 @@ import toast from "react-hot-toast";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import ProprietarieData from "../components/ProprietarieData";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+
+import vaca from "../../../../../assets/vaca-sem-chifre.png";
+
+import "../../../styles/DeclareForm.css";
+import "../../../styles/style.css";
 
 const DeclareForm = (): ReactElement => {
   function imprimir() {
@@ -416,15 +418,14 @@ const DeclareForm = (): ReactElement => {
                   />
                 </div>
 
-                <p>Ou</p>
+                <p id="text-OU">Ou</p>
+
                 <div>
                   <p>Leite</p>
                   <Checkbox
                     {...label}
                     sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-                    style={{ marginRight: -35, marginTop: -80 }}
                   />
-                  <img id="CowImage-CattleDeclaration" src={vaca} />
                 </div>
               </div>
             </div>

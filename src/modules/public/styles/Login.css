@@ -13,7 +13,7 @@
   margin-top: 6%;
 }
 
-#login-TelaLogin {
+#Block-TelaLogin {
   background-color: var(--cor0101);
   max-width: 410px;
   height: 470px;
@@ -54,16 +54,6 @@
   background-image: linear-gradient(75deg, var(--cor055), var(--cor005));
   color: aliceblue;
   justify-content: center;
-}
-
-span {
-  text-align: center;
-}
-
-span a {
-  color: #33658a;
-  text-decoration: none;
-  margin: 0% 1%;
 }
 
 #Footer {

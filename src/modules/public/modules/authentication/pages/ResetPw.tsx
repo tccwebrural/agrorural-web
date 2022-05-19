@@ -117,7 +117,7 @@ const ResetPwPage = (): ReactElement => {
                     id="btn-ResetPassword"
                     variant="contained"
                     type="submit"
-                    // onClick={handleOpenModalResetPw}
+                    onClick={handleOpenModalResetPw}
                   >
                     Recuperar acesso
                   </Button>

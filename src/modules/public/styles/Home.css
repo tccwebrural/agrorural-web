@@ -44,14 +44,14 @@ header {
   align-items: center;
 }
 
-#btn-header {
+.btn-header {
   z-index: 1;
   text-decoration: none;
   color: black;
 }
-main {
-  position: relative;
-  top: 65px;
+
+#home {
+  margin-top: 5%;
 }
 
 #logo {
@@ -63,10 +63,6 @@ main {
   max-width: 400px;
   min-width: 150px;
   margin: 5%;
-}
-section {
-  display: flex;
-  flex-direction: column;
 }
 
 #agroRural {
@@ -181,6 +177,7 @@ section {
 #imgMeio {
   position: absolute;
   top: 600px;
+  z-index: -1;
 }
 
 #imgMeio img {
@@ -209,7 +206,7 @@ section {
   width: 100%;
 }
 
-#teste {
+.text-CheckBox {
   display: flex;
   align-items: center;
   margin: 1%;

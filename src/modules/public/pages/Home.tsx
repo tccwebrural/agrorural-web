@@ -1,7 +1,9 @@
 import { Box, Button, Container } from "@mui/material";
 import { ReactElement } from "react";
-import "../styles/Home.css";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import { Link } from "react-router-dom";
+
+/**IMAGENS*/
 import logoPequena from "../../../assets/logoPequena.png";
 import meio from "../../../assets/meio.png";
 import vaca3 from "../../../assets/vaca3.png";
@@ -14,7 +16,9 @@ import leticia from "../../../assets/leticia.png";
 import george from "../../../assets/george.png";
 import footer from "../../../assets/footer.png";
 import pablo from "../../../assets/pablo.png";
-import { Link } from "react-router-dom";
+
+/**CSS*/
+import "../styles/Home.css";
 
 const HomePage = (): ReactElement => {
   return (
@@ -59,12 +63,12 @@ const HomePage = (): ReactElement => {
 
         <div id="credenciais">
           <Button sx={{ fontSize: "20px" }}>
-            <Link id="btn-header" to="/sign-up">
+            <Link className="btn-header" to="/sign-up">
               Cadastrar
             </Link>
           </Button>
           <Button sx={{ left: "20px", fontSize: "20px" }}>
-            <Link id="btn-header" to="/sign-in">
+            <Link className="btn-header" to="/sign-in">
               Login
             </Link>
           </Button>
@@ -136,15 +140,15 @@ const HomePage = (): ReactElement => {
                     margin: "2%",
                   }}
                 >
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>Controle do rebanho.</p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>Notificar o período de vacinação de cada animal.</p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>
                       Gerar a declaração do rebanho facilitando quando o
@@ -152,11 +156,11 @@ const HomePage = (): ReactElement => {
                       agropecuário.
                     </p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>Gerar Relatórios da quantidade de animais.</p>
                   </div>
-                  <div id="teste">
+                  <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
                     <p>
                       Visão ampla do negócio facilitando com a tomada de

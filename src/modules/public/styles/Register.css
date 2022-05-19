@@ -1,3 +1,16 @@
+#login {
+  position: relative;
+  background-color: var(--cor0101);
+  box-shadow: 4px 4px 4px 4px rgba(236, 236, 236, 0.685);
+  margin: 2% auto;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-height: 820px;
+  z-index: 1;
+  border-radius: 10px;
+}
+
 .register {
   height: 70vh;
   width: 100vw;
@@ -12,11 +25,6 @@
 
 .register_submit {
   margin-top: 30px !important;
-}
-
-* {
-  margin: 0%;
-  padding: 0%;
 }
 
 #form-Register {
@@ -35,19 +43,6 @@
 #logoPequena {
   display: flex;
   justify-content: center;
-}
-
-#login {
-  background-color: var(--cor0101);
-  box-shadow: 4px 4px 4px 4px rgba(236, 236, 236, 0.685);
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  max-height: 950px;
-  margin-top: -43.5%;
-  z-index: 1;
-  border-radius: 10px;
 }
 
 .showPassword-Register {
@@ -76,16 +71,16 @@ span a {
 
 #imgFooter {
   position: absolute;
-  top: 61.5%;
+  bottom: 0;
 }
 
 #imgFooter img {
-  width: 100%;
+  width: 100vw;
 }
 
 #imgVaca1 {
   position: absolute;
-  top: 36%;
+  top: 41%;
   left: 70px;
   z-index: -1;
 }
@@ -95,9 +90,12 @@ span a {
   margin-left: 15%;
   margin-top: 11%;
 }
-
+#imgVaca2-Register {
+  position: absolute;
+  top: 50%;
+  right: 120px;
+  z-index: -1;
+}
 #imgVaca2-Register img {
   width: 250px;
-  margin-left: 75%;
-  margin-top: 22%;
 }
