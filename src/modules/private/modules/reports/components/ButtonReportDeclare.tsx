@@ -11,6 +11,7 @@ import {
   Fab,
   Button,
   TextField,
+  Grid,
 } from "@mui/material";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useAuth } from "../../../../../providers/AuthProvider";
@@ -53,14 +54,14 @@ const ButtonReportDeclare = (): ReactElement => {
   const [report, setReport] = useState<ReportModel>({
     rebanhoAtual: {
       bezerros: {
-        male: 1,
-        female: 10,
+        male: 0,
+        female: 0,
       },
-      desmamados: { male: 10, female: 0 },
-      garrotes: { male: 10, female: 10 },
-      novilhos: { male: 10, female: 10 },
-      outros: { male: 10, female: 10 },
-      total: { male: 10, female: 10 },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
     },
     rebanhoComCausas: {
       bezerros: {
@@ -132,6 +133,8 @@ const ButtonReportDeclare = (): ReactElement => {
                 previousValues.totalAcimaDe36 =
                   previousValues.totalAcimaDe36 + 1;
               }
+              const currentReport = report;
+
               currentReport.rebanhoAtual.bezerros.male =
                 resultado.totalBezerrosM;
               currentReport.rebanhoAtual.bezerros.female =
@@ -157,6 +160,8 @@ const ButtonReportDeclare = (): ReactElement => {
                 resultado.tempTotalGarrotesM;
               currentReport.rebanhoComCausas.garrotes.female =
                 resultado.tempTotalGarrotesM;
+
+              setReport(currentReport);
             }
 
             return previousValues;
@@ -169,15 +174,14 @@ const ButtonReportDeclare = (): ReactElement => {
             totalAcimaDe36: 0,
           }
         );
+      console.log("valor do resultado " + resultado);
       return resultado;
     });
-    const currentReport = report;
 
     //...
-    setReport(currentReport);
 
     loadingHelper.stopLoading();
-    console.log(currentReport);
+    console.log("reports" + report);
   }, []);
 
   const reportHelper = ReportHelper();
@@ -191,8 +195,8 @@ const ButtonReportDeclare = (): ReactElement => {
       .createReport(report)
       .then(() => {
         navigate("/private/home");
-        let cancel = false;
-        if (cancel) return;
+        // let cancel = false;
+        // if (cancel) return;
         setReport(report);
       })
       .catch((err) => {
@@ -206,6 +210,9 @@ const ButtonReportDeclare = (): ReactElement => {
 
     // vacine.id = id;
   };
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => setOpen(false);
 
   return (
     <>

@@ -29,6 +29,7 @@ import vaca3 from "../../../../../assets/vaca3.png";
 import logoPequena from "../../../../../assets/logoPequena.png";
 
 import "../../../styles/Register.css";
+import { CpfMaskComponent } from "modules/public/components/CpfMaskComponent";
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();
@@ -123,6 +124,9 @@ const RegisterPage = (): ReactElement => {
                     <TextField
                       sx={{ width: "300px", margin: "1% 0%" }}
                       label="CPF"
+                      InputProps={{
+                        inputComponent: CpfMaskComponent as any,
+                      }}
                       {...getControls(formRegisterUser, "cpf")}
                       type="text"
                     />

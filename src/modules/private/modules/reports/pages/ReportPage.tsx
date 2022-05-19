@@ -178,7 +178,7 @@ const ReportPage = (): ReactElement => {
       >
         <div className="MainBlock">
           <div id="Block-Txt-Line-CattleDeclaration">
-            <h2 id="Block-Txt-CattleDeclaration">Declare do Rebanho</h2>
+            <h2 id="Block-Txt-CattleDeclaration">Declare do Rebanhossss</h2>
             <span id="Block-Line-CattleDeclaration">
               <abbr title="Imprimir Declare do Rebanho">
                 <Fab id="printIcon" onClick={imprimir}>
