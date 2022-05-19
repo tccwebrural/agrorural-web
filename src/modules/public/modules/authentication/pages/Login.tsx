@@ -2,7 +2,6 @@ import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import React, { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logoMd from "../../../../../assets/logo-md.svg";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { LoginValidatorSchema } from "../validators/LoginValidatorSchema";
@@ -74,7 +73,7 @@ const LoginPage = (): ReactElement => {
 
       <Container>
         <section>
-          <div id="login-TelaLogin">
+          <div id="Block-TelaLogin">
             <div id="logoPequena">
               <img src={logoPequena} alt="Erro..." />
             </div>
@@ -124,7 +123,7 @@ const LoginPage = (): ReactElement => {
                 <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>
                   <span>
                     Você ainda não tem conta?
-                    <Link to="/sign-up">Cadastre-se</Link>
+                    <Link to="/sign-up"> Cadastre-se</Link>
                   </span>
                 </Grid>
                 <Grid sx={{ margin: "3% 0%", textAlign: "center" }}>

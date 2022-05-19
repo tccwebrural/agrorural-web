@@ -77,144 +77,142 @@ const RegisterPage = (): ReactElement => {
       </div>
 
       <Container>
-        <section>
-          <div id="login">
-            <div id="logoPequena">
-              <img src={logoPequena} alt="Erro..." />
-            </div>
-            <div id="form-Register">
-              <form
-                className="register_container"
-                onSubmit={formRegisterUser.handleSubmit}
-              >
-                <Box>
-                  <Grid>
-                    <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
-                      label="Proprietário da fazenda"
-                      {...getControls(formRegisterUser, "name")}
-                      type="text"
-                    />
-                  </Grid>
-
-                  <Grid>
-                    <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
-                      label="Nome da fazenda"
-                      {...getControls(formRegisterUser, "farmName")}
-                      type="text"
-                    />
-                  </Grid>
-
-                  <Grid>
-                    <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
-                      label="Telefone"
-                      type="text"
-                      {...getControls(formRegisterUser, "phone")}
-                      InputProps={{
-                        inputComponent: PhoneMaskCustom as any,
-                      }}
-                      // type="text"
-                    />
-                  </Grid>
-
-                  <Grid>
-                    <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
-                      label="CPF"
-                      {...getControls(formRegisterUser, "cpf")}
-                      type="text"
-                    />
-                  </Grid>
-
-                  <Grid>
-                    <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
-                      label="Email"
-                      {...getControls(formRegisterUser, "email")}
-                      type="email"
-                    />
-                  </Grid>
-
-                  <Grid sx={{ position: "relative" }}>
-                    <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
-                      label="Senha"
-                      type={show ? "text" : "password"}
-                      {...getControls(formRegisterUser, "password")}
-                    />
-                    <div className="showPassword-Register">
-                      {show ? (
-                        <abbr title="Ocultar senha">
-                          <VisibilityIcon
-                            onClick={handleClickPw}
-                            style={{ color: "var(--cor003)" }}
-                          />
-                        </abbr>
-                      ) : (
-                        <abbr title="Exibir senha">
-                          <VisibilityOffIcon
-                            style={{ color: "var(--cor033)" }}
-                            onClick={handleClickPw}
-                          />
-                        </abbr>
-                      )}
-                    </div>
-                  </Grid>
-
-                  <Grid sx={{ position: "relative" }}>
-                    <TextField
-                      sx={{ width: "300px", margin: "1% 0%" }}
-                      label="Confirmar senha"
-                      type={showConfirmPw ? "text" : "password"}
-                      {...getControls(formRegisterUser, "passwordConfirm")}
-                    />
-                    <div className="showPassword-Register">
-                      {showConfirmPw ? (
-                        <abbr title="Ocultar senha">
-                          <VisibilityIcon
-                            onClick={handleClickConfirmPw}
-                            style={{ color: "var(--cor003)" }}
-                          />
-                        </abbr>
-                      ) : (
-                        <abbr title="Exibir senha">
-                          <VisibilityOffIcon
-                            style={{ color: "var(--cor033)" }}
-                            onClick={handleClickConfirmPw}
-                          />
-                        </abbr>
-                      )}
-                    </div>
-                  </Grid>
-
-                  <Grid
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      marginTop: -4,
-                    }}
-                  >
-                    <Button
-                      type="submit"
-                      className="register_submit"
-                      variant="contained"
-                      id="btnRegistrar"
-                    >
-                      Cadastrar-se
-                    </Button>
-                  </Grid>
-                  <Grid sx={{ textAlign: "center", margin: "5% 0%" }}>
-                    <span>
-                      Já possui Cadastro ? <a href="sign-in">Entrar</a>
-                    </span>
-                  </Grid>
-                </Box>
-              </form>
-            </div>
+        <div id="login">
+          <div id="logoPequena">
+            <img src={logoPequena} alt="Erro..." />
           </div>
-        </section>
+          <div id="form-Register">
+            <form
+              className="register_container"
+              onSubmit={formRegisterUser.handleSubmit}
+            >
+              <Box>
+                <Grid>
+                  <TextField
+                    sx={{ width: "300px", margin: "1% 0%" }}
+                    label="Proprietário da fazenda"
+                    {...getControls(formRegisterUser, "name")}
+                    type="text"
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ width: "300px", margin: "1% 0%" }}
+                    label="Nome da fazenda"
+                    {...getControls(formRegisterUser, "farmName")}
+                    type="text"
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ width: "300px", margin: "1% 0%" }}
+                    label="Telefone"
+                    type="text"
+                    {...getControls(formRegisterUser, "phone")}
+                    InputProps={{
+                      inputComponent: PhoneMaskCustom as any,
+                    }}
+                    // type="text"
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ width: "300px", margin: "1% 0%" }}
+                    label="CPF"
+                    {...getControls(formRegisterUser, "cpf")}
+                    type="text"
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ width: "300px", margin: "1% 0%" }}
+                    label="Email"
+                    {...getControls(formRegisterUser, "email")}
+                    type="email"
+                  />
+                </Grid>
+
+                <Grid sx={{ position: "relative" }}>
+                  <TextField
+                    sx={{ width: "300px", margin: "1% 0%" }}
+                    label="Senha"
+                    type={show ? "text" : "password"}
+                    {...getControls(formRegisterUser, "password")}
+                  />
+                  <div className="showPassword-Register">
+                    {show ? (
+                      <abbr title="Ocultar senha">
+                        <VisibilityIcon
+                          onClick={handleClickPw}
+                          style={{ color: "var(--cor003)" }}
+                        />
+                      </abbr>
+                    ) : (
+                      <abbr title="Exibir senha">
+                        <VisibilityOffIcon
+                          style={{ color: "var(--cor033)" }}
+                          onClick={handleClickPw}
+                        />
+                      </abbr>
+                    )}
+                  </div>
+                </Grid>
+
+                <Grid sx={{ position: "relative" }}>
+                  <TextField
+                    sx={{ width: "300px", margin: "1% 0%" }}
+                    label="Confirmar senha"
+                    type={showConfirmPw ? "text" : "password"}
+                    {...getControls(formRegisterUser, "passwordConfirm")}
+                  />
+                  <div className="showPassword-Register">
+                    {showConfirmPw ? (
+                      <abbr title="Ocultar senha">
+                        <VisibilityIcon
+                          onClick={handleClickConfirmPw}
+                          style={{ color: "var(--cor003)" }}
+                        />
+                      </abbr>
+                    ) : (
+                      <abbr title="Exibir senha">
+                        <VisibilityOffIcon
+                          style={{ color: "var(--cor033)" }}
+                          onClick={handleClickConfirmPw}
+                        />
+                      </abbr>
+                    )}
+                  </div>
+                </Grid>
+
+                <Grid
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: -4,
+                  }}
+                >
+                  <Button
+                    type="submit"
+                    className="register_submit"
+                    variant="contained"
+                    id="btnRegistrar"
+                  >
+                    Cadastrar-se
+                  </Button>
+                </Grid>
+                <Grid sx={{ textAlign: "center", margin: "5% 0%" }}>
+                  <span>
+                    Já possui Cadastro ? <a href="sign-in">Entrar</a>
+                  </span>
+                </Grid>
+              </Box>
+            </form>
+          </div>
+        </div>
       </Container>
     </>
   );
