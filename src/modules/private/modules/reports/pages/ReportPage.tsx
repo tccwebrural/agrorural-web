@@ -33,6 +33,7 @@ import { Formik } from "formik";
 import { getControls } from "utils/FormUtils";
 import ProprietarieData from "../components/ProprietarieData";
 import ButtonReportDeclare from "../components/ButtonReportDeclare";
+import GeneratePdf from "../components/GeneratePdf";
 
 var today = new Date();
 var currentYear = today.getFullYear();
@@ -185,6 +186,7 @@ const ReportPage = (): ReactElement => {
                   <BsPrinter size={20} />
                 </Fab>
                 {ButtonReportDeclare()}
+                {GeneratePdf()}
               </abbr>
             </span>
           </div>

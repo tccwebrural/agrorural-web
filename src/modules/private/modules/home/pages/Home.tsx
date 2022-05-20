@@ -17,6 +17,7 @@ import { BsPrinter } from "react-icons/bs";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
+import PrintButtonComponent from "../components/PrintButtonComponent";
 
 var today = new Date();
 var currentYear = today.getFullYear();
@@ -96,133 +97,16 @@ const HomePage = (): ReactElement => {
           <div id="blocoTitulo-criacao-home">
             <h2 id="blocoTituloTxt-criacao-home">Meu Relatório</h2>
             <span id="blocoTituloLine-vacina-home">
-              <abbr title="Imprimir">
+              {/* <abbr title="Imprimir">
                 <Fab id="icone-imprimir-Home" onClick={imprimir}>
                   <BsPrinter size={20} />
                 </Fab>
-              </abbr>
+              </abbr> */}
+              {/* COMPONENTE PRINT BUTTON */}
+              {PrintButtonComponent()}
             </span>
           </div>
-          <Box id="Block-MyReports">
-            <div>
-              <TableContainer
-                id="Table-MyReports"
-                component={Paper}
-                style={{
-                  border: "none",
-                  width: 1025,
-                  boxShadow: " 2px 2px 4px 2px var(--cor111)",
-                }}
-              >
-                <Table style={{ maxWidth: 1000 }}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell
-                        style={{
-                          color: "var(--cor005)",
-                          fontSize: 18,
-                          textAlign: "center",
-                        }}
-                      >
-                        Período
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          color: "var(--cor005)",
-                          fontSize: 18,
-                          textAlign: "center",
-                        }}
-                      >
-                        Bezerros
-                        <p className="Itens-txt-caption">de 0 à 6 meses</p>
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          color: "var(--cor005)",
-                          fontSize: 18,
-                          textAlign: "center",
-                        }}
-                      >
-                        Desmamados
-                        <p className="Itens-txt-caption">de 7 à 12 meses</p>
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          color: "var(--cor005)",
-                          fontSize: 18,
-                          textAlign: "center",
-                        }}
-                      >
-                        Garrotes
-                        <p className="Itens-txt-caption">de 13 à 24 meses</p>
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          color: "var(--cor005)",
-                          fontSize: 18,
-                          textAlign: "center",
-                        }}
-                      >
-                        Novilhos
-                        <p className="Itens-txt-caption">de 25 à 36 meses</p>
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          color: "var(--cor005)",
-                          fontSize: 18,
-                          textAlign: "center",
-                        }}
-                      >
-                        Acima de{" "}
-                        <p className="Itens-txt-caption">de 36 meses </p>
-                      </TableCell>
-                      <TableCell
-                        style={{
-                          color: "var(--cor005)",
-                          fontSize: 18,
-                          textAlign: "center",
-                        }}
-                      >
-                        TOTAL
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row, i) => (
-                      <TableRow
-                        key={i}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row" align="center">
-                          {row.periodo}
-                        </TableCell>
-                        <TableCell align="center">
-                          {row.totalBezerros}
-                        </TableCell>
-                        <TableCell align="center">
-                          {row.totalDesmamados}
-                        </TableCell>
-                        <TableCell align="center">
-                          {row.totalGarrotes}
-                        </TableCell>
-                        <TableCell align="center">
-                          {row.totalNovilhos}
-                        </TableCell>
-                        <TableCell align="center">
-                          {row.totalAcimaDe36}
-                        </TableCell>
-                        <TableCell align="center">
-                          {row.totalDeAnimais}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </div>
-          </Box>
+          d
         </div>
       </main>
     </>

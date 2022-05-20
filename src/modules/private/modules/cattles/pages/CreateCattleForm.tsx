@@ -140,11 +140,11 @@ const CreateCattleFormPage = (): ReactElement => {
                 label="Data de Nascimento"
                 type="date"
                 sx={{ m: 1, minWidth: 340 }}
-                inputProps={{
-                  min: "2000-01-01",
-                  // max: "2022-05-06",
-                  // max: "2022-05-05",
-                }}
+                // inputProps={{
+                //   min: "2000-01-01",
+                //   // max: "2022-05-06",
+                //   // max: "2022-05-05",
+                // }}
                 InputLabelProps={{
                   shrink: true,
                 }}

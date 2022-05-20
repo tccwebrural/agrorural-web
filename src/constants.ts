@@ -42,6 +42,8 @@ export const QTDY_CHILDREN_MIN_0 =
 export const QTDY_CHILDREN_MAX_15 =
   "A quantidade de crias deve ser entre 0 a 15";
 export const QTDY_WEIGHT_MAX_1200 = "Peso do gado deve ser inferior a 1200kg";
+export const TODAY_DATE = "A data não pode ser superior ao dia de atual";
+export const INFERIOR_DATE_2005 = "O ano não pode ser menor que 2005";
 /* REGEXS */
 
 export const PHONE_REGEX =

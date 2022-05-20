@@ -45,7 +45,7 @@ export const FarmHelper = () => {
     if (farmId?.id) {
       const farmRef = doc(firestore, COLLECTION_FARMS, farmId.id);
 
-      return updateDoc(farmRef, { namue: farm.farmName });
+      return updateDoc(farmRef, { name: farm.farmName });
     }
 
     // if (farmRefId) {
