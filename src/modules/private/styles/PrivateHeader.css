@@ -11,3 +11,9 @@
   max-width: 125px;
   height: auto;
 }
+#linkHeader:hover {
+  border-bottom: 4px solid var(--cor006);
+}
+#linkHeader:focus {
+  border-bottom: 4px solid var(--cor006);
+}

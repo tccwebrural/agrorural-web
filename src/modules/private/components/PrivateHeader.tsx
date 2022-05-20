@@ -42,6 +42,8 @@ const Header = (props: any): ReactElement => {
     loadUserData();
   }, [auth.userState]);
 
+
+
   return (
     <>
       <Box id="header">
@@ -120,6 +122,7 @@ const Header = (props: any): ReactElement => {
                 {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
                   (page) => (
                     <Link
+                      id="linkHeader"
                       key={page.key}
                       component={NavLink}
                       to={page.path}
