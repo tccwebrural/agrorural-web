@@ -12,5 +12,5 @@ export class FarmModel {
   createdAt!: Timestamp;
   owner!: DocumentReference;
   cattles?: CollectionReference;
-  statements?: CollectionReference;
+  // statements?: CollectionReference;
 }

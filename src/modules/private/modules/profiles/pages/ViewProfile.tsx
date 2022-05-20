@@ -35,6 +35,7 @@ import { FarmModel } from "modules/private/models/FarmModel";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { trackPromise } from "react-promise-tracker";
 import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
+import { CpfMaskComponent } from "modules/public/components/CpfMaskComponent";
 
 import imgUser from "../../../../../assets/imgUser.png";
 import rodape from "../../../../../assets/rodape.png";
@@ -95,9 +96,8 @@ const ViewProfilePage = (): ReactElement => {
       await auth.updateUserId(formData);
 
       await farmHelp.updateFarmName(formData);
-      await auth.getUser();
 
-      toast.success("Informações atualizadas com sucesso.");
+      await toast.success("Informações atualizadas com sucesso.");
     } catch (err: any) {
       console.error(err);
       toast.error(getFireError(err));
@@ -332,6 +332,9 @@ const ViewProfilePage = (): ReactElement => {
                         disabled={isDisabled}
                         // disabled={true}
                         {...getControls(formik, "cpf")}
+                        InputProps={{
+                          inputComponent: CpfMaskComponent as any,
+                        }}
                       />
                       <TextField
                         label="E-mail"
@@ -360,7 +363,11 @@ const ViewProfilePage = (): ReactElement => {
                         disabled={isDisabled}
                       />
                       {show && (
-                        <Button id="btn-SaveProfile" type="submit">
+                        <Button
+                          disabled={isDisabled}
+                          id="btn-SaveProfile"
+                          type="submit"
+                        >
                           Salvar
                         </Button>
                       )}
