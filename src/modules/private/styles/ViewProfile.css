@@ -53,14 +53,14 @@
   border-radius: 70px;
   width: 95px;
   border-radius: 70px;
-  margin-left: -24.8%;
+  margin-left: -25%;
 }
 
 .Block-imgPreview {
   display: flex;
   justify-content: center;
-  margin-top: -5%;
   position: relative;
+
 }
 
 .Block-imgPreview input[type="file"] {
@@ -75,7 +75,6 @@
 
 #nameProfile {
   font-weight: bold;
-  border: none;
   text-align: center;
   font-size: 17px;
   color: var(--cor004);
