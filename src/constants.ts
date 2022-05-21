@@ -24,7 +24,7 @@ export const COLLECTION_DECLARATIONS = "declarations";
 export const COLLECTION_USERS = "users";
 export const COLLECTION_VACINES = "vacines";
 export const COLLECTION_REPORTS = "reports";
-
+export const COLLECTION_NOTIFICATIONS = "notifications";
 export const MALE = 1;
 export const FEMALE = 2;
 
@@ -203,6 +203,9 @@ export const FIREAUTH_ERROR_CODES_MAP: { [key: string]: string } = {
     "O servidor de autenticação encontrou um erro inesperado ao tentar processar a solicitação.",
 };
 export const USUARIO_CADASTRADO_COM_SUCESSO = "Cadastro realizado com sucesso!";
+export const LOGIN_REALIZADO_COM_SUCESSO = "Login realizado com sucesso!";
+export const EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO =
+  "E-mail para redefinir a senha foi enviado com suceso, por favor verifique sua caixa de spams!";
 
 export const ATUH_INTERNAL_ERROR =
   "Ocorreu um erro interno ao carregar informações do usuário.";

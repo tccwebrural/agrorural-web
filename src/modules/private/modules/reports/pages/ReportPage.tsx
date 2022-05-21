@@ -159,7 +159,6 @@ const ReportPage = (): ReactElement => {
         );
 
         loadingHelper.stopLoading();
-        console.log(cattles);
       })
       .catch((err: any) => {
         toast.error(err);
@@ -185,98 +184,13 @@ const ReportPage = (): ReactElement => {
                 <Fab id="printIcon" onClick={imprimir}>
                   <BsPrinter size={20} />
                 </Fab>
-                {ButtonReportDeclare()}
-                {GeneratePdf()}
               </abbr>
             </span>
           </div>
           {/* COMPONENTE DADOS DO PROPRIETARIO AQUI */}
           {ProprietarieData()}
+          {ButtonReportDeclare()}
 
-          <div>
-            <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
-            <div className="CurrentCattleHerd-RA">
-              {" "}
-              {/*rebanho bovino atual */}
-              <div className="Block-CurrentCattleHerd-RA">
-                {" "}
-                {/*bloco rebanho bovino atual */}
-                <p className="SmallBlocks-CurrentCattleHerd-RA">
-                  {" "}
-                  {/*blocos pequenos do rebanho bovino atual existente*/}
-                  Bezerros
-                  <br />
-                  (de 0 à 6 meses)
-                </p>
-                <div className="MF-RA">
-                  <p className="M-txt-RA">Macho</p>
-                  <p className="F-txt-RA">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left-RA">{totalBezerrosM}</div>
-                <div className="FieldMF-alt-Rigth-RA">{totalBezerrosF}</div>
-              </div>
-              <div className="Block-CurrentCattleHerd-RA">
-                <p className="SmallBlocks-CurrentCattleHerd-RA">
-                  Desmamados
-                  <br />
-                  (de 7 à 12 meses)
-                </p>
-                <div className="MF-RA">
-                  <p className="M-txt-RA">Macho</p>
-                  <p className="F-txt-RA">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left-RA">{totalDesmamadosM}</div>
-                <div className="FieldMF-alt-Rigth-RA">{totalDesmamadosF}</div>
-              </div>
-              <div className="Block-CurrentCattleHerd-RA">
-                <p className="SmallBlocks-CurrentCattleHerd-RA">
-                  Garrotes
-                  <br />
-                  (de 13 à 24 meses)
-                </p>
-                <div className="MF-RA">
-                  <p className="M-txt-RA">Macho</p>
-                  <p className="F-txt-RA">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left-RA">{totalGarrotesM}</div>
-                <div className="FieldMF-alt-Rigth-RA">{totalGarrotesF}</div>
-              </div>
-              <div className="Block-CurrentCattleHerd-RA">
-                <p className="SmallBlocks-CurrentCattleHerd-RA">
-                  Novilhos
-                  <br />
-                  (de 25 à 36 meses)
-                </p>
-                <div className="MF-RA">
-                  <p className="M-txt-RA">Macho</p>
-                  <p className="F-txt-RA">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left-RA">{totalNovilhosM}</div>
-                <div className="FieldMF-alt-Rigth-RA">{totalNovilhosF}</div>
-              </div>
-              <div className="Block-CurrentCattleHerd-RA">
-                <p className="SmallBlocks-CurrentCattleHerd-RA">
-                  Acima de <br /> (36 meses)
-                  <br />
-                </p>
-                <div className="MF-RA">
-                  <p className="M-txt-RA">Macho</p>
-                  <p className="F-txt-RA">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left-RA">{totalAcimaDe36M}</div>
-                <div className="FieldMF-alt-Rigth-RA">{totalAcimaDe36F}</div>
-              </div>
-              <div className="Block-CurrentCattleHerd-RA">
-                <p id="total-RA">Total de Bovinos</p>
-                <div className="MF-RA">
-                  <p className="M-txt-RA">Macho</p>
-                  <p className="F-txt-RA">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left-RA">{totalDeAnimaisM}</div>
-                <div className="FieldMF-alt-Rigth-RA">{totalDeAnimaisF}</div>
-              </div>
-            </div>
-          </div>
           <div>
             <p id="CurrentCattleHerd-Mortality">
               Mortalidade de Bovinos

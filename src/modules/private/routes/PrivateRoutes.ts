@@ -12,7 +12,7 @@ import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import cattleViewVaccine from "../modules/vacine/pages/cattleViewVaccine";
 import CattleInfoGado from "../modules/cattles/pages/cattleInfoGado";
 import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
-import notifyVaccine from "../modules/vacine/pages/NotifyVaccine";
+import notifyVaccine from "../modules/notifications/pages/NotifyVaccine";
 import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
 import DeclareForm from "../modules/reports/pages/DeclareForm";
 import TesteFormik from "../modules/testes/TesteFormik";

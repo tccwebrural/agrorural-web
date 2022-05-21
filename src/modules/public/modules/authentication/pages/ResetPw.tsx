@@ -52,7 +52,7 @@ const ResetPwPage = (): ReactElement => {
 
   return (
     <>
-      <div>
+      {/* <div>
         <Modal open={open} onClose={handleCloseModal}>
           <Box
             sx={{
@@ -78,7 +78,7 @@ const ResetPwPage = (): ReactElement => {
             </div>
           </Box>
         </Modal>
-      </div>
+      </div> */}
 
       <Formik
         enableReinitialize={true}

@@ -24,7 +24,9 @@ import {
   COLLECTION_FARMS,
   COLLECTION_USERS,
   DISABLED_USER,
+  EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO,
   LOCAL_AUTH_PROVIDER,
+  LOGIN_REALIZADO_COM_SUCESSO,
   NOT_FOUND_USER,
   USUARIO_CADASTRADO_COM_SUCESSO,
 } from "../constants";
@@ -69,6 +71,7 @@ const UserAuthProvider = (): AuthContext => {
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       await loadUserDataById(res.user);
+      toast.success(LOGIN_REALIZADO_COM_SUCESSO);
     } catch (err: any) {
       toast.error(getFireError(err));
 
@@ -107,12 +110,13 @@ const UserAuthProvider = (): AuthContext => {
     return signOut(auth);
   };
 
-  /**
+  /**EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO
    * Método responsável por realizar a chamada de redifinição de senha do usuário
    */
   const sendPasswordReset = async (email: string) => {
     try {
       await sendPasswordResetEmail(auth, email);
+      toast.success(EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO);
     } catch (err: any) {
       toast.error(getFireError(err));
       throw err;

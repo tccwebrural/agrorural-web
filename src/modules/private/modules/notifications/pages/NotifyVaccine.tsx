@@ -36,12 +36,30 @@ const notifyVaccine = (): ReactElement => {
                     </div>
                     <div id="text-notify-dados">
                       <form id="dados">
-                        <p><span className="Txt-NotifyVaccine">Nome da Vacina:</span> {nomeVacina} </p>
-                        <p><span className="Txt-NotifyVaccine">Data da Vacina:</span> {dataVacina} </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Nome da Vacina:
+                          </span>{" "}
+                          {nomeVacina}{" "}
+                        </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Data da Vacina:
+                          </span>{" "}
+                          {dataVacina}{" "}
+                        </p>
                       </form>
                       <form id="dados">
-                        <p><span className="Txt-NotifyVaccine">Nome do Animal:</span> {identificadorAnimal} </p>
-                        <p><span className="Txt-NotifyVaccine">Gênero:</span> {tipoAnimal} </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Nome do Animal:
+                          </span>{" "}
+                          {identificadorAnimal}{" "}
+                        </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">Gênero:</span>{" "}
+                          {tipoAnimal}{" "}
+                        </p>
                       </form>
                     </div>
                   </div>
@@ -58,12 +76,30 @@ const notifyVaccine = (): ReactElement => {
                     </div>
                     <div id="text-notify-dados">
                       <form id="dados">
-                        <p><span className="Txt-NotifyVaccine">Nome da Vacina:</span> {nomeVacina} </p>
-                        <p><span className="Txt-NotifyVaccine">Data da Vacina:</span> {dataVacina} </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Nome da Vacina:
+                          </span>{" "}
+                          {nomeVacina}{" "}
+                        </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Data da Vacina:
+                          </span>{" "}
+                          {dataVacina}{" "}
+                        </p>
                       </form>
                       <form id="dados">
-                        <p><span className="Txt-NotifyVaccine">Nome do Animal:</span> Malhada </p>
-                        <p><span className="Txt-NotifyVaccine">Gênero:</span> {tipoAnimal} </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Nome do Animal:
+                          </span>{" "}
+                          Malhada{" "}
+                        </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">Gênero:</span>{" "}
+                          {tipoAnimal}{" "}
+                        </p>
                       </form>
                     </div>
                   </div>
@@ -80,12 +116,30 @@ const notifyVaccine = (): ReactElement => {
                     </div>
                     <div id="text-notify-dados">
                       <form id="dados">
-                        <p><span className="Txt-NotifyVaccine">Nome da Vacina: </span>{nomeVacina} </p>
-                        <p><span className="Txt-NotifyVaccine">Data da Vacina:</span> {dataVacina} </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Nome da Vacina:{" "}
+                          </span>
+                          {nomeVacina}{" "}
+                        </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Data da Vacina:
+                          </span>{" "}
+                          {dataVacina}{" "}
+                        </p>
                       </form>
                       <form id="dados">
-                        <p><span className="Txt-NotifyVaccine">Nome do Animal:</span> Lindóia </p>
-                        <p><span className="Txt-NotifyVaccine">Gênero:</span> {tipoAnimal} </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">
+                            Nome do Animal:
+                          </span>{" "}
+                          Lindóia{" "}
+                        </p>
+                        <p>
+                          <span className="Txt-NotifyVaccine">Gênero:</span>{" "}
+                          {tipoAnimal}{" "}
+                        </p>
                       </form>
                     </div>
                   </div>
