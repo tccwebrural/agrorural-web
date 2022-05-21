@@ -12,12 +12,13 @@ import {
 } from "@mui/material";
 import React, { ReactElement, useEffect, useState } from "react";
 import { useAuth } from "../../../../../providers/AuthProvider";
-import "../../../styles/Home.css";
 import { BsPrinter } from "react-icons/bs";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
 import PrintButtonComponent from "../components/PrintButtonComponent";
+
+import "../../../styles/Home.css";
 
 var today = new Date();
 var currentYear = today.getFullYear();

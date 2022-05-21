@@ -19,11 +19,12 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleHelper } from "../helpers/CattleHelper";
 import toast from "react-hot-toast";
 import { getControls } from "utils/FormUtils";
-import "../../../styles/MyCattle.css";
 import { VacineModel } from "../../vacine/models/VacineModel";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+
+import "../../../styles/MyCattle.css";
 
 const MyCattle = (): ReactElement => {
   const { id } = useParams();
@@ -186,38 +187,37 @@ const MyCattle = (): ReactElement => {
             </Formik>
           </section>
 
-              <div id="blocoTitulo-vacina-myCatlle">
-                <h2 id="blocoTituloTxt-vacina-myCatlle">
-                  Cartão de Vacina &gt; {initialValues.name}
-                </h2>
-                <span id="blocoTituloLine-vacina-myCatlle">
-                  <Fab
-                    id="icon-vaccine-myCatlle"
-                    component={Link}
-                    to={`/private/cattles/${id}/vacine/form`}
-                  >
-                    <button id="btAdd-Vaccine-myCatlle">
-                      <abbr title="Adicionar Vacina">
-                        <AddIcon />
-                      </abbr>
-                    </button>
-                  </Fab>
-                </span>
-              </div>
-
-              <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
-            
-            
-            <div id="button-myCatlle">
-              <Button
-                variant="contained"
-                color="inherit"
+          <div id="blocoTitulo-vacina-myCatlle">
+            <h2 id="blocoTituloTxt-vacina-myCatlle">
+              Cartão de Vacina &gt; {initialValues.name}
+            </h2>
+            <span id="blocoTituloLine-vacina-myCatlle">
+              <Fab
+                id="icon-vaccine-myCatlle"
                 component={Link}
-                to="/private/cattles"
+                to={`/private/cattles/${id}/vacine/form`}
               >
-                Voltar
-              </Button>
-            </div>
+                <button id="btAdd-Vaccine-myCatlle">
+                  <abbr title="Adicionar Vacina">
+                    <AddIcon />
+                  </abbr>
+                </button>
+              </Fab>
+            </span>
+          </div>
+
+          <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
+
+          <div id="button-myCatlle">
+            <Button
+              variant="contained"
+              color="inherit"
+              component={Link}
+              to="/private/cattles"
+            >
+              Voltar
+            </Button>
+          </div>
         </div>
       </Container>
     </>

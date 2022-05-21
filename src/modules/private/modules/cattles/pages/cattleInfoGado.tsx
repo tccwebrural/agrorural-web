@@ -22,10 +22,10 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { Formik } from "formik";
 import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
-
-import "../../../styles/InfoGado.css";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
 import VaccineCardInfoCattle from "../../vacine/Components/VaccineCardInfoCattle";
+
+import "../../../styles/InfoGado.css";
 
 function imprimir() {
   window.print();
@@ -85,9 +85,7 @@ const CattleInfoGado = (): ReactElement => {
       <Container
         sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
       >
-       
         <div id="blocoGeral-infoGado">
-        
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
@@ -115,8 +113,8 @@ const CattleInfoGado = (): ReactElement => {
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "center",
-                        width:1005,
-                        marginLeft:5
+                        width: 1005,
+                        marginLeft: 5,
                       }}
                     >
                       <Grid item xs={2} sx={{ margin: "0.4%" }}>
@@ -208,7 +206,7 @@ const CattleInfoGado = (): ReactElement => {
 
               <div id="blocoVacinas">{VaccineCardInfoCattle()}</div>
             </div>
-           
+
             <div id="button">
               <Button
                 variant="contained"

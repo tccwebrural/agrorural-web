@@ -19,8 +19,6 @@ import { CattleHelper } from "../helpers/CattleHelper";
 import { CattleModel } from "../models/CattleModel";
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import bezerro from "../../../../../assets/bezerro.png";
-import "../../../styles/CattleForm.css";
-import "../../../styles/style.css";
 
 import { getControls } from "../../../../../utils/FormUtils";
 import toast from "react-hot-toast";
@@ -32,6 +30,10 @@ import { object } from "yup/lib/locale";
 import { CattleValidatorSchema } from "modules/private/modules/cattles/validators/CattleValidatorSchema";
 import { getFireError } from "utils/HandleFirebaseError";
 import { ReportHelper } from "../../reports/helpers/ReportHelper";
+
+import "../../../styles/CattleForm.css";
+import "../../../styles/style.css";
+
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   margin: "auto",
@@ -85,6 +87,13 @@ const CreateCattleFormPage = (): ReactElement => {
   return (
     <>
       <div id="MainBlock-CreateCattleForm">
+        <div id="Block-CowImage-Form">
+          <img id="CowImage-Form" src={vaca_com_chifre_andando} alt="vaca" />
+        </div>
+        <div id="Block-CalfImage-Form">
+          <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
+        </div>
+
         <div className="Block-Txt-Line">
           <h2 className="Block-Line">
             {/* <span className="Block-Txt">Minha Criação &gt; Cadastrar Gado</span> */}
@@ -174,16 +183,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 }}
                 style={{ width: 310 }}
               />
-              <div id="Block-CowImage-Form">
-                <img
-                  id="CowImage-Form"
-                  src={vaca_com_chifre_andando}
-                  alt="vaca"
-                />
-              </div>
-              <div id="Block-CalfImage-Form">
-                <img id="CalfImage-Form" src={bezerro} alt="bezerro" />
-              </div>
+
               <Stack direction="row" spacing={2}>
                 <Stack spacing={2} direction="row" sx={{ marginRight: 1 }}>
                   <div id="Btns-SaveCancel-Form">
