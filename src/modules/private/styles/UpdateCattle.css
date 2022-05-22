@@ -1,12 +1,12 @@
-#MainBlock-UpdateCattle{
-  position: absolute;
+#MainBlock-UpdateCattle {
+  position: relative;
   width: 1100px;
-  top:15%;
-  left: 10%;
+  margin: 3% auto;
   border-radius: 8px;
   box-shadow: 0px 0px 6px 2px var(--cor111);
   background-color: var(--cor001);
 }
+
 #Block-Txt-Line-EditAnimalData {
   display: flex;
   justify-content: space-around;
@@ -14,6 +14,7 @@
   width: 1100px;
   height: 90px;
 }
+
 #Block-Txt-EditAnimalData {
   color: var(--cor005);
   padding: 10px 10px;
@@ -21,6 +22,7 @@
   width: 44%;
   font-size: 22px;
 }
+
 #Block-Line-EditAnimalData {
   content: " ";
   background-color: var(--cor007);
@@ -31,11 +33,13 @@
   margin-right: 5px;
   margin-left: -60px;
 }
+
 #Block-EditAnimalData {
   width: 1042px;
   height: 400px;
   margin: auto;
 }
+
 #Block-CowImage-EditAnimalData {
   display: flex;
   justify-content: end;
@@ -43,24 +47,28 @@
   top: 59%;
   left: 45%;
 }
+
 #CowImage-EditAnimalData {
   width: 350px;
   height: 200px;
   position: absolute;
   top: 90%;
 }
+
 #Block-CalfImage-EditAnimalData {
   display: flex;
   justify-content: end;
   position: absolute;
-  top:59.5%;
+  top: 59.5%;
   left: 93%;
 }
+
 #CalfImage-EditAnimalData {
   width: 160px;
   height: 140px;
   position: absolute;
 }
+
 #Btns-Update-Cancel-EditAnimalData {
   height: 60px;
   display: flex;

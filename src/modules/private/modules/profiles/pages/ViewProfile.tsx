@@ -371,7 +371,6 @@ const ViewProfilePage = (): ReactElement => {
                           Salvar
                         </Button>
                       )}
-                      <div></div>
                     </div>
                   </form>
                 )}

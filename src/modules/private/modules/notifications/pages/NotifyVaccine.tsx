@@ -1,5 +1,6 @@
 import { Box, Container, Grid } from "@mui/material";
 import { ReactElement } from "react";
+
 import "../../../styles/NotifyVaccine.css";
 
 const nomeVacina = "Brucelose";
@@ -12,7 +13,7 @@ const notifyVaccine = (): ReactElement => {
     <>
       <Box>
         <Container>
-          <div id="Bloco-Geral">
+          <div id="Bloco-GeralNotificacao">
             <div className="Block-Txt-Line">
               <h2 className="Block-Line">
                 <span id="Block-Txt-Notify">Notificações</span>
