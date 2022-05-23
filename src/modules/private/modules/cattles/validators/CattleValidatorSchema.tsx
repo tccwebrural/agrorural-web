@@ -34,6 +34,7 @@ const CattleValidatorSchema = object({
   qtyChildren: number().required(REQUIRED_FIELD).max(15, QTDY_CHILDREN_MAX_15),
   // birthday: string().required(REQUIRED_FIELD),
   birthday: date()
+    .required(REQUIRED_FIELD)
     .transform(parseDateString)
     .max(new Date(), TODAY_DATE)
     .min("2005-01-01", INFERIOR_DATE_2005),

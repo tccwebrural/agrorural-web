@@ -41,7 +41,6 @@ const MyCattle = (): ReactElement => {
   const cattleHelper = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const navigate = useNavigate();
-  console.log("id da pag" + id);
 
   useEffect(() => {
     loadingHelper.startLoading();
@@ -52,7 +51,8 @@ const MyCattle = (): ReactElement => {
           setInitialValues(cattle);
         } else {
           //TODO: Volta para listagem
-          toast.error("VACA NAO ENCONTRADA");
+          toast.error("Endereço não encontrado, por favor tente novamente!");
+          navigate("/private/cattles");
         }
         loadingHelper.stopLoading();
       });
@@ -186,38 +186,37 @@ const MyCattle = (): ReactElement => {
             </Formik>
           </section>
 
-              <div id="blocoTitulo-vacina-myCatlle">
-                <h2 id="blocoTituloTxt-vacina-myCatlle">
-                  Cartão de Vacina &gt; {initialValues.name}
-                </h2>
-                <span id="blocoTituloLine-vacina-myCatlle">
-                  <Fab
-                    id="icon-vaccine-myCatlle"
-                    component={Link}
-                    to={`/private/cattles/${id}/vacine/form`}
-                  >
-                    <button id="btAdd-Vaccine-myCatlle">
-                      <abbr title="Adicionar Vacina">
-                        <AddIcon />
-                      </abbr>
-                    </button>
-                  </Fab>
-                </span>
-              </div>
-
-              <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
-            
-            
-            <div id="button-myCatlle">
-              <Button
-                variant="contained"
-                color="inherit"
+          <div id="blocoTitulo-vacina-myCatlle">
+            <h2 id="blocoTituloTxt-vacina-myCatlle">
+              Cartão de Vacina &gt; {initialValues.name}
+            </h2>
+            <span id="blocoTituloLine-vacina-myCatlle">
+              <Fab
+                id="icon-vaccine-myCatlle"
                 component={Link}
-                to="/private/cattles"
+                to={`/private/cattles/${id}/vacine/form`}
               >
-                Voltar
-              </Button>
-            </div>
+                <button id="btAdd-Vaccine-myCatlle">
+                  <abbr title="Adicionar Vacina">
+                    <AddIcon />
+                  </abbr>
+                </button>
+              </Fab>
+            </span>
+          </div>
+
+          <div id="blocoVacinas-myCatlle">{VaccineCardView()}</div>
+
+          <div id="button-myCatlle">
+            <Button
+              variant="contained"
+              color="inherit"
+              component={Link}
+              to="/private/cattles"
+            >
+              Voltar
+            </Button>
+          </div>
         </div>
       </Container>
     </>

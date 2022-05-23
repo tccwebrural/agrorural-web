@@ -28,7 +28,7 @@ import toast from "react-hot-toast";
 import { ReportCattleCategory, ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { CompressOutlined } from "@mui/icons-material";
+import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
 import { MALE, FEMALE } from "../../../../../constants";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
@@ -77,114 +77,128 @@ const ButtonReportDeclare = (): ReactElement => {
   });
 
   const getMonthFromDate = (date: string) => {
+    var birthDay = new Date(date);
     var today = new Date();
-    const dataSeparada = date.split("-");
-    const ano = parseInt(dataSeparada[0]);
-    const mes = parseInt(dataSeparada[1]);
-    const dia = parseInt(dataSeparada[2]);
-
-    var birthDate = new Date(ano, mes, dia);
-
-    var months;
-    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
-    months -= birthDate.getMonth() + 1;
-    months += today.getMonth();
-
-    return months <= 0 ? 0 : months;
+    var birthDayYear = birthDay.getFullYear();
+    var todayYear = today.getFullYear();
+    var birthDayMonth = birthDay.getMonth();
+    var todayMonth = today.getMonth();
+    return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
   };
 
   const [cattleModelk, SetCattle] = useState<CattleModel>();
+  const initialValues = 0;
 
   useEffect(() => {
     loadingHelper.startLoading();
-    const resultado = cattlehelpers.getAllCattles().then((cattles) => {
+    cattlehelpers.getAllCattles().then((cattles) => {
       const resultado = cattles
 
         .map((cattle) => ({
-          age: getMonthFromDate(cattle.birthday),
           ...cattle,
+          age: getMonthFromDate(cattle.birthday),
         }))
         .reduce(
           (previousValues: any, currentValue: any) => {
+            const age = getMonthFromDate(currentValue.birthday);
+            const initialValue = 0;
             if (currentValue.sex === MALE) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                previousValues.totalBezerros = previousValues.totalBezerros + 1;
+                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
+                previousValues.totalBezerrosM =
+                  previousValues.totalBezerrosM + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
-                previousValues.totalDesmamados =
-                  previousValues.totalDesmamados + 1;
+                previousValues.totalDesmamadosM =
+                  previousValues.totalDesmamadosM + 1;
               } else if (currentValue.age >= 13 && currentValue.age <= 24) {
-                previousValues.totalGarrotes = previousValues.totalGarrotes + 1;
+                previousValues.totalGarrotesM =
+                  previousValues.totalGarrotesM + 1;
               } else if (currentValue.age >= 25 && currentValue.age <= 36) {
-                previousValues.totalNovilhos = previousValues.totalNovilhos + 1;
-              } else {
-                previousValues.totalAcimaDe36 =
-                  previousValues.totalAcimaDe36 + 1;
+                previousValues.totalNovilhosM =
+                  previousValues.totalBezerrosM + 1;
+              } else if (currentValue.age > 36) {
+                previousValues.totalOutrosM = previousValues.totalOutrosM + 1;
               }
-            }
-
-            if (currentValue.sex === FEMALE) {
+            } else {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                previousValues.totalBezerros = previousValues.totalBezerros + 1;
+                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
+                previousValues.totalBezerrosF =
+                  previousValues.totalBezerrosF + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
-                previousValues.totalDesmamados =
-                  previousValues.totalDesmamados + 1;
+                previousValues.totalDesmamadosF =
+                  previousValues.totalDesmamadosF + 1;
               } else if (currentValue.age >= 13 && currentValue.age <= 24) {
-                previousValues.totalGarrotes = previousValues.totalGarrotes + 1;
+                previousValues.totalGarrotesF =
+                  previousValues.totalGarrotesF + 1;
               } else if (currentValue.age >= 25 && currentValue.age <= 36) {
-                previousValues.totalNovilhos = previousValues.totalNovilhos + 1;
+                previousValues.totalNovilhosF =
+                  previousValues.totalBezerrosF + 1;
               } else {
-                previousValues.totalAcimaDe36 =
-                  previousValues.totalAcimaDe36 + 1;
+                previousValues.totalOutrosF = previousValues.totalOutrosF + 1;
               }
+              previousValues.totalCattlesMale =
+                previousValues.totalBezerrosM + 1;
+              previousValues.totalDesmamadosM + 1;
+              previousValues.totalGarrotesM + 1;
+              previousValues.totalNovilhosM + 1;
+              previousValues.totalOutrosM + 1;
 
-              console.log("previows : " + previousValues);
-              const currentReport = report;
-
-              currentReport.rebanhoAtual.bezerros.male =
-                resultado.totalBezerrosM;
-              currentReport.rebanhoAtual.bezerros.female =
-                resultado.tempTotalBezerrosF;
-              currentReport.rebanhoAtual.desmamados.male =
-                resultado.tempTotalDesmamadosM;
-              currentReport.rebanhoAtual.desmamados.female =
-                resultado.tempTotalDesmamadosF;
-              currentReport.rebanhoAtual.garrotes.male =
-                resultado.tempTotalGarrotesM;
-              currentReport.rebanhoAtual.garrotes.female =
-                resultado.tempTotalGarrotesM;
-              //...
-              currentReport.rebanhoComCausas.bezerros.male =
-                resultado.tempTotalBezerrosM;
-              currentReport.rebanhoComCausas.bezerros.female =
-                resultado.tempTotalBezerrosF;
-              currentReport.rebanhoComCausas.desmamados.male =
-                resultado.tempTotalDesmamadosM;
-              currentReport.rebanhoComCausas.desmamados.female =
-                resultado.tempTotalDesmamadosF;
-              currentReport.rebanhoComCausas.garrotes.male =
-                resultado.tempTotalGarrotesM;
-              currentReport.rebanhoComCausas.garrotes.female =
-                resultado.tempTotalGarrotesM;
-
-              console.log("valor do resultado " + currentReport);
-
-              setReport(currentReport);
+              previousValues.totalCattlesFemale =
+                previousValues.totalBezerrosF + 1;
+              previousValues.totalDesmamadosF + 1;
+              previousValues.totalGarrotesF + 1;
+              previousValues.totalNovilhosF + 1;
+              previousValues.totalOutrosF + 1;
             }
+            const animals = cattleModelk;
 
             return previousValues;
           },
           {
-            // totalBezerros: 0,
-            // totalDesmamados: 0,
-            // totalGarrotes: 0,
-            // totalNovilhos: 0,
-            // totalAcimaDe36: 0,
+            totalBezerrosM: 0,
+            totalDesmamadosM: 0,
+            totalGarrotesM: 0,
+            totalNovilhosM: 0,
+            totalOutrosM: 0,
+            totalCattlesFemale: 0,
+            totalCattlesMale: 0,
+            totalBezerrosF: 0,
+            totalDesmamadosF: 0,
+            totalGarrotesF: 0,
+            totalNovilhosF: 0,
+            totalOutrosF: 0,
           }
         );
+      currentReport.rebanhoAtual.bezerros.male = resultado.totalBezerrosM;
+      currentReport.rebanhoAtual.bezerros.female = resultado.totalBezerrosF;
+      currentReport.rebanhoAtual.desmamados.male = resultado.totalDesmamadosM;
+      currentReport.rebanhoAtual.desmamados.female = resultado.totalDesmamadosF;
+      currentReport.rebanhoAtual.garrotes.male = resultado.totalGarrotesM;
+      currentReport.rebanhoAtual.garrotes.female = resultado.totalGarrotesF;
+      currentReport.rebanhoAtual.novilhos.male = resultado.totalNovilhosM;
+      currentReport.rebanhoAtual.novilhos.female = resultado.totalNovilhosF;
+      currentReport.rebanhoAtual.outros.male = resultado.totalOutrosM;
+      currentReport.rebanhoAtual.outros.female = resultado.totalOutrosF;
+      currentReport.rebanhoAtual.total.male = resultado.totalCattlesMale;
+      currentReport.rebanhoAtual.total.female = resultado.totalCattlesFemale;
       return resultado;
     });
 
     //...
+    const currentReport = report;
+
+    //   //...REBANHO COM CAUSAS
+    currentReport.rebanhoComCausas.bezerros.male = 100;
+    currentReport.rebanhoComCausas.bezerros.female = 100;
+    currentReport.rebanhoComCausas.desmamados.male = 30;
+    currentReport.rebanhoComCausas.desmamados.female = 3;
+    currentReport.rebanhoComCausas.garrotes.male = 1;
+    currentReport.rebanhoComCausas.garrotes.female = 5;
+    currentReport.rebanhoComCausas.novilhos.male = 1;
+    currentReport.rebanhoComCausas.novilhos.female = 12;
+    currentReport.rebanhoComCausas.outros.male = 1;
+    currentReport.rebanhoComCausas.outros.female = 10;
+    setReport(currentReport);
 
     loadingHelper.stopLoading();
     console.log("reports" + report);
@@ -327,10 +341,10 @@ const ButtonReportDeclare = (): ReactElement => {
               <p className="F-txt-RA">Fêmea</p>
             </div>
             <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.outros.male}
+              {report.rebanhoAtual.total.male}
             </div>
             <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.outros.female}
+              {report.rebanhoAtual.total.female}
             </div>
           </div>
         </div>

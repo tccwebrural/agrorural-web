@@ -68,7 +68,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "REPORT TS",
     title: "REPORTTST",
     path: "cattle/Reporttst",
-    showHeaderBtn: false,
+    showHeaderBtn: true,
     component: ReportPage,
   },
   {

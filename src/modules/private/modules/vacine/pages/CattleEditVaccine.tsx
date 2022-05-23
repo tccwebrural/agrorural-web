@@ -27,6 +27,9 @@ import { Formik } from "formik";
 import { VacineValidatorSchema } from "../validators/VacineValidatorSchema";
 import { getControls } from "utils/FormUtils";
 import bezerro from "../../../../../assets/bezerro.png";
+import { FEBRE_AFTOSA } from "../../../../../constants";
+import { BRUCELOSE } from "../../../../../constants";
+import { RAIVA } from "../../../../../constants";
 
 const CattleEditVaccine = (): ReactElement => {
   function UpdateVaccineData() {
@@ -98,7 +101,7 @@ const CattleEditVaccine = (): ReactElement => {
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
                   <span id="Block-Txt-CattleEditVaccine">
-                    Editar Vacina &gt;  {initialValues.name}
+                    Editar Vacina &gt; {initialValues.name}
                   </span>
                 </h2>
               </div>
@@ -112,7 +115,7 @@ const CattleEditVaccine = (): ReactElement => {
                       "& .MuiTextField-root": { m: 1, width: "25ch" },
                     }}
                   >
-                    <TextField
+                    {/* <TextField
                       style={{ width: 238, margin: "0.4%" }}
                       label="Nome"
                       type="text"
@@ -120,7 +123,21 @@ const CattleEditVaccine = (): ReactElement => {
                         shrink: true,
                       }}
                       {...getControls(formik, "name")}
-                    />
+                    /> */}
+                    <FormControl>
+                      <InputLabel>Tipo</InputLabel>
+                      <Select
+                        {...getControls(formik, "name")}
+                        label="Grouping"
+                        style={{ width: 230, margin: "0.4%" }}
+
+                        // name="category"
+                      >
+                        <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
+                        <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
+                        <MenuItem value={RAIVA}>Raiva</MenuItem>
+                      </Select>
+                    </FormControl>
                     <TextField
                       style={{ width: 150, margin: "0.4%" }}
                       label="Lote"

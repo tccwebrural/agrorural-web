@@ -55,7 +55,10 @@ const cattleViewVaccine = (): ReactElement => {
           setInitialValues(cattle);
         } else {
           //TODO: Volta para listagem
-          toast.error("VACA NAO ENCONTRADA");
+          toast.error(
+            "Vaca não Endereço não encontrado, por favor tente novamente!"
+          );
+          navigate("/private/cattles");
         }
         loadingHelper.stopLoading();
       });
@@ -75,7 +78,7 @@ const cattleViewVaccine = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-viewCatlle">
               <h2 id="blocoTituloTxt-criacao-viewCatlle">
-                Cartão do Gado &gt;  {initialValues.name}
+                Cartão do Gado &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-viewCatlle">
                 <abbr title="Imprimir">
@@ -182,72 +185,8 @@ const cattleViewVaccine = (): ReactElement => {
                 <h2 id="blocoTituloTxt-vacina-viewCatlle">Cartao de Vacina</h2>
                 <span id="blocoTituloLine-vacina-viewCatlle"></span>
               </div>
-              {/* <div id="infoGado-viewCatlle">
-                <Box>
-                  <FormControl
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Grid item xs={2} sx={{ margin: "1%" }}>
-                      <TextField
-                        style={{ width: 180 }}
-                        id="outlined-disabled"
-                        label="Nome"
-                        type="text"
-                      />
-                    </Grid>
-                    <Grid sx={{ margin: "1%" }}>
-                      <TextField
-                        style={{ width: 150 }}
-                        id="outlined-disabled"
-                        label="Lote"
-                        type="number"
-                      />
-                    </Grid>
-                    <Grid sx={{ margin: "1%" }}>
-                      <TextField
-                        style={{ width: 180 }}
-                        id="outlined-disabled"
-                        label="Fabricante"
-                        type="text"
-                      />
-                    </Grid>
-                    <Grid sx={{ margin: "1%" }}>
-                      <TextField
-                        style={{ width: 180 }}
-                        id="outlined-disabled"
-                        label="Data da Aplicação"
-                        type="date"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </Grid>
-                    <Grid sx={{ margin: "1%" }}>
-                      <TextField
-                        style={{ width: 180 }}
-                        id="outlined-disabled"
-                        label="Data da Validade"
-                        type="date"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </Grid>
-                  </FormControl>
-                </Box>
-              </div> */}
-              {VaccineCardViewForm()}
 
-              {/* <div id="blocoVacinas-viewCatlle">
-                <Grid id="vacinas">
-                  <MdCoronavirus style={{ marginTop: 25 }} size={80} />
-                  <p>Virus 1</p>
-                </Grid>
-              </div> */}
+              {VaccineCardViewForm()}
             </div>
             <div id="button-viewCatlle">
               <Button

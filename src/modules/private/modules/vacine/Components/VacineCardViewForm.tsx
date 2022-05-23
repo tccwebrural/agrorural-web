@@ -1,9 +1,19 @@
-import { Box, FormControl, Grid, TextField } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
+import { FEBRE_AFTOSA, RAIVA, BRUCELOSE } from "../../../../../constants";
+
 import { Formik } from "formik";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { ReactElement, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { getControls } from "utils/FormUtils";
 import { VacineHelper } from "../helpers/VacineHelpers";
 import { VacineModel } from "../models/VacineModel";
@@ -12,7 +22,7 @@ const VaccineCardViewForm = (): ReactElement => {
   const { id, idVacine } = useParams();
 
   const [initalValues, setInitialValues] = useState<VacineModel>({
-    date_application: "",
+    date_application: FEBRE_AFTOSA,
     name: "",
     expiration_date: "",
     lote: 0,
@@ -21,7 +31,7 @@ const VaccineCardViewForm = (): ReactElement => {
 
   const vacineHelper = VacineHelper();
   const loadingHelper = useGlobalLoading();
-
+  const navigate = useNavigate();
   useEffect(() => {
     loadingHelper.startLoading();
     if (id && idVacine) {
@@ -30,7 +40,8 @@ const VaccineCardViewForm = (): ReactElement => {
           setInitialValues(vacine);
         } else {
           //TODO: Volta para listagem
-          toast.error("VACA NAO ENCONTRADA");
+          toast.error("Endereço não encontrado, por favor tente novamente!");
+          navigate("/private/cattles");
         }
         loadingHelper.stopLoading();
       });
@@ -58,15 +69,30 @@ const VaccineCardViewForm = (): ReactElement => {
                 justifyContent: "center",
               }}
             >
-              <Grid item xs={2} sx={{ margin: "0.4%", marginLeft:2}}>
-                <TextField
+              <Grid item xs={2} sx={{ margin: "0.4%", marginLeft: 2 }}>
+                {/* <TextField
                   style={{ width: 205 }}
                   id="outlined-disabled"
                   label="Nome"
                   type="text"
                   disabled={true}
                   {...getControls(formik, "name")}
-                />
+                /> */}
+
+                <FormControl>
+                  <InputLabel>Tipo</InputLabel>
+                  <Select
+                    {...getControls(formik, "name")}
+                    label="Grouping"
+                    // name="category"
+                    style={{ width: 230 }}
+                    disabled={true}
+                  >
+                    <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
+                    <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
+                    <MenuItem value={RAIVA}>Raiva</MenuItem>
+                  </Select>
+                </FormControl>
               </Grid>
               <Grid sx={{ margin: "0.4%" }}>
                 <TextField

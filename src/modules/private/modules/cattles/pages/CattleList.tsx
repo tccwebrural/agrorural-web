@@ -245,6 +245,7 @@ const CattleListPage = (): ReactElement => {
           listToDisplay.push(cattleToDisplay);
         }
         setAnimals(listToDisplay);
+
         loadingHelper.stopLoading();
       })
       .catch((err: any) => {
@@ -410,11 +411,6 @@ const CattleListPage = (): ReactElement => {
                   <AddIcon />
                 </Fab>
               </abbr>
-              <abbr title="Deletar animais">
-                <Fab id="DeleteIcon-txt-line">
-                  <DeleteIcon />
-                </Fab>
-              </abbr>
             </div>
           </span>
         </div>
@@ -432,7 +428,8 @@ const CattleListPage = (): ReactElement => {
               rows={animals}
               columns={columns}
               localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
-              checkboxSelection
+              // CAIXA DE SELELEÃO
+              // checkboxSelection
               sx={{
                 border: "none",
                 boxShadow: " 2px 2px 4px 2px var(--cor111)",

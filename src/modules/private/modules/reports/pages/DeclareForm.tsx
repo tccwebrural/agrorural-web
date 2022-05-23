@@ -59,6 +59,15 @@ const DeclareForm = (): ReactElement => {
 
     return months <= 0 ? 0 : months;
   };
+  const getMonthFromDate = (date: string) => {
+    var birthDay = new Date(date);
+    var today = new Date();
+    var birthDayYear = birthDay.getFullYear();
+    var todayYear = today.getFullYear();
+    var birthDayMonth = birthDay.getMonth();
+    var todayMonth = today.getMonth();
+    return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
+  };
   const cattlehelpers = CattleHelper();
   var [totalBezerrosM, setTotalBezerrosM] = useState(0);
   var [totalDesmamadosM, setTotalDesmamadosM] = useState(0);
@@ -95,8 +104,9 @@ const DeclareForm = (): ReactElement => {
         for (let index = 0; index < cattles.length; index++) {
           const cattle = {
             ...cattles[index],
-            age: getAgeFromDate(cattles[index].birthday),
+            age: getMonthFromDate(cattles[index].birthday),
           };
+          console.log("idade: " + cattle.age);
 
           if (cattle.sex === 1) {
             if (cattle.age >= 0 && cattle.age <= 6) {

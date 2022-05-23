@@ -54,7 +54,8 @@ const CattleInfoGado = (): ReactElement => {
           setInitialValues(cattle);
         } else {
           //TODO: Volta para listagem
-          toast.error("VACA NAO ENCONTRADA");
+          toast.error("Endereço não encontrado, por favor tente novamente!");
+          navigate("/private/cattles");
         }
         loadingHelper.stopLoading();
       });
@@ -85,9 +86,7 @@ const CattleInfoGado = (): ReactElement => {
       <Container
         sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
       >
-       
         <div id="blocoGeral-infoGado">
-        
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
@@ -115,8 +114,8 @@ const CattleInfoGado = (): ReactElement => {
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: "center",
-                        width:1005,
-                        marginLeft:5
+                        width: 1005,
+                        marginLeft: 5,
                       }}
                     >
                       <Grid item xs={2} sx={{ margin: "0.4%" }}>
@@ -208,7 +207,7 @@ const CattleInfoGado = (): ReactElement => {
 
               <div id="blocoVacinas">{VaccineCardInfoCattle()}</div>
             </div>
-           
+
             <div id="button">
               <Button
                 variant="contained"

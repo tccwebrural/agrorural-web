@@ -28,6 +28,11 @@ export const COLLECTION_NOTIFICATIONS = "notifications";
 export const MALE = 1;
 export const FEMALE = 2;
 
+//  VACINAS  DOS ANIMAIS
+export const FEBRE_AFTOSA = "Febre aftosa";
+export const RAIVA = "Raiva";
+export const BRUCELOSE = "Brucelose";
+
 /* MENSAGENS DE ERRO DO FORMULÁRIO */
 export const EMAIL_INVALID = "Digite um email válido";
 export const PASSWORD_MIN_8 = "A senha deve conter no mínimo 8 caracteres";

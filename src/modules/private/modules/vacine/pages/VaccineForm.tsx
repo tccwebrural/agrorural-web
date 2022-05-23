@@ -6,6 +6,10 @@ import {
   Typography,
   TextField,
   Checkbox,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 const label = { inputProps: { "aria-label": "" } };
@@ -21,7 +25,12 @@ import { VacineValidatorSchema } from "../validators/VacineValidatorSchema";
 import { getControls } from "utils/FormUtils";
 import { CattleModel } from "../../cattles/models/CattleModel";
 import vaca1 from "../../../../../assets/vaca1.png";
-import { COLLECTION_VACINES } from "../../../../../constants";
+import {
+  COLLECTION_VACINES,
+  FEBRE_AFTOSA,
+  RAIVA,
+  BRUCELOSE,
+} from "../../../../../constants";
 import bezerro from "../../../../../assets/bezerro.png";
 const VaccineFormPage = (): ReactElement => {
   const { id } = useParams();
@@ -31,7 +40,7 @@ const VaccineFormPage = (): ReactElement => {
     expiration_date: "",
     lote: 0,
     manufacturer: "",
-    name: "",
+    name: FEBRE_AFTOSA,
   });
 
   const navigate = useNavigate();
@@ -85,13 +94,20 @@ const VaccineFormPage = (): ReactElement => {
                 </h2>
               </div>
               <div id="Block-AnimalData">
-                <form style={{width:1020,marginLeft:-1}} onSubmit={formik.handleSubmit}>
+                <form
+                  style={{ width: 1200, marginLeft: 0 }}
+                  onSubmit={formik.handleSubmit}
+                >
                   <Box
                     sx={{
-                      "& .MuiTextField-root": { m: 1, width: "26ch",margin:"0.4%" },
+                      "& .MuiTextField-root": {
+                        m: 1,
+                        width: "26ch",
+                        margin: "0.4%",
+                      },
                     }}
                   >
-                    <TextField
+                    {/* <TextField
                       style={{ width: 230 }}
                       label="Nome"
                       type="text"
@@ -99,7 +115,21 @@ const VaccineFormPage = (): ReactElement => {
                         shrink: true,
                       }}
                       {...getControls(formik, "name")}
-                    />
+                    /> */}
+                    <FormControl>
+                      <InputLabel>Tipo</InputLabel>
+                      <Select
+                        style={{ width: 230 }}
+                        {...getControls(formik, "name")}
+                        label="Grouping"
+                        // name="category"
+                      >
+                        <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
+                        <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
+                        <MenuItem value={RAIVA}>Raiva</MenuItem>
+                      </Select>
+                    </FormControl>
+
                     <TextField
                       style={{ width: 160 }}
                       label="Lote"

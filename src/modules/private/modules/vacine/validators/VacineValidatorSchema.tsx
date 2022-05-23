@@ -24,10 +24,14 @@ const VacineValidatorSchema = object({
   lote: string().required(REQUIRED_FIELD),
   // date_application: string().required(REQUIRED_FIELD),
   date_application: date()
+    .required(REQUIRED_FIELD)
     .transform(parseDateString)
     .max(new Date(), TODAY_DATE)
     .min("2005-01-01", INFERIOR_DATE_2005),
-  expiration_date: string().required(REQUIRED_FIELD),
+  expiration_date: date()
+    .required(REQUIRED_FIELD)
+    .transform(parseDateString)
+    .min("2005-01-02", INFERIOR_DATE_2005),
 
   // expiration_date: date().transform(parseDateString).min(date),
 
