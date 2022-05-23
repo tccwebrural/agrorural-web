@@ -21,10 +21,11 @@ import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import "../../../styles/MyCattle.css";
 import { VacineModel } from "../models/VacineModel";
 import { VacineHelper } from "../helpers/VacineHelpers";
 import toast from "react-hot-toast";
+
+import "../../../styles/MyCattle.css";
 
 const VaccineCardView = (): ReactElement => {
   const { id } = useParams();
@@ -141,10 +142,17 @@ const VaccineCardView = (): ReactElement => {
     <>
       {vacines.map((vacine, index) => (
         <Card key={index} id="CardView">
-                <div id="vaccineIcons">   
-                <VaccinesIcon style={{ color: "var(--cor008)",height:50,width:50, margin:"auto"}}/>
-                </div>
-          
+          <div id="vaccineIcons">
+            <VaccinesIcon
+              style={{
+                color: "var(--cor008)",
+                height: 50,
+                width: 50,
+                margin: "auto",
+              }}
+            />
+          </div>
+
           <CardContent id="CardName">
             <h3> {vacine.name}</h3>
           </CardContent>
@@ -153,20 +161,38 @@ const VaccineCardView = (): ReactElement => {
             <IconButton
               onClick={() => openDeleteVacineModal(vacine)}
               aria-label="add to favorites"
-              style={{ backgroundColor: "var(--cor009)",width:30,height:30}}
-            ><abbr title="Deletar vacina">
-              <DeleteIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
-            </abbr>
+              style={{
+                backgroundColor: "var(--cor009)",
+                width: 30,
+                height: 30,
+              }}
+            >
+              <abbr title="Deletar vacina">
+                <DeleteIcon
+                  style={{
+                    color: "var(--cor001)",
+                    width: 20,
+                    height: 20,
+                  }}
+                />
+              </abbr>
             </IconButton>
 
             <IconButton
               aria-label="share"
               component={Link}
               to={`/private/cattle/${id}/vacine/${vacine.id}/edit`}
-              style={{ backgroundColor: "var(--cor007)",width:30,height:30,margin:2}}
+              style={{
+                backgroundColor: "var(--cor007)",
+                width: 30,
+                height: 30,
+                margin: 2,
+              }}
             >
               <abbr title="Editar vacina">
-              <EditIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
+                <EditIcon
+                  style={{ color: "var(--cor001)", width: 20, height: 20 }}
+                />
               </abbr>
             </IconButton>
 
@@ -174,10 +200,16 @@ const VaccineCardView = (): ReactElement => {
               aria-label="share"
               component={Link}
               to={`/private/cattle/${id}/vaccine/${vacine.id}/view`}
-              style={{ backgroundColor: "var(--cor006)",width:30,height:30}}
+              style={{
+                backgroundColor: "var(--cor006)",
+                width: 30,
+                height: 30,
+              }}
             >
               <abbr title="Visualizar dados da vacina">
-              <VisibilityIcon style={{ color: "var(--cor001)",width:20,height:20}}/>
+                <VisibilityIcon
+                  style={{ color: "var(--cor001)", width: 20, height: 20 }}
+                />
               </abbr>
             </IconButton>
           </CardActions>
