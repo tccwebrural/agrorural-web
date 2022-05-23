@@ -16,7 +16,7 @@ import {
 import { firestore } from "../../../../../configs/Firebase";
 import { COLLECTION_FARMS } from "../../../../../constants";
 import { FarmHelper } from "../../../helpers/FarmHelper";
-import { CattleModel } from "../models/CattleModel";
+import { CattleDeathModel, CattleModel } from "../models/CattleModel";
 
 export const CattleHelper = () => {
   const { getFarmRef } = FarmHelper();
@@ -101,6 +101,25 @@ export const CattleHelper = () => {
     }
   };
 
+  const updateDeathTypes = async (cattle: CattleModel) => {
+    const farmRef = await getFarmRef();
+    if (farmRef) {
+      const cattlesCollectionRef = collection(
+        firestore,
+        COLLECTION_FARMS,
+        farmRef.id,
+        COLLECTION_CATTLES
+      );
+
+      const cattleRef = await doc(
+        firestore,
+
+        cattlesCollectionRef.path,
+        farmRef.id
+      );
+      return updateDoc(cattleRef, { deathBy: cattle.deathBy });
+    }
+  };
   const getCattleRef = async (cattleId: string) => {
     const farmRef = await getFarmRef();
     if (farmRef) {
@@ -167,5 +186,6 @@ export const CattleHelper = () => {
     updateCattleId,
     getCattleById,
     getCattleRef,
+    updateDeathTypes,
   };
 };

@@ -182,5 +182,6 @@ export const VacineHelper = () => {
     deleteVacineId,
     updateVacineId,
     createVacine,
+    getVacineRef,
   };
 };

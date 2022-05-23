@@ -19,6 +19,10 @@ import toast from "react-hot-toast";
 import PrintButtonComponent from "../components/PrintButtonComponent";
 
 import "../../../styles/Home.css";
+import { ReportHelper } from "../../reports/helpers/ReportHelper";
+import { ReportModel } from "../../reports/models/ReportModel";
+import { CattleModel } from "../../cattles/models/CattleModel";
+import { getMonth } from "date-fns";
 
 var today = new Date();
 var currentYear = today.getFullYear();
@@ -29,64 +33,22 @@ var fourYearsAgo = today.getFullYear() - 4;
 var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
 const HomePage = (): ReactElement => {
-  const getAgeFromDate = (date: string) => {
-    var today = new Date();
-    const dataSeparada = date.split("-");
-    const ano = parseInt(dataSeparada[0]);
-    const mes = parseInt(dataSeparada[1]);
-    const dia = parseInt(dataSeparada[2]);
-
-    var birthDate = new Date(ano, mes, dia);
-
-    var months;
-    months = (today.getFullYear() - birthDate.getFullYear()) * 12;
-    months -= birthDate.getMonth() + 1;
-    months += today.getMonth();
-
-    return months <= 0 ? 0 : months;
-  };
-  const cattlehelpers = CattleHelper();
-  const loadingHelper = useGlobalLoading();
   const [totalBezerros, setTotalBezerros] = useState(0);
   const [totalDesmamados, setTotalDesmamados] = useState(0);
   const [totalGarrotes, setTotalGarrotes] = useState(0);
   const [totalNovilhos, setTotalNovilhos] = useState(0);
   const [totalAcimaDe36, setTotalAcimaDe36] = useState(0);
 
-  function createData(
-    periodo: Number,
-    totalBezerros = 0,
-    totalDesmamados = 0,
-    totalGarrotes = 0,
-    totalNovilhos = 0,
-    totalAcimaDe36 = 0
-  ) {
-    const totalDeAnimais =
-      totalBezerros +
-      totalDesmamados +
-      totalGarrotes +
-      totalNovilhos +
-      totalAcimaDe36;
-    return {
-      periodo,
-      totalBezerros,
-      totalDesmamados,
-      totalGarrotes,
-      totalNovilhos,
-      totalAcimaDe36,
-      totalDeAnimais,
-    };
-  }
-  const rows = [
-    createData(
-      periodo[0],
-      totalBezerros,
-      totalDesmamados,
-      totalGarrotes,
-      totalNovilhos,
-      totalAcimaDe36
-    ),
-  ];
+  const [reports, SetReports] = useState<ReportModel[]>([]);
+
+  const reportsHelpers = ReportHelper();
+  const cattleHelpers = CattleHelper();
+
+  useEffect(() => {
+    reportsHelpers.getAllReports().then(SetReports);
+  }, []);
+
+  const [cattles, setCattles] = useState<CattleModel[]>([]);
 
   function imprimir() {
     window.print();
@@ -192,7 +154,7 @@ const HomePage = (): ReactElement => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row, i) => (
+                    {reports.map((reports, i) => (
                       <TableRow
                         key={i}
                         sx={{
@@ -200,25 +162,32 @@ const HomePage = (): ReactElement => {
                         }}
                       >
                         <TableCell component="th" scope="row" align="center">
-                          {row.periodo}
+                          {/* {reports.} */}
+                          {reports.createdAt?.seconds}
                         </TableCell>
                         <TableCell align="center">
-                          {row.totalBezerros}
+                          {reports.rebanhoAtual.bezerros.male +
+                            reports.rebanhoAtual.bezerros.female}
                         </TableCell>
                         <TableCell align="center">
-                          {row.totalDesmamados}
+                          {reports.rebanhoAtual.desmamados.male +
+                            reports.rebanhoAtual.desmamados.female}
                         </TableCell>
                         <TableCell align="center">
-                          {row.totalGarrotes}
+                          {reports.rebanhoAtual.garrotes.male +
+                            reports.rebanhoAtual.garrotes.female}
                         </TableCell>
                         <TableCell align="center">
-                          {row.totalNovilhos}
+                          {reports.rebanhoAtual.novilhos.male +
+                            reports.rebanhoAtual.novilhos.female}
                         </TableCell>
                         <TableCell align="center">
-                          {row.totalAcimaDe36}
+                          {reports.rebanhoAtual.outros.male +
+                            reports.rebanhoAtual.outros.female}
                         </TableCell>
                         <TableCell align="center">
-                          {row.totalDeAnimais}
+                          {reports.rebanhoAtual.total.male +
+                            reports.rebanhoAtual.total.female}
                         </TableCell>
                       </TableRow>
                     ))}

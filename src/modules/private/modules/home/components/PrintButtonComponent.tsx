@@ -17,77 +17,78 @@ import { BsPrinter } from "react-icons/bs";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import "jspdf-autotable";
+import { ReportModel } from "../../reports/models/ReportModel";
+import { ReportHelper } from "../../reports/helpers/ReportHelper";
 
 const PrintButtonComponent = (): ReactElement => {
-  const [totalBezerros, setTotalBezerros] = useState(0);
-  const [totalDesmamados, setTotalDesmamados] = useState(0);
-  const [totalGarrotes, setTotalGarrotes] = useState(0);
-  const [totalNovilhos, setTotalNovilhos] = useState(0);
-  const [totalAcimaDe36, setTotalAcimaDe36] = useState(0);
-  var today = new Date();
-  var currentYear = today.getFullYear();
-  var lastYear = today.getFullYear() - 1;
-  var twoYearsAgo = today.getFullYear() - 2;
-  var threeYearsAgo = today.getFullYear() - 3;
-  var fourYearsAgo = today.getFullYear() - 4;
+  // var periodo = [
+  //   currentYear,
+  //   lastYear,
+  //   twoYearsAgo,
+  //   threeYearsAgo,
+  //   fourYearsAgo,
+  // ];
 
-  var periodo = [
-    currentYear,
-    lastYear,
-    twoYearsAgo,
-    threeYearsAgo,
-    fourYearsAgo,
-  ];
-
-  function createData(
-    periodo: Number,
-    totalBezerros = 10,
-    totalDesmamados = 0,
-    totalGarrotes = 0,
-    totalNovilhos = 0,
-    totalAcimaDe36 = 0
-  ) {
-    const totalDeAnimais =
-      totalBezerros +
-      totalDesmamados +
-      totalGarrotes +
-      totalNovilhos +
-      totalAcimaDe36;
-    return {
-      periodo,
-      totalBezerros,
-      totalDesmamados,
-      totalGarrotes,
-      totalNovilhos,
-      totalAcimaDe36,
-      totalDeAnimais,
-    };
-  }
-  const totalDeAnimais =
-    totalBezerros +
-    totalDesmamados +
-    totalGarrotes +
-    totalNovilhos +
-    totalAcimaDe36;
-  const rows = [
-    createData(
-      periodo[0],
-      totalBezerros,
-      totalDesmamados,
-      totalGarrotes,
-      totalNovilhos,
-      totalAcimaDe36
-    ),
-  ];
-  function imprimir() {
-    window.print();
-  }
+  // function createData(
+  //   periodo: Number,
+  //   totalBezerros = 10,
+  //   totalDesmamados = 0,
+  //   totalGarrotes = 0,
+  //   totalNovilhos = 0,
+  //   totalAcimaDe36 = 0
+  // ) {
+  //   const totalDeAnimais =
+  //     totalBezerros +
+  //     totalDesmamados +
+  //     totalGarrotes +
+  //     totalNovilhos +
+  //     totalAcimaDe36;
+  //   return {
+  //     periodo,
+  //     totalBezerros,
+  //     totalDesmamados,
+  //     totalGarrotes,
+  //     totalNovilhos,
+  //     totalAcimaDe36,
+  //     totalDeAnimais,
+  //   };
+  // }
+  // const totalDeAnimais =
+  //   totalBezerros +
+  //   totalDesmamados +
+  //   totalGarrotes +
+  //   totalNovilhos +
+  //   totalAcimaDe36;
+  // const rows = [
+  //   createData(
+  //     periodo[0],
+  //     totalBezerros,
+  //     totalDesmamados,
+  //     totalGarrotes,
+  //     totalNovilhos,
+  //     totalAcimaDe36
+  //   ),
+  // ];
 
   const doc = new jsPDF();
   //   const docAuto = new autoTable(doc, autoTable);
 
+  const [reports, setReports] = useState<ReportModel[]>([]);
+
+  const reportHelpers = ReportHelper();
+  useEffect(() => {
+    reportHelpers.getAllReports().then(setReports);
+  }, []);
+
+  reports.map(
+    (report, i) =>
+      (i =
+        report.rebanhoAtual.bezerros.male + report.rebanhoAtual.bezerros.female)
+  );
+
+  var total = reports.reduce((sum, el) => sum + el.rebanhoAtual.total.male, 0);
   const Print = () => {
-    doc.text("Meu Relátorio 155", 20, 10);
+    doc.text("Meu Relátorio", 20, 10);
     autoTable(doc, {
       head: [
         [
@@ -96,22 +97,36 @@ const PrintButtonComponent = (): ReactElement => {
           "Desmamados",
           "Garrotes",
           "Novilhos",
-          "Acimas de",
+          "Acimas de 36",
           "total",
         ],
       ],
-      body: [
-        [
-          " ",
-          totalBezerros,
-          totalDesmamados,
-          totalNovilhos,
-          totalAcimaDe36,
-          totalAcimaDe36,
-          totalDeAnimais,
-        ],
+      // body: [
+      //   [reports.map((reports, i) => reports.rebanhoAtual.bezerros.male)],
 
-        // ...
+      // ],
+      body: [
+        ...reports.map((el) => [
+          2022,
+          el.rebanhoAtual.bezerros.male + el.rebanhoAtual.bezerros.female,
+          el.rebanhoAtual.desmamados.male + el.rebanhoAtual.desmamados.female,
+          el.rebanhoAtual.garrotes.male + el.rebanhoAtual.garrotes.female,
+          el.rebanhoAtual.novilhos.male + el.rebanhoAtual.novilhos.female,
+          el.rebanhoAtual.outros.male + el.rebanhoAtual.outros.female,
+          el.rebanhoAtual.total.male + el.rebanhoAtual.total.female,
+        ]),
+        {
+          content: "Text",
+          colSpan: 5,
+          rowSpan: 5,
+        },
+        // [
+        //   {
+        //     content: `Total = ${total}`,
+        //     colSpan: 2,
+        //     styles: { fillColor: [239, 154, 154] },
+        //   },
+        // ],
       ],
     });
 

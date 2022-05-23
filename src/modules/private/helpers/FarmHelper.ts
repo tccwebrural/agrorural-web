@@ -47,22 +47,6 @@ export const FarmHelper = () => {
 
       return updateDoc(farmRef, { name: farm.farmName });
     }
-
-    // if (farmRefId) {
-    //   // const farmDoc = await doc(farmRef);
-    //   // return { id: farmDoc.id, ...farmDoc.data() } as FarmModel;
-    //   const farmCollectionRef = collection(
-    //     firestore,
-    //     COLLECTION_FARMS,
-    //     farmRefId.id
-    //   );
-
-    //   const farmRef = await doc(
-    //     firestore,
-    //     farmCollectionRef.path,
-    //     farmRefId.id
-    //   );
-    //   return updateDoc(farmRef, { name: farm.name });
   };
 
   return { getFarmRef, getFarmValues, updateFarmName };
