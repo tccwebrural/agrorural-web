@@ -227,155 +227,151 @@ const ViewProfilePage = (): ReactElement => {
             </h2>
           </div>
 
-          <div id="Profile">
-            <div id="SmallBlock-Profile">
-              <div>
-                <abbr title="Menu">
-                  <Button
-                    id="menuProfile"
-                    aria-controls={open ? "basic-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={handleClick}
-                  >
-                    <BiMenu size={30} style={{ color: "var(--cor005)" }} />
-                  </Button>
-                </abbr>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
+          <div id="SmallBlock-Profile">
+            <div>
+              <abbr title="Menu">
+                <Button
+                  id="menuProfile"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
                 >
-                  <MenuItem
-                    // onClick={() => setShow((prev) => !prev)}
-                    onClick={handleOpenClickMenu}
-                  >
-                    Editar Perfil
-                  </MenuItem>
-                  {/* COLAR COMPONENTE  BUTTONEDITPROFILE */}
-
-                  <MenuItem onClick={() => auth.logout()}>
-                    Sair da conta
-                  </MenuItem>
-
-                  <MenuItem onClick={handleOpenModalDesativar}>
-                    Desativar conta
-                  </MenuItem>
-                </Menu>
-
-                {/* COMPONENTE MENU */}
-
-                {/* FIM DO COMPONENTE DO MENU */}
-              </div>
-
-              <div className="Block-imgPreview">
-                {imgPreview ? (
-                  <>
-                    <label htmlFor="fileUpload">
-                      <img className="imgProfile" src={src} alt={alt} />
-
-                      {/* ESCOPO DA IMAGEM */}
-
-                      {/* FIM DA IMAGEM */}
-                    </label>
-                    <input
-                      id="fileUpload"
-                      accept="image/*"
-                      type="file"
-                      onChange={fileHandler}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <label htmlFor="fileUpload">
-                      <img src={imgUser} className="imgProfile" />
-                    </label>
-                    <img id="input-imgProfile" src={src} alt={alt} />
-                    <input
-                      id="fileUpload"
-                      accept="image/*"
-                      type="file"
-                      onChange={fileHandler}
-                    />
-                  </>
-                )}
-              </div>
-
-              <Formik
-                enableReinitialize={true}
-                onSubmit={submitForm}
-                validationSchema={EditProfileValidatorSchema}
-                initialValues={initialValues}
+                  <BiMenu size={30} style={{ color: "var(--cor005)" }} />
+                </Button>
+              </abbr>
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  "aria-labelledby": "basic-button",
+                }}
               >
-                {(formik) => (
-                  <form onSubmit={formik.handleSubmit}>
-                    <span id="BlockNameProfile">
-                      <TextField
-                        id="nameProfile"
-                        variant="standard"
-                        defaultValue={initialValues.name}
-                        disabled={isDisabled}
-                        {...getControls(formik, "name")}
-                      />
-                    </span>
+                <MenuItem
+                  // onClick={() => setShow((prev) => !prev)}
+                  onClick={handleOpenClickMenu}
+                >
+                  Editar Perfil
+                </MenuItem>
+                {/* COLAR COMPONENTE  BUTTONEDITPROFILE */}
 
-                    <div id="FieldsProfile">
-                      <TextField
-                        label="CPF"
-                        size="small"
-                        variant="standard"
-                        className="txt-FieldsProfile"
-                        disabled={isDisabled}
-                        // disabled={true}
-                        {...getControls(formik, "cpf")}
-                        InputProps={{
-                          inputComponent: CpfMaskComponent as any,
-                        }}
-                      />
-                      <TextField
-                        label="E-mail"
-                        variant="standard"
-                        className="txt-FieldsProfile"
-                        {...getControls(formik, "email")}
-                        disabled={true}
-                      />
-                      <TextField
-                        label="Telefone"
-                        size="small"
-                        type="tel"
-                        variant="standard"
-                        className="txt-FieldsProfile"
-                        {...getControls(formik, "phone")}
-                        disabled={isDisabled}
-                        InputProps={{
-                          inputComponent: PhoneMaskCustom as any,
-                        }}
-                      />
-                      <TextField
-                        label="Nome da Fazenda"
-                        variant="standard"
-                        className="txt-FieldsProfile"
-                        {...getControls(formik, "farmName")}
-                        disabled={isDisabled}
-                      />
-                      {show && (
-                        <Button
-                          disabled={isDisabled}
-                          id="btn-SaveProfile"
-                          type="submit"
-                        >
-                          Salvar
-                        </Button>
-                      )}
-                    </div>
-                  </form>
-                )}
-              </Formik>
+                <MenuItem onClick={() => auth.logout()}>Sair da conta</MenuItem>
+
+                <MenuItem onClick={handleOpenModalDesativar}>
+                  Desativar conta
+                </MenuItem>
+              </Menu>
+
+              {/* COMPONENTE MENU */}
+
+              {/* FIM DO COMPONENTE DO MENU */}
             </div>
+
+            <div className="Block-imgPreview">
+              {imgPreview ? (
+                <>
+                  <label htmlFor="fileUpload">
+                    <img className="imgProfile" src={src} alt={alt} />
+
+                    {/* ESCOPO DA IMAGEM */}
+
+                    {/* FIM DA IMAGEM */}
+                  </label>
+                  <input
+                    id="fileUpload"
+                    accept="image/*"
+                    type="file"
+                    onChange={fileHandler}
+                  />
+                </>
+              ) : (
+                <>
+                  <label htmlFor="fileUpload">
+                    <img src={imgUser} className="imgProfile" />
+                  </label>
+                  <img id="input-imgProfile" src={src} alt={alt} />
+                  <input
+                    id="fileUpload"
+                    accept="image/*"
+                    type="file"
+                    onChange={fileHandler}
+                  />
+                </>
+              )}
+            </div>
+
+            <Formik
+              enableReinitialize={true}
+              onSubmit={submitForm}
+              validationSchema={EditProfileValidatorSchema}
+              initialValues={initialValues}
+            >
+              {(formik) => (
+                <form onSubmit={formik.handleSubmit}>
+                  <span id="BlockNameProfile">
+                    <TextField
+                      id="nameProfile"
+                      variant="standard"
+                      defaultValue={initialValues.name}
+                      disabled={isDisabled}
+                      {...getControls(formik, "name")}
+                    />
+                  </span>
+
+                  <div id="FieldsProfile">
+                    <TextField
+                      label="CPF"
+                      size="small"
+                      variant="standard"
+                      className="txt-FieldsProfile"
+                      disabled={isDisabled}
+                      // disabled={true}
+                      {...getControls(formik, "cpf")}
+                      InputProps={{
+                        inputComponent: CpfMaskComponent as any,
+                      }}
+                    />
+                    <TextField
+                      label="E-mail"
+                      variant="standard"
+                      className="txt-FieldsProfile"
+                      {...getControls(formik, "email")}
+                      disabled={true}
+                    />
+                    <TextField
+                      label="Telefone"
+                      size="small"
+                      type="tel"
+                      variant="standard"
+                      className="txt-FieldsProfile"
+                      {...getControls(formik, "phone")}
+                      disabled={isDisabled}
+                      InputProps={{
+                        inputComponent: PhoneMaskCustom as any,
+                      }}
+                    />
+                    <TextField
+                      label="Nome da Fazenda"
+                      variant="standard"
+                      className="txt-FieldsProfile"
+                      {...getControls(formik, "farmName")}
+                      disabled={isDisabled}
+                    />
+                    {show && (
+                      <Button
+                        disabled={isDisabled}
+                        id="btn-SaveProfile"
+                        type="submit"
+                      >
+                        Salvar
+                      </Button>
+                    )}
+                  </div>
+                </form>
+              )}
+            </Formik>
           </div>
         </div>
       </Box>
