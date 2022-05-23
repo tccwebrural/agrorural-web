@@ -19,11 +19,12 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleHelper } from "../helpers/CattleHelper";
 import toast from "react-hot-toast";
 import { getControls } from "utils/FormUtils";
-import "../../../styles/MyCattle.css";
 import { VacineModel } from "../../vacine/models/VacineModel";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+
+import "../../../styles/MyCattle.css";
 
 const MyCattle = (): ReactElement => {
   const { id } = useParams();

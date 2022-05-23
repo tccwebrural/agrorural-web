@@ -3,14 +3,14 @@
   padding: 0%;
 }
 
-#Bloco-Geral {
+#Bloco-GeralNotificacao {
   background-color: var(--cor001);
   padding-bottom: 4%;
   border-radius: 10px;
   margin: 3%;
   box-shadow: 0px 0px 6px 2px var(--cor111);
 }
-#Block-Txt-Notify{
+#Block-Txt-Notify {
   background: var(--cor001);
   padding: 0px 10px 0px 0px;
   font-size: 23px;
@@ -47,22 +47,26 @@
   margin: 0% 2%;
   color: var(--cor005);
 }
-#text-notify-title-Red{
+
+#text-notify-title-Red {
   display: flex;
   justify-content: flex-start;
   margin: 0% 2%;
   color: var(--cor009);
 }
+
 #text-notify {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 2% 0% -2% 2%;
 }
-.Txt-NotifyVaccine{
+
+.Txt-NotifyVaccine {
   color: var(--cor008);
   font-weight: bold;
 }
+
 #text-notify-dados {
   display: flex;
   flex-direction: row;
@@ -76,5 +80,4 @@
   padding: 1%;
   align-items: flex-start;
   color: var(--cor003);
-
 }

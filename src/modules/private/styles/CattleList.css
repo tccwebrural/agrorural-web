@@ -42,15 +42,16 @@
   left: 1010px;
   top: -28px;
 }
-#DeleteIcon-txt-line{
+
+#DeleteIcon-txt-line {
   background-color: var(--cor001);
   position: relative;
   left: -149px;
 }
+
 #AddIcon {
   background-color: var(--cor001);
   left: -32px;
-
 }
 
 #table-MinhaCriacao {
@@ -92,21 +93,13 @@
 }
 
 #btn-modalCancel {
-  background-color: red;
-  color: white;
+  background-color: var(--cor009);
+  color: var(--cor001);
 }
 
 #btn-modalDelet {
-  background-color: green;
-  color: white;
-}
-
-#btn-modalCancel:hover {
-  background-color: rgb(253, 69, 69);
-}
-
-#btn-modalDelet:hover {
-  background-color: rgb(75, 134, 75);
+  background-color: var(--cor006);
+  color: var(--cor001);
 }
 
 #bloco-modal-AnimalDeath {
@@ -115,11 +108,11 @@
 }
 
 #btn-modalSalvarDeath {
-  background-color: rgba(0, 128, 0, 0.76);
-  color: white;
+  background-color: var(--cor006);
+  color: var(--cor001);
 }
 
 #btn-modalCancelarDeath {
-  background-color: rgba(255, 0, 0, 0.829);
-  color: white;
+  background-color: var(--cor009);
+  color: var(--cor001);
 }

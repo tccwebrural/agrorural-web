@@ -22,10 +22,10 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { Formik } from "formik";
 import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
-
-import "../../../styles/InfoGado.css";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
 import VaccineCardInfoCattle from "../../vacine/Components/VaccineCardInfoCattle";
+
+import "../../../styles/InfoGado.css";
 
 function imprimir() {
   window.print();

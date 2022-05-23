@@ -18,9 +18,11 @@ import { getFireError } from "utils/HandleFirebaseError";
 import bezerro from "../../../../../assets/bezerro.png";
 import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import { getControls } from "../../../../../utils/FormUtils";
-import "../../../styles/UpdateCattle.css";
 import { CattleHelper } from "../helpers/CattleHelper";
 import { CattleModel } from "../models/CattleModel";
+
+import "../../../styles/UpdateCattle.css";
+
 //
 const UpdateCattle = (): ReactElement => {
   const cattleHelper = CattleHelper();
@@ -125,7 +127,7 @@ const UpdateCattle = (): ReactElement => {
                   }}
                 >
                   <TextField
-                    style={{ width: 310,margin:"0.6%" }}
+                    style={{ width: 310, margin: "0.6%" }}
                     label="Nome"
                     InputLabelProps={{
                       shrink: true,
@@ -134,7 +136,7 @@ const UpdateCattle = (): ReactElement => {
                   />
 
                   <TextField
-                    style={{ width: 219,margin:"0.6%" }}
+                    style={{ width: 219, margin: "0.6%" }}
                     label="Identificador"
                     type="number"
                     InputLabelProps={{
@@ -143,7 +145,7 @@ const UpdateCattle = (): ReactElement => {
                     {...getControls(formik, "identifier")}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 250,margin:"0.6%" }}>
+                  <FormControl sx={{ m: 1, minWidth: 250, margin: "0.6%" }}>
                     <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
                     <Select
                       {...getControls(formik, "sex")}
@@ -155,7 +157,7 @@ const UpdateCattle = (): ReactElement => {
                     </Select>
                   </FormControl>
                   <TextField
-                    style={{ width: 210,margin:"0.6%" }}
+                    style={{ width: 210, margin: "0.6%" }}
                     label="Peso"
                     {...getControls(formik, "weigth")}
                     InputLabelProps={{
@@ -163,9 +165,9 @@ const UpdateCattle = (): ReactElement => {
                     }}
                     type="number"
                   />
-                  
+
                   <TextField
-                    style={{ width: 340,margin:" 0.6%" }}
+                    style={{ width: 340, margin: " 0.6%" }}
                     label="Data de Nascimento"
                     type="date"
                     {...getControls(formik, "birthday")}
@@ -178,7 +180,7 @@ const UpdateCattle = (): ReactElement => {
                     // }}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 341,margin:" 0.6%" }}>
+                  <FormControl sx={{ m: 1, minWidth: 341, margin: " 0.6%" }}>
                     <InputLabel htmlFor="type">Tipo</InputLabel>
                     <Select
                       {...getControls(formik, "type")}
@@ -197,7 +199,7 @@ const UpdateCattle = (): ReactElement => {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    style={{ width:320,margin:" 0.6%" }}
+                    style={{ width: 320, margin: " 0.6%" }}
                   />
                   <div id="Block-CowImage-EditAnimalData">
                     <img

@@ -27,12 +27,13 @@ import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { CattleModel, CATTLE_SEXS, CATTLE_TYPES } from "../models/CattleModel";
 import { CattleHelper } from "../helpers/CattleHelper";
-import "../../../styles/CattleList.css";
 import { FarmModel } from "modules/private/models/FarmModel";
 import { Timestamp } from "firebase/firestore";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
 import Checkbox from "@mui/material/Checkbox";
+
+import "../../../styles/CattleList.css";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 // import { ptBR } from "@mui/material/locale";

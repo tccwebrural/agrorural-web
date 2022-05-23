@@ -21,10 +21,11 @@ import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import "../../../styles/MyCattle.css";
 import { VacineModel } from "../models/VacineModel";
 import { VacineHelper } from "../helpers/VacineHelpers";
 import toast from "react-hot-toast";
+
+import "../../../styles/MyCattle.css";
 
 const VaccineCardView = (): ReactElement => {
   const { id } = useParams();
@@ -168,7 +169,11 @@ const VaccineCardView = (): ReactElement => {
             >
               <abbr title="Deletar vacina">
                 <DeleteIcon
-                  style={{ color: "var(--cor001)", width: 20, height: 20 }}
+                  style={{
+                    color: "var(--cor001)",
+                    width: 20,
+                    height: 20,
+                  }}
                 />
               </abbr>
             </IconButton>
