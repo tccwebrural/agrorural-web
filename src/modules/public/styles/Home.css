@@ -50,6 +50,11 @@ header {
   color: black;
 }
 
+#block-geralHome {
+  z-index: 1;
+  position: relative;
+}
+
 #home {
   margin-top: 5%;
 }
@@ -177,7 +182,7 @@ header {
 #imgMeio {
   position: absolute;
   top: 600px;
-  z-index: -1;
+  z-index: 1;
 }
 
 #imgMeio img {
@@ -188,7 +193,6 @@ header {
   position: absolute;
   top: 430px;
   right: 40px;
-  z-index: -1;
 }
 
 #imgMeio1 img {
@@ -199,7 +203,6 @@ header {
   position: absolute;
   top: 460px;
   left: 50px;
-  z-index: -1;
 }
 
 #imgMeio2 img {
