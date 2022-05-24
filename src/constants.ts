@@ -27,7 +27,8 @@ export const COLLECTION_REPORTS = "reports";
 export const COLLECTION_NOTIFICATIONS = "notifications";
 export const MALE = 1;
 export const FEMALE = 2;
-
+export const DEATH_BY_VARIOUS_CASES = "Causas Diversas";
+export const DEATH_BY_OWN_CONSUMPTION = "Próprio Consumo";
 //  VACINAS  DOS ANIMAIS
 export const FEBRE_AFTOSA = "Febre aftosa";
 export const RAIVA = "Raiva";

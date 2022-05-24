@@ -9,8 +9,8 @@ const CATTLE_TYPES: { [key: number]: string } = {
   2: "LEITEIRO",
 };
 const CATTLE_DETH_TYPES: { [key: number]: string } = {
-  1: "CONSUMO PROPRIO",
-  2: "OBITOS CAUSAS DIVERSAS",
+  1: "Causas Diversas",
+  2: "Consumo Próprio",
 };
 
 // const CATTLES_CATTEGORIES: { [key: number]: string } = {
@@ -33,6 +33,9 @@ class CattleModel {
   createdAt?: Timestamp;
   deathBy?: number;
   categories?: number;
+}
+export interface CattleDeathModel {
+  deathBy: number;
 }
 
 export { CATTLE_DETH_TYPES, CATTLE_SEXS, CattleModel, CATTLE_TYPES };

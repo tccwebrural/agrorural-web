@@ -39,10 +39,20 @@ import { getControls } from "utils/FormUtils";
 import { ReportHelper } from "../helpers/ReportHelper";
 import { useNavigate } from "react-router-dom";
 import { getFireError } from "utils/HandleFirebaseError";
+var today = new Date();
+var currentYear = today.getFullYear();
+var lastYear = today.getFullYear() - 1;
+var twoYearsAgo = today.getFullYear() - 2;
+var threeYearsAgo = today.getFullYear() - 3;
+var fourYearsAgo = today.getFullYear() - 4;
+var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
-const ButtonReportDeclare = (): ReactElement => {
+const ModalDeclareComponent = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
   const cattlehelpers = CattleHelper();
   function imprimir() {
     window.print();
@@ -82,6 +92,9 @@ const ButtonReportDeclare = (): ReactElement => {
     var todayMonth = today.getMonth();
     return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
   };
+
+  const [cattleModelk, SetCattle] = useState<CattleModel>();
+  const initialValues = 0;
 
   useEffect(() => {
     loadingHelper.startLoading();
@@ -199,118 +212,130 @@ const ButtonReportDeclare = (): ReactElement => {
     console.log("reports" + report);
   }, []);
 
+  const reportHelper = ReportHelper();
+
+  //   const [CattleCategory, setCattleCattegory] = useState<
+
+  const navigate = useNavigate();
+
+  const submitSave = async () => {
+    await reportHelper
+      .createReport(report)
+      .then(() => {
+        // navigate("/private/home");
+        // let cancel = false;
+        // if (cancel) return;
+        // setReport(currentrep);
+        toast.success("SUCESSO");
+        navigate("/private/home");
+      })
+      .catch((err) => {
+        //TODO: Mensagem de erro
+        //toast erro
+        navigate("/private/cattles");
+
+        console.error(err);
+        toast.error(getFireError(err));
+      });
+
+    // vacine.id = id;
+  };
   return (
     <>
-      <div>
-        <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
-        <div className="CurrentCattleHerd-RA">
-          {" "}
-          {/*rebanho bovino atual */}
-          <div className="Block-CurrentCattleHerd-RA">
-            {" "}
-            {/*bloco rebanho bovino atual */}
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              {" "}
-              {/*blocos pequenos do rebanho bovino atual existente*/}
-              Bezerros
-              <br />
-              (de 0 à 6 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.bezerros.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.bezerros.female}
-            </div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 530,
+            height: 240,
+            bgcolor: "white",
+            borderRadius: "10px",
+            boxShadow: 11,
+            p: 4,
+          }}
+        >
+          <div id="bloco-modal-GerarRelatório">
+            <Grid sx={{ margin: "2%  2%" }}>
+              <span id="txt-GerarRelatorio">
+                Tem certeza que deseja Gerar o Relatório?
+              </span>
+              <p id="txt-p-btnGerarRelatório">
+                Após gerar o relatório você só poderar gerar novamente no mês
+                seguinte!
+              </p>
+            </Grid>
+
+            <Grid
+              sx={{
+                display: "flex",
+                justifyContent: "end",
+                marginTop: 6,
+                marginRight: 2,
+              }}
+            >
+              <Grid
+                sx={{
+                  margin: " 3% 6%",
+                  borderRadius: "5px",
+                  backgroundColor: "rgba(0, 128, 0, 0.795)",
+                }}
+              >
+                <Button onClick={submitSave} style={{ color: "var(--cor001)" }}>
+                  Gerar Relatório
+                </Button>{" "}
+              </Grid>
+              <Grid
+                sx={{
+                  margin: " 3% -5%",
+                  borderRadius: "5px",
+                  backgroundColor: "rgba(255, 0, 0, 0.849)",
+                }}
+              >
+                <Button
+                  onClick={handleClose}
+                  style={{ color: "var(--cor001)" }}
+                >
+                  cancelar
+                </Button>{" "}
+              </Grid>
+            </Grid>
           </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Desmamados
-              <br />
-              (de 7 à 12 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.desmamados.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.desmamados.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Garrotes
-              <br />
-              (de 13 à 24 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.garrotes.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.garrotes.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Novilhos
-              <br />
-              (de 25 à 36 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.novilhos.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.novilhos.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Acima de <br /> (36 meses)
-              <br />
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.outros.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.outros.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p id="total-RA">Total de Bovinos</p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.total.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.total.female}
-            </div>
-          </div>
+        </Box>
+      </Modal>
+      <Box
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        {" "}
+        <div id="Block-Txt-Line-CattleDeclaration">
+          <h2 id="Block-Txt-CattleDeclaration">Declare do Rebanho</h2>
+          <span id="Block-Line-CattleDeclaration">
+            <abbr title="Imprimir Declare do Rebanho">
+              <Fab id="printIcon" onClick={imprimir}>
+                <BsPrinter size={20} />
+              </Fab>
+            </abbr>
+            <abbr title="Gerar Relatório do Animal">
+              <Fab id="reportIcon" onClick={handleOpen}>
+                <AssignmentIcon style={{ color: "var(--cor001" }} />
+              </Fab>
+            </abbr>
+          </span>
         </div>
-      </div>
+      </Box>
     </>
   );
 };
 
-export default ButtonReportDeclare;
+export default ModalDeclareComponent;

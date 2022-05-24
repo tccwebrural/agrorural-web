@@ -189,6 +189,7 @@ const ReportPage = (): ReactElement => {
           </div>
           {/* COMPONENTE DADOS DO PROPRIETARIO AQUI */}
           {ProprietarieData()}
+          {/* REBANHO BOVINO ATUAL */}
           {ButtonReportDeclare()}
 
           <div>
