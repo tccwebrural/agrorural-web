@@ -373,9 +373,10 @@ const ViewProfilePage = (): ReactElement => {
               )}
             </Formik>
           </div>
+          <img id="imgFooter-Profile" src={rodape} />
         </div>
       </Box>
-      <img id="imgFooter-Profile" src={rodape} />
+     
     </>
   );
 };
