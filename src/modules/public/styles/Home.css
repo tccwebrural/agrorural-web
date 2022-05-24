@@ -113,11 +113,13 @@ header {
 #img-sobreOrientador {
   width: 150px;
   border-style: groove;
-  border-color: #33658a;
+  border-color: #3f7eae;
   border-radius: 50%;
   position: relative;
   left: 50px;
-  background-image: linear-gradient(75deg, var(--cor055), var(--cor005));
+  background-image: linear-gradient(75deg,#163c56,
+  #3f7eae,
+  #17354d);
 }
 
 #sobreOrientador {
@@ -157,16 +159,16 @@ header {
   border-radius: 50%;
   background-image: linear-gradient(
     75deg,
-    var(--cor005),
-    var(--cor055),
-    var(--cor005)
+    #163c56,
+    #3f7eae,
+    #17354d
   );
 }
 
 .img-sobre {
   width: 150px;
   border-radius: 50%;
-  border-color: var(--cor005);
+  border-color: #3f7eae;
   border-style: groove;
 }
 
