@@ -191,25 +191,25 @@ const HomePage = (): ReactElement => {
             </div>
           </section>
 
-          <section id="sobre_Nos">
-            <h1 className="textTittle">Orientador</h1>
-            <div id="orientador">
-              <h2 className="textSubTittle">Alessandro Laranjeiras</h2>
+          <h1 className="textTittle">Orientador</h1>
+          <div id="orientador">
+            <h2 className="textSubTittle">Alessandro Laranjeiras</h2>
 
-              <div>
-                <img id="img-sobreOrientador" src={laranjeira} alt="Erro..." />
-              </div>
-
-              <span id="sobreOrientador">
-                Professor de Ensino Superior e Técnico | Arquiteto de Sistemas |
-                Analista de Sistemas Bacharel em Sistemas de Informação <br />e
-                tecnólogo em Sistemas Móveis Celulares (Telecomunicações), pela
-                Universidade Estácio de Sá, e especialista em Arquitetura <br />{" "}
-                de Software Distribuído, pela Pontifícia Universidade Católica
-                de Minas Gerais – PUC Minas.
-              </span>
+            <div>
+              <img id="img-sobreOrientador" src={laranjeira} alt="Erro..." />
             </div>
 
+            <span id="sobreOrientador">
+              Professor de Ensino Superior e Técnico | Arquiteto de Sistemas |
+              Analista de Sistemas Bacharel em Sistemas de Informação <br />e
+              tecnólogo em Sistemas Móveis Celulares (Telecomunicações), pela
+              Universidade Estácio de Sá, e especialista em Arquitetura <br />{" "}
+              de Software Distribuído, pela Pontifícia Universidade Católica de
+              Minas Gerais – PUC Minas.
+            </span>
+          </div>
+
+          <section id="sobre_Nos">
             <div id="sobreNos">
               <h1 className="textTittle">Sobre nós</h1>
               <div id="sobre-nos">
