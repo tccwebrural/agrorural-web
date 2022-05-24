@@ -163,20 +163,37 @@ const VaccineBrucelose = (): ReactElement => {
                     <form id="dados">
                       <p>
                         <span className="Txt-NotifyVaccine">
-                          Nome da Vacina : {vacines.name}
+                          Nome da Vacina :
+                          <span className="Txts-Notify">
+                           {vacines.name}
+                           </span>
                         </span>{" "}
                       </p>
+                      <p>
+                      <span className="Txt-NotifyVaccine">
+                        Identificador do Animal: 
+                        <span className="Txts-Notify">
+                        {animals.identifier}
+                        </span>
+                      </span>{" "}
+                    </p>
                     </form>
                   ))}
                   <form id="dados">
                     <p>
                       <span className="Txt-NotifyVaccine">
-                        Nome do Animal:{animals.name}
+                        Nome do Animal:
+                        <span className="Txts-Notify">
+                        {animals.name}
+                        </span>
                       </span>{" "}
                     </p>
                     <p>
                       <span className="Txt-NotifyVaccine">
-                        Gênero: {animals.sex === 2 ? "Femea" : "Macho"}
+                        Gênero:
+                        <span className="Txts-Notify">
+                         {animals.sex === 2 ? "Fêmea" : "Macho"}
+                         </span>
                       </span>{" "}
                     </p>
                   </form>

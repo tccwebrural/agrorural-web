@@ -34,7 +34,7 @@
 }
 
 #color2 {
-  background-color: var(--cor009);
+  background-color: var(--cor005);
   width: 35px;
   height: 105px;
   border-top-left-radius: 4px;
@@ -46,13 +46,16 @@
   justify-content: flex-start;
   margin: 0% 2%;
   color: var(--cor005);
+  font-weight: bold;
 }
 
 #text-notify-title-Red {
   display: flex;
   justify-content: flex-start;
   margin: 0% 2%;
-  color: var(--cor009);
+  color: var(--cor005);
+  font-size: 18px;
+  font-weight: bolder;
 }
 
 #text-notify {
@@ -66,7 +69,10 @@
   color: var(--cor008);
   font-weight: bold;
 }
-
+.Txts-Notify{
+  color: var(--cor003);
+  font-weight: normal;
+}
 #text-notify-dados {
   display: flex;
   flex-direction: row;
