@@ -173,6 +173,7 @@ const VaccineCardView = (): ReactElement => {
                     color: "var(--cor001)",
                     width: 20,
                     height: 20,
+                    marginTop:5.5,
                   }}
                 />
               </abbr>
@@ -208,7 +209,7 @@ const VaccineCardView = (): ReactElement => {
             >
               <abbr title="Visualizar dados da vacina">
                 <VisibilityIcon
-                  style={{ color: "var(--cor001)", width: 20, height: 20 }}
+                  style={{ color: "var(--cor001)", width: 20, height: 20,marginTop:8, }}
                 />
               </abbr>
             </IconButton>
