@@ -86,7 +86,7 @@ const HomePage = (): ReactElement => {
       </div>
 
       <main>
-        <Container>
+        <Container id="block-geralHome">
           <section id="home">
             <div id="logo">
               <img id="img-logo" src={logoInicial} alt="" />
