@@ -2,7 +2,7 @@
   position: relative;
   background-color: var(--cor0101);
   box-shadow: 4px 4px 4px 4px rgba(236, 236, 236, 0.685);
-  margin: 2% auto;
+  margin: 0.5% auto;
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -31,13 +31,13 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  margin-top: -6%;
+  margin-top: -7.5%;
 }
 
 #logoPequena img {
   width: 300px;
   margin: 6%;
-  margin-top: 1%;
+  margin-top: -6%;
 }
 
 #logoPequena {

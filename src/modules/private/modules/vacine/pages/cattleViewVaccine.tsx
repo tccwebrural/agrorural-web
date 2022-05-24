@@ -78,7 +78,7 @@ const cattleViewVaccine = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-viewCatlle">
               <h2 id="blocoTituloTxt-criacao-viewCatlle">
-                Cartão do Gado &gt; {initialValues.name}
+                Dados do animal &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-viewCatlle">
                 <abbr title="Imprimir">
@@ -104,7 +104,7 @@ const cattleViewVaccine = (): ReactElement => {
                   >
                     <Grid item xs={2} sx={{ margin: "0.4%" }}>
                       <TextField
-                        style={{ width: 180 }}
+                        style={{ width: 190 }}
                         id="outlined-disabled"
                         label="Nome"
                         type="text"
@@ -182,7 +182,7 @@ const cattleViewVaccine = (): ReactElement => {
           <section>
             <div>
               <div id="blocoTitulo-vacina-viewCatlle">
-                <h2 id="blocoTituloTxt-vacina-viewCatlle">Cartao de Vacina</h2>
+                <h2 id="blocoTituloTxt-vacina-viewCatlle">Dados da Vacina </h2>
                 <span id="blocoTituloLine-vacina-viewCatlle"></span>
               </div>
 

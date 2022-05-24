@@ -18,14 +18,14 @@
 
 #Block-CowImage-Form {
   position: absolute;
-  bottom: 20px;
+  bottom: -7px;
   left: 80px;
 }
 
 #Block-CalfImage-Form {
   position: absolute;
   right: 80px;
-  bottom: 70px;
+  bottom: 50px;
 }
 
 #CowImage-Form {

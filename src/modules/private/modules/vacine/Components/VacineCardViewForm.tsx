@@ -85,7 +85,7 @@ const VaccineCardViewForm = (): ReactElement => {
                     {...getControls(formik, "name")}
                     label="Grouping"
                     // name="category"
-                    style={{ width: 230 }}
+                    style={{ width: 210 }}
                     disabled={true}
                   >
                     <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
@@ -96,7 +96,7 @@ const VaccineCardViewForm = (): ReactElement => {
               </Grid>
               <Grid sx={{ margin: "0.4%" }}>
                 <TextField
-                  style={{ width: 180 }}
+                  style={{ width: 170 }}
                   id="outlined-disabled"
                   label="Lote"
                   disabled={true}
