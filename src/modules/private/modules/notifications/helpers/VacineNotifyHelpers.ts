@@ -8,9 +8,11 @@ import {
 } from "firebase/firestore";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import {
+  COLLECTION_CATTLES,
   COLLECTION_FARMS,
   COLLECTION_NOTIFICATIONS,
   COLLECTION_REPORTS,
+  COLLECTION_VACINES,
 } from "../../../../../constants";
 import { VaccineNotifyModel } from "../models/VaccineNotifyModel";
 
@@ -52,8 +54,29 @@ export const VacineNotifyHelpers = () => {
     return reports;
   };
 
+
+ const  vaccinesRef  = async ( cattleId: string) => {
+    const farmRef = await getFarmRef();
+
+    if (farmRef) {
+      const vacineCollectionRef = collection(
+        firestore,
+        COLLECTION_FARMS,
+        farmRef.id,
+        COLLECTION_CATTLES,
+        cattleId,
+        COLLECTION_VACINES
+      );
+      const vacineRef = collection(firestore, vacineCollectionRef.path);
+
+      return vacineRef;
+    }
+  };
+
+
   return {
     createReport,
     getAllNotifications,
+    vaccinesRef,
   };
 };

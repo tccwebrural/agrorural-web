@@ -40,7 +40,7 @@ const VaccineFormPage = (): ReactElement => {
     expiration_date: "",
     lote: 0,
     manufacturer: "",
-    name: FEBRE_AFTOSA,
+    name: BRUCELOSE,
   });
 
   const navigate = useNavigate();
@@ -124,8 +124,8 @@ const VaccineFormPage = (): ReactElement => {
                         label="Grouping"
                         // name="category"
                       >
-                        <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                         <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
+                        <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                         <MenuItem value={RAIVA}>Raiva</MenuItem>
                       </Select>
                     </FormControl>

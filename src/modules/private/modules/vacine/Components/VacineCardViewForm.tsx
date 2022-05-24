@@ -88,8 +88,8 @@ const VaccineCardViewForm = (): ReactElement => {
                     style={{ width: 230 }}
                     disabled={true}
                   >
-                    <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                     <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
+                    <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                     <MenuItem value={RAIVA}>Raiva</MenuItem>
                   </Select>
                 </FormControl>
