@@ -65,9 +65,9 @@ const CreateCattleFormPage = (): ReactElement => {
       birthday: "",
       sex: 1,
       qtyChildren: 0,
-      // deathBy: CATTLE_IS_LIVE,
+      deathBy: CATTLE_IS_LIVE,
       // deathBy: DEATH_BY_OWN_CONSUMPTION,
-      deathBy: DEATH_BY_VARIOUS_CASES,
+      // deathBy: DEATH_BY_VARIOUS_CASES,
     },
 
     validationSchema: CattleValidatorSchema,
