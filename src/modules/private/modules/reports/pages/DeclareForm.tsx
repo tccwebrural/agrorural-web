@@ -27,11 +27,19 @@ import vaca from "../../../../../assets/vaca-sem-chifre.png";
 
 import "../../../styles/DeclareForm.css";
 import "../../../styles/style.css";
-import ButtonReportDeclare from "../components/ButtonReportDeclare";
+import CurrentCattleComponent from "../components/CurrentCattleComponent";
 import ModalDeclareComponent from "../components/ModalDeclareComponent";
+import { trackPromise } from "react-promise-tracker";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+import CattleDeathComponent from "../components/CattleDeathComponent";
 
 const DeclareForm = (): ReactElement => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+  const loading = useGlobalLoading();
+
+  loading.startLoading();
+  loading.stopLoading();
 
   return (
     <>
@@ -49,69 +57,11 @@ const DeclareForm = (): ReactElement => {
           {/* COMPONENTE DADOS DO PROPRIETARIO AQUI */}
           {ModalDeclareComponent()}
           {ProprietarieData()}
-          {ButtonReportDeclare()}
+          {CurrentCattleComponent()}
+          {CattleDeathComponent()}
 
           {/* COMPONENTE BOVINO ATUAL */}
-          <div>
-            <p id="CurrentCattleHerd-Mortality">
-              Mortalidade de Bovinos
-              <br />
-              (ainda não declarados)
-            </p>
-            <div className="CurrentCattleHerd">
-              <div className="Block-CurrentCattleHerd">
-                <p id="causes-txt">CAUSAS</p>
-                <div id="causes">
-                  <p id="txt-ownConsumption">Consumo própio</p>
-                  <p id="txt-DeathVariousCauses">Obitos causas diversas</p>
-                </div>
-              </div>
-              <div className="Block-CurrentCattleHerd">
-                <p className="SmallBlocksMortality">Até 6 meses</p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>{" "}
-              </div>
-              <div className="Block-CurrentCattleHerd">
-                <p className="SmallBlocksMortality">De 7 à 12 meses</p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>
-              </div>
-              <div className="Block-CurrentCattleHerd">
-                <p className="SmallBlocksMortality">De 13 a 24 meses</p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>
-              </div>
-              <div className="Block-CurrentCattleHerd">
-                <p className="SmallBlocksMortality">Mais de 24 meses</p>
-                <div className="MF">
-                  <p className="M-txt">Macho</p>
-                  <p className="F-txt">Fêmea</p>
-                </div>
-                <div className="FieldMF-alt-Left"></div>
-                <div className="FieldMF-alt-Rigth"></div>
-                <div className="FieldMF-Down-left"></div>
-                <div className="FieldMF-Down-Rigth"></div>
-              </div>
-            </div>
-          </div>
+
           <div>
             <p className="CattleDeclaration">
               Marque a principal finalidade do seu rebanho bovino

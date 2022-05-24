@@ -9,6 +9,7 @@ import {
   getDoc,
   getDocs,
   query,
+  setDoc,
   Timestamp,
   updateDoc,
   where,
@@ -103,7 +104,8 @@ export const CattleHelper = () => {
 
   const updateDeathTypes = async (cattle: CattleModel) => {
     const farmRef = await getFarmRef();
-    if (farmRef) {
+
+    if (farmRef && cattle.id) {
       const cattlesCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
@@ -115,9 +117,12 @@ export const CattleHelper = () => {
         firestore,
 
         cattlesCollectionRef.path,
-        farmRef.id
+        cattle.id
       );
-      return updateDoc(cattleRef, { deathBy: cattle.deathBy });
+      // return updateDoc(cattleRef, { deathBy: cattle.deathBy });
+      if (cattle.deathBy && cattle.id) {
+        return updateDoc(cattleRef, { deathBy: cattle.deathBy });
+      }
     }
   };
   const getCattleRef = async (cattleId: string) => {

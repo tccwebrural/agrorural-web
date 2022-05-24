@@ -52,23 +52,6 @@ const ViewProfilePage = (): ReactElement => {
     setAnchorEl(null);
   };
   const auth = useAuth();
-  const { getFarmRef, getFarmValues } = FarmHelper();
-  const [initialValues, setInitialValues] = useState<PerfilModelUser>({
-    cpf: "",
-    name: "",
-    email: "",
-    phone: "",
-    farmName: "",
-  });
-  const [isDisabled, setIsDisabled] = useState(true);
-
-  const loadingHelper = useGlobalLoading();
-
-  const navigate = useNavigate();
-
-  const [show, setShow] = useState(false);
-
-  const farmHelp = FarmHelper();
   useEffect(() => {
     trackPromise(
       auth.getUser().then(async (user?: UserModel) => {
@@ -90,6 +73,23 @@ const ViewProfilePage = (): ReactElement => {
       GLOBAL_LOADING_KEY
     );
   }, []);
+  const { getFarmRef, getFarmValues } = FarmHelper();
+  const [initialValues, setInitialValues] = useState<PerfilModelUser>({
+    cpf: "",
+    name: "",
+    email: "",
+    phone: "",
+    farmName: "",
+  });
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const loadingHelper = useGlobalLoading();
+
+  const navigate = useNavigate();
+
+  const [show, setShow] = useState(false);
+
+  const farmHelp = FarmHelper();
 
   const submitForm = async (formData: PerfilModelUser) => {
     try {
@@ -97,7 +97,7 @@ const ViewProfilePage = (): ReactElement => {
 
       await farmHelp.updateFarmName(formData);
 
-      await toast.success("Informações atualizadas com sucesso.");
+      await await toast.success("Informações atualizadas com sucesso.");
     } catch (err: any) {
       console.error(err);
       toast.error(getFireError(err));

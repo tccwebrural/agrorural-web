@@ -23,6 +23,8 @@ import { ReportHelper } from "../../reports/helpers/ReportHelper";
 import { ReportModel } from "../../reports/models/ReportModel";
 import { CattleModel } from "../../cattles/models/CattleModel";
 import { getMonth } from "date-fns";
+import { trackPromise } from "react-promise-tracker";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 
 var today = new Date();
 var currentYear = today.getFullYear();
@@ -33,26 +35,27 @@ var fourYearsAgo = today.getFullYear() - 4;
 var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
 const HomePage = (): ReactElement => {
-  const [totalBezerros, setTotalBezerros] = useState(0);
-  const [totalDesmamados, setTotalDesmamados] = useState(0);
-  const [totalGarrotes, setTotalGarrotes] = useState(0);
-  const [totalNovilhos, setTotalNovilhos] = useState(0);
-  const [totalAcimaDe36, setTotalAcimaDe36] = useState(0);
-
   const [reports, SetReports] = useState<ReportModel[]>([]);
 
   const reportsHelpers = ReportHelper();
-  const cattleHelpers = CattleHelper();
 
   useEffect(() => {
-    reportsHelpers.getAllReports().then(SetReports);
+    trackPromise(
+      reportsHelpers.getAllReports().then(SetReports),
+      GLOBAL_LOADING_KEY
+    );
   }, []);
 
-  const [cattles, setCattles] = useState<CattleModel[]>([]);
-
+  const [reportMonth, setReportMonht] = useState<ReportModel>();
   function imprimir() {
     window.print();
   }
+
+  // const getMonth = () => {
+  //   if(reportMonth?.createdAt){
+  //     reportMonth()+ 1
+  //   }
+  // };
   return (
     <>
       <main>
@@ -163,7 +166,9 @@ const HomePage = (): ReactElement => {
                       >
                         <TableCell component="th" scope="row" align="center">
                           {/* {reports.} */}
-                          {reports.createdAt?.seconds}
+                          {reports.createdAt.toDate().getDate()}/
+                          {reports.createdAt?.toDate().getMonth() + 1}/
+                          {reports.createdAt?.toDate().getFullYear()}
                         </TableCell>
                         <TableCell align="center">
                           {reports.rebanhoAtual.bezerros.male +

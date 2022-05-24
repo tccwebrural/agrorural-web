@@ -115,17 +115,18 @@ const VaccineBrucelose = (): ReactElement => {
           // vacine: vacineHelpers.vaccinesRef(),
         };
         if (cattle.idCattle) {
+          // vacineHelpers.getAllVacines(cattle.idCattle).then(setVacines);
           vacineHelpers.getAllVacines(cattle.idCattle).then(setVacines);
         }
         // vacineHelpers.vaccinesRef().then((vaccinesRef) => {
         console.log("id  " + cattle.id);
         // })
-        if (cattle.sex === 2) {
-          if (cattle.age >= 3 && cattle.age <= 8) {
-            //se nao tomou a vacina
-            console.log("Brucelose: " + cattle.name);
-          }
-        }
+        // if (cattle.sex === 2) {
+        //   if (cattle.age >= 3 && cattle.age <= 8) {
+        //     //se nao tomou a vacina
+        //     console.log("Brucelose: " + cattle.name);
+        //   }
+        // }
         //  else if (mesAtual === 5) {
 
         // } else if (mesAtual === 11) {
@@ -159,6 +160,7 @@ const VaccineBrucelose = (): ReactElement => {
                 </div>
                 <div id="text-notify-dados">
                   {/* FIM BLOCO */}
+
                   {vacines.map((vacines, i) => (
                     <form id="dados">
                       <p>
@@ -168,6 +170,7 @@ const VaccineBrucelose = (): ReactElement => {
                       </p>
                     </form>
                   ))}
+                  {/*  */}
                   <form id="dados">
                     <p>
                       <span className="Txt-NotifyVaccine">

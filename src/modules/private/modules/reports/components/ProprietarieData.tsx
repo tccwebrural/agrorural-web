@@ -33,6 +33,7 @@ const ProprietarieData = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
   useEffect(() => {
+    loadingHelper.startLoading();
     auth.getUser().then(async (user?: UserModel) => {
       if (user) {
         const farmValues = await getFarmValues();
@@ -95,14 +96,14 @@ const ProprietarieData = (): ReactElement => {
                 {...getControls(formik, "phone")}
                 size="small"
                 variant="standard"
-                sx={{  marginTop: 0.5, width: "50%" }}
+                sx={{ marginTop: 0.5, width: "50%" }}
                 disabled={true}
               />
               <TextField
                 label="Nome da Fazenda"
                 {...getControls(formik, "farmName")}
                 variant="standard"
-                sx={{marginTop: 0.1, width: "50%" }}
+                sx={{ marginTop: 0.1, width: "50%" }}
                 disabled={true}
               />
             </div>

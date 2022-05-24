@@ -31,11 +31,12 @@ class CattleModel {
   type!: number;
   weigth!: number;
   createdAt?: Timestamp;
-  deathBy?: number;
+  deathBy?: string;
   categories?: number;
 }
 export interface CattleDeathModel {
-  deathBy: number;
+  deathBy: string;
+  id?: string;
 }
 
 export { CATTLE_DETH_TYPES, CATTLE_SEXS, CattleModel, CATTLE_TYPES };

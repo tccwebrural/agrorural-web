@@ -30,7 +30,13 @@ import { ReportCattleCategory, ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
-import { MALE, FEMALE, CATTLE_IS_LIVE } from "../../../../../constants";
+import {
+  MALE,
+  FEMALE,
+  CATTLE_IS_LIVE,
+  DEATH_BY_VARIOUS_CASES,
+  DEATH_BY_OWN_CONSUMPTION,
+} from "../../../../../constants";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
 import { Formik } from "formik";
@@ -40,24 +46,11 @@ import { ReportHelper } from "../helpers/ReportHelper";
 import { useNavigate } from "react-router-dom";
 import { getFireError } from "utils/HandleFirebaseError";
 import { Timestamp } from "firebase/firestore";
-var today = new Date();
-var currentYear = today.getFullYear();
-var lastYear = today.getFullYear() - 1;
-var twoYearsAgo = today.getFullYear() - 2;
-var threeYearsAgo = today.getFullYear() - 3;
-var fourYearsAgo = today.getFullYear() - 4;
-var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
-const ModalDeclareComponent = (): ReactElement => {
+const CattleDeathComponent = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
   const cattlehelpers = CattleHelper();
-  function imprimir() {
-    window.print();
-  }
 
   const [report, setReport] = useState<ReportModel>({
     rebanhoAtual: {
@@ -95,9 +88,6 @@ const ModalDeclareComponent = (): ReactElement => {
     return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
   };
 
-  const [cattleModelk, SetCattle] = useState<CattleModel>();
-  const initialValues = 0;
-
   useEffect(() => {
     loadingHelper.startLoading();
     cattlehelpers.getAllCattles().then((cattles) => {
@@ -113,7 +103,7 @@ const ModalDeclareComponent = (): ReactElement => {
             const initialValue = 0;
             if (
               currentValue.sex === MALE &&
-              currentValue.deathBy === CATTLE_IS_LIVE
+              currentValue.deathBy === DEATH_BY_OWN_CONSUMPTION
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
@@ -133,7 +123,7 @@ const ModalDeclareComponent = (): ReactElement => {
               }
             } else if (
               currentValue.sex === FEMALE &&
-              currentValue.deathBy === CATTLE_IS_LIVE
+              currentValue.deathBy === DEATH_BY_OWN_CONSUMPTION
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
@@ -152,6 +142,7 @@ const ModalDeclareComponent = (): ReactElement => {
                 previousValues.totalOutrosF = previousValues.totalOutrosF + 1;
               }
             }
+
             previousValues.totalCattlesMale =
               previousValues.totalOutrosM +
               previousValues.totalBezerrosM +
@@ -167,6 +158,7 @@ const ModalDeclareComponent = (): ReactElement => {
               previousValues.totalGarrotesF +
               previousValues.totalNovilhosF +
               previousValues.totalOutrosF;
+            //   *******************************TOTAL DEATH DIVERSOUS
 
             return previousValues;
           },
@@ -183,20 +175,29 @@ const ModalDeclareComponent = (): ReactElement => {
             totalGarrotesF: 0,
             totalNovilhosF: 0,
             totalOutrosF: 0,
+
+            // CAUSAS DE MORTES DIVERSAS
           }
         );
-      currentReport.rebanhoAtual.bezerros.male = resultado.totalBezerrosM;
-      currentReport.rebanhoAtual.bezerros.female = resultado.totalBezerrosF;
-      currentReport.rebanhoAtual.desmamados.male = resultado.totalDesmamadosM;
-      currentReport.rebanhoAtual.desmamados.female = resultado.totalDesmamadosF;
-      currentReport.rebanhoAtual.garrotes.male = resultado.totalGarrotesM;
-      currentReport.rebanhoAtual.garrotes.female = resultado.totalGarrotesF;
-      currentReport.rebanhoAtual.novilhos.male = resultado.totalNovilhosM;
-      currentReport.rebanhoAtual.novilhos.female = resultado.totalNovilhosF;
-      currentReport.rebanhoAtual.outros.male = resultado.totalOutrosM;
-      currentReport.rebanhoAtual.outros.female = resultado.totalOutrosF;
-      currentReport.rebanhoAtual.total.male = resultado.totalCattlesMale;
-      currentReport.rebanhoAtual.total.female = resultado.totalCattlesFemale;
+
+      //   REBANHO MORTOS
+
+      currentReport.rebanhoComCausas.bezerros.male = resultado.totalBezerrosM;
+      currentReport.rebanhoComCausas.bezerros.female = resultado.totalBezerrosF;
+      currentReport.rebanhoComCausas.desmamados.male =
+        resultado.totalDesmamadosM;
+      currentReport.rebanhoComCausas.desmamados.female =
+        resultado.totalDesmamadosF;
+      currentReport.rebanhoComCausas.garrotes.male = resultado.totalGarrotesM;
+      currentReport.rebanhoComCausas.garrotes.female = resultado.totalGarrotesF;
+      currentReport.rebanhoComCausas.novilhos.male = resultado.totalNovilhosM;
+      currentReport.rebanhoComCausas.novilhos.female = resultado.totalNovilhosF;
+      currentReport.rebanhoComCausas.outros.male = resultado.totalOutrosM;
+      currentReport.rebanhoComCausas.outros.female = resultado.totalOutrosF;
+      currentReport.rebanhoComCausas.total.male = resultado.totalCattlesMale;
+      currentReport.rebanhoComCausas.total.female =
+        resultado.totalCattlesFemale;
+
       return resultado;
     });
 
@@ -204,146 +205,81 @@ const ModalDeclareComponent = (): ReactElement => {
     const currentReport = report;
 
     //   //...REBANHO COM CAUSAS
-    currentReport.rebanhoComCausas.bezerros.male = 0;
-    currentReport.rebanhoComCausas.bezerros.female = 0;
-    currentReport.rebanhoComCausas.desmamados.male = 0;
-    currentReport.rebanhoComCausas.desmamados.female = 0;
-    currentReport.rebanhoComCausas.garrotes.male = 0;
-    currentReport.rebanhoComCausas.garrotes.female = 0;
-    currentReport.rebanhoComCausas.novilhos.male = 0;
-    currentReport.rebanhoComCausas.novilhos.female = 0;
-    currentReport.rebanhoComCausas.outros.male = 0;
-    currentReport.rebanhoComCausas.outros.female = 0;
+
     setReport(currentReport);
 
     loadingHelper.stopLoading();
     console.log("reports" + report);
   }, []);
 
-  const reportHelper = ReportHelper();
-
-  //   const [CattleCategory, setCattleCattegory] = useState<
-
-  const navigate = useNavigate();
-
-  const submitSave = async () => {
-    await reportHelper
-      .createReport(report)
-      .then(() => {
-        // navigate("/private/home");
-        // let cancel = false;
-        // if (cancel) return;
-        // setReport(currentrep);
-        toast.success("SUCESSO");
-        navigate("/private/home");
-      })
-      .catch((err) => {
-        //TODO: Mensagem de erro
-        //toast erro
-        navigate("/private/cattles");
-
-        console.error(err);
-        toast.error(getFireError(err));
-      });
-
-    // vacine.id = id;
-  };
   return (
     <>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 530,
-            height: 240,
-            bgcolor: "white",
-            borderRadius: "10px",
-            boxShadow: 11,
-            p: 4,
-          }}
-        >
-          <div id="bloco-modal-GerarRelatório">
-            <Grid sx={{ margin: "2%  2%" }}>
-              <span id="txt-GerarRelatorio">
-                Tem certeza que deseja Gerar o Relatório?
-              </span>
-              <p id="txt-p-btnGerarRelatório">
-                Após gerar o relatório você só poderar gerar novamente no mês
-                seguinte!
-              </p>
-            </Grid>
-
-            <Grid
-              sx={{
-                display: "flex",
-                justifyContent: "end",
-                marginTop: 6,
-                marginRight: 2,
-              }}
-            >
-              <Grid
-                sx={{
-                  margin: " 3% 6%",
-                  borderRadius: "5px",
-                  backgroundColor: "rgba(0, 128, 0, 0.795)",
-                }}
-              >
-                <Button onClick={submitSave} style={{ color: "var(--cor001)" }}>
-                  Gerar Relatório
-                </Button>{" "}
-              </Grid>
-              <Grid
-                sx={{
-                  margin: " 3% -5%",
-                  borderRadius: "5px",
-                  backgroundColor: "rgba(255, 0, 0, 0.849)",
-                }}
-              >
-                <Button
-                  onClick={handleClose}
-                  style={{ color: "var(--cor001)" }}
-                >
-                  cancelar
-                </Button>{" "}
-              </Grid>
-            </Grid>
+      <div>
+        <p id="CurrentCattleHerd-Mortality">
+          Mortalidade de Bovinos
+          <br />
+          (ainda não declarados)
+        </p>
+        <div className="CurrentCattleHerd">
+          <div className="Block-CurrentCattleHerd">
+            <p id="causes-txt">CAUSAS</p>
+            <div id="causes">
+              <p id="txt-ownConsumption">Consumo própio</p>
+              <p id="txt-DeathVariousCauses">Obitos causas diversas</p>
+            </div>
           </div>
-        </Box>
-      </Modal>
-      <Box
-        sx={{
-          flexGrow: 1,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        {" "}
-        <div id="Block-Txt-Line-CattleDeclaration">
-          <h2 id="Block-Txt-CattleDeclaration">Declare do Rebanho</h2>
-          <span id="Block-Line-CattleDeclaration">
-            <abbr title="Imprimir Declare do Rebanho">
-              <Fab id="printIcon" onClick={imprimir}>
-                <BsPrinter size={20} />
-              </Fab>
-            </abbr>
-            <abbr title="Gerar Relatório do Animal">
-              <Fab id="reportIcon" onClick={handleOpen}>
-                <AssignmentIcon style={{ color: "var(--cor001" }} />
-              </Fab>
-            </abbr>
-          </span>
+          <div className="Block-CurrentCattleHerd">
+            <p className="SmallBlocksMortality">Até 6 meses</p>
+            <div className="MF">
+              <p className="M-txt">Macho</p>
+              <p className="F-txt">Fêmea</p>
+            </div>
+            <div className="FieldMF-alt-Left">
+              {report.rebanhoComCausas.bezerros.male}
+            </div>
+            <div className="FieldMF-alt-Rigth">
+              {report.rebanhoComCausas.bezerros.female}
+            </div>
+            <div className="FieldMF-Down-left"></div>
+            <div className="FieldMF-Down-Rigth"></div>{" "}
+          </div>
+          <div className="Block-CurrentCattleHerd">
+            <p className="SmallBlocksMortality">De 7 à 12 meses</p>
+            <div className="MF">
+              <p className="M-txt">Macho</p>
+              <p className="F-txt">Fêmea</p>
+            </div>
+            <div className="FieldMF-alt-Left"></div>
+            <div className="FieldMF-alt-Rigth"></div>
+            <div className="FieldMF-Down-left"></div>
+            <div className="FieldMF-Down-Rigth"></div>
+          </div>
+          <div className="Block-CurrentCattleHerd">
+            <p className="SmallBlocksMortality">De 13 a 24 meses</p>
+            <div className="MF">
+              <p className="M-txt">Macho</p>
+              <p className="F-txt">Fêmea</p>
+            </div>
+            <div className="FieldMF-alt-Left"></div>
+            <div className="FieldMF-alt-Rigth"></div>
+            <div className="FieldMF-Down-left"></div>
+            <div className="FieldMF-Down-Rigth"></div>
+          </div>
+          <div className="Block-CurrentCattleHerd">
+            <p className="SmallBlocksMortality">Mais de 24 meses</p>
+            <div className="MF">
+              <p className="M-txt">Macho</p>
+              <p className="F-txt">Fêmea</p>
+            </div>
+            <div className="FieldMF-alt-Left"></div>
+            <div className="FieldMF-alt-Rigth"></div>
+            <div className="FieldMF-Down-left"></div>
+            <div className="FieldMF-Down-Rigth"></div>
+          </div>
         </div>
-      </Box>
+      </div>
     </>
   );
 };
 
-export default ModalDeclareComponent;
+export default CattleDeathComponent;

@@ -30,7 +30,7 @@ import { ReportCattleCategory, ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
-import { MALE, FEMALE } from "../../../../../constants";
+import { MALE, FEMALE, CATTLE_IS_LIVE } from "../../../../../constants";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
 import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
 import { Formik } from "formik";
@@ -39,8 +39,9 @@ import { getControls } from "utils/FormUtils";
 import { ReportHelper } from "../helpers/ReportHelper";
 import { useNavigate } from "react-router-dom";
 import { getFireError } from "utils/HandleFirebaseError";
+import { Timestamp } from "firebase/firestore";
 
-const ButtonReportDeclare = (): ReactElement => {
+const CurrentCattleComponent = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
   const cattlehelpers = CattleHelper();
@@ -71,6 +72,7 @@ const ButtonReportDeclare = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
+    createdAt: Timestamp.now(),
   });
 
   const getMonthFromDate = (date: string) => {
@@ -96,7 +98,10 @@ const ButtonReportDeclare = (): ReactElement => {
           (previousValues: any, currentValue: any) => {
             const age = getMonthFromDate(currentValue.birthday);
             const initialValue = 0;
-            if (currentValue.sex === MALE) {
+            if (
+              currentValue.sex === MALE &&
+              currentValue.deathBy === CATTLE_IS_LIVE
+            ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
@@ -113,7 +118,10 @@ const ButtonReportDeclare = (): ReactElement => {
               } else {
                 previousValues.totalOutrosM = previousValues.totalOutrosM + 1;
               }
-            } else {
+            } else if (
+              currentValue.sex === FEMALE &&
+              currentValue.deathBy === CATTLE_IS_LIVE
+            ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosF =
@@ -313,4 +321,4 @@ const ButtonReportDeclare = (): ReactElement => {
   );
 };
 
-export default ButtonReportDeclare;
+export default CurrentCattleComponent;

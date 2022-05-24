@@ -22,7 +22,7 @@ class ReportCattleCategory {
 
 class ReportModel {
   id?: string;
-  createdAt?: Timestamp;
+  createdAt!: Timestamp;
   rebanhoAtual!: ReportCattleCategory;
   rebanhoComCausas!: ReportCattleCategory;
 }

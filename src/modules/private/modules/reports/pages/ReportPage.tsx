@@ -32,7 +32,7 @@ import { RegisterValidatorSchema } from "modules/public/modules/authentication/v
 import { Formik } from "formik";
 import { getControls } from "utils/FormUtils";
 import ProprietarieData from "../components/ProprietarieData";
-import ButtonReportDeclare from "../components/ButtonReportDeclare";
+import ButtonReportDeclare from "../components/CurrentCattleComponent";
 import GeneratePdf from "../components/GeneratePdf";
 
 var today = new Date();

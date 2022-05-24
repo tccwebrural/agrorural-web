@@ -29,6 +29,7 @@ export const MALE = 1;
 export const FEMALE = 2;
 export const DEATH_BY_VARIOUS_CASES = "Causas Diversas";
 export const DEATH_BY_OWN_CONSUMPTION = "Próprio Consumo";
+export const CATTLE_IS_LIVE = "O gado esta vivo";
 //  VACINAS  DOS ANIMAIS
 export const FEBRE_AFTOSA = "Febre aftosa";
 export const RAIVA = "Raiva";

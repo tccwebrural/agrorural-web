@@ -33,7 +33,11 @@ import { ReportHelper } from "../../reports/helpers/ReportHelper";
 
 import "../../../styles/CattleForm.css";
 import "../../../styles/style.css";
-
+import {
+  CATTLE_IS_LIVE,
+  DEATH_BY_OWN_CONSUMPTION,
+  DEATH_BY_VARIOUS_CASES,
+} from "../../../../../constants";
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   margin: "auto",
@@ -61,7 +65,9 @@ const CreateCattleFormPage = (): ReactElement => {
       birthday: "",
       sex: 1,
       qtyChildren: 0,
-      deathBy: 1,
+      // deathBy: CATTLE_IS_LIVE,
+      // deathBy: DEATH_BY_OWN_CONSUMPTION,
+      deathBy: DEATH_BY_VARIOUS_CASES,
     },
 
     validationSchema: CattleValidatorSchema,

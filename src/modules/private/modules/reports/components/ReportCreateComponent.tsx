@@ -54,10 +54,6 @@ const ReportComponentCreate = (): ReactElement => {
   const cattlehelpers = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const [animals, setAnimals] = useState<CattleModel[]>([]);
-  const [reports, setReports] = useState<ReportModel>({
-    rebanhoAtual: cattlesCattegory,
-    rebanhoComCausas: cattlesCattegory,
-  });
 
   var totatalBezerros_Mache = 0;
   var desmamadosMacho = 0;
