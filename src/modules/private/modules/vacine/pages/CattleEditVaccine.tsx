@@ -129,7 +129,7 @@ const CattleEditVaccine = (): ReactElement => {
                       <Select
                         {...getControls(formik, "name")}
                         label="Grouping"
-                        style={{ width: 230, margin: "0.4%" ,marginTop:4}}
+                        style={{ width: 230, margin: "0.4%" ,marginTop:4,marginRight:4}}
 
                         // name="category"
                       >
@@ -148,7 +148,7 @@ const CattleEditVaccine = (): ReactElement => {
                       {...getControls(formik, "lote")}
                     />
                     <TextField
-                      style={{ width: 220, margin: "0.4%" }}
+                      style={{ width: 230, margin: "0.4%" }}
                       label="Fabricante"
                       type="text"
                       InputLabelProps={{
