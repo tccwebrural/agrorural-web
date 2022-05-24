@@ -42,7 +42,7 @@ const VaccineBrucelose = (): ReactElement => {
     qtyChildren: 0,
   });
   const [cattles, setCattles] = useState<CattleModel[]>([]);
-
+  const [vacines, setVacines] = useState<VacineModel[]>([]);
   const getMonthFromDate = (date: string) => {
     var birthDay = new Date(date);
     var today = new Date();
@@ -55,7 +55,8 @@ const VaccineBrucelose = (): ReactElement => {
   };
 
   const cattlehelpers = CattleHelper();
-  const vacineHelpers = VacineNotifyHelpers();
+  const notifyHelpers = VacineNotifyHelpers();
+  const vacineHelpers = VacineHelper();
   // useEffect(() => {
   //   cattlehelpers.getAllCattles().then((cattles) => {
   //     for (let index = 0; index < cattles.length; index++) {
@@ -91,8 +92,52 @@ const VaccineBrucelose = (): ReactElement => {
   //   });
   // }, []);
 
+  const { id } = useParams();
+  console.log(id);
   useEffect(() => {
-    cattlehelpers.getAllCattles().then(setCattles);
+    // cattlehelpers.getAllCattles().then(setCattles);
+
+    // vacineHelpers.getAllVacines("Q6OEQyskkkD26ulinNtk").then(setvacines);
+
+    cattlehelpers.getAllCattles().then((cattles) => {
+      for (let index = 0; index < cattles.length; index++) {
+        const cattle = {
+          ...cattles[index],
+          age: getMonthFromDate(cattles[index].birthday),
+          idCattle: cattles[index].id,
+
+          // if(){
+          //   vacina: vacineHelpers.vaccinesRef(idCattle).then((vaccinesRef) => {
+
+          //   }),
+          // }
+
+          // vacine: vacineHelpers.vaccinesRef(),
+        };
+        if (cattle.idCattle) {
+          vacineHelpers.getAllVacines(cattle.idCattle).then(setVacines);
+        }
+        // vacineHelpers.vaccinesRef().then((vaccinesRef) => {
+        console.log("id  " + cattle.id);
+        // })
+        if (cattle.sex === 2) {
+          if (cattle.age >= 3 && cattle.age <= 8) {
+            //se nao tomou a vacina
+            console.log("Brucelose: " + cattle.name);
+          }
+        }
+        //  else if (mesAtual === 5) {
+
+        // } else if (mesAtual === 11) {
+
+        // }
+      }
+
+      setCattles(cattles);
+      // setvacines(vacines);
+
+      console.log(cattles);
+    });
   }, []);
   return (
     <>
@@ -103,36 +148,43 @@ const VaccineBrucelose = (): ReactElement => {
           textAlign: "center",
         }}
       >
-  
-        <Grid sx={{ margin: "1%" }}>
-          <div id="Bloco-Notificacoes">
-            <div id="color2"></div>
-            <div></div>
-            <div id="text-notify">
-              <div id="text-notify-title-Red">
-                O animal {initialValues.name} deve ser vacinado!
-              </div>
-              <div id="text-notify-dados">
-                <form id="dados">
-                  <p>
-                    <span className="Txt-NotifyVaccine">Nome da Vacina:</span>{" "}
-                  </p>
-                  <p>
-                    <span className="Txt-NotifyVaccine">Data da Vacina:</span>{" "}
-                  </p>
-                </form>
-                <form id="dados">
-                  <p>
-                    <span className="Txt-NotifyVaccine">Nome do Animal:</span>{" "}
-                  </p>
-                  <p>
-                    <span className="Txt-NotifyVaccine">Gênero:</span>{" "}
-                  </p>
-                </form>
+        {cattles.map((animals, i) => (
+          <Grid sx={{ margin: "1%" }}>
+            <div id="Bloco-Notificacoes">
+              <div id="color2"></div>
+              <div></div>
+              <div id="text-notify">
+                <div id="text-notify-title-Red">
+                  O animal {animals.name} deve ser vacinado!
+                </div>
+                <div id="text-notify-dados">
+                  {/* FIM BLOCO */}
+                  {vacines.map((vacines, i) => (
+                    <form id="dados">
+                      <p>
+                        <span className="Txt-NotifyVaccine">
+                          Nome da Vacina : {vacines.name}
+                        </span>{" "}
+                      </p>
+                    </form>
+                  ))}
+                  <form id="dados">
+                    <p>
+                      <span className="Txt-NotifyVaccine">
+                        Nome do Animal:{animals.name}
+                      </span>{" "}
+                    </p>
+                    <p>
+                      <span className="Txt-NotifyVaccine">
+                        Gênero: {animals.sex === 2 ? "Femea" : "Macho"}
+                      </span>{" "}
+                    </p>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        </Grid>
+          </Grid>
+        ))}
 
         {/* BLOCO DO FORMIK ANITGO */}
         {/* <Formik
