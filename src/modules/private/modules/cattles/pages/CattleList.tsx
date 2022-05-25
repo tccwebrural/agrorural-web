@@ -494,7 +494,7 @@ const CattleListPage = (): ReactElement => {
           <div
             style={{
               height: 420,
-              width: 1060,
+              width: 1080,
               backgroundColor: "white",
               borderRadius: "10px",
             }}
