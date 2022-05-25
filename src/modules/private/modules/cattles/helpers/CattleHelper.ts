@@ -104,7 +104,6 @@ export const CattleHelper = () => {
 
   const updateDeathTypes = async (cattle: CattleModel) => {
     const farmRef = await getFarmRef();
-
     if (farmRef && cattle.id) {
       const cattlesCollectionRef = collection(
         firestore,
@@ -113,18 +112,43 @@ export const CattleHelper = () => {
         COLLECTION_CATTLES
       );
 
+      //REMOVER CATTLE ATUAL DA ATUALIZAÇÃO
+
       const cattleRef = await doc(
         firestore,
 
         cattlesCollectionRef.path,
         cattle.id
       );
-      // return updateDoc(cattleRef, { deathBy: cattle.deathBy });
-      if (cattle.deathBy && cattle.id) {
+      if (cattle.deathBy) {
         return updateDoc(cattleRef, { deathBy: cattle.deathBy });
       }
     }
   };
+  // const updateDeathTypes = async (cattle: CattleModel) => {
+
+  //   const farmRef = await getFarmRef();
+
+  //   if (farmRef && cattle.id) {
+  //     const cattlesCollectionRef = collection(
+  //       firestore,
+  //       COLLECTION_FARMS,
+  //       farmRef.id,
+  //       COLLECTION_CATTLES
+  //     );
+
+  //     const cattleRef = await doc(
+  //       firestore,
+
+  //       cattlesCollectionRef.path,
+  //       cattle.id
+  //     );
+  //     // return updateDoc(cattleRef, { deathBy: cattle.deathBy });
+  //     if (cattle.deathBy && cattle.id) {
+  //       return setDoc(cattleRef, { deathBy: cattle.deathBy });
+  //     }
+  //   }
+  // };
   const getCattleRef = async (cattleId: string) => {
     const farmRef = await getFarmRef();
     if (farmRef) {

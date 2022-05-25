@@ -66,7 +66,7 @@ export const PHONE_INVALID = "numero de telefone inválido";
 export const CPF_REGEX =
   /^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$/;
 // /^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/;
-
+// /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
 /* MENSAGENS DE ERRO */
 export const INTERNAL_ERROR =
   "Ops! Ocorreu um erro inesperado, por favor tente mais tarde.";

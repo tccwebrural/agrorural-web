@@ -96,6 +96,7 @@ const ViewProfilePage = (): ReactElement => {
       await auth.updateUserId(formData);
 
       await farmHelp.updateFarmName(formData);
+      await window.location.reload();
 
       await await toast.success("Informações atualizadas com sucesso.");
     } catch (err: any) {
@@ -326,8 +327,8 @@ const ViewProfilePage = (): ReactElement => {
                       size="small"
                       variant="standard"
                       className="txt-FieldsProfile"
-                      disabled={isDisabled}
-                      // disabled={true}
+                      // disabled={isDisabled}
+                      disabled={true}
                       {...getControls(formik, "cpf")}
                       InputProps={{
                         inputComponent: CpfMaskComponent as any,
@@ -376,7 +377,6 @@ const ViewProfilePage = (): ReactElement => {
           <img id="imgFooter-Profile" src={rodape} />
         </div>
       </Box>
-     
     </>
   );
 };

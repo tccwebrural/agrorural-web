@@ -38,8 +38,10 @@ const DeclareForm = (): ReactElement => {
 
   const loading = useGlobalLoading();
 
-  loading.startLoading();
-  loading.stopLoading();
+  useEffect(() => {
+    loading.startLoading();
+    loading.stopLoading();
+  }, []);
 
   return (
     <>

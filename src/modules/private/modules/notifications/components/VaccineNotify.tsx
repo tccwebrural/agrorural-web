@@ -93,8 +93,10 @@ const VaccineBrucelose = (): ReactElement => {
   // }, []);
 
   const { id } = useParams();
+  const loading = useGlobalLoading();
   console.log(id);
   useEffect(() => {
+    loading.startLoading();
     // cattlehelpers.getAllCattles().then(setCattles);
 
     // vacineHelpers.getAllVacines("Q6OEQyskkkD26ulinNtk").then(setvacines);
@@ -136,6 +138,7 @@ const VaccineBrucelose = (): ReactElement => {
 
       setCattles(cattles);
       // setvacines(vacines);
+      loading.stopLoading();
 
       console.log(cattles);
     });
@@ -166,19 +169,17 @@ const VaccineBrucelose = (): ReactElement => {
                       <p>
                         <span className="Txt-NotifyVaccine">
                           Nome da Vacina :
-                          <span className="Txts-Notify">
-                           {vacines.name}
-                           </span>
+                          <span className="Txts-Notify">{vacines.name}</span>
                         </span>{" "}
                       </p>
                       <p>
-                      <span className="Txt-NotifyVaccine">
-                        Identificador do Animal: 
-                        <span className="Txts-Notify">
-                        {animals.identifier}
-                        </span>
-                      </span>{" "}
-                    </p>
+                        <span className="Txt-NotifyVaccine">
+                          Identificador do Animal:
+                          <span className="Txts-Notify">
+                            {animals.identifier}
+                          </span>
+                        </span>{" "}
+                      </p>
                     </form>
                   ))}
                   {/*  */}
@@ -186,17 +187,15 @@ const VaccineBrucelose = (): ReactElement => {
                     <p>
                       <span className="Txt-NotifyVaccine">
                         Nome do Animal:
-                        <span className="Txts-Notify">
-                        {animals.name}
-                        </span>
+                        <span className="Txts-Notify">{animals.name}</span>
                       </span>{" "}
                     </p>
                     <p>
                       <span className="Txt-NotifyVaccine">
                         Gênero:
                         <span className="Txts-Notify">
-                         {animals.sex === 2 ? "Fêmea" : "Macho"}
-                         </span>
+                          {animals.sex === 2 ? "Fêmea" : "Macho"}
+                        </span>
                       </span>{" "}
                     </p>
                   </form>
