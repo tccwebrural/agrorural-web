@@ -380,7 +380,7 @@ const CattleListPage = (): ReactElement => {
     sex: 1,
     type: 1,
     weigth: 0,
-    deathBy: "asddad",
+    deathBy: "",
   });
   const openDeathAnimalModal = (animalSelected: CattleModel) => {
     setSelectedAnimal(animalSelected);
@@ -388,8 +388,8 @@ const CattleListPage = (): ReactElement => {
   };
 
   const handleDeathAnimal = async (isToDelete: boolean) => {
-    if (isToDelete && selectedAnimal) {
-      // await cattlehelpers.updateDeathTypes(cattleDeath);
+    // await cattlehelpers.updateCattleId(cattleDeath);
+    if (isToDelete && selectedAnimal && selectedAnimal.id) {
       await cattlehelpers.updateDeathTypes(selectedAnimal);
 
       toast.success(
@@ -426,7 +426,7 @@ const CattleListPage = (): ReactElement => {
               enableReinitialize={true}
               onSubmit={() => handleDeathAnimal(true)}
               // validationSchema={CattleValidatorSchema}
-              initialValues={initialValues}
+              initialValues={selectedAnimal}
             >
               {(formik) => (
                 <form onSubmit={formik.handleSubmit}>
