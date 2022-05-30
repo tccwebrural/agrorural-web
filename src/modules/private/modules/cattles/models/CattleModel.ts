@@ -32,7 +32,7 @@ class CattleModel {
   weigth!: number;
   createdAt?: Timestamp;
   deathBy?: string;
-  categories?: number;
+
 }
 export interface CattleDeathModel {
   deathBy: string;
