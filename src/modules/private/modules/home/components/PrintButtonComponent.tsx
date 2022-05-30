@@ -85,7 +85,7 @@ const PrintButtonComponent = (): ReactElement => {
   };
   return (
     <>
-      <abbr title="Imprimir">
+      <abbr title="Exportar Relatório">
         <Fab id="icone-imprimir-Home" onClick={Print}>
           <BsPrinter size={20} />
         </Fab>
