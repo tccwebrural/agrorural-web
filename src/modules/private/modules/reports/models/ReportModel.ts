@@ -11,7 +11,7 @@ export type Sex = {
   female: number;
 };
 
-class ReportCattleCategory {
+class ReportCattle {
   garrotes!: Sex;
   desmamados!: Sex;
   bezerros!: Sex;
@@ -23,8 +23,8 @@ class ReportCattleCategory {
 class ReportModel {
   id?: string;
   createdAt!: Timestamp;
-  rebanhoAtual!: ReportCattleCategory;
-  rebanhoComCausas!: ReportCattleCategory;
+  rebanhoAtual!: ReportCattle;
+  rebanhoComCausas!: ReportCattle;
 }
 
-export { ReportModel, ReportCattleCategory };
+export { ReportModel, ReportCattle };

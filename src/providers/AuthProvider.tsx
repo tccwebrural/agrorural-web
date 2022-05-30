@@ -10,9 +10,12 @@ import {
   collection,
   doc,
   getDoc,
+  getDocs,
+  query,
   setDoc,
   Timestamp,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import toast from "react-hot-toast";
@@ -169,16 +172,19 @@ const UserAuthProvider = (): AuthContext => {
    * @param uid - Identificador do usuário no fire Authentication;
    * @param formData - @see {@link RegisterUserModel}
    */
-  const registerUser = async (uid: string, formData: RegisterUserModel) => {
+  const registerUser2 = async (uid: string, formData: RegisterUserModel) => {
     // Criação do documento do usuário dentro da collection de user com o um id customizado
     // Nesse caso é utilziado o uid;
     const userRef = doc(firestore, COLLECTION_USERS, uid);
+
     // Busca o usuário com a mesma referência de criação que é utilizado acima
     const userDoc = await getDoc(userRef);
+
     // Caso exista informações no doc encontrado, é retornado uma mensagem de erro informado que o usuário já está cadastrado;
     if (userDoc.exists()) {
       throw "Usuário já cadastrado";
     }
+
     // Criação da fazenda com o nome fornecido
     const farmRef = await addDoc(collection(firestore, COLLECTION_FARMS), {
       name: formData.farmName,
@@ -200,6 +206,44 @@ const UserAuthProvider = (): AuthContext => {
 
     return userRef;
   };
+
+  // COMO EU FAIRA ***************************************
+  const registerUser = async (uid: string, formData: RegisterUserModel) => {
+    // Criação do documento do usuário dentro da collection de user com o um id customizado
+    // Nesse caso é utilziado o uid;
+    const userRef = doc(firestore, COLLECTION_USERS, uid);
+
+    // Busca o usuário com a mesma referência de criação que é utilizado acima
+    const userDoc = await getDoc(userRef);
+
+    // Caso exista informações no doc encontrado, é retornado uma mensagem de erro informado que o usuário já está cadastrado;
+    if (userDoc.exists()) {
+      throw "Usuário já cadastrado";
+    }
+
+    // Criação da fazenda com o nome fornecido
+    const farmRef = await addDoc(collection(firestore, COLLECTION_FARMS), {
+      name: formData.farmName,
+      createdAt: Timestamp.now(),
+      owner: userRef,
+    });
+
+    // Criação do usuário na coleção de usuários
+    await setDoc(userRef, {
+      uid,
+      name: formData.name,
+      phone: formData.phone,
+      cpf: formData.cpf,
+      authProvider: LOCAL_AUTH_PROVIDER,
+      farmRef,
+      createdAt: Timestamp.now(),
+      active: true,
+    });
+
+    return userRef;
+  };
+
+  // FIM DOMO EU FARIA
 
   const isLoggedIn = async () => {
     const user = await getUser();
@@ -245,6 +289,28 @@ const UserAuthProvider = (): AuthContext => {
 
   //   await updateDoc(userRef, { active: true });
   // };
+  const getUserByCpf = async (cpf: boolean) => {
+    const user = await getUser();
+    let cattles = new Array<UserModel>();
+    if (cpf) {
+      const cattlesCollectionRef = collection(
+        firestore,
+        COLLECTION_USERS,
+        user.id
+      );
+
+      const whereByIdentfier = query(
+        cattlesCollectionRef,
+        where("cpf", "==", cpf)
+      );
+      const response = await getDocs(whereByIdentfier);
+      cattles = response.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() } as UserModel;
+      });
+    }
+
+    return cattles;
+  };
 
   const updateUserId = async (formData: PerfilModelUser) => {
     // await updateUserId(formData);

@@ -10,13 +10,9 @@ import {
 import React, { ReactElement, useState } from "react";
 import toast from "react-hot-toast";
 import { CattleHelper } from "../helpers/CattleHelper";
-import { CattleDeathModel, CattleModel } from "../models/CattleModel";
+import { CattleModel } from "../models/CattleModel";
 
 const CattleDeathModalComponent = (): ReactElement => {
-  const [cattleDeath, setCattleDeath] = useState<CattleDeathModel>({
-    deathBy: "",
-  });
-
   const [selectedAnimal, setSelectedAnimal] = useState<CattleModel>();
   const [modalDeathOpen, setModalDeathOpen] = useState(false);
   const [animals, setAnimals] = useState<CattleModel[]>([]);

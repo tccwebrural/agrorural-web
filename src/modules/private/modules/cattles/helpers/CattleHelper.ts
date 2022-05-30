@@ -17,7 +17,7 @@ import {
 import { firestore } from "../../../../../configs/Firebase";
 import { COLLECTION_FARMS } from "../../../../../constants";
 import { FarmHelper } from "../../../helpers/FarmHelper";
-import { CattleDeathModel, CattleModel } from "../models/CattleModel";
+import { CattleModel } from "../models/CattleModel";
 
 export const CattleHelper = () => {
   const { getFarmRef } = FarmHelper();
@@ -50,6 +50,8 @@ export const CattleHelper = () => {
 
     if (farmRef) {
       cattle.createdAt = Timestamp.now();
+      cattle.status = 1;
+      // cattle.status = 1;
       const cattles = await getCattlesByIdentifier(cattle.identifier);
       if (cattles.length > 0) {
         throw "Esse identificador já existe, por favor troque para um novo!";
@@ -102,53 +104,6 @@ export const CattleHelper = () => {
     }
   };
 
-  const updateDeathTypes = async (cattle: CattleModel) => {
-    const farmRef = await getFarmRef();
-    if (farmRef && cattle.id) {
-      const cattlesCollectionRef = collection(
-        firestore,
-        COLLECTION_FARMS,
-        farmRef.id,
-        COLLECTION_CATTLES
-      );
-
-      //REMOVER CATTLE ATUAL DA ATUALIZAÇÃO
-
-      const cattleRef = await doc(
-        firestore,
-
-        cattlesCollectionRef.path,
-        cattle.id
-      );
-      if (cattle.deathBy) {
-        return updateDoc(cattleRef, { deathBy: cattle.deathBy });
-      }
-    }
-  };
-  // const updateDeathTypes = async (cattle: CattleModel) => {
-
-  //   const farmRef = await getFarmRef();
-
-  //   if (farmRef && cattle.id) {
-  //     const cattlesCollectionRef = collection(
-  //       firestore,
-  //       COLLECTION_FARMS,
-  //       farmRef.id,
-  //       COLLECTION_CATTLES
-  //     );
-
-  //     const cattleRef = await doc(
-  //       firestore,
-
-  //       cattlesCollectionRef.path,
-  //       cattle.id
-  //     );
-  //     // return updateDoc(cattleRef, { deathBy: cattle.deathBy });
-  //     if (cattle.deathBy && cattle.id) {
-  //       return setDoc(cattleRef, { deathBy: cattle.deathBy });
-  //     }
-  //   }
-  // };
   const getCattleRef = async (cattleId: string) => {
     const farmRef = await getFarmRef();
     if (farmRef) {
@@ -175,7 +130,28 @@ export const CattleHelper = () => {
       );
       const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
 
+      // return updateDoc(cattleRef, { status: 2 });
       return deleteDoc(cattleRef);
+    }
+  };
+
+  const updateDeathTypes = async (cattleId: string, deathBy: number) => {
+    const farmRef = await getFarmRef();
+    if (farmRef) {
+      const cattlesCollectionRef = collection(
+        firestore,
+        COLLECTION_FARMS,
+        farmRef.id,
+        COLLECTION_CATTLES
+      );
+      const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
+
+      return updateDoc(cattleRef, {
+        status: 3,
+        deathBy: deathBy,
+        identifier: Math.floor(Math.random() * 100),
+      });
+      // return deleteDoc(cattleRef);
     }
   };
 
@@ -199,8 +175,12 @@ export const CattleHelper = () => {
         farmRef.id,
         COLLECTION_CATTLES
       );
-      const findByCollectionRef = query(cattlesCollectionRef);
+      const findByCollectionRef = query(
+        cattlesCollectionRef,
+        where("status", "!=", 3)
+      );
       const response = await getDocs(findByCollectionRef);
+
       cattles = response.docs.map((doc) => {
         return { id: doc.id, ...doc.data() } as CattleModel;
       });

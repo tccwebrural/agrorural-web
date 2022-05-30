@@ -26,7 +26,7 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportCattleCategory, ReportModel } from "../models/ReportModel";
+import { ReportCattle, ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";

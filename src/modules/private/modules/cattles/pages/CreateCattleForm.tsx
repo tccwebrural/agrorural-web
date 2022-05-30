@@ -33,27 +33,10 @@ import { ReportHelper } from "../../reports/helpers/ReportHelper";
 
 import "../../../styles/CattleForm.css";
 import "../../../styles/style.css";
-import {
-  CATTLE_IS_LIVE,
-  DEATH_BY_OWN_CONSUMPTION,
-  DEATH_BY_VARIOUS_CASES,
-} from "../../../../../constants";
-const Item = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(1),
-  margin: "auto",
-  marginTop: 32,
-  maxWidth: 928,
-  height: 390,
-  borderTop: 2,
-}));
 
 const CreateCattleFormPage = (): ReactElement => {
   const cattlehelpers = CattleHelper();
 
-  const reportHelpers = ReportHelper();
-  reportHelpers.getAllReports();
-
-  console.log(reportHelpers.getAllReports());
   const navigate = useNavigate();
 
   const formCattle = useFormik({
@@ -65,9 +48,6 @@ const CreateCattleFormPage = (): ReactElement => {
       birthday: "",
       sex: 1,
       qtyChildren: 0,
-      deathBy: CATTLE_IS_LIVE,
-      // deathBy: DEATH_BY_OWN_CONSUMPTION,
-      // deathBy: DEATH_BY_VARIOUS_CASES,
     },
 
     validationSchema: CattleValidatorSchema,
@@ -81,15 +61,11 @@ const CreateCattleFormPage = (): ReactElement => {
         })
 
         .catch((err) => {
-          //TODO: Mensagem de erro
-          //toast erro
           console.error(err);
           toast.error(getFireError(err));
         });
     },
   });
-  const today = new Date().toLocaleDateString();
-  console.log(today);
 
   return (
     <>
@@ -156,11 +132,6 @@ const CreateCattleFormPage = (): ReactElement => {
                 label="Data de Nascimento"
                 type="date"
                 sx={{ m: 1, minWidth: 340 }}
-                // inputProps={{
-                //   min: "2000-01-01",
-                //   // max: "2022-05-06",
-                //   // max: "2022-05-05",
-                // }}
                 InputLabelProps={{
                   shrink: true,
                 }}

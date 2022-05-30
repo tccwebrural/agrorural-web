@@ -12,31 +12,13 @@ import EditIcon from "@mui/icons-material/Edit";
 import { ImEye } from "react-icons/im";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import { FaSkullCrossbones } from "react-icons/fa";
-import {
-  Box,
-  Button,
-  Container,
-  Fab,
-  Grid,
-  MenuItem,
-  Modal,
-  Select,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Fab, Grid, MenuItem, Modal, Select } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import {
-  CattleDeathModel,
-  CattleModel,
-  CATTLE_SEXS,
-  CATTLE_TYPES,
-} from "../models/CattleModel";
+import { CattleModel, CATTLE_SEXS, CATTLE_TYPES } from "../models/CattleModel";
 import { CattleHelper } from "../helpers/CattleHelper";
-import { FarmModel } from "modules/private/models/FarmModel";
-import { Timestamp } from "firebase/firestore";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
-import Checkbox from "@mui/material/Checkbox";
 
 import "../../../styles/CattleList.css";
 import { Formik } from "formik";
@@ -206,6 +188,8 @@ const CattleListPage = (): ReactElement => {
   const [animals, setAnimals] = useState<CattleModel[]>([]);
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
   const [modalDeathOpen, setModalDeathOpen] = useState(false);
+  const [selectedDeathBy, setSelectedDeathBy] = useState<number>(0);
+
   const cattlehelpers = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const getSex = (sex: number): string => {
@@ -370,43 +354,36 @@ const CattleListPage = (): ReactElement => {
 
   // ***********************************BLOCO CCODIGO MODAL DEATHS *********************************
 
-  const [cattleDeath, setCattleDeath] = useState<CattleDeathModel>({
-    deathBy: "",
-  });
-  const [initialValues, SetInitialValues] = useState<CattleModel>({
-    birthday: "",
-    name: "",
-    identifier: 1,
-    sex: 1,
-    type: 1,
-    weigth: 0,
-    deathBy: "",
-  });
   const openDeathAnimalModal = (animalSelected: CattleModel) => {
     setSelectedAnimal(animalSelected);
     setModalDeathOpen(true);
   };
 
-  const handleDeathAnimal = async (isToDelete: boolean) => {
-    // await cattlehelpers.updateCattleId(cattleDeath);
-    if (isToDelete && selectedAnimal && selectedAnimal.id) {
-      await cattlehelpers.updateDeathTypes(selectedAnimal);
+  const handleDeathAnimal = async () => {
+    try {
+      if (selectedAnimal?.id) {
+        await cattlehelpers.updateDeathTypes(
+          selectedAnimal.id,
+          selectedDeathBy
+        );
 
-      toast.success(
-        `Animal ${selectedAnimal.name} morto por ${initialValues.deathBy}`
-      );
-      // await cattlehelpers.getAllCattles().then(setAnimals);
-    } else {
+        toast.success(`Animal marcado como morto`);
+      } else {
+        throw "Animal não selecionado";
+      }
+    } catch (err: any) {
+      console.error(err);
+      toast.error(`Ocorreu um erro ao realizar a atualização do gado`);
     }
 
-    // setSelectedAnimal({});
     // Fecha o modal
     setModalDeathOpen(false);
   };
+
   const renderDeatTypesModal = () => {
     if (selectedAnimal) {
       return (
-        <Modal open={modalDeathOpen} onClose={() => handleDeathAnimal(false)}>
+        <Modal open={modalDeathOpen} onClose={() => setModalDeathOpen(false)}>
           <Box
             sx={{
               position: "absolute",
@@ -421,52 +398,44 @@ const CattleListPage = (): ReactElement => {
               p: 4,
             }}
           >
-            <Formik
-              // Enable -> renderiza o estado do initial values
-              enableReinitialize={true}
-              onSubmit={() => handleDeathAnimal(true)}
-              // validationSchema={CattleValidatorSchema}
-              initialValues={selectedAnimal}
-            >
-              {(formik) => (
-                <form onSubmit={formik.handleSubmit}>
-                  <div id="bloco-modal-AnimalDeath">
-                    <Grid sx={{ margin: "2%  2%" }}>
-                      <span style={{ fontWeight: "bold" }}>
-                        Selecione abaixo o motivo da morte do animal
-                      </span>
-                    </Grid>
-                    <Grid sx={{ margin: "3%" }}>
-                      <Select fullWidth={true} {...getControls(formik, "name")}>
-                        <MenuItem value={DEATH_BY_VARIOUS_CASES}>
-                          Causas Diversas
-                        </MenuItem>
-                        <MenuItem value={DEATH_BY_OWN_CONSUMPTION}>
-                          Consumo Próprio
-                        </MenuItem>
-                      </Select>
-                    </Grid>
+            <Grid sx={{ margin: "3%" }}>
+              <Select
+                fullWidth={true}
+                value={selectedDeathBy}
+                onChange={(event) => {
+                  const selectedValue = event.target.value as number;
+                  setSelectedDeathBy(selectedValue);
+                }}
+              >
+                <MenuItem value={DEATH_BY_VARIOUS_CASES}>
+                  Causas Diversas
+                </MenuItem>
+                <MenuItem value={DEATH_BY_OWN_CONSUMPTION}>
+                  Consumo Próprio
+                </MenuItem>
+              </Select>
+            </Grid>
 
-                    <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                      <Grid sx={{ margin: "0% 1%" }}>
-                        <Button id="btn-modalSalvarDeath" type="submit">
-                          Salvar
-                        </Button>{" "}
-                      </Grid>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Grid sx={{ margin: "0% 1%" }}>
+                <Button
+                  id="btn-modalSalvarDeath"
+                  type="submit"
+                  onClick={() => handleDeathAnimal()}
+                >
+                  Salvar
+                </Button>
+              </Grid>
 
-                      <Grid sx={{ margin: "0% 1%" }}>
-                        <Button
-                          id="btn-modalCancelarDeath"
-                          onClick={() => handleDeathAnimal(false)}
-                        >
-                          cancelar
-                        </Button>{" "}
-                      </Grid>
-                    </Box>
-                  </div>
-                </form>
-              )}
-            </Formik>
+              <Grid sx={{ margin: "0% 1%" }}>
+                <Button
+                  id="btn-modalCancelarDeath"
+                  onClick={() => setModalDeathOpen(false)}
+                >
+                  cancelar
+                </Button>
+              </Grid>
+            </Box>
           </Box>
         </Modal>
       );

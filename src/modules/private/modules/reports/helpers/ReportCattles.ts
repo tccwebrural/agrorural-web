@@ -1,4 +1,8 @@
 import {
+  DEATH_BY_OWN_CONSUMPTION,
+  DEATH_BY_VARIOUS_CASES,
+} from "./../../../../../constants";
+import {
   Box,
   Table,
   TableCell,
@@ -31,16 +35,20 @@ import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
 import { MALE, FEMALE, CATTLE_IS_LIVE } from "../../../../../constants";
-
+import { FarmHelper } from "modules/private/helpers/FarmHelper";
+import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
+import { Formik } from "formik";
+import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
+import { getControls } from "utils/FormUtils";
+import { ReportHelper } from "../helpers/ReportHelper";
+import { useNavigate } from "react-router-dom";
+import { getFireError } from "utils/HandleFirebaseError";
 import { Timestamp } from "firebase/firestore";
 
-const CurrentCattleComponent = (): ReactElement => {
+export const CurrentCattleComponent = () => {
   const loadingHelper = useGlobalLoading();
 
   const cattlehelpers = CattleHelper();
-  function imprimir() {
-    window.print();
-  }
 
   const [report, setReport] = useState<ReportModel>({
     rebanhoAtual: {
@@ -81,17 +89,25 @@ const CurrentCattleComponent = (): ReactElement => {
   useEffect(() => {
     loadingHelper.startLoading();
     cattlehelpers.getAllCattles().then((cattles) => {
+      const cattlesSex = [MALE, FEMALE];
+      const cattleDeath = [1, 2];
+
       const resultado = cattles
 
-        .map((cattle) => ({
-          ...cattle,
-          age: getMonthFromDate(cattle.birthday),
-        }))
+        // .map((element) => {
+        //   element.sex = cattlesSex[element.sex - 1];
+        //   if (element.deathBy != undefined) {
+        //     element.deathBy = cattleDeath[element.deathBy - 1];
+        //   }
+        // })
         .reduce(
           (previousValues: any, currentValue: any) => {
             const age = getMonthFromDate(currentValue.birthday);
             const initialValue = 0;
-            if (currentValue.sex === MALE) {
+            if (
+              currentValue.sex === MALE &&
+              currentValue.deathBy === CATTLE_IS_LIVE
+            ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
@@ -108,7 +124,10 @@ const CurrentCattleComponent = (): ReactElement => {
               } else {
                 previousValues.totalOutrosM = previousValues.totalOutrosM + 1;
               }
-            } else if (currentValue.sex === FEMALE) {
+            } else if (
+              currentValue.sex === FEMALE &&
+              currentValue.deathBy === CATTLE_IS_LIVE
+            ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosF =
@@ -193,119 +212,6 @@ const CurrentCattleComponent = (): ReactElement => {
     loadingHelper.stopLoading();
     console.log("reports" + report);
   }, []);
-
-  return (
-    <>
-      <div>
-        <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
-        <div className="CurrentCattleHerd-RA">
-          {" "}
-          {/*rebanho bovino atual */}
-          <div className="Block-CurrentCattleHerd-RA">
-            {" "}
-            {/*bloco rebanho bovino atual */}
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              {" "}
-              {/*blocos pequenos do rebanho bovino atual existente*/}
-              Bezerros
-              <br />
-              (de 0 à 6 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.bezerros.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.bezerros.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Desmamados
-              <br />
-              (de 7 à 12 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.desmamados.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.desmamados.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Garrotes
-              <br />
-              (de 13 à 24 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.garrotes.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.garrotes.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Novilhos
-              <br />
-              (de 25 à 36 meses)
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.novilhos.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.novilhos.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p className="SmallBlocks-CurrentCattleHerd-RA">
-              Acima de <br /> (36 meses)
-              <br />
-            </p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.outros.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.outros.female}
-            </div>
-          </div>
-          <div className="Block-CurrentCattleHerd-RA">
-            <p id="total-RA">Total de Bovinos</p>
-            <div className="MF-RA">
-              <p className="M-txt-RA">Macho</p>
-              <p className="F-txt-RA">Fêmea</p>
-            </div>
-            <div className="FieldMF-alt-Left-RA">
-              {report.rebanhoAtual.total.male}
-            </div>
-            <div className="FieldMF-alt-Rigth-RA">
-              {report.rebanhoAtual.total.female}
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
 };
 
 export default CurrentCattleComponent;
