@@ -75,6 +75,28 @@ const CattleDeathComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
+    DeathByDiversousCases: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
+    DeathByOwnConsuption: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
     createdAt: Timestamp.now(),
   });
 
@@ -99,12 +121,7 @@ const CattleDeathComponent = (): ReactElement => {
         }))
         .reduce(
           (previousValues: any, currentValue: any) => {
-            const age = getMonthFromDate(currentValue.birthday);
-            const initialValue = 0;
-            if (
-              currentValue.sex === MALE &&
-              currentValue.deathBy === DEATH_BY_OWN_CONSUMPTION
-            ) {
+            if (currentValue.sex === MALE && currentValue.deathBy === 1) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
@@ -123,7 +140,7 @@ const CattleDeathComponent = (): ReactElement => {
               }
             } else if (
               currentValue.sex === FEMALE &&
-              currentValue.deathBy === DEATH_BY_OWN_CONSUMPTION
+              currentValue.deathBy === 1
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
@@ -143,6 +160,50 @@ const CattleDeathComponent = (): ReactElement => {
               }
             }
 
+            // SEGUNDO IF*************************************************************************
+            if (currentValue.sex === MALE && currentValue.deathBy === 2) {
+              if (currentValue.age >= 0 && currentValue.age <= 6) {
+                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
+                previousValues.totalBezerrosConsumoProprioM =
+                  previousValues.totalBezerrosConsumoProprioM + 1;
+              } else if (currentValue.age > 6 && currentValue.age <= 12) {
+                previousValues.totalDesmamadosConsumoProprioM =
+                  previousValues.totalDesmamadosConsumoProprioM + 1;
+              } else if (currentValue.age >= 13 && currentValue.age <= 24) {
+                previousValues.totalGarrotesConsumoProprioM =
+                  previousValues.totalGarrotesConsumoProprioM + 1;
+              } else if (currentValue.age >= 25 && currentValue.age <= 36) {
+                previousValues.totalNovilhosConsumoProprioM =
+                  previousValues.totalBezerrosConsumoProprioM + 1;
+              } else {
+                previousValues.totalOutrosConsumoProprioM =
+                  previousValues.totalOutrosConsumoProprioM + 1;
+              }
+            } else if (
+              currentValue.sex === FEMALE &&
+              currentValue.deathBy === 2
+            ) {
+              if (currentValue.age >= 0 && currentValue.age <= 6) {
+                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
+                previousValues.totalBezerrosConsumoProprioF =
+                  previousValues.totalBezerrosConsumoProprioF + 1;
+              } else if (currentValue.age > 6 && currentValue.age <= 12) {
+                previousValues.totalDesmamadosConsumoProprioF =
+                  previousValues.totalDesmamadosConsumoProprioF + 1;
+              } else if (currentValue.age >= 13 && currentValue.age <= 24) {
+                previousValues.totalGarrotesConsumoProprioF =
+                  previousValues.totalGarrotesConsumoProprioF + 1;
+              } else if (currentValue.age >= 25 && currentValue.age <= 36) {
+                previousValues.totalNovilhosConsumoProprioF =
+                  previousValues.totalNovilhosConsumoProprioF + 1;
+              } else {
+                previousValues.totalOutrosConsumoProprioF =
+                  previousValues.totalOutrosConsumoProprioF + 1;
+              }
+            }
+
+            // **********_)___________________________*********************
+
             previousValues.totalCattlesMale =
               previousValues.totalOutrosM +
               previousValues.totalBezerrosM +
@@ -158,7 +219,23 @@ const CattleDeathComponent = (): ReactElement => {
               previousValues.totalGarrotesF +
               previousValues.totalNovilhosF +
               previousValues.totalOutrosF;
-            //   *******************************TOTAL DEATH DIVERSOUS
+
+            // CONSUMO PROPRIO*********
+            previousValues.totalCattlesConsumoProprioMale =
+              previousValues.totalOutrosConsumoProprioM +
+              previousValues.totalBezerrosConsumoProprioM +
+              previousValues.totalDesmamadosConsumoProprioM +
+              previousValues.totalGarrotesConsumoProprioM +
+              previousValues.totalNovilhosConsumoProprioM;
+
+            previousValues.totalCattlesConsumoProprioFemale =
+              previousValues.totalBezerrosConsumoProprioF +
+              previousValues.totalDesmamadosConsumoProprioF +
+              previousValues.totalGarrotesConsumoProprioF +
+              previousValues.totalNovilhosConsumoProprioF +
+              previousValues.totalOutrosConsumoProprioF;
+
+            // FIM
 
             return previousValues;
           },
@@ -176,28 +253,71 @@ const CattleDeathComponent = (): ReactElement => {
             totalNovilhosF: 0,
             totalOutrosF: 0,
 
-            // CAUSAS DE MORTES DIVERSAS
+            // CONSUMO PRPRIO
+            totalBezerrosConsumoProprioM: 0,
+            totalDesmamadosConsumoProprioM: 0,
+            totalGarrotesConsumoProprioM: 0,
+            totalNovilhosConsumoProprioM: 0,
+            totalOutrosConsumoProprioM: 0,
+            totalCattlesConsumoProprioFemale: 0,
+            totalCattlesConsumoProprioMale: 0,
+            totalBezerrosConsumoProprioF: 0,
+            totalDesmamadosConsumoProprioF: 0,
+            totalGarrotesConsumoProprioF: 0,
+            totalNovilhosConsumoProprioF: 0,
+            totalOutrosConsumoProprioF: 0,
           }
         );
-
-      //   REBANHO MORTOS
-
-      currentReport.rebanhoComCausas.bezerros.male = resultado.totalBezerrosM;
-      currentReport.rebanhoComCausas.bezerros.female = resultado.totalBezerrosF;
-      currentReport.rebanhoComCausas.desmamados.male =
+      currentReport.DeathByDiversousCases.bezerros.male =
+        resultado.totalBezerrosM;
+      currentReport.DeathByDiversousCases.bezerros.female =
+        resultado.totalBezerrosF;
+      currentReport.DeathByDiversousCases.desmamados.male =
         resultado.totalDesmamadosM;
-      currentReport.rebanhoComCausas.desmamados.female =
+      currentReport.DeathByDiversousCases.desmamados.female =
         resultado.totalDesmamadosF;
-      currentReport.rebanhoComCausas.garrotes.male = resultado.totalGarrotesM;
-      currentReport.rebanhoComCausas.garrotes.female = resultado.totalGarrotesF;
-      currentReport.rebanhoComCausas.novilhos.male = resultado.totalNovilhosM;
-      currentReport.rebanhoComCausas.novilhos.female = resultado.totalNovilhosF;
-      currentReport.rebanhoComCausas.outros.male = resultado.totalOutrosM;
-      currentReport.rebanhoComCausas.outros.female = resultado.totalOutrosF;
-      currentReport.rebanhoComCausas.total.male = resultado.totalCattlesMale;
-      currentReport.rebanhoComCausas.total.female =
+      currentReport.DeathByDiversousCases.garrotes.male =
+        resultado.totalGarrotesM;
+      currentReport.DeathByDiversousCases.garrotes.female =
+        resultado.totalGarrotesF;
+      currentReport.DeathByDiversousCases.novilhos.male =
+        resultado.totalNovilhosM;
+      currentReport.DeathByDiversousCases.novilhos.female =
+        resultado.totalNovilhosF;
+      currentReport.DeathByDiversousCases.outros.male = resultado.totalOutrosM;
+      currentReport.DeathByDiversousCases.outros.female =
+        resultado.totalOutrosF;
+      currentReport.DeathByDiversousCases.total.male =
+        resultado.totalCattlesMale;
+      currentReport.DeathByDiversousCases.total.female =
         resultado.totalCattlesFemale;
 
+      // CONSUMO PROPRIO
+
+      currentReport.DeathByOwnConsuption.bezerros.male =
+        resultado.totalBezerrosConsumoProprioM;
+      currentReport.DeathByOwnConsuption.bezerros.female =
+        resultado.totalBezerrosConsumoProprioF;
+      currentReport.DeathByOwnConsuption.desmamados.male =
+        resultado.totalDesmamadosConsumoProprioM;
+      currentReport.DeathByOwnConsuption.desmamados.female =
+        resultado.totalDesmamadosConsumoProprioF;
+      currentReport.DeathByOwnConsuption.garrotes.male =
+        resultado.totalGarrotesConsumoProprioM;
+      currentReport.DeathByOwnConsuption.garrotes.female =
+        resultado.totalGarrotesConsumoProprioF;
+      currentReport.DeathByOwnConsuption.novilhos.male =
+        resultado.totalNovilhosConsumoProprioM;
+      currentReport.DeathByOwnConsuption.novilhos.female =
+        resultado.totalNovilhosConsumoProprioF;
+      currentReport.DeathByOwnConsuption.outros.male =
+        resultado.totalOutrosConsumoProprioM;
+      currentReport.DeathByOwnConsuption.outros.female =
+        resultado.totalOutrosConsumoProprioF;
+      currentReport.DeathByOwnConsuption.total.male =
+        resultado.totalCattlesConsumoProprioMale;
+      currentReport.DeathByOwnConsuption.total.female =
+        resultado.totalCattlesConsumoProprioFemale;
       return resultado;
     });
 
@@ -235,13 +355,19 @@ const CattleDeathComponent = (): ReactElement => {
               <p className="F-txt">Fêmea</p>
             </div>
             <div className="FieldMF-alt-Left">
-              {report.rebanhoComCausas.bezerros.male}
+              {report.DeathByOwnConsuption.bezerros.male}
             </div>
             <div className="FieldMF-alt-Rigth">
-              {report.rebanhoComCausas.bezerros.female}
+              {" "}
+              {report.DeathByOwnConsuption.bezerros.female}
             </div>
-            <div className="FieldMF-Down-left"></div>
-            <div className="FieldMF-Down-Rigth"></div>{" "}
+            <div className="FieldMF-Down-left">
+              {" "}
+              {report.DeathByDiversousCases.bezerros.male}
+            </div>
+            <div className="FieldMF-Down-Rigth">
+              {report.DeathByDiversousCases.bezerros.female}
+            </div>{" "}
           </div>
           <div className="Block-CurrentCattleHerd">
             <p className="SmallBlocksMortality">De 7 à 12 meses</p>
@@ -249,10 +375,19 @@ const CattleDeathComponent = (): ReactElement => {
               <p className="M-txt">Macho</p>
               <p className="F-txt">Fêmea</p>
             </div>
-            <div className="FieldMF-alt-Left"></div>
-            <div className="FieldMF-alt-Rigth"></div>
-            <div className="FieldMF-Down-left"></div>
-            <div className="FieldMF-Down-Rigth"></div>
+            <div className="FieldMF-alt-Left">
+              {report.DeathByOwnConsuption.desmamados.male}
+            </div>
+            <div className="FieldMF-alt-Rigth">
+              {" "}
+              {report.DeathByOwnConsuption.desmamados.female}{" "}
+            </div>
+            <div className="FieldMF-Down-left">
+              {report.DeathByDiversousCases.desmamados.male}{" "}
+            </div>
+            <div className="FieldMF-Down-Rigth">
+              {report.DeathByDiversousCases.desmamados.female}
+            </div>
           </div>
           <div className="Block-CurrentCattleHerd">
             <p className="SmallBlocksMortality">De 13 a 24 meses</p>
@@ -260,10 +395,20 @@ const CattleDeathComponent = (): ReactElement => {
               <p className="M-txt">Macho</p>
               <p className="F-txt">Fêmea</p>
             </div>
-            <div className="FieldMF-alt-Left"></div>
-            <div className="FieldMF-alt-Rigth"></div>
-            <div className="FieldMF-Down-left"></div>
-            <div className="FieldMF-Down-Rigth"></div>
+            <div className="FieldMF-alt-Left">
+              {" "}
+              {report.DeathByOwnConsuption.garrotes.male}
+            </div>
+            <div className="FieldMF-alt-Rigth">
+              {" "}
+              {report.DeathByOwnConsuption.garrotes.female}
+            </div>
+            <div className="FieldMF-Down-left">
+              {report.DeathByDiversousCases.garrotes.male}
+            </div>
+            <div className="FieldMF-Down-Rigth">
+              {report.DeathByDiversousCases.garrotes.female}
+            </div>
           </div>
           <div className="Block-CurrentCattleHerd">
             <p className="SmallBlocksMortality">Mais de 24 meses</p>
@@ -271,10 +416,22 @@ const CattleDeathComponent = (): ReactElement => {
               <p className="M-txt">Macho</p>
               <p className="F-txt">Fêmea</p>
             </div>
-            <div className="FieldMF-alt-Left"></div>
-            <div className="FieldMF-alt-Rigth"></div>
-            <div className="FieldMF-Down-left"></div>
-            <div className="FieldMF-Down-Rigth"></div>
+            <div className="FieldMF-alt-Left">
+              {" "}
+              {report.DeathByOwnConsuption.outros.male}
+            </div>
+            <div className="FieldMF-alt-Rigth">
+              {" "}
+              {report.DeathByOwnConsuption.outros.female}
+            </div>
+            <div className="FieldMF-Down-left">
+              {" "}
+              {report.DeathByDiversousCases.outros.male}
+            </div>
+            <div className="FieldMF-Down-Rigth">
+              {" "}
+              {report.DeathByDiversousCases.outros.female}
+            </div>
           </div>
         </div>
       </div>

@@ -51,6 +51,7 @@ export const CattleHelper = () => {
     if (farmRef) {
       cattle.createdAt = Timestamp.now();
       cattle.status = 1;
+
       // cattle.status = 1;
       const cattles = await getCattlesByIdentifier(cattle.identifier);
       if (cattles.length > 0) {
@@ -177,8 +178,13 @@ export const CattleHelper = () => {
       );
       const findByCollectionRef = query(
         cattlesCollectionRef,
-        where("status", "!=", 3)
+        where("status", "!=", 2)
       );
+
+      // const findByCollectionRef = query(
+      //   cattlesCollectionRef,
+      //   where("deathBy", "!=", 1)
+      // );
       const response = await getDocs(findByCollectionRef);
 
       cattles = response.docs.map((doc) => {

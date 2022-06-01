@@ -367,7 +367,9 @@ const CattleListPage = (): ReactElement => {
           selectedDeathBy
         );
 
-        toast.success(`Animal marcado como morto`);
+        toast.success(
+          `Animal ${selectedAnimal.name} foi morto por ${selectedDeathBy}`
+        );
       } else {
         throw "Animal não selecionado";
       }
@@ -475,10 +477,19 @@ const CattleListPage = (): ReactElement => {
               localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
               // CAIXA DE SELELEÃO
               // checkboxSelection
+
               sx={{
                 border: "none",
                 boxShadow: " 2px 2px 4px 2px var(--cor111)",
               }}
+              // sx={{
+              //   boxShadow: 2,
+              //   border: 2,
+              //   borderColor: "primary.light",
+              //   "& .MuiDataGrid-cell:hover": {
+              //     color: "primary.main",
+              //   },
+              // }}
             />
             {renderDeleteAnimalModal()}
             {renderDeatTypesModal()}

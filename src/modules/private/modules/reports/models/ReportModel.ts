@@ -25,6 +25,8 @@ class ReportModel {
   createdAt!: Timestamp;
   rebanhoAtual!: ReportCattle;
   rebanhoComCausas!: ReportCattle;
+  DeathByOwnConsuption!: ReportCattle;
+  DeathByDiversousCases!: ReportCattle;
 }
 
 export { ReportModel, ReportCattle };

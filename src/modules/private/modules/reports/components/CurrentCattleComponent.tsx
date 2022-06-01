@@ -65,6 +65,29 @@ const CurrentCattleComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
+    DeathByDiversousCases: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
+    DeathByOwnConsuption: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
+
     createdAt: Timestamp.now(),
   });
 
@@ -91,7 +114,7 @@ const CurrentCattleComponent = (): ReactElement => {
           (previousValues: any, currentValue: any) => {
             const age = getMonthFromDate(currentValue.birthday);
             const initialValue = 0;
-            if (currentValue.sex === MALE) {
+            if (currentValue.sex === MALE && currentValue.status != 3) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
@@ -108,7 +131,10 @@ const CurrentCattleComponent = (): ReactElement => {
               } else {
                 previousValues.totalOutrosM = previousValues.totalOutrosM + 1;
               }
-            } else if (currentValue.sex === FEMALE) {
+            } else if (
+              currentValue.sex === FEMALE &&
+              currentValue.status != 3
+            ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosF =
@@ -178,16 +204,7 @@ const CurrentCattleComponent = (): ReactElement => {
     const currentReport = report;
 
     //   //...REBANHO COM CAUSAS
-    currentReport.rebanhoComCausas.bezerros.male = 0;
-    currentReport.rebanhoComCausas.bezerros.female = 0;
-    currentReport.rebanhoComCausas.desmamados.male = 0;
-    currentReport.rebanhoComCausas.desmamados.female = 0;
-    currentReport.rebanhoComCausas.garrotes.male = 0;
-    currentReport.rebanhoComCausas.garrotes.female = 0;
-    currentReport.rebanhoComCausas.novilhos.male = 0;
-    currentReport.rebanhoComCausas.novilhos.female = 0;
-    currentReport.rebanhoComCausas.outros.male = 0;
-    currentReport.rebanhoComCausas.outros.female = 0;
+
     setReport(currentReport);
 
     loadingHelper.stopLoading();
