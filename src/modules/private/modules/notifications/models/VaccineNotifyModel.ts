@@ -1,5 +1,6 @@
 import { MALE, FEMALE } from "./../../../../../constants";
 import { Timestamp } from "firebase/firestore";
+import { NumericLiteral } from "typescript";
 
 /**
 
@@ -12,6 +13,11 @@ class VaccineNotifyModel {
   title!: string;
   description!: string;
   notifyDate!: string;
+  animalName!: string;
+  animalId!: number;
+  animalSex!: number;
+  vaccineName!: string;
+
 }
 
 export { VaccineNotifyModel };

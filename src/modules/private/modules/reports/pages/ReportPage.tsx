@@ -105,7 +105,6 @@ const ReportPage = (): ReactElement => {
             ...cattles[index],
             age: getMonthFromDate(cattles[index].birthday),
           };
-
           if (cattle.sex === 1) {
             if (cattle.age >= 0 && cattle.age <= 6) {
               tempTotalBezerrosM++;
@@ -138,7 +137,7 @@ const ReportPage = (): ReactElement => {
         setTotalNovilhosM(tempTotalNovilhosM);
         setTotalAcimaDe36M(tempTotalAcimaDe36M);
         setTotalDeAnimaisM(
-          tempTotalBezerrosM +
+            tempTotalBezerrosM +
             tempTotalDesmamadosM +
             tempTotalGarrotesM +
             tempTotalNovilhosM +
@@ -202,7 +201,7 @@ const ReportPage = (): ReactElement => {
               <div className="Block-CurrentCattleHerd">
                 <p id="causes-txt">CAUSAS</p>
                 <div id="causes">
-                  <p id="txt-ownConsumption">Consumo própio</p>
+                  <p id="txt-ownConsumption">Consumo próprio</p>
                   <p id="txt-DeathVariousCauses">Obitos causas diversas</p>
                 </div>
               </div>

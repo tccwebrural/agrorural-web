@@ -79,6 +79,12 @@
   flex-direction: row;
   width: 100%;
 }
+.text-notify-dados{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: blue;
+}
 
 #dados {
   margin: 1% 2%;

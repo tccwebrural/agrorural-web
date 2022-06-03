@@ -224,8 +224,8 @@ const CattleDeathComponent = (): ReactElement => {
           <div className="Block-CurrentCattleHerd">
             <p id="causes-txt">CAUSAS</p>
             <div id="causes">
-              <p id="txt-ownConsumption">Consumo própio</p>
-              <p id="txt-DeathVariousCauses">Obitos causas diversas</p>
+              <p id="txt-ownConsumption">Consumo próprio</p>
+              <p id="txt-DeathVariousCauses">Óbitos causas diversas</p>
             </div>
           </div>
           <div className="Block-CurrentCattleHerd">

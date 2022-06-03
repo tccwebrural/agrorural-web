@@ -11,7 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { ImEye } from "react-icons/im";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
-import { FaSkullCrossbones } from "react-icons/fa";
+import { FaCross } from "react-icons/fa";
 import {
   Box,
   Button,
@@ -190,9 +190,9 @@ const CattleListPage = (): ReactElement => {
               onClick={() => openDeathAnimalModal(currentAnimalRow)}
             >
               <abbr title="Morte do Animal">
-                <FaSkullCrossbones
+                <FaCross
                   size={18}
-                  style={{ color: "white", marginTop: 4 }}
+                  style={{ color: "white", marginTop: 8 }}
                 />
               </abbr>
             </Fab>
