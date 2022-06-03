@@ -26,7 +26,7 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportCattleCategory, ReportModel } from "../models/ReportModel";
+import { ReportCattle, ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
@@ -82,6 +82,28 @@ const ModalDeclareComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
+    DeathByDiversousCases: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
+    DeathByOwnConsuption: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
     createdAt: Timestamp.now(),
   });
 
@@ -109,12 +131,7 @@ const ModalDeclareComponent = (): ReactElement => {
         }))
         .reduce(
           (previousValues: any, currentValue: any) => {
-            const age = getMonthFromDate(currentValue.birthday);
-            const initialValue = 0;
-            if (
-              currentValue.sex === MALE &&
-              currentValue.deathBy === CATTLE_IS_LIVE
-            ) {
+            if (currentValue.sex === MALE && currentValue.status != 3) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
@@ -133,7 +150,7 @@ const ModalDeclareComponent = (): ReactElement => {
               }
             } else if (
               currentValue.sex === FEMALE &&
-              currentValue.deathBy === CATTLE_IS_LIVE
+              currentValue.status != 3
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
@@ -198,22 +215,25 @@ const ModalDeclareComponent = (): ReactElement => {
       currentReport.rebanhoAtual.total.male = resultado.totalCattlesMale;
       currentReport.rebanhoAtual.total.female = resultado.totalCattlesFemale;
       return resultado;
+      //   //...REBANHO COM CAUSAS
+      // currentReport.rebanhoComCausas.bezerros.male = 1;
+      // currentReport.rebanhoComCausas.bezerros.female = 2;
+      // currentReport.rebanhoComCausas.desmamados.male = 3;
+      // currentReport.rebanhoComCausas.desmamados.female = 4;
+      // currentReport.rebanhoComCausas.garrotes.male = 5;
+      // currentReport.rebanhoComCausas.garrotes.female = 6;
+      // currentReport.rebanhoComCausas.novilhos.male = 7;
+      // currentReport.rebanhoComCausas.novilhos.female = 8;
+      // currentReport.rebanhoComCausas.outros.male = 9;
+      // currentReport.rebanhoComCausas.outros.female = 10;
+      // currentReport.rebanhoAtual.total.male = 11;
+      // currentReport.rebanhoAtual.total.female = 11;
+      return resultado;
     });
 
     //...
     const currentReport = report;
 
-    //   //...REBANHO COM CAUSAS
-    currentReport.rebanhoComCausas.bezerros.male = 0;
-    currentReport.rebanhoComCausas.bezerros.female = 0;
-    currentReport.rebanhoComCausas.desmamados.male = 0;
-    currentReport.rebanhoComCausas.desmamados.female = 0;
-    currentReport.rebanhoComCausas.garrotes.male = 0;
-    currentReport.rebanhoComCausas.garrotes.female = 0;
-    currentReport.rebanhoComCausas.novilhos.male = 0;
-    currentReport.rebanhoComCausas.novilhos.female = 0;
-    currentReport.rebanhoComCausas.outros.male = 0;
-    currentReport.rebanhoComCausas.outros.female = 0;
     setReport(currentReport);
 
     loadingHelper.stopLoading();

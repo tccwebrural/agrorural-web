@@ -26,19 +26,12 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportCattleCategory, ReportModel } from "../models/ReportModel";
+import { ReportCattle, ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
 import { MALE, FEMALE, CATTLE_IS_LIVE } from "../../../../../constants";
-import { FarmHelper } from "modules/private/helpers/FarmHelper";
-import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
-import { Formik } from "formik";
-import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
-import { getControls } from "utils/FormUtils";
-import { ReportHelper } from "../helpers/ReportHelper";
-import { useNavigate } from "react-router-dom";
-import { getFireError } from "utils/HandleFirebaseError";
+
 import { Timestamp } from "firebase/firestore";
 
 const CurrentCattleComponent = (): ReactElement => {
@@ -72,6 +65,29 @@ const CurrentCattleComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
+    DeathByDiversousCases: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
+    DeathByOwnConsuption: {
+      bezerros: {
+        male: 0,
+        female: 0,
+      },
+      desmamados: { male: 0, female: 0 },
+      garrotes: { male: 0, female: 0 },
+      novilhos: { male: 0, female: 0 },
+      outros: { male: 0, female: 0 },
+      total: { male: 0, female: 0 },
+    },
+
     createdAt: Timestamp.now(),
   });
 
@@ -98,10 +114,7 @@ const CurrentCattleComponent = (): ReactElement => {
           (previousValues: any, currentValue: any) => {
             const age = getMonthFromDate(currentValue.birthday);
             const initialValue = 0;
-            if (
-              currentValue.sex === MALE &&
-              currentValue.deathBy === CATTLE_IS_LIVE
-            ) {
+            if (currentValue.sex === MALE && currentValue.status != 3) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
@@ -120,7 +133,7 @@ const CurrentCattleComponent = (): ReactElement => {
               }
             } else if (
               currentValue.sex === FEMALE &&
-              currentValue.deathBy === CATTLE_IS_LIVE
+              currentValue.status != 3
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
                 // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
@@ -191,16 +204,7 @@ const CurrentCattleComponent = (): ReactElement => {
     const currentReport = report;
 
     //   //...REBANHO COM CAUSAS
-    currentReport.rebanhoComCausas.bezerros.male = 0;
-    currentReport.rebanhoComCausas.bezerros.female = 0;
-    currentReport.rebanhoComCausas.desmamados.male = 0;
-    currentReport.rebanhoComCausas.desmamados.female = 0;
-    currentReport.rebanhoComCausas.garrotes.male = 0;
-    currentReport.rebanhoComCausas.garrotes.female = 0;
-    currentReport.rebanhoComCausas.novilhos.male = 0;
-    currentReport.rebanhoComCausas.novilhos.female = 0;
-    currentReport.rebanhoComCausas.outros.male = 0;
-    currentReport.rebanhoComCausas.outros.female = 0;
+
     setReport(currentReport);
 
     loadingHelper.stopLoading();

@@ -40,7 +40,6 @@ const CattleValidatorSchema = object({
     .min("2005-01-01", INFERIOR_DATE_2005),
   sex: number().required(REQUIRED_FIELD),
   type: number().required(REQUIRED_FIELD),
-  deathBy: string().required(REQUIRED_FIELD),
 });
 
 const isValid = {

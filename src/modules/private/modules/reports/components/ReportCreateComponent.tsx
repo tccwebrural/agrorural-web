@@ -23,7 +23,7 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportModel, ReportCattleCategory } from "../models/ReportModel";
+import { ReportModel, ReportCattle } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined } from "@mui/icons-material";
@@ -37,20 +37,19 @@ var fourYearsAgo = today.getFullYear() - 4;
 var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
 const ReportComponentCreate = (): ReactElement => {
-  const [cattlesCattegory, setCattlesCattegory] =
-    useState<ReportCattleCategory>({
-      bezerros: {
-        male: 1,
-        female: 2,
-      },
-      desmamados: { male: 1, female: 2 },
-      garrotes: { male: 1, female: 2 },
-      novilhos: { male: 0, female: 0 },
-      outros: { male: 0, female: 0 },
-      total: { male: 0, female: 0 },
-    });
+  const [cattlesCattegory, setCattlesCattegory] = useState<ReportCattle>({
+    bezerros: {
+      male: 1,
+      female: 2,
+    },
+    desmamados: { male: 1, female: 2 },
+    garrotes: { male: 1, female: 2 },
+    novilhos: { male: 0, female: 0 },
+    outros: { male: 0, female: 0 },
+    total: { male: 0, female: 0 },
+  });
 
-  const [category, setCattegory] = useState<ReportCattleCategory>();
+  const [category, setCattegory] = useState<ReportCattle>();
   const cattlehelpers = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const [animals, setAnimals] = useState<CattleModel[]>([]);
