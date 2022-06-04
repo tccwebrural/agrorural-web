@@ -362,7 +362,7 @@ const CattleListPage = (): ReactElement => {
 
   // FIM DO BLOCO DE CODIGO MODAL DELETE ****************************************************************
 
-  // ***********************************BLOCO CCODIGO MODAL DEATHS *********************************
+  // ***********************************BLOCO CODIGO MODAL DEATHS *********************************
 
   const openDeathAnimalModal = (animalSelected: CattleModel) => {
     setSelectedAnimal(animalSelected);
@@ -410,6 +410,11 @@ const CattleListPage = (): ReactElement => {
               p: 4,
             }}
           >
+             <Grid sx={{ margin: "2%  2%" }}>
+                 <span style={{ fontWeight: "bold",fontSize:20,color:"var(--cor005)",marginLeft:10 }}>
+                   Selecione abaixo o motivo da morte do animal
+                </span>
+              </Grid>
             <Grid sx={{ margin: "3%" }}>
               <Select
                 fullWidth={true}

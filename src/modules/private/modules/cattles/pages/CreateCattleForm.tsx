@@ -126,7 +126,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 200, margin: "0.6%" }}
+                style={{ width: 196, marginLeft:7,marginTop:8 }}
               />
               <TextField
                 label="Data de Nascimento"

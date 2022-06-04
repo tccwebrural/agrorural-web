@@ -1,9 +1,8 @@
 #MainBlock-HomePrivate {
   width: 1100px;
-  height: 520px;
-  margin: auto;
-  margin-top: 2.5%;
-  margin-bottom: 2%;
+  position: absolute;
+  left:10%;
+  top:16.0%;
   border-radius: 8px;
   box-shadow: 0px 0px 6px 2px var(--cor111);
   background-color: var(--cor001);
