@@ -14,8 +14,10 @@ import { VacineHelper } from "../../vacine/helpers/VacineHelpers";
 import { VaccineNotifyModel } from "../models/VaccineNotifyModel";
 
 const vaccineBrucelose = "Brucelose";
-const vaccineFebreAftosa = "Febre Aftosa";
+const vaccineFebreAftosa = "Febre aftosa";
 const vaccineRaiva = "Raiva";
+
+const vacinasObrigatorias = ["Brucelose", "Raiva", "Febre aftosa"];
 
 var today = new Date();
 var mesAtual = today.getMonth() + 1;
@@ -56,77 +58,73 @@ const VaccineBrucelose = (): ReactElement => {
   console.log(id);
 
   const [notificacao, setNotificacao] = useState<VaccineNotifyModel[]>([]);
-  const vacinasObrigatorias = ["Brucelose", "Raiva", "Febre aftosa"];
 
   useEffect(() => {
     loading.startLoading();
 
     cattlehelpers.getAllCattles().then(async (cattles) => {
-      let tempVacina = [""];
-      let vacinasQueFalta = [""];
       const listToVaccine: any[] = [];
-
+      
       for (let index = 0; index < cattles.length; index++) {
+        //PEGA TODOS ANIMAIS
         const cattle = {
           ...cattles[index],
           age: getMonthFromDate(cattles[index].birthday),
           idCattle: cattles[index].id,
         };
-        console.log("Animais: " + cattles[index].name);
+        console.log("Animal: " + cattles[index].name);
+
         if (cattle.idCattle) {
           await vacineHelpers.getAllVacines(cattle.idCattle).then((vacines) => {
-            for (let cont = 0; cont < vacines.length; cont++) {
-              const vaccines = {
-                ...vacines[cont],
-                name: vacines[cont].name,
-              };
-              tempVacina[cont] = vaccines.name;
-
-              
-              if (tempVacina[cont] === vacinasObrigatorias[0]) {
-                console.log("TEM brucelose");
-              }else{
-                vacinasQueFalta[0] = vacinasObrigatorias[0]
-
-                const cattleAndVaccines = {
-                  animalName: cattles[index].name,
-                  animalId: cattle.identifier,
-                  animalSex: cattle.sex,
-                  vaccineName: vaccineBrucelose,
-                };
-                listToVaccine.push(cattleAndVaccines);
+            let result = [""];   
+           
+              result = vacinasObrigatorias.filter((x) => !vacines.map(vacines => vacines.name).includes(x));
+              console.log("VACINAS QUE FALTA " + cattles[index].name + " : " + result );
+            
+            for (let i = 0; i < result.length; i++) {
+              if (result[i] === vaccineBrucelose) {
+                if (cattle.sex === 2 && cattle.age >= 3 && cattle.age <= 8) {
+                  const cattleAndVaccines = {
+                    animalName: cattles[index].name,
+                    animalId: cattle.identifier,
+                    animalSex: cattle.sex,
+                    vaccineName: vaccineBrucelose,
+                  };
+                  listToVaccine.push(cattleAndVaccines);
+                }
               }
-              if (tempVacina[cont] === vacinasObrigatorias[1]) {
-                console.log("TEM Raiva");
-              }else{
-                vacinasQueFalta[1] = vacinasObrigatorias[1]
-
-                const cattleAndVaccines = {
-                  animalName: cattles[index].name,
-                  animalId: cattle.identifier,
-                  animalSex: cattle.sex,
-                  vaccineName: vaccineRaiva,
-                };
-                listToVaccine.push(cattleAndVaccines);
+              else if (result[i] === vaccineFebreAftosa) {
+                if (mesAtual === 6 && cattle.age < 24) {
+                  const cattleAndVaccines = {
+                    animalName: cattles[index].name,
+                    animalId: cattle.identifier,
+                    animalSex: cattle.sex,
+                    vaccineName: vaccineFebreAftosa,
+                  };
+                  listToVaccine.push(cattleAndVaccines);
+                }
+                else if (mesAtual === 11 && cattle.age >= 24) {
+                  const cattleAndVaccines = {
+                    animalName: cattles[index].name,
+                    animalId: cattle.identifier,
+                    animalSex: cattle.sex,
+                    vaccineName: vaccineFebreAftosa,
+                  };
+                  listToVaccine.push(cattleAndVaccines);
+                }
               }
-              if (tempVacina[cont] === vacinasObrigatorias[2]) {
-                console.log("TEM Febre aftosa");
-              }else{
-                vacinasQueFalta[2] = vacinasObrigatorias[2]
-
-                const cattleAndVaccines = {
-                  animalName: cattles[index].name,
-                  animalId: cattle.identifier,
-                  animalSex: cattle.sex,
-                  vaccineName: vaccineFebreAftosa,
-                };
-                listToVaccine.push(cattleAndVaccines);
+               else  if(result[i] === vaccineRaiva){
+                  const cattleAndVaccines = {
+                    animalName: cattles[index].name,
+                    animalId: cattle.identifier,
+                    animalSex: cattle.sex,
+                    vaccineName: vaccineRaiva,
+                  };
+                  listToVaccine.push(cattleAndVaccines);
               }
-
             }
           });
         }
-        console.log("Vacinas que falta" + vacinasQueFalta);
 
         setCattles(cattles);
         setNotificacao(listToVaccine);
