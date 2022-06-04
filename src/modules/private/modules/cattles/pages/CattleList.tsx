@@ -182,10 +182,7 @@ const CattleListPage = (): ReactElement => {
               onClick={() => openDeathAnimalModal(currentAnimalRow)}
             >
               <abbr title="Morte do Animal">
-                <FaCross
-                  size={18}
-                  style={{ color: "white", marginTop: 8 }}
-                />
+                <FaCross size={18} style={{ color: "white", marginTop: 8 }} />
               </abbr>
             </Fab>
           </>
@@ -250,10 +247,13 @@ const CattleListPage = (): ReactElement => {
             sex: cattle.sex,
             weigth: cattle.weigth,
             qtyChildren: cattle.qtyChildren,
+            status: cattle.status,
           };
-
-          listToDisplay.push(cattleToDisplay);
+          if (cattleToDisplay.status != 3) {
+            listToDisplay.push(cattleToDisplay);
+          }
         }
+
         setAnimals(listToDisplay);
         loadingHelper.stopLoading();
       })
