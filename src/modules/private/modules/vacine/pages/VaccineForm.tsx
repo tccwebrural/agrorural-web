@@ -119,7 +119,12 @@ const VaccineFormPage = (): ReactElement => {
                     <FormControl>
                       <InputLabel>Tipo</InputLabel>
                       <Select
-                        style={{ width: 228,marginTop:5 ,marginRight:4,marginLeft:4}}
+                        style={{
+                          width: 228,
+                          marginTop: 5,
+                          marginRight: 4,
+                          marginLeft: 4,
+                        }}
                         {...getControls(formik, "name")}
                         label="Grouping"
                         // name="category"
