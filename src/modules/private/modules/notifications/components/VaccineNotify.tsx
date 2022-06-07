@@ -1,4 +1,8 @@
-import { ContactMailRounded, Vaccines } from "@mui/icons-material";
+import {
+  ContactMailRounded,
+  NotificationsTwoTone,
+  Vaccines,
+} from "@mui/icons-material";
 import { Box, Grid } from "@mui/material";
 
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
@@ -50,10 +54,8 @@ const VaccineBrucelose = (): ReactElement => {
   console.log(id);
 
   const [notificacao, setNotificacao] = useState<VaccineNotifyModel[]>([]);
-
   useEffect(() => {
     loading.startLoading();
-    const fetchData = async () => {};
 
     cattlehelpers.getAllCattles().then(async (cattles) => {
       const listToVaccine: any[] = [];
