@@ -91,6 +91,7 @@ const VaccineCardViewForm = (): ReactElement => {
                     <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
                     <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                     <MenuItem value={RAIVA}>Raiva</MenuItem>
+                    <MenuItem >Leptospirose</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>

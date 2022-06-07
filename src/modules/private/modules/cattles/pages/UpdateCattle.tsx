@@ -115,7 +115,7 @@ const UpdateCattle = (): ReactElement => {
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
                   <span className="Block-Txt">
-                    Editar dados do Animal &gt; {initialValues.name}
+                    Editar dados do animal &gt; {initialValues.name}
                   </span>
                 </h2>
               </div>

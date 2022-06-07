@@ -30,6 +30,9 @@ import {
   FEBRE_AFTOSA,
   RAIVA,
   BRUCELOSE,
+  CLOSTRIDIOSE,
+  BOTULISMO,
+  LEPTOSPIROSE,
 } from "../../../../../constants";
 import bezerro from "../../../../../assets/bezerro.png";
 const VaccineFormPage = (): ReactElement => {
@@ -132,6 +135,9 @@ const VaccineFormPage = (): ReactElement => {
                         <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
                         <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                         <MenuItem value={RAIVA}>Raiva</MenuItem>
+                        <MenuItem value={CLOSTRIDIOSE}>Clostridioses</MenuItem>
+                        <MenuItem value={BOTULISMO}>Botulismo</MenuItem>
+                        <MenuItem value={LEPTOSPIROSE}>Leptospirose</MenuItem>
                       </Select>
                     </FormControl>
 

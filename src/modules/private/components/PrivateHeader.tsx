@@ -17,6 +17,8 @@ import { useAuth } from "../../../providers/AuthProvider";
 import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
 import logoPequena from "../../../assets/logoPequena.png";
 import "../styles/PrivateHeader.css";
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();
@@ -117,10 +119,11 @@ const Header = (props: any): ReactElement => {
             </Box>
             {/* WEB */}
 
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            
               <Box>
                 {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
                   (page) => (
+
                     <Link
                       id="linkHeader"
                       key={page.key}
@@ -135,8 +138,26 @@ const Header = (props: any): ReactElement => {
                     </Link>
                   )
                 )}
+
+                    
+                    <Link
+                      id="linkHeader"
+                      key="Notify Vaccine"
+                      component={NavLink}
+                      to="cattle/NotifyVaccine"
+                      color="black"
+                      underline="none"
+                      variant="button"
+                      sx={{ fontSize: "large", marginLeft: "2rem" }}
+                    >
+                      <Badge badgeContent={3} color="error" max={99}>
+                      Notificações
+                      </Badge>
+                    </Link>
+                    
+                  
               </Box>
-            </Box>
+            
           </Toolbar>
           <Box
             sx={{

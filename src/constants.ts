@@ -34,6 +34,9 @@ export const CATTLE_IS_LIVE = "O gado esta vivo";
 export const FEBRE_AFTOSA = "Febre aftosa";
 export const RAIVA = "Raiva";
 export const BRUCELOSE = "Brucelose";
+export const CLOSTRIDIOSE = "Clostridioses ";
+export const BOTULISMO = "Botulismo";
+export const LEPTOSPIROSE = "Leptospirose";
 
 /* MENSAGENS DE ERRO DO FORMULÁRIO */
 export const EMAIL_INVALID = "Digite um email válido";
