@@ -1,11 +1,9 @@
-import { ContactMailRounded, Vaccines } from "@mui/icons-material";
 import { Box, Grid } from "@mui/material";
 
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useContext, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
-import { number } from "yup";
 
 import "../../../styles/NotifyVaccine.css";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
@@ -14,127 +12,11 @@ import { VacineHelper } from "../../vacine/helpers/VacineHelpers";
 
 import { VaccineNotifyModel } from "../models/VaccineNotifyModel";
 
-const vaccineBrucelose = "Brucelose";
-const vaccineFebreAftosa = "Febre aftosa";
-const vaccineRaiva = "Raiva";
+ import {ProviderNotification} from "../../../../../providers/NotificationProvider";
 
-const vacinasObrigatorias = ["Brucelose", "Raiva", "Febre aftosa"];
-
-var today = new Date();
-var mesAtual = today.getMonth() + 1;
-
-
-const getDataFromDateVaccine = (date: string) => {
-  const dataSeparada = date.split("-");
-  const ano = parseInt(dataSeparada[0]);
-  const mes = parseInt(dataSeparada[1]);
-  const dia = parseInt(dataSeparada[2]);
-
-};
 
 const VaccineBrucelose = (): ReactElement => {
-  const [cattles, setCattles] = useState<CattleModel[]>([]);
-  
-  const getMonthFromDate = (date: string) => {
-    var birthDay = new Date(date);
-
-    var birthDayYear = birthDay.getFullYear();
-    var todayYear = today.getFullYear();
-    var birthDayMonth = birthDay.getMonth();
-    var todayMonth = today.getMonth();
-
-    return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
-  };
-  const cattlehelpers = CattleHelper();
-  const vacineHelpers = VacineHelper();
-  const { id } = useParams();
-  const loading = useGlobalLoading();
-  console.log(id);
-
-  const [notificacao, setNotificacao] = useState<VaccineNotifyModel[]>([]);
-
-  useEffect(() => {
-    loading.startLoading();
-
-    cattlehelpers.getAllCattles().then(async (cattles) => {
-      const listToVaccine: any[] = [];
-      
-      for (let index = 0; index < cattles.length; index++) {
-        //PEGA TODOS ANIMAIS
-        const cattle = {
-          ...cattles[index],
-          age: getMonthFromDate(cattles[index].birthday),
-          idCattle: cattles[index].id,
-        };
-       
-        console.log("Animal: " + cattles[index].name);
-
-        if ( cattle.status !=3 && cattle.idCattle) {
-          await vacineHelpers.getAllVacines(cattle.idCattle).then((vacines) => {
-            // for (let i = 0; i < vacines.length; i++) {
-            //   const aplicationData= {
-            //     ...vacines[index],
-            //     data:  getDataFromDateVaccine(vacines[index].date_application),
-            //   };
-            //   console.log("DATA: " + aplicationData.data)
-            // }
-
-            let result = [""];   
-           
-               result = vacinasObrigatorias.filter((x) => !vacines.map(vacines => vacines.name).includes(x));
-              console.log("VACINAS QUE FALTA " + cattles[index].name + " : " + result );
-            
-            for (let i = 0; i < result.length; i++) {
-              if (result[i] === vaccineBrucelose) {
-                if (cattle.sex === 2 && cattle.age >= 3 && cattle.age <= 8) {
-                  const cattleAndVaccines = {
-                    animalName: cattles[index].name,
-                    animalId: cattle.identifier,
-                    animalSex: cattle.sex,
-                    vaccineName: vaccineBrucelose,
-                  };
-                  listToVaccine.push(cattleAndVaccines);
-                }
-              }
-              else if (result[i] === vaccineFebreAftosa) {
-                if (mesAtual === 6 && cattle.age < 24) {
-                  const cattleAndVaccines = {
-                    animalName: cattles[index].name,
-                    animalId: cattle.identifier,
-                    animalSex: cattle.sex,
-                    vaccineName: vaccineFebreAftosa,
-                  };
-                  listToVaccine.push(cattleAndVaccines);
-                }
-                else if (mesAtual === 11 && cattle.age >= 24) {
-                  const cattleAndVaccines = {
-                    animalName: cattles[index].name,
-                    animalId: cattle.identifier,
-                    animalSex: cattle.sex,
-                    vaccineName: vaccineFebreAftosa,
-                  };
-                  listToVaccine.push(cattleAndVaccines);
-                }
-              }
-               else  if(result[i] === vaccineRaiva){
-                  const cattleAndVaccines = {
-                    animalName: cattles[index].name,
-                    animalId: cattle.identifier,
-                    animalSex: cattle.sex,
-                    vaccineName: vaccineRaiva,
-                  };
-                  listToVaccine.push(cattleAndVaccines);
-              }
-            }
-          });
-        }
-
-        setCattles(cattles);
-        setNotificacao(listToVaccine);
-        loading.stopLoading();
-      }
-    });
-  }, []);
+ 
 
   return (
     <>
@@ -145,7 +27,9 @@ const VaccineBrucelose = (): ReactElement => {
           textAlign: "center",
         }}
       >
-        {notificacao.map((listToDisplay, i) => {
+        {/* {<ProviderNotification>
+          
+          {notificacao.map((listToDisplay, i) => {
           return (
             <>
               <Grid sx={{ margin: "1%" }}>
@@ -203,7 +87,11 @@ const VaccineBrucelose = (): ReactElement => {
               </Grid>
             </>
           );
-        })}
+        })} 
+        
+        </ProviderNotification>
+        
+        /*  */} 
       </Box>
     </>
   );
