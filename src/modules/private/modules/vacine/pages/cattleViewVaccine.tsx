@@ -23,13 +23,14 @@ import { getControls } from "utils/FormUtils";
 import "../../../styles/cattleViewVaccine.css";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { CattleModel } from "../../cattles/models/CattleModel";
-import VaccineCardViewForm from "../Components/VacineCardViewForm";
+import VaccineCattleCardComponent from "../Components/VacineCattleCardComponent";
+import VaccineCardViewForm from "../Components/VacineCattleCardComponent";
 
 function imprimir() {
   window.print();
 }
 
-const cattleViewVaccine = (): ReactElement => {
+const CattleViewVaccine = (): ReactElement => {
   const { id } = useParams();
 
   const [initialValues, setInitialValues] = useState<CattleModel>({
@@ -186,7 +187,7 @@ const cattleViewVaccine = (): ReactElement => {
                 <span id="blocoTituloLine-vacina-viewCatlle"></span>
               </div>
 
-              {VaccineCardViewForm()}
+              {VaccineCattleCardComponent()}
             </div>
             <div id="button-viewCatlle">
               <Button
@@ -205,4 +206,4 @@ const cattleViewVaccine = (): ReactElement => {
     </>
   );
 };
-export default cattleViewVaccine;
+export default CattleViewVaccine;

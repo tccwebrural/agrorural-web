@@ -23,9 +23,10 @@ import { Formik } from "formik";
 import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
-import VaccineCardInfoCattle from "../../vacine/Components/VaccineCardInfoCattle";
+import VaccineModalDelete from "../../vacine/Components/VaccineInfoVIew";
 
 import "../../../styles/InfoGado.css";
+import VaccineInfoView from "../../vacine/Components/VaccineInfoVIew";
 
 function imprimir() {
   window.print();
@@ -177,7 +178,7 @@ const CattleInfoGado = (): ReactElement => {
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
                         <FormControl sx={{ minWidth: 120 }}>
-                          <InputLabel htmlFor="type">Sexo</InputLabel>
+                          <InputLabel htmlFor="type">Sexos</InputLabel>
                           <Select
                             disabled={true}
                             {...getControls(formik, "sex")}
@@ -205,7 +206,7 @@ const CattleInfoGado = (): ReactElement => {
                 <span id="blocoTituloLine-vacina-infoGado"></span>
               </div>
 
-              <div id="blocoVacinas">{VaccineCardInfoCattle()}</div>
+              <div id="blocoVacinas">{VaccineInfoView()}</div>
             </div>
 
             <div id="button">

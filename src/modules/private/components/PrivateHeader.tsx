@@ -1,5 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  Badge,
   Box,
   Button,
   Container,
@@ -17,8 +18,7 @@ import { useAuth } from "../../../providers/AuthProvider";
 import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
 import logoPequena from "../../../assets/logoPequena.png";
 import "../styles/PrivateHeader.css";
-import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
+import MailIcon from "@mui/icons-material/Mail";
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();
@@ -43,8 +43,6 @@ const Header = (props: any): ReactElement => {
     };
     loadUserData();
   }, [auth.userState]);
-
-
 
   return (
     <>
@@ -119,45 +117,39 @@ const Header = (props: any): ReactElement => {
             </Box>
             {/* WEB */}
 
-            
-              <Box>
-                {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
-                  (page) => (
+            <Box>
+              {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
+                (page) => (
+                  <Link
+                    id="linkHeader"
+                    key={page.key}
+                    component={NavLink}
+                    to={page.path}
+                    color="black"
+                    underline="none"
+                    variant="button"
+                    sx={{ fontSize: "large", marginLeft: "2rem" }}
+                  >
+                    {page.title}
+                  </Link>
+                )
+              )}
 
-                    <Link
-                      id="linkHeader"
-                      key={page.key}
-                      component={NavLink}
-                      to={page.path}
-                      color="black"
-                      underline="none"
-                      variant="button"
-                      sx={{ fontSize: "large", marginLeft: "2rem" }}
-                    >
-                      {page.title}
-                    </Link>
-                  )
-                )}
-
-                    
-                    <Link
-                      id="linkHeader"
-                      key="Notify Vaccine"
-                      component={NavLink}
-                      to="cattle/NotifyVaccine"
-                      color="black"
-                      underline="none"
-                      variant="button"
-                      sx={{ fontSize: "large", marginLeft: "2rem" }}
-                    >
-                      <Badge badgeContent={3} color="error" max={99}>
-                      Notificações
-                      </Badge>
-                    </Link>
-                    
-                  
-              </Box>
-            
+              <Link
+                id="linkHeader"
+                key="Notify Vaccine"
+                component={NavLink}
+                to="cattle/NotifyVaccine"
+                color="black"
+                underline="none"
+                variant="button"
+                sx={{ fontSize: "large", marginLeft: "2rem" }}
+              >
+                <Badge badgeContent={3} color="error" max={99}>
+                  Notificações
+                </Badge>
+              </Link>
+            </Box>
           </Toolbar>
           <Box
             sx={{

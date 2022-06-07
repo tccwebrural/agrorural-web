@@ -26,7 +26,6 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleModel, CATTLE_TYPES } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
 import { Agent } from "https";
-import ReportComponentCreate from "../components/ReportCreateComponent";
 import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
 import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
 import { Formik } from "formik";
@@ -137,7 +136,7 @@ const ReportPage = (): ReactElement => {
         setTotalNovilhosM(tempTotalNovilhosM);
         setTotalAcimaDe36M(tempTotalAcimaDe36M);
         setTotalDeAnimaisM(
-            tempTotalBezerrosM +
+          tempTotalBezerrosM +
             tempTotalDesmamadosM +
             tempTotalGarrotesM +
             tempTotalNovilhosM +

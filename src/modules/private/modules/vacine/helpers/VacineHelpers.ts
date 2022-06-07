@@ -31,7 +31,7 @@ export const VacineHelper = () => {
 
   const createVacine = async (cattleId: string, vacine: VacineModel) => {
     const farmRef = await getFarmRef();
-    const cattle = await getCattleById(cattleId);
+    // const cattle = await getCattleById(cattleId);
     vacine.createdAt = Timestamp.now();
 
     if (farmRef) {
@@ -52,11 +52,10 @@ export const VacineHelper = () => {
   const updateVacineId = async (
     vacine: VacineModel,
 
-    cattleId: string,
-    vacineiD: string
+    cattleId: string
   ) => {
     const farmRef = await getFarmRef();
-    const cattle = await getCattleById(cattleId);
+    // const cattle = await getCattleById(cattleId);
 
     if (farmRef && vacine.id) {
       const vacinesCollectionRef = collection(
@@ -75,15 +74,15 @@ export const VacineHelper = () => {
       );
       return updateDoc(vacinetleRef, { ...vacine });
     } else {
-      //TODO: Exibe mensagem de erro
+      throw "Algo não esperado ocorreu, não foi possível encontrar a referência da fazenda do usuário atual";
     }
   };
 
-  const deleteVacineId = async (vacineId: string, cattleId: string) => {
+  const deleteVacineId = async (vaccineId: string, cattleId: string) => {
     const farmRef = await getFarmRef();
-    const cattle = await getCattleById(cattleId);
+    // const cattle = await getCattleById(cattleId);
 
-    if (farmRef && cattle) {
+    if (farmRef) {
       const vaccineCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,
@@ -96,7 +95,7 @@ export const VacineHelper = () => {
         firestore,
         vaccineCollectionRef.path,
 
-        vacineId
+        vaccineId
       );
 
       return deleteDoc(vacineRef);
@@ -155,9 +154,9 @@ export const VacineHelper = () => {
 
     // aaaaaaa
     const farmRef = await getFarmRef();
-    const cattle = await getCattleById(cattleId);
+    // const cattle = await getCattleById(cattleId);
 
-    if (farmRef && cattle) {
+    if (farmRef) {
       const vaccineCollectionRef = collection(
         firestore,
         COLLECTION_FARMS,

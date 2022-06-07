@@ -449,7 +449,7 @@ const CattleListPage = (): ReactElement => {
                   id="btn-modalCancelarDeath"
                   onClick={() => setModalDeathOpen(false)}
                 >
-                  cancelar
+                  Cancelar
                 </Button>
               </Grid>
             </Box>

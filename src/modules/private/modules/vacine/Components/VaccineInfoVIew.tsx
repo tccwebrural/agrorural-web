@@ -20,7 +20,7 @@ import toast from "react-hot-toast";
 
 import "../../../styles/MyCattle.css";
 
-const VaccineCardInfoCattle = (): ReactElement => {
+const VaccineInfoView = (): ReactElement => {
   const { id } = useParams();
 
   const [vacines, setVacines] = useState<VacineModel[]>([]);
@@ -39,7 +39,7 @@ const VaccineCardInfoCattle = (): ReactElement => {
     setModalDeleteOpen(true);
   };
 
-  const HandleDeleteVacine = async (isToDelete: boolean) => {
+  const handleDeleteVacine = async (isToDelete: boolean) => {
     if (isToDelete && selectedVacine && selectedVacine.id && id) {
       await vacineHelper.deleteVacineId(selectedVacine.id, id);
       toast.success(`Vacina ${selectedVacine.name} deletada com sucesso`);
@@ -57,7 +57,7 @@ const VaccineCardInfoCattle = (): ReactElement => {
           <Modal
             hideBackdrop
             open={modalDeleteOpen}
-            onClose={() => HandleDeleteVacine(false)}
+            onClose={() => handleDeleteVacine(false)}
             sx={{
               position: "absolute",
               top: "50%",
@@ -106,7 +106,7 @@ const VaccineCardInfoCattle = (): ReactElement => {
                   >
                     <Button
                       id="btn-modalDelet"
-                      onClick={() => HandleDeleteVacine(true)}
+                      onClick={() => handleDeleteVacine(true)}
                     >
                       Sim
                     </Button>{" "}
@@ -119,7 +119,7 @@ const VaccineCardInfoCattle = (): ReactElement => {
                   >
                     <Button
                       id="btn-modalCancel"
-                      onClick={() => HandleDeleteVacine(false)}
+                      onClick={() => handleDeleteVacine(false)}
                     >
                       Não
                     </Button>{" "}
@@ -136,10 +136,16 @@ const VaccineCardInfoCattle = (): ReactElement => {
     <>
       {vacines.map((vacine) => (
         <Card id="Card">
-        
-        <div id="vaccineIcons-InfoGado">  
-          <VaccinesIcon style={{ color: "var(--cor008)",height:50,width:50, margin:"auto"}}/>
-        </div>
+          <div id="vaccineIcons-InfoGado">
+            <VaccinesIcon
+              style={{
+                color: "var(--cor008)",
+                height: 50,
+                width: 50,
+                margin: "auto",
+              }}
+            />
+          </div>
           <CardContent id="cardNameInfoGado">
             <h3>{vacine.name}</h3>
           </CardContent>
@@ -150,4 +156,4 @@ const VaccineCardInfoCattle = (): ReactElement => {
   );
 };
 
-export default VaccineCardInfoCattle;
+export default VaccineInfoView;

@@ -122,7 +122,7 @@ const UserAuthProvider = (): AuthContext => {
       toast.success(EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO);
     } catch (err: any) {
       // toast.error(getFireError(err));
-      toast.error("O e-mail informado não está cadastrado no sistema!")
+      toast.error("O e-mail informado não está cadastrado no sistema!");
       throw err;
     }
   };
@@ -227,9 +227,9 @@ const UserAuthProvider = (): AuthContext => {
       name: formData.farmName,
       createdAt: Timestamp.now(),
       owner: userRef,
-    });
 
-    // Criação do usuário na coleção de usuários
+      // Criação do usuário na coleção de usuários
+    });
     await setDoc(userRef, {
       uid,
       name: formData.name,

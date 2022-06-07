@@ -9,16 +9,15 @@ import UpdateCattleStatusModal from "../modules/cattles/components/UpdateCattleM
 import UpdateCattleModal from "../modules/cattles/components/UpdateCattleModal";
 import MyCattle from "../modules/cattles/pages/MyCattle";
 import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
-import cattleViewVaccine from "../modules/vacine/pages/cattleViewVaccine";
-import CattleInfoGado from "../modules/cattles/pages/cattleInfoGado";
+import CattleInfoGado from "../modules/cattles/pages/CattleInfo";
 import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
 import notifyVaccine from "../modules/notifications/pages/NotifyVaccine";
 import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
-import DeclareForm from "../modules/reports/pages/DeclareForm";
+import DeclareForm from "../modules/reports/pages/DeclareCattle";
 import TesteFormik from "../modules/testes/TesteFormik";
 import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
-import VaccineFormPagetst from "../modules/vacine/pages/Vacineformtst";
 import ReportPage from "../modules/reports/pages/ReportPage";
+import CattleViewVaccine from "../modules/vacine/pages/cattleViewVaccine";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "home",
@@ -55,6 +54,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     title: "Cadastrar vacina",
     path: "cattles/:id/vacine/form",
     showHeaderBtn: false,
+
     component: VaccineFormPage,
   },
   {
@@ -75,7 +75,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "Notify Vaccine",
     title: "Notificações",
     path: "cattle/NotifyVaccine",
-    showHeaderBtn:false,
+    showHeaderBtn: false,
     component: notifyVaccine,
   },
 
@@ -100,7 +100,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     title: "detalhes Vacina ",
     path: "cattle/:id/vaccine/:idVacine/view",
     showHeaderBtn: false,
-    component: cattleViewVaccine,
+    component: CattleViewVaccine,
   },
 
   {

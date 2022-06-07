@@ -11,7 +11,6 @@ const VACINE_TYPES: { [key: number]: string } = {
 class VacineModel {
   id?: string;
   name!: string;
-  vaccineType?: number;
   lote!: number;
   date_application!: string;
   expiration_date!: string;

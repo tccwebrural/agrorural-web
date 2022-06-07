@@ -31,7 +31,6 @@ const PrintButtonComponent = (): ReactElement => {
     reportHelpers.getAllReports().then(setReports);
   }, []);
 
-  var total = reports.reduce((sum, el) => sum + el.rebanhoAtual.total.male, 0);
   const Print = () => {
     // doc.text("Meu Relátorio", 20, 10);
     doc.text("Meu relátorio", 85, 10);

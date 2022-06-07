@@ -26,7 +26,7 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportCattle, ReportModel } from "../models/ReportModel";
+import { ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
@@ -65,7 +65,7 @@ const CurrentCattleComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
-    DeathByDiversousCases: {
+    deathByDiversousCases: {
       bezerros: {
         male: 0,
         female: 0,
@@ -76,7 +76,7 @@ const CurrentCattleComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
-    DeathByOwnConsuption: {
+    deathByOwnConsuption: {
       bezerros: {
         male: 0,
         female: 0,

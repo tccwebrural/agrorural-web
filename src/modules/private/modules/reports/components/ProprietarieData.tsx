@@ -41,7 +41,7 @@ const ProprietarieData = (): ReactElement => {
         if (farmValues) {
           user.farmName = farmValues?.name;
         }
-        toast.success("Perfil carregado!");
+        toast.success("Declare do rebanho carregado com sucesso!");
         setInitialValues(user);
       } else {
         //TODO: Volta para listagem

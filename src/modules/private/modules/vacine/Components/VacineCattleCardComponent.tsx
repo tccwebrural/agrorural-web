@@ -18,7 +18,7 @@ import { getControls } from "utils/FormUtils";
 import { VacineHelper } from "../helpers/VacineHelpers";
 import { VacineModel } from "../models/VacineModel";
 
-const VaccineCardViewForm = (): ReactElement => {
+const VaccineCattleCardComponent = (): ReactElement => {
   const { id, idVacine } = useParams();
 
   const [initalValues, setInitialValues] = useState<VacineModel>({
@@ -90,8 +90,7 @@ const VaccineCardViewForm = (): ReactElement => {
                   >
                     <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
                     <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
-                    <MenuItem value={RAIVA}>Raiva</MenuItem>
-                    <MenuItem >Leptospirose</MenuItem>
+                    <MenuItem value={RAIVA}>Raivas</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -150,4 +149,4 @@ const VaccineCardViewForm = (): ReactElement => {
   );
 };
 
-export default VaccineCardViewForm;
+export default VaccineCattleCardComponent;
