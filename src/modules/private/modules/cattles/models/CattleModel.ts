@@ -34,6 +34,6 @@ class CattleModel {
   deathBy?: number;
   status?: number;
 
-  categories?: number;
+  //categories?: number;
 }
 export { CATTLE_DETH_TYPES, CATTLE_SEXS, CattleModel, CATTLE_TYPES };

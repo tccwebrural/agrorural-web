@@ -8,16 +8,13 @@ import { NumericLiteral } from "typescript";
  */
 
 class VaccineNotifyModel {
-  id?: string;
-  createdAt?: Timestamp;
-  title!: string;
-  description!: string;
-  notifyDate!: string;
+  
+
   animalName!: string;
   animalId!: number;
   animalSex!: number;
   vaccineName!: string;
-
+ 
 }
 
 export { VaccineNotifyModel };

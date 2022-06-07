@@ -5,6 +5,7 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { ReactElement, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import { number } from "yup";
 
 import "../../../styles/NotifyVaccine.css";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
@@ -22,20 +23,11 @@ const vacinasObrigatorias = ["Brucelose", "Raiva", "Febre aftosa"];
 var today = new Date();
 var mesAtual = today.getMonth() + 1;
 
-const getMonthFromDateVaccine = (date: string) => {
+const getDataFromDateVaccine = (date: string) => {
   const dataSeparada = date.split("-");
   const ano = parseInt(dataSeparada[0]);
   const mes = parseInt(dataSeparada[1]);
   const dia = parseInt(dataSeparada[2]);
-
-  var birthDate_vaccine = new Date(ano, mes, dia);
-
-  var months;
-  months = (today.getFullYear() - birthDate_vaccine.getFullYear()) * 12;
-  months -= birthDate_vaccine.getMonth() + 1;
-  months += today.getMonth();
-
-  return months <= 0 ? 0 : months;
 };
 
 const VaccineBrucelose = (): ReactElement => {
@@ -73,10 +65,19 @@ const VaccineBrucelose = (): ReactElement => {
           age: getMonthFromDate(cattles[index].birthday),
           idCattle: cattles[index].id,
         };
+
         console.log("Animal: " + cattles[index].name);
 
-        if (cattle.idCattle && cattle.status != 3) {
+        if (cattle.status != 3 && cattle.idCattle) {
           await vacineHelpers.getAllVacines(cattle.idCattle).then((vacines) => {
+            // for (let i = 0; i < vacines.length; i++) {
+            //   const aplicationData= {
+            //     ...vacines[index],
+            //     data:  getDataFromDateVaccine(vacines[index].date_application),
+            //   };
+            //   console.log("DATA: " + aplicationData.data)
+            // }
+
             let result = [""];
 
             result = vacinasObrigatorias.filter(
@@ -86,7 +87,7 @@ const VaccineBrucelose = (): ReactElement => {
               "VACINAS QUE FALTA " + cattles[index].name + " : " + result
             );
 
-            for (let i = 0; i <= result.length; i++) {
+            for (let i = 0; i < result.length; i++) {
               if (result[i] === vaccineBrucelose) {
                 if (cattle.sex === 2 && cattle.age >= 3 && cattle.age <= 8) {
                   const cattleAndVaccines = {

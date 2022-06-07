@@ -108,20 +108,12 @@ const ViewProfilePage = (): ReactElement => {
   console.log(submitForm);
 
   // const submitForm = () => {};
-  /** modalDesativar */
-  const [openModalDesativarPerfil, setOpenDesativar] = React.useState(false);
-  const handleOpenModalDesativar = () => setOpenDesativar(true);
-  const handleCloseDesativarPerfil = () => setOpenDesativar(false);
-
+  
   /** Modal Editar */
   const [openModalEditarPerfil, setOpenEditar] = React.useState(false);
-  const handleOpenModalEditar = () => setOpenEditar(true);
-  const handleCloseEditarPerfil = () => setOpenEditar(false);
 
-  const [imgPreview] = useState(null);
 
   const initialState = { alt: "", src: "" };
-  const [{ alt, src }, setPreview] = useState(initialState);
 
   const handleOpenClickMenu = async () => {
     setIsDisabled(!isDisabled);
@@ -129,92 +121,11 @@ const ViewProfilePage = (): ReactElement => {
     await setShow(!show);
   };
 
-  const fileHandler = (e: any) => {
-    const { files } = e.target;
-    setPreview(
-      files.length
-        ? {
-            src: URL.createObjectURL(files[0]),
-            alt: files[0].name,
-          }
-        : initialState
-    );
-  };
   return (
     <>
-      <div>
-        <Modal
-          open={openModalDesativarPerfil}
-          onClose={handleCloseDesativarPerfil}
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 530,
-              height: 240,
-              bgcolor: "white",
-              borderRadius: "10px",
-              boxShadow: 11,
-              p: 4,
-            }}
-          >
-            <div id="bloco-modal">
-              <Grid sx={{ margin: "2%  2%" }}>
-                <span>Você realmente deseja DESATIVAR sua conta?</span>
-              </Grid>
-              <Grid
-                sx={{
-                  margin: "2%  15% 2% 2%",
-                  display: "flex",
-                }}
-              >
-                <p>Sua conta será desativa até efetuar um novo Login</p>
-              </Grid>
+     
 
-              <Grid
-                sx={{
-                  display: "flex",
-                  margin: " 1%",
-                  justifyContent: "center",
-                }}
-              >
-                <Grid
-                  sx={{
-                    margin: " 6% 1%",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Button
-                    id="btn-modalDelet"
-                    // onClick={() => handleCloseDesativarPerfil()}
-                    onClick={() => auth.desactiverUser()}
-                  >
-                    Sim
-                  </Button>{" "}
-                </Grid>
-                <Grid
-                  sx={{
-                    margin: " 6% 1%",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Button
-                    id="btn-modalCancel"
-                    onClick={() => handleCloseDesativarPerfil()}
-                  >
-                    Não
-                  </Button>{" "}
-                </Grid>
-              </Grid>
-            </div>
-          </Box>
-        </Modal>
-      </div>
-
-      <Box
+     <Box
         sx={{
           flexGrow: 1,
           display: "flex",
@@ -260,9 +171,6 @@ const ViewProfilePage = (): ReactElement => {
 
                 <MenuItem onClick={() => auth.logout()}>Sair da conta</MenuItem>
 
-                <MenuItem onClick={handleOpenModalDesativar}>
-                  Desativar conta
-                </MenuItem>
               </Menu>
 
               {/* COMPONENTE MENU */}
@@ -271,36 +179,9 @@ const ViewProfilePage = (): ReactElement => {
             </div>
 
             <div className="Block-imgPreview">
-              {imgPreview ? (
-                <>
-                  <label htmlFor="fileUpload">
-                    <img className="imgProfile" src={src} alt={alt} />
-
-                    {/* ESCOPO DA IMAGEM */}
-
-                    {/* FIM DA IMAGEM */}
-                  </label>
-                  <input
-                    id="fileUpload"
-                    accept="image/*"
-                    type="file"
-                    onChange={fileHandler}
-                  />
-                </>
-              ) : (
-                <>
-                  <label htmlFor="fileUpload">
-                    <img src={imgUser} className="imgProfile" />
-                  </label>
-                  <img id="input-imgProfile" src={src} alt={alt} />
-                  <input
-                    id="fileUpload"
-                    accept="image/*"
-                    type="file"
-                    onChange={fileHandler}
-                  />
-                </>
-              )}
+              <label htmlFor="fileUpload">
+                <img src={imgUser} className="imgProfile" />
+              </label>
             </div>
 
             <Formik

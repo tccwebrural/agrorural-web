@@ -91,7 +91,7 @@ const CattleInfoGado = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
-                Informações do animal &gt; {initialValues.name}
+                Dados do animal &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-infoGado">
                 <abbr title="Imprimir">

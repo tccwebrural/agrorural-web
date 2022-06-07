@@ -75,7 +75,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     key: "Notify Vaccine",
     title: "Notificações",
     path: "cattle/NotifyVaccine",
-    showHeaderBtn: true,
+    showHeaderBtn:false,
     component: notifyVaccine,
   },
 

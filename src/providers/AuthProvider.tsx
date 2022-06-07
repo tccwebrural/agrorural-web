@@ -121,7 +121,8 @@ const UserAuthProvider = (): AuthContext => {
       await sendPasswordResetEmail(auth, email);
       toast.success(EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO);
     } catch (err: any) {
-      toast.error(err);
+      // toast.error(getFireError(err));
+      toast.error("O e-mail informado não está cadastrado no sistema!");
       throw err;
     }
   };

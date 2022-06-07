@@ -166,8 +166,8 @@ const HomePage = (): ReactElement => {
                       >
                         <TableCell component="th" scope="row" align="center">
                           {/* {reports.} */}
-                          {reports.createdAt.toDate().getDate()}/
-                          {reports.createdAt?.toDate().getMonth() + 1}/
+                          0{reports.createdAt.toDate().getDate()}/
+                          0{reports.createdAt?.toDate().getMonth() + 1}/
                           {reports.createdAt?.toDate().getFullYear()}
                         </TableCell>
                         <TableCell align="center">

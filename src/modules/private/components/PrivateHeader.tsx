@@ -18,6 +18,7 @@ import { useAuth } from "../../../providers/AuthProvider";
 import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
 import logoPequena from "../../../assets/logoPequena.png";
 import "../styles/PrivateHeader.css";
+import MailIcon from "@mui/icons-material/Mail";
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();
@@ -116,27 +117,38 @@ const Header = (props: any): ReactElement => {
             </Box>
             {/* WEB */}
 
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              <Badge badgeContent={10} color="primary"></Badge>
+            <Box>
+              {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
+                (page) => (
+                  <Link
+                    id="linkHeader"
+                    key={page.key}
+                    component={NavLink}
+                    to={page.path}
+                    color="black"
+                    underline="none"
+                    variant="button"
+                    sx={{ fontSize: "large", marginLeft: "2rem" }}
+                  >
+                    {page.title}
+                  </Link>
+                )
+              )}
 
-              <Box>
-                {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
-                  (page) => (
-                    <Link
-                      id="linkHeader"
-                      key={page.key}
-                      component={NavLink}
-                      to={page.path}
-                      color="black"
-                      underline="none"
-                      variant="button"
-                      sx={{ fontSize: "large", marginLeft: "2rem" }}
-                    >
-                      {page.title}
-                    </Link>
-                  )
-                )}
-              </Box>
+              <Link
+                id="linkHeader"
+                key="Notify Vaccine"
+                component={NavLink}
+                to="cattle/NotifyVaccine"
+                color="black"
+                underline="none"
+                variant="button"
+                sx={{ fontSize: "large", marginLeft: "2rem" }}
+              >
+                <Badge badgeContent={3} color="error" max={99}>
+                  Notificações
+                </Badge>
+              </Link>
             </Box>
           </Toolbar>
           <Box
