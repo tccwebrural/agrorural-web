@@ -121,7 +121,7 @@ const UserAuthProvider = (): AuthContext => {
       await sendPasswordResetEmail(auth, email);
       toast.success(EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO);
     } catch (err: any) {
-      toast.error(getFireError(err));
+      toast.error(err);
       throw err;
     }
   };
@@ -226,9 +226,9 @@ const UserAuthProvider = (): AuthContext => {
       name: formData.farmName,
       createdAt: Timestamp.now(),
       owner: userRef,
-    });
 
-    // Criação do usuário na coleção de usuários
+      // Criação do usuário na coleção de usuários
+    });
     await setDoc(userRef, {
       uid,
       name: formData.name,

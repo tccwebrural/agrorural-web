@@ -28,15 +28,17 @@ import vaca from "../../../../../assets/vaca-sem-chifre.png";
 import "../../../styles/DeclareForm.css";
 import "../../../styles/style.css";
 import CurrentCattleComponent from "../components/CurrentCattleComponent";
-import ModalDeclareComponent from "../components/ModalDeclareComponent";
+import ModalDeclareComponent from "../components/GenerateCattleReport";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import CattleDeathComponent from "../components/CattleDeathComponent";
+import GenerateCattleReport from "../components/GenerateCattleReport";
 
 const DeclareForm = (): ReactElement => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const loading = useGlobalLoading();
+  const cattlehelper = CattleHelper();
 
   useEffect(() => {
     loading.startLoading();
@@ -57,7 +59,7 @@ const DeclareForm = (): ReactElement => {
         <div className="MainBlock">
           {/* BLOCO RETIRADO */}
           {/* COMPONENTE DADOS DO PROPRIETARIO AQUI */}
-          {ModalDeclareComponent()}
+          {GenerateCattleReport()}
           {ProprietarieData()}
           {CurrentCattleComponent()}
           {CattleDeathComponent()}

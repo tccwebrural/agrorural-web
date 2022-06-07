@@ -1,5 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  Badge,
   Box,
   Button,
   Container,
@@ -41,8 +42,6 @@ const Header = (props: any): ReactElement => {
     };
     loadUserData();
   }, [auth.userState]);
-
-
 
   return (
     <>
@@ -118,6 +117,8 @@ const Header = (props: any): ReactElement => {
             {/* WEB */}
 
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Badge badgeContent={10} color="primary"></Badge>
+
               <Box>
                 {PRIVATE_ROUTES.filter((page) => page.showHeaderBtn).map(
                   (page) => (

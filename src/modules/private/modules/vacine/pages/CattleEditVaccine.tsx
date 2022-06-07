@@ -70,12 +70,9 @@ const CattleEditVaccine = (): ReactElement => {
     }
   }, []);
 
-  const getActualVacine = (vacine: VacineModel) => {
-    navigate(`/private/cattle/${id}/vacine/${vacine.id}/edit`);
-  };
   const submitForm = (vacine: VacineModel) => {
-    if (id && idVacine) {
-      vacineHelpers.updateVacineId(vacine, id, idVacine).then(() =>
+    if (id) {
+      vacineHelpers.updateVacineId(vacine, id).then(() =>
         //toast sucess
         navigate(`/private/cattle/${id}/Vaccine`)
       );
@@ -129,7 +126,12 @@ const CattleEditVaccine = (): ReactElement => {
                       <Select
                         {...getControls(formik, "name")}
                         label="Grouping"
-                        style={{ width: 230, margin: "0.4%" ,marginTop:4,marginRight:4}}
+                        style={{
+                          width: 230,
+                          margin: "0.4%",
+                          marginTop: 4,
+                          marginRight: 4,
+                        }}
 
                         // name="category"
                       >

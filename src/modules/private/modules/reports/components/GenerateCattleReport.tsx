@@ -26,7 +26,7 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportCattle, ReportModel } from "../models/ReportModel";
+import { ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
@@ -48,7 +48,7 @@ var threeYearsAgo = today.getFullYear() - 3;
 var fourYearsAgo = today.getFullYear() - 4;
 var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
-const ModalDeclareComponent = (): ReactElement => {
+const GenerateCattleReport = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
   const [open, setOpen] = useState(false);
@@ -82,7 +82,7 @@ const ModalDeclareComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
-    DeathByDiversousCases: {
+    deathByDiversousCases: {
       bezerros: {
         male: 0,
         female: 0,
@@ -93,7 +93,7 @@ const ModalDeclareComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
-    DeathByOwnConsuption: {
+    deathByOwnConsuption: {
       bezerros: {
         male: 0,
         female: 0,
@@ -214,20 +214,6 @@ const ModalDeclareComponent = (): ReactElement => {
       currentReport.rebanhoAtual.outros.female = resultado.totalOutrosF;
       currentReport.rebanhoAtual.total.male = resultado.totalCattlesMale;
       currentReport.rebanhoAtual.total.female = resultado.totalCattlesFemale;
-      return resultado;
-      //   //...REBANHO COM CAUSAS
-      // currentReport.rebanhoComCausas.bezerros.male = 1;
-      // currentReport.rebanhoComCausas.bezerros.female = 2;
-      // currentReport.rebanhoComCausas.desmamados.male = 3;
-      // currentReport.rebanhoComCausas.desmamados.female = 4;
-      // currentReport.rebanhoComCausas.garrotes.male = 5;
-      // currentReport.rebanhoComCausas.garrotes.female = 6;
-      // currentReport.rebanhoComCausas.novilhos.male = 7;
-      // currentReport.rebanhoComCausas.novilhos.female = 8;
-      // currentReport.rebanhoComCausas.outros.male = 9;
-      // currentReport.rebanhoComCausas.outros.female = 10;
-      // currentReport.rebanhoAtual.total.male = 11;
-      // currentReport.rebanhoAtual.total.female = 11;
       return resultado;
     });
 
@@ -366,4 +352,4 @@ const ModalDeclareComponent = (): ReactElement => {
   );
 };
 
-export default ModalDeclareComponent;
+export default GenerateCattleReport;

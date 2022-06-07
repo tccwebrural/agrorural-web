@@ -98,7 +98,7 @@ const ViewProfilePage = (): ReactElement => {
       await farmHelp.updateFarmName(formData);
       await window.location.reload();
 
-      await await toast.success("Informações atualizadas com sucesso.");
+      await await toast.success("Perfil atualizadas com sucesso.");
     } catch (err: any) {
       console.error(err);
       toast.error(getFireError(err));

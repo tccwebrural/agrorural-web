@@ -26,7 +26,7 @@ import {
   CATTLE_TYPES,
 } from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
-import { ReportCattle, ReportModel } from "../models/ReportModel";
+import { ReportModel } from "../models/ReportModel";
 import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
@@ -75,7 +75,7 @@ const CattleDeathComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
-    DeathByDiversousCases: {
+    deathByDiversousCases: {
       bezerros: {
         male: 0,
         female: 0,
@@ -86,7 +86,7 @@ const CattleDeathComponent = (): ReactElement => {
       outros: { male: 0, female: 0 },
       total: { male: 0, female: 0 },
     },
-    DeathByOwnConsuption: {
+    deathByOwnConsuption: {
       bezerros: {
         male: 0,
         female: 0,
@@ -268,55 +268,55 @@ const CattleDeathComponent = (): ReactElement => {
             totalOutrosConsumoProprioF: 0,
           }
         );
-      currentReport.DeathByDiversousCases.bezerros.male =
+      currentReport.deathByDiversousCases.bezerros.male =
         resultado.totalBezerrosM;
-      currentReport.DeathByDiversousCases.bezerros.female =
+      currentReport.deathByDiversousCases.bezerros.female =
         resultado.totalBezerrosF;
-      currentReport.DeathByDiversousCases.desmamados.male =
+      currentReport.deathByDiversousCases.desmamados.male =
         resultado.totalDesmamadosM;
-      currentReport.DeathByDiversousCases.desmamados.female =
+      currentReport.deathByDiversousCases.desmamados.female =
         resultado.totalDesmamadosF;
-      currentReport.DeathByDiversousCases.garrotes.male =
+      currentReport.deathByDiversousCases.garrotes.male =
         resultado.totalGarrotesM;
-      currentReport.DeathByDiversousCases.garrotes.female =
+      currentReport.deathByDiversousCases.garrotes.female =
         resultado.totalGarrotesF;
-      currentReport.DeathByDiversousCases.novilhos.male =
+      currentReport.deathByDiversousCases.novilhos.male =
         resultado.totalNovilhosM;
-      currentReport.DeathByDiversousCases.novilhos.female =
+      currentReport.deathByDiversousCases.novilhos.female =
         resultado.totalNovilhosF;
-      currentReport.DeathByDiversousCases.outros.male = resultado.totalOutrosM;
-      currentReport.DeathByDiversousCases.outros.female =
+      currentReport.deathByDiversousCases.outros.male = resultado.totalOutrosM;
+      currentReport.deathByDiversousCases.outros.female =
         resultado.totalOutrosF;
-      currentReport.DeathByDiversousCases.total.male =
+      currentReport.deathByDiversousCases.total.male =
         resultado.totalCattlesMale;
-      currentReport.DeathByDiversousCases.total.female =
+      currentReport.deathByDiversousCases.total.female =
         resultado.totalCattlesFemale;
 
       // CONSUMO PROPRIO
 
-      currentReport.DeathByOwnConsuption.bezerros.male =
+      currentReport.deathByOwnConsuption.bezerros.male =
         resultado.totalBezerrosConsumoProprioM;
-      currentReport.DeathByOwnConsuption.bezerros.female =
+      currentReport.deathByOwnConsuption.bezerros.female =
         resultado.totalBezerrosConsumoProprioF;
-      currentReport.DeathByOwnConsuption.desmamados.male =
+      currentReport.deathByOwnConsuption.desmamados.male =
         resultado.totalDesmamadosConsumoProprioM;
-      currentReport.DeathByOwnConsuption.desmamados.female =
+      currentReport.deathByOwnConsuption.desmamados.female =
         resultado.totalDesmamadosConsumoProprioF;
-      currentReport.DeathByOwnConsuption.garrotes.male =
+      currentReport.deathByOwnConsuption.garrotes.male =
         resultado.totalGarrotesConsumoProprioM;
-      currentReport.DeathByOwnConsuption.garrotes.female =
+      currentReport.deathByOwnConsuption.garrotes.female =
         resultado.totalGarrotesConsumoProprioF;
-      currentReport.DeathByOwnConsuption.novilhos.male =
+      currentReport.deathByOwnConsuption.novilhos.male =
         resultado.totalNovilhosConsumoProprioM;
-      currentReport.DeathByOwnConsuption.novilhos.female =
+      currentReport.deathByOwnConsuption.novilhos.female =
         resultado.totalNovilhosConsumoProprioF;
-      currentReport.DeathByOwnConsuption.outros.male =
+      currentReport.deathByOwnConsuption.outros.male =
         resultado.totalOutrosConsumoProprioM;
-      currentReport.DeathByOwnConsuption.outros.female =
+      currentReport.deathByOwnConsuption.outros.female =
         resultado.totalOutrosConsumoProprioF;
-      currentReport.DeathByOwnConsuption.total.male =
+      currentReport.deathByOwnConsuption.total.male =
         resultado.totalCattlesConsumoProprioMale;
-      currentReport.DeathByOwnConsuption.total.female =
+      currentReport.deathByOwnConsuption.total.female =
         resultado.totalCattlesConsumoProprioFemale;
       return resultado;
     });
@@ -355,18 +355,18 @@ const CattleDeathComponent = (): ReactElement => {
               <p className="F-txt">Fêmea</p>
             </div>
             <div className="FieldMF-alt-Left">
-              {report.DeathByOwnConsuption.bezerros.male}
+              {report.deathByOwnConsuption.bezerros.male}
             </div>
             <div className="FieldMF-alt-Rigth">
               {" "}
-              {report.DeathByOwnConsuption.bezerros.female}
+              {report.deathByOwnConsuption.bezerros.female}
             </div>
             <div className="FieldMF-Down-left">
               {" "}
-              {report.DeathByDiversousCases.bezerros.male}
+              {report.deathByDiversousCases.bezerros.male}
             </div>
             <div className="FieldMF-Down-Rigth">
-              {report.DeathByDiversousCases.bezerros.female}
+              {report.deathByDiversousCases.bezerros.female}
             </div>{" "}
           </div>
           <div className="Block-CurrentCattleHerd">
@@ -376,17 +376,17 @@ const CattleDeathComponent = (): ReactElement => {
               <p className="F-txt">Fêmea</p>
             </div>
             <div className="FieldMF-alt-Left">
-              {report.DeathByOwnConsuption.desmamados.male}
+              {report.deathByOwnConsuption.desmamados.male}
             </div>
             <div className="FieldMF-alt-Rigth">
               {" "}
-              {report.DeathByOwnConsuption.desmamados.female}{" "}
+              {report.deathByOwnConsuption.desmamados.female}{" "}
             </div>
             <div className="FieldMF-Down-left">
-              {report.DeathByDiversousCases.desmamados.male}{" "}
+              {report.deathByDiversousCases.desmamados.male}{" "}
             </div>
             <div className="FieldMF-Down-Rigth">
-              {report.DeathByDiversousCases.desmamados.female}
+              {report.deathByDiversousCases.desmamados.female}
             </div>
           </div>
           <div className="Block-CurrentCattleHerd">
@@ -397,17 +397,17 @@ const CattleDeathComponent = (): ReactElement => {
             </div>
             <div className="FieldMF-alt-Left">
               {" "}
-              {report.DeathByOwnConsuption.garrotes.male}
+              {report.deathByOwnConsuption.garrotes.male}
             </div>
             <div className="FieldMF-alt-Rigth">
               {" "}
-              {report.DeathByOwnConsuption.garrotes.female}
+              {report.deathByOwnConsuption.garrotes.female}
             </div>
             <div className="FieldMF-Down-left">
-              {report.DeathByDiversousCases.garrotes.male}
+              {report.deathByDiversousCases.garrotes.male}
             </div>
             <div className="FieldMF-Down-Rigth">
-              {report.DeathByDiversousCases.garrotes.female}
+              {report.deathByDiversousCases.garrotes.female}
             </div>
           </div>
           <div className="Block-CurrentCattleHerd">
@@ -418,19 +418,19 @@ const CattleDeathComponent = (): ReactElement => {
             </div>
             <div className="FieldMF-alt-Left">
               {" "}
-              {report.DeathByOwnConsuption.outros.male}
+              {report.deathByOwnConsuption.outros.male}
             </div>
             <div className="FieldMF-alt-Rigth">
               {" "}
-              {report.DeathByOwnConsuption.outros.female}
+              {report.deathByOwnConsuption.outros.female}
             </div>
             <div className="FieldMF-Down-left">
               {" "}
-              {report.DeathByDiversousCases.outros.male}
+              {report.deathByDiversousCases.outros.male}
             </div>
             <div className="FieldMF-Down-Rigth">
               {" "}
-              {report.DeathByDiversousCases.outros.female}
+              {report.deathByDiversousCases.outros.female}
             </div>
           </div>
         </div>
