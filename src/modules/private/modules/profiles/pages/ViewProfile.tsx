@@ -103,15 +103,10 @@ const ViewProfilePage = (): ReactElement => {
       console.error(err);
       toast.error(getFireError(err));
     }
-    // vacine.id = id;
   };
-  console.log(submitForm);
 
-  // const submitForm = () => {};
-  
   /** Modal Editar */
   const [openModalEditarPerfil, setOpenEditar] = React.useState(false);
-
 
   const initialState = { alt: "", src: "" };
 
@@ -123,9 +118,7 @@ const ViewProfilePage = (): ReactElement => {
 
   return (
     <>
-     
-
-     <Box
+      <Box
         sx={{
           flexGrow: 1,
           display: "flex",
@@ -170,7 +163,6 @@ const ViewProfilePage = (): ReactElement => {
                 {/* COLAR COMPONENTE  BUTTONEDITPROFILE */}
 
                 <MenuItem onClick={() => auth.logout()}>Sair da conta</MenuItem>
-
               </Menu>
 
               {/* COMPONENTE MENU */}

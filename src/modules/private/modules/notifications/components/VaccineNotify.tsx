@@ -16,12 +16,20 @@ import {
   ProviderNotification,
   useNotification,
 } from "../../../../../providers/NotificationProvider";
+import { trackPromise } from "react-promise-tracker";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 
 const VaccineNotify = (): ReactElement => {
-  const [notifications, setNotifications] = useState([]);
-  const notificationHelper = useNotification();
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const notifyProvider = useNotification();
+
   useEffect(() => {
-    //   notificationHelper.getNotification(notifications => setNotifications(notifications) )
+    trackPromise(
+      notifyProvider.getNotification().then((notify) => {
+        setNotifications(notify);
+      }),
+      GLOBAL_LOADING_KEY
+    );
   }, []);
 
   return (
@@ -33,8 +41,7 @@ const VaccineNotify = (): ReactElement => {
           textAlign: "center",
         }}
       >
-        {/* {notificationHelper.getNotification().map((listToDisplay, i) => {
-            
+        {notifications.map((listToDisplay) => {
           return (
             <>
               <Grid sx={{ margin: "1%" }}>
@@ -42,7 +49,7 @@ const VaccineNotify = (): ReactElement => {
                   <div id="color2"></div>
                   <div></div>
                   <div id="text-notify">
-                    <div id="text-notify-title-Red">
+                    <div id="text-notify-title-Red" key={listToDisplay}>
                       O animal {listToDisplay.animalName} deve ser vacinado
                       contra {listToDisplay.vaccineName}!
                     </div>
@@ -92,8 +99,7 @@ const VaccineNotify = (): ReactElement => {
               </Grid>
             </>
           );
-        })}  
-         */}
+        })}
       </Box>
     </>
   );

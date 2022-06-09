@@ -223,7 +223,6 @@ const GenerateCattleReport = (): ReactElement => {
     setReport(currentReport);
 
     loadingHelper.stopLoading();
-    console.log("reports" + report);
   }, []);
 
   const reportHelper = ReportHelper();
@@ -248,7 +247,7 @@ const GenerateCattleReport = (): ReactElement => {
         //toast erro
         navigate("/private/cattles");
 
-        console.error(err);
+        // console.error(err);
         toast.error(getFireError(err));
       });
 
