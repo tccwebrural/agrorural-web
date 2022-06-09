@@ -12,11 +12,16 @@ import { VacineHelper } from "../../vacine/helpers/VacineHelpers";
 
 import { VaccineNotifyModel } from "../models/VaccineNotifyModel";
 
- import {ProviderNotification} from "../../../../../providers/NotificationProvider";
+ import {ProviderNotification, useNotification} from "../../../../../providers/NotificationProvider";
 
 
-const VaccineBrucelose = (): ReactElement => {
- 
+const VaccineNotify = (): ReactElement => {
+  const [ notifications, setNotifications ] = useState([]);
+  const notificationHelper = useNotification();
+  useEffect( () => {
+   //   notificationHelper.getNotification(notifications => setNotifications(notifications) )
+  }, []);
+
 
   return (
     <>
@@ -27,9 +32,8 @@ const VaccineBrucelose = (): ReactElement => {
           textAlign: "center",
         }}
       >
-        {/* {<ProviderNotification>
-          
-          {notificacao.map((listToDisplay, i) => {
+           {/* {notificationHelper.getNotification().map((listToDisplay, i) => {
+            
           return (
             <>
               <Grid sx={{ margin: "1%" }}>
@@ -87,13 +91,11 @@ const VaccineBrucelose = (): ReactElement => {
               </Grid>
             </>
           );
-        })} 
-        
-        </ProviderNotification>
-        
-        /*  */} 
+        })}  
+         */}
+       
       </Box>
     </>
   );
 };
-export default VaccineBrucelose;
+export default VaccineNotify;

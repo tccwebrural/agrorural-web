@@ -18,10 +18,11 @@ const PrivateLayout = () => {
           flexGrow: 1,
         }}
       >
-        
+        <ProviderNotification>
           <PrivateHeader />
-          <Outlet />
-        
+          <Outlet /> 
+        </ProviderNotification>
+          
       </Box>
     </>
   );
