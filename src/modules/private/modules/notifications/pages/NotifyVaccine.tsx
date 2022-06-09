@@ -25,7 +25,7 @@ const notifyVaccine = (): ReactElement => {
                 textAlign: "center",
               }}
             >
-              <Grid sx={{ margin: "1%" }}>{VaccineNotify()}</Grid>
+              {/* <Grid sx={{ margin: "1%" }}>{VaccineNotify()}</Grid> */}
             </Box>
           </div>
         </Container>

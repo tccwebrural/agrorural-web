@@ -17,7 +17,8 @@ import DeclareForm from "../modules/reports/pages/DeclareCattle";
 import TesteFormik from "../modules/testes/TesteFormik";
 import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
 import ReportPage from "../modules/reports/pages/ReportPage";
-import CattleViewVaccine from "../modules/vacine/pages/cattleViewVaccine";
+import CattleViewVaccine from "../modules/vacine/pages/CattleViewVaccine";
+import VaccineNotify from "../modules/notifications/components/VaccineNotify";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "home",
@@ -76,7 +77,7 @@ export const PRIVATE_ROUTES: Array<Route> = [
     title: "Notificações",
     path: "cattle/NotifyVaccine",
     showHeaderBtn: false,
-    component: notifyVaccine,
+    component: VaccineNotify,
   },
 
   {

@@ -211,8 +211,6 @@ const CattleListPage = (): ReactElement => {
     var birthDayMonth = birthDay.getMonth();
     var todayMonth = today.getMonth();
     return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
-    var birthDay = new Date(date);
-    var today = new Date();
   };
 
   const getAgeFromDate = (date: string) => {
@@ -410,11 +408,18 @@ const CattleListPage = (): ReactElement => {
               p: 4,
             }}
           >
-             <Grid sx={{ margin: "2%  2%" }}>
-                 <span style={{ fontWeight: "bold",fontSize:20,color:"var(--cor005)",marginLeft:10 }}>
-                   Selecione abaixo o motivo da morte do animal
-                </span>
-              </Grid>
+            <Grid sx={{ margin: "2%  2%" }}>
+              <span
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 20,
+                  color: "var(--cor005)",
+                  marginLeft: 10,
+                }}
+              >
+                Selecione abaixo o motivo da morte do animal
+              </span>
+            </Grid>
             <Grid sx={{ margin: "3%" }}>
               <Select
                 fullWidth={true}
