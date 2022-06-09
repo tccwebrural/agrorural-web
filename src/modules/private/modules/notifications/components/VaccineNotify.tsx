@@ -4,6 +4,7 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { ReactElement, useContext, useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
+import { number } from "yup/lib/locale";
 
 import "../../../styles/NotifyVaccine.css";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
@@ -23,14 +24,14 @@ const VaccineNotify = (): ReactElement => {
   const [notifications, setNotifications] = useState<any[]>([]);
   const notifyProvider = useNotification();
 
-  useEffect(() => {
-    trackPromise(
-      notifyProvider.getNotification().then((notify) => {
-        setNotifications(notify);
-      }),
-      GLOBAL_LOADING_KEY
-    );
-  }, []);
+  // useEffect(() => {
+  //   trackPromise(
+  //     notifyProvider.getNotification().then((notify) => {
+  //       setNotifications(notify);
+  //     }),
+  //     GLOBAL_LOADING_KEY
+  //   );
+  // }, []);
 
   return (
     <>
@@ -49,7 +50,7 @@ const VaccineNotify = (): ReactElement => {
                   <div id="color2"></div>
                   <div></div>
                   <div id="text-notify">
-                    <div id="text-notify-title-Red" key={listToDisplay}>
+                    <div id="text-notify-title-Red">
                       O animal {listToDisplay.animalName} deve ser vacinado
                       contra {listToDisplay.vaccineName}!
                     </div>
