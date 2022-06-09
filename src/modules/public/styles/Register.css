@@ -70,7 +70,7 @@ span a {
 }
 
 #imgFooter {
-  position: absolute;
+  position: fixed;
   bottom: 0;
 }
 
@@ -79,7 +79,7 @@ span a {
 }
 
 #imgVaca1 {
-  position: absolute;
+  position: fixed;
   top: 41%;
   left: 70px;
   z-index: -1;
@@ -91,7 +91,7 @@ span a {
   margin-top: 11%;
 }
 #imgVaca2-Register {
-  position: absolute;
+  position: fixed;
   top: 50%;
   right: 120px;
   z-index: -1;
