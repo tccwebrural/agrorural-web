@@ -14,134 +14,153 @@ class Notification{
 type NotificationContext = {
     getNotification: () => Promise<Array<Notification>>;
 }
-const LoaderNotificationProvider = () : NotificationContext => {
-const vaccineBrucelose = "Brucelose";
-const vaccineFebreAftosa = "Febre aftosa";
-const vaccineRaiva = "Raiva";
-const vacinasObrigatorias = ["Brucelose", "Raiva", "Febre aftosa"];
+ const LoaderNotificationProvider = () => {}
+// const vaccineBrucelose = "Brucelose";
+// const vaccineFebreAftosa = "Febre aftosa";
+// const vaccineRaiva = "Raiva";
+// const vacinasObrigatorias = ["Brucelose", "Raiva", "Febre aftosa"];
 
-var today = new Date();
-var mesAtual = today.getMonth() + 1;
+// var today = new Date();
+// var mesAtual = today.getMonth() + 1;
 
-  const [cattles, setCattles] = useState<CattleModel[]>([]);
+// const getFromDate = (date: string) => {
+//   const dataSeparada = date.split("-");
+//   const ano = parseInt(dataSeparada[0]);
+//   const mes = parseInt(dataSeparada[1]);
+//   const dia = parseInt(dataSeparada[2]);
+
+//   var aplicationDate = new Date(ano, mes, dia);
+//   var YearAplicationDate;
+
+//   return YearAplicationDate = aplicationDate.getFullYear();
+// }
+
+//   const [cattles, setCattles] = useState<CattleModel[]>([]);
   
-  const getMonthFromDate = (date: string) => {
-    var birthDay = new Date(date);
+//   const getMonthFromDate = (date: string) => {
+//     var birthDay = new Date(date);
 
-    var birthDayYear = birthDay.getFullYear();
-    var todayYear = today.getFullYear();
-    var birthDayMonth = birthDay.getMonth();
-    var todayMonth = today.getMonth();
+//     var birthDayYear = birthDay.getFullYear();
+//     var todayYear = today.getFullYear();
+//     var birthDayMonth = birthDay.getMonth();
+//     var todayMonth = today.getMonth();
 
-    return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
-  };
-  const cattlehelpers = CattleHelper();
-  const vacineHelpers = VacineHelper();
-  const { id } = useParams();
-  const loading = useGlobalLoading();
-  console.log(id);
+//     return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
+//   };
+//   const cattlehelpers = CattleHelper();
+//   const vacineHelpers = VacineHelper();
+//   const { id } = useParams();
+//   const loading = useGlobalLoading();
+//   console.log(id);
 
 
-    const [notification, setNotification] = useState <Array<Notification>|undefined>();
+//     // const [notification, setNotification] = useState <Array<Notification>|undefined>();
 
-    const getNotification = async () => {
-        if(notification === undefined || notification.length === 0 ){
-            //await
-            //consulta dados e atualiza state
-            //pode ser melhorado fazendo com valueChanges do firestorw
-            //o value changes mantem a conexão aberta escutando todas as atualizações
-            // da coleção ou documento 
-            await cattlehelpers.getAllCattles().then(async (cattles) => {
-              const listToVaccine: any[] = [];
+//     // const getNotification = async () => {
+//     //     if(notification === undefined || notification.length === 0 ){
+//     //         //await
+//     //         //consulta dados e atualiza state
+//     //         //pode ser melhorado fazendo com valueChanges do firestorw
+//     //         //o value changes mantem a conexão aberta escutando todas as atualizações
+//     //         // da coleção ou documento 
+//     //         await cattlehelpers.getAllCattles().then(async (cattles) => {
+//     //           const listToVaccine: any[] = [];
               
-              for (let index = 0; index < cattles.length; index++) {
-                const cattle = {
-                  ...cattles[index],
-                  age: getMonthFromDate(cattles[index].birthday),
-                  idCattle: cattles[index].id,
-                };
+//     //           for (let index = 0; index < cattles.length; index++) {
+//     //             const cattle = {
+//     //               ...cattles[index],
+//     //               age: getMonthFromDate(cattles[index].birthday),
+//     //               idCattle: cattles[index].id,
+//     //             };
                
-                console.log("Animal: " + cattles[index].name);
+//     //             console.log("Animal: " + cattles[index].name);
         
-                if ( cattle.status !=3 && cattle.idCattle) {
-                  await vacineHelpers.getAllVacines(cattle.idCattle).then((vacines) => {
-                    let result = [""];   
+//     //             if ( cattle.status !=3 && cattle.idCattle) {
+//     //               await vacineHelpers.getAllVacines(cattle.idCattle).then((vacines) => {
+
+//     //                 let result = [""];   
                    
-                       result = vacinasObrigatorias.filter((x) => !vacines.map(vacines => vacines.name).includes(x));
-                      console.log("VACINAS QUE FALTA " + cattles[index].name + " : " + result );
+//     //                    result = vacinasObrigatorias.filter((x) => !vacines.map(vacines => vacines.name).includes(x));
+//     //                   console.log("VACINAS QUE FALTA " + cattles[index].name + " : " + result );
                     
-                    for (let i = 0; i < result.length; i++) {
-                      if (result[i] === vaccineBrucelose) {
-                        if (cattle.sex === 2 && cattle.age >= 3 && cattle.age <= 8) {
-                          const cattleAndVaccines = {
-                            animalName: cattles[index].name,
-                            animalId: cattle.identifier,
-                            animalSex: cattle.sex,
-                            vaccineName: vaccineBrucelose,
-                          };
-                          listToVaccine.push(cattleAndVaccines);
-                        }
-                      }
-                      else if (result[i] === vaccineFebreAftosa) {
-                        if (mesAtual === 6 && cattle.age < 24) {
-                          const cattleAndVaccines = {
-                            animalName: cattles[index].name,
-                            animalId: cattle.identifier,
-                            animalSex: cattle.sex,
-                            vaccineName: vaccineFebreAftosa,
-                          };
-                          listToVaccine.push(cattleAndVaccines);
-                        }
-                        else if (mesAtual === 11 && cattle.age >= 24) {
-                          const cattleAndVaccines = {
-                            animalName: cattles[index].name,
-                            animalId: cattle.identifier,
-                            animalSex: cattle.sex,
-                            vaccineName: vaccineFebreAftosa,
-                          };
-                          listToVaccine.push(cattleAndVaccines);
-                        }
-                      }
-                       else  if(result[i] === vaccineRaiva){
-                          const cattleAndVaccines = {
-                            animalName: cattles[index].name,
-                            animalId: cattle.identifier,
-                            animalSex: cattle.sex,
-                            vaccineName: vaccineRaiva,
-                          };
-                          listToVaccine.push(cattleAndVaccines);
-                      }
-                    }
-                  });
-                }
+//     //                 for (let i = 0; i < result.length; i++) {
+//     //                     const vaccines = {
+//     //                       ...vacines[i],
+//     //                       date:  getFromDate(vacines[i].date_application)
+//     //                     }
+//     //                     console.log("DATA: " + vaccines.date)
+
+//     //                   if (result[i] === vaccineBrucelose) {
+//     //                     if (cattle.sex === 2 && cattle.age >= 3 && cattle.age <= 8) {
+//     //                       const cattleAndVaccines = {
+//     //                         animalName: cattles[index].name,
+//     //                         animalId: cattle.identifier,
+//     //                         animalSex: cattle.sex,
+//     //                         vaccineName: vaccineBrucelose,
+//     //                       };
+//     //                       listToVaccine.push(cattleAndVaccines);
+//     //                     }
+//     //                   }
+//     //                   else if (result[i] === vaccineFebreAftosa) {
+//     //                     if (mesAtual === 6 && cattle.age < 24) {
+//     //                       const cattleAndVaccines = {
+//     //                         animalName: cattles[index].name,
+//     //                         animalId: cattle.identifier,
+//     //                         animalSex: cattle.sex,
+//     //                         vaccineName: vaccineFebreAftosa,
+//     //                       };
+//     //                       listToVaccine.push(cattleAndVaccines);
+//     //                     }
+//     //                     else if (mesAtual === 11 && cattle.age >= 24) {
+//     //                       const cattleAndVaccines = {
+//     //                         animalName: cattles[index].name,
+//     //                         animalId: cattle.identifier,
+//     //                         animalSex: cattle.sex,
+//     //                         vaccineName: vaccineFebreAftosa,
+//     //                       };
+//     //                       listToVaccine.push(cattleAndVaccines);
+//     //                     }
+//     //                   }
+//     //                    else  if(result[i] === vaccineRaiva){
+//     //                       const cattleAndVaccines = {
+//     //                         animalName: cattles[index].name,
+//     //                         animalId: cattle.identifier,
+//     //                         animalSex: cattle.sex,
+//     //                         vaccineName: vaccineRaiva,
+//     //                       };
+//     //                       listToVaccine.push(cattleAndVaccines);
+//     //                   }
+//     //                 }
+//     //               });
+//     //             }
         
-                setCattles(cattles);
-                setNotification(listToVaccine);
-                loading.stopLoading();
-              }
-            });
-        }
-        return notification || [];
-    };
+//     //             setCattles(cattles);
+//     //             setNotification(listToVaccine);
+//     //             loading.stopLoading();
+//     //           }
+//     //         });
+//     //     }
+//     //     return notification || [];
+//     // };
 
-    return {
-        getNotification,
-    }
-  };
-const NotificationContext = createContext<NotificationContext| {}> ({});
-const ProviderNotification = (props: {children: ReactNode}) => {
-    const provider = LoaderNotificationProvider();
+//     // return {
+//     //     getNotification,
+//  //    }
+//   };
+// const NotificationContext = createContext<NotificationContext| {}> ({});
+// const ProviderNotification = (props: {children: ReactNode}) => {
+//     const provider = LoaderNotificationProvider();
  
-    return (
-        <NotificationContext.Provider value={provider}>
-        {props.children}
-        </NotificationContext.Provider>
+//     return (
+//         <NotificationContext.Provider value={provider}>
+//         {props.children}
+//         </NotificationContext.Provider>
  
-    );
-};
+//     );
+// };
 
-const useNotification = () => {
-    return useContext(NotificationContext) as NotificationContext;
-}
+// const useNotification = () => {
+//     return useContext(NotificationContext) as NotificationContext;
+// }
 
-export {useNotification, ProviderNotification};
+//export {useNotification, ProviderNotification};

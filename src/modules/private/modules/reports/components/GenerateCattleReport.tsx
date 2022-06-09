@@ -279,11 +279,10 @@ const GenerateCattleReport = (): ReactElement => {
           <div id="bloco-modal-GerarRelatório">
             <Grid sx={{ margin: "2%  2%" }}>
               <span id="txt-GerarRelatorio">
-                Tem certeza que deseja Gerar o Relatório?
+                Deseja Gerar o Relatório?
               </span>
               <p id="txt-p-btnGerarRelatório">
-                Após gerar o relatório você só poderar gerar novamente no mês
-                seguinte!
+                Após gerar o relatório você será capaz de visualizar a quantidade total de animais que existe na fazenda separados por idade.
               </p>
             </Grid>
 
