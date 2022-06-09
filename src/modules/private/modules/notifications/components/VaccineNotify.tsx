@@ -34,7 +34,7 @@ const getDataFromDateVaccine = (date: string) => {
   const dia = parseInt(dataSeparada[2]);
 };
 
-const VaccineBrucelose = (): ReactElement => {
+const VaccineNotify = (): ReactElement => {
   const [cattles, setCattles] = useState<CattleModel[]>([]);
 
   const getMonthFromDate = (date: string) => {
@@ -210,4 +210,4 @@ const VaccineBrucelose = (): ReactElement => {
     </>
   );
 };
-export default VaccineBrucelose;
+export default VaccineNotify;
