@@ -329,7 +329,6 @@ const CattleDeathComponent = (): ReactElement => {
     setReport(currentReport);
 
     loadingHelper.stopLoading();
-    console.log("reports" + report);
   }, []);
 
   return (

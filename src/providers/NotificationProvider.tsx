@@ -57,8 +57,8 @@ const LoaderNotificationProvider = () => {
   >();
 
   const getNotification = async () => {
-if (notification === undefined || notification.length === 0) {
-      await cattlehelpers.getAllCattles().then(async(cattles) => {
+    if (notification === undefined || notification.length === 0) {
+      await cattlehelpers.getAllCattles().then(async (cattles) => {
         const listToVaccine: any[] = [];
 
         for (let index = 0; index < cattles.length; index++) {
@@ -106,7 +106,6 @@ if (notification === undefined || notification.length === 0) {
                         vaccineName: vaccineBrucelose,
                       };
                       listToVaccine.push(cattleAndVaccines);
-
                     }
                   } else if (result[i] === vaccineFebreAftosa) {
                     if (mesAtual === 6 && cattle.age < 24) {
@@ -141,7 +140,6 @@ if (notification === undefined || notification.length === 0) {
 
           setCattles(cattles);
           setNotification(listToVaccine);
-
           loading.stopLoading();
         }
       });

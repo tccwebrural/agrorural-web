@@ -31,7 +31,8 @@ const VacineValidatorSchema = object({
   expiration_date: date()
     .required(REQUIRED_FIELD)
     .transform(parseDateString)
-    .min("2005-01-02", INFERIOR_DATE_2005),
+    // .min(new Date(), "data maior que o dia atual"),
+    .min("2022-01-01", INFERIOR_DATE_2005),
 
   // expiration_date: date().transform(parseDateString).min(date),
 
