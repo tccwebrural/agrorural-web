@@ -17,6 +17,7 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { getControls } from "utils/FormUtils";
 import { VacineHelper } from "../helpers/VacineHelpers";
 import { VacineModel } from "../models/VacineModel";
+import CattleViewVaccine from "../pages/cattleViewVaccine";
 
 const VaccineCattleCardComponent = (): ReactElement => {
   const { id, idVacine } = useParams();
@@ -62,23 +63,8 @@ const VaccineCattleCardComponent = (): ReactElement => {
       >
         {(formik) => (
           <Box>
-            <FormControl
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "center",
-              }}
-            >
+            <FormControl id="formularioDadosVacina">
               <Grid item xs={2} sx={{ margin: "0.4%", marginLeft: 2 }}>
-                {/* <TextField
-                  style={{ width: 205 }}
-                  id="outlined-disabled"
-                  label="Nome"
-                  type="text"
-                  disabled={true}
-                  {...getControls(formik, "name")}
-                /> */}
-
                 <FormControl>
                   <InputLabel>Tipo</InputLabel>
                   <Select

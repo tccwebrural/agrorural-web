@@ -46,6 +46,11 @@ const Header = (props: any): ReactElement => {
 
   return (
     <>
+      <Box id="headerMin">
+        <div id="logoPequena-header">
+          <img src={logoPequena} alt="Erro..." />
+        </div>
+      </Box>
       <Box id="header">
         <Container
           maxWidth="xl"

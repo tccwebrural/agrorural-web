@@ -96,13 +96,7 @@ const CattleViewVaccine = (): ReactElement => {
             >
               {(formik) => (
                 <Box>
-                  <FormControl
-                    sx={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                    }}
-                  >
+                  <FormControl id="formularioDadosAnimal">
                     <Grid item xs={2} sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 190 }}

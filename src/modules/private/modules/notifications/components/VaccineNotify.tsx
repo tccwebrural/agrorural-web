@@ -12,12 +12,9 @@ import { VacineHelper } from "../../vacine/helpers/VacineHelpers";
 
 import { VaccineNotifyModel } from "../models/VaccineNotifyModel";
 
- import {ProviderNotification} from "../../../../../providers/NotificationProvider";
-
+//import {ProviderNotification} from "../../../../../providers/NotificationProvider";
 
 const VaccineBrucelose = (): ReactElement => {
- 
-
   return (
     <>
       <Box
@@ -91,7 +88,7 @@ const VaccineBrucelose = (): ReactElement => {
         
         </ProviderNotification>
         
-        /*  */} 
+        /*  */}
       </Box>
     </>
   );
