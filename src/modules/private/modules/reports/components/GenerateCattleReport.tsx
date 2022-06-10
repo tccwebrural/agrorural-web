@@ -223,7 +223,6 @@ const GenerateCattleReport = (): ReactElement => {
     setReport(currentReport);
 
     loadingHelper.stopLoading();
-    console.log("reports" + report);
   }, []);
 
   const reportHelper = ReportHelper();
@@ -248,7 +247,7 @@ const GenerateCattleReport = (): ReactElement => {
         //toast erro
         navigate("/private/cattles");
 
-        console.error(err);
+        // console.error(err);
         toast.error(getFireError(err));
       });
 
@@ -279,11 +278,10 @@ const GenerateCattleReport = (): ReactElement => {
           <div id="bloco-modal-GerarRelatório">
             <Grid sx={{ margin: "2%  2%" }}>
               <span id="txt-GerarRelatorio">
-                Tem certeza que deseja Gerar o Relatório?
+                Deseja Gerar o Relatório?
               </span>
               <p id="txt-p-btnGerarRelatório">
-                Após gerar o relatório você só poderar gerar novamente no mês
-                seguinte!
+                Após gerar o relatório você será capaz de visualizar a quantidade total de animais que existe na fazenda separados por idade.
               </p>
             </Grid>
 
@@ -297,18 +295,21 @@ const GenerateCattleReport = (): ReactElement => {
             >
               <Grid
                 sx={{
-                  margin: " 3% 6%",
+                  marginTop: " -6% ",
+                  marginBottom:"15%",
                   borderRadius: "5px",
                   backgroundColor: "rgba(0, 128, 0, 0.795)",
                 }}
               >
-                <Button onClick={submitSave} style={{ color: "var(--cor001)" }}>
+                <Button onClick={submitSave} style={{ color: "var(--cor001)" }} >
                   Gerar Relatório
                 </Button>{" "}
               </Grid>
               <Grid
                 sx={{
-                  margin: " 3% -5%",
+                  marginTop: " -6% ",
+                  marginBottom:"15%",
+                  marginLeft:"1%",
                   borderRadius: "5px",
                   backgroundColor: "rgba(255, 0, 0, 0.849)",
                 }}

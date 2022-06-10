@@ -9,27 +9,7 @@ import VaccineNotify from "../components/VaccineNotify";
 const notifyVaccine = (): ReactElement => {
   return (
     <>
-      <Box>
-        <Container>
-          <div id="Bloco-GeralNotificacao">
-            <div className="Block-Txt-Line">
-              <h2 className="Block-Line">
-                <span id="Block-Txt-Notify">Notificações</span>
-              </h2>
-            </div>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                textAlign: "center",
-              }}
-            >
-              <Grid sx={{ margin: "1%" }}>{VaccineNotify()}</Grid>
-            </Box>
-          </div>
-        </Container>
-      </Box>
+    
     </>
   );
 };
