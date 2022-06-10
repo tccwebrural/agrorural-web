@@ -1,5 +1,5 @@
 import { Box, CssBaseline } from "@mui/material";
-//import { ProviderNotification } from "providers/NotificationProvider";
+import { ProviderNotification } from "providers/NotificationProvider";
 import React, { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 import PrivateHeader from "./PrivateHeader";
@@ -18,10 +18,10 @@ const PrivateLayout = () => {
           flexGrow: 1,
         }}
       >
-        {/* <ProviderNotification> */}
+         <ProviderNotification>
           <PrivateHeader />
           <Outlet /> 
-        {/* </ProviderNotification> */}
+        </ProviderNotification>
           
       </Box>
     </>

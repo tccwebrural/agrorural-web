@@ -296,18 +296,21 @@ const GenerateCattleReport = (): ReactElement => {
             >
               <Grid
                 sx={{
-                  margin: " 3% 6%",
+                  marginTop: " -6% ",
+                  marginBottom:"15%",
                   borderRadius: "5px",
                   backgroundColor: "rgba(0, 128, 0, 0.795)",
                 }}
               >
-                <Button onClick={submitSave} style={{ color: "var(--cor001)" }}>
+                <Button onClick={submitSave} style={{ color: "var(--cor001)" }} >
                   Gerar Relatório
                 </Button>{" "}
               </Grid>
               <Grid
                 sx={{
-                  margin: " 3% -5%",
+                  marginTop: " -6% ",
+                  marginBottom:"15%",
+                  marginLeft:"1%",
                   borderRadius: "5px",
                   backgroundColor: "rgba(255, 0, 0, 0.849)",
                 }}

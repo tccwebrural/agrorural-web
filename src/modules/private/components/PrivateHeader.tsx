@@ -11,7 +11,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { Fragment, ReactElement, useEffect } from "react";
+import React, { Fragment, ReactElement, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { APP_TITLE, ROOT_THEME } from "../../../constants";
 import { useAuth } from "../../../providers/AuthProvider";
@@ -19,6 +19,8 @@ import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
 import logoPequena from "../../../assets/logoPequena.png";
 import "../styles/PrivateHeader.css";
 import MailIcon from "@mui/icons-material/Mail";
+import { useNotification } from "providers/NotificationProvider";
+import { trackPromise } from "react-promise-tracker";
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();
@@ -44,6 +46,21 @@ const Header = (props: any): ReactElement => {
     loadUserData();
   }, [auth.userState]);
 
+    const [notifications, setNotifications] = useState<any[]>([]);
+    const notifyProvider = useNotification();
+    var [contador, setContador] =useState(0);
+
+    useEffect(() => {
+       trackPromise(
+      notifyProvider.getNotification().then((notify) => {
+        setNotifications(notify);
+          for(contador=0; contador <= notify.length; contador++){
+            setContador(contador)
+          }
+        })
+       )
+    }, []);
+    
   return (
     <>
       <Box id="header">
@@ -145,7 +162,8 @@ const Header = (props: any): ReactElement => {
                 variant="button"
                 sx={{ fontSize: "large", marginLeft: "2rem" }}
               >
-                <Badge badgeContent={3} color="error" max={99}>
+
+                <Badge badgeContent={contador} color="error" max={99}>
                   Notificações
                 </Badge>
               </Link>
