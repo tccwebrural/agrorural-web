@@ -1,11 +1,8 @@
-import { Box } from "@mui/material";
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import { Grid } from "@mui/material";
 import { CattleHelper } from "modules/private/modules/cattles/helpers/CattleHelper";
 import { VacineHelper } from "modules/private/modules/vacine/helpers/VacineHelpers";
 import { useParams } from "react-router-dom";
 import { useGlobalLoading } from "./GlobalLoadingProvider";
-import { VaccineNotifyModel } from "modules/private/modules/notifications/models/VaccineNotifyModel";
 import { CattleModel } from "modules/private/modules/cattles/models/CattleModel";
 
 class Notification {
@@ -34,6 +31,16 @@ const LoaderNotificationProvider = () => {
 
     return (YearAplicationDate = aplicationDate.getFullYear());
   };
+  const getDateVaccineAplication = (date: string) => {
+    const dataSeparada = date.split("-");
+    const ano = parseInt(dataSeparada[0]);
+    const mes = parseInt(dataSeparada[1]);
+    const dia = parseInt(dataSeparada[2]);
+
+    var aplicationDate = new Date(ano, mes, dia);
+
+    return aplicationDate;
+  };
   const [cattles, setCattles] = useState<CattleModel[]>([]);
 
   const getMonthFromDate = (date: string) => {
@@ -48,9 +55,7 @@ const LoaderNotificationProvider = () => {
   };
   const cattlehelpers = CattleHelper();
   const vacineHelpers = VacineHelper();
-  const { id } = useParams();
   const loading = useGlobalLoading();
-  console.log(id);
 
   const [notification, setNotification] = useState<
     Array<Notification> | undefined
@@ -68,66 +73,91 @@ const LoaderNotificationProvider = () => {
             idCattle: cattles[index].id,
           };
 
-          console.log("Animal: " + cattles[index].name);
-
           if (cattle.status != 3 && cattle.idCattle) {
             await vacineHelpers
               .getAllVacines(cattle.idCattle)
               .then((vacines) => {
-                var vaccines = 0;
+                var yearOfVaccine = 0;
+                var anoDoseReforco = 0;
+                var mesDoseReforco = 0;
+                var diaDoseReforco = 0;
+                var contVaccineRaiva = 0;
                 for (let i = 0; i < vacines.length; i++) {
-                  const yearOfVaccine = {
+                  const vaccines = {
                     year: getFromDate(vacines[i].date_application),
+                    dataAplicacao: getDateVaccineAplication(
+                      vacines[i].date_application
+                    ),
+                    vaccinesName: vacines[i].name,
                   };
-                  vaccines = yearOfVaccine.year;
+                  yearOfVaccine = vaccines.year;
+                  anoDoseReforco = vaccines.dataAplicacao.getFullYear();
+                  mesDoseReforco = vaccines.dataAplicacao.getMonth() + 1;
+                  diaDoseReforco = vaccines.dataAplicacao.getUTCDate();
+                  if (vaccines.vaccinesName === vaccineRaiva) {
+                    contVaccineRaiva++;
+                  }
                 }
-                let result = [""];
 
+                let result = [""];
                 result = vacinasObrigatorias.filter(
                   (x) =>
-                    vaccines != today.getFullYear() ||
+                    yearOfVaccine != today.getFullYear() ||
                     !vacines.map((vacines) => vacines.name).includes(x)
                 );
 
-                for (let i = 0; i < result.length; i++) {
-                  const vaccines = {
-                    ...vacines[i],
-                    date: getFromDate(vacines[i].date_application),
+                if (mesDoseReforco > 12) {
+                  mesDoseReforco = 1;
+                  anoDoseReforco = anoDoseReforco + 1;
+                }
+                if (
+                  contVaccineRaiva === 1 &&
+                  anoDoseReforco === today.getFullYear() &&
+                  mesDoseReforco === today.getMonth() + 1 &&
+                  diaDoseReforco === today.getUTCDate()
+                ) {
+                  const cattleAndVaccines = {
+                    animalName: cattles[index].name,
+                    animalId: cattle.identifier,
+                    animalSex: cattle.sex,
+                    vaccineName: vaccineRaiva,
                   };
-                  console.log("DATA: " + vaccines.date);
-
-                  if (result[i] === vaccineBrucelose) {
-                    if (
-                      cattle.sex === 2 &&
-                      cattle.age >= 3 &&
-                      cattle.age <= 8
-                    ) {
-                      const cattleAndVaccines = {
-                        animalName: cattles[index].name,
-                        animalId: cattle.identifier,
-                        animalSex: cattle.sex,
-                        vaccineName: vaccineBrucelose,
-                      };
-                      listToVaccine.push(cattleAndVaccines);
-                    }
-                  } else if (result[i] === vaccineFebreAftosa) {
-                    if (mesAtual === 6 && cattle.age < 24) {
-                      const cattleAndVaccines = {
-                        animalName: cattles[index].name,
-                        animalId: cattle.identifier,
-                        animalSex: cattle.sex,
-                        vaccineName: vaccineFebreAftosa,
-                      };
-                      listToVaccine.push(cattleAndVaccines);
-                    } else if (mesAtual === 11 && cattle.age >= 24) {
-                      const cattleAndVaccines = {
-                        animalName: cattles[index].name,
-                        animalId: cattle.identifier,
-                        animalSex: cattle.sex,
-                        vaccineName: vaccineFebreAftosa,
-                      };
-                      listToVaccine.push(cattleAndVaccines);
-                    }
+                  listToVaccine.push(cattleAndVaccines);
+                }
+                for (let i = 0; i < result.length; i++) {
+                  if (
+                    result[i] === vaccineBrucelose &&
+                    cattle.sex === 2 &&
+                    cattle.age >= 3 &&
+                    cattle.age <= 8
+                  ) {
+                    const cattleAndVaccines = {
+                      animalName: cattles[index].name,
+                      animalId: cattle.identifier,
+                      animalSex: cattle.sex,
+                      vaccineName: vaccineBrucelose,
+                    };
+                    listToVaccine.push(cattleAndVaccines);
+                  } else if (
+                    result[i] === vaccineFebreAftosa &&
+                    mesAtual === 6 &&
+                    cattle.age < 24
+                  ) {
+                    const cattleAndVaccines = {
+                      animalName: cattles[index].name,
+                      animalId: cattle.identifier,
+                      animalSex: cattle.sex,
+                      vaccineName: vaccineFebreAftosa,
+                    };
+                    listToVaccine.push(cattleAndVaccines);
+                  } else if (mesAtual === 11 && cattle.age >= 24) {
+                    const cattleAndVaccines = {
+                      animalName: cattles[index].name,
+                      animalId: cattle.identifier,
+                      animalSex: cattle.sex,
+                      vaccineName: vaccineFebreAftosa,
+                    };
+                    listToVaccine.push(cattleAndVaccines);
                   } else if (result[i] === vaccineRaiva) {
                     const cattleAndVaccines = {
                       animalName: cattles[index].name,
@@ -153,6 +183,7 @@ const LoaderNotificationProvider = () => {
     getNotification,
   };
 };
+
 const NotificationContext = createContext<NotificationContext | {}>({});
 const ProviderNotification = (props: { children: ReactNode }) => {
   const provider = LoaderNotificationProvider();

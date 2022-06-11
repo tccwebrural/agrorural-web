@@ -7,11 +7,6 @@ import { useParams } from "react-router-dom";
 import { number } from "yup/lib/locale";
 
 import "../../../styles/NotifyVaccine.css";
-import { CattleHelper } from "../../cattles/helpers/CattleHelper";
-import { CattleModel } from "../../cattles/models/CattleModel";
-import { VacineHelper } from "../../vacine/helpers/VacineHelpers";
-
-import { VaccineNotifyModel } from "../models/VaccineNotifyModel";
 
 import {
   ProviderNotification,
@@ -19,19 +14,21 @@ import {
 } from "../../../../../providers/NotificationProvider";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+import { VaccineNotifyModel } from "../models/VaccineNotifyModel";
 
 const VaccineNotify = (): ReactElement => {
   const [notifications, setNotifications] = useState<any[]>([]);
   const notifyProvider = useNotification();
 
-  // useEffect(() => {
-  //   trackPromise(
-  //     notifyProvider.getNotification().then((notify) => {
-  //       setNotifications(notify);
-  //     }),
-  //     GLOBAL_LOADING_KEY
-  //   );
-  // }, []);
+  useEffect(() => {
+    // toast.sucess("Ok"),
+    trackPromise(
+      notifyProvider.getNotification().then((notify) => {
+        setNotifications(notify);
+      }),
+      GLOBAL_LOADING_KEY
+    );
+  }, []);
 
   return (
     <>
@@ -45,8 +42,24 @@ const VaccineNotify = (): ReactElement => {
         {notifications.map((listToDisplay) => {
           return (
             <>
-              <Grid sx={{ margin: "1%" }}>
-                <div id="Bloco-Notificacoes">
+              <Grid
+                key={
+                  (listToDisplay.animalName,
+                  listToDisplay.vaccineName,
+                  listToDisplay.animalSex,
+                  listToDisplay.animalId)
+                }
+                sx={{ margin: "1%" }}
+              >
+                <div
+                  key={
+                    (listToDisplay.animalName,
+                    listToDisplay.vaccineName,
+                    listToDisplay.animalSex,
+                    listToDisplay.animalId)
+                  }
+                  id="Bloco-Notificacoes"
+                >
                   <div id="color2"></div>
                   <div></div>
                   <div id="text-notify">

@@ -50,8 +50,6 @@ const VaccineFormPage = (): ReactElement => {
 
   const vacineHelper = VacineHelper();
 
-  console.log(id);
-
   const submitForm = async (vacine: VacineModel) => {
     if (id) {
       vacineHelper
@@ -93,7 +91,9 @@ const VaccineFormPage = (): ReactElement => {
             <div id="MainBlock-VaccineForm">
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
-                  <span id="Block-Txt-VaccineRegister">Cadastrar Vacina</span>
+                  <span id="Block-Txt-VaccineRegister">
+                    Cadastrar Vacinasss
+                  </span>
                 </h2>
               </div>
               <div id="Block-AnimalData">
@@ -110,18 +110,10 @@ const VaccineFormPage = (): ReactElement => {
                       },
                     }}
                   >
-                    {/* <TextField
-                      style={{ width: 230 }}
-                      label="Nome"
-                      type="text"
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                      {...getControls(formik, "name")}
-                    /> */}
                     <FormControl>
-                      <InputLabel>Tipo</InputLabel>
-                      <Select
+                      {/* <InputLabel>Tipo</InputLabel> */}
+                      <TextField
+                        select
                         style={{
                           width: 228,
                           marginTop: 5,
@@ -129,7 +121,7 @@ const VaccineFormPage = (): ReactElement => {
                           marginLeft: 4,
                         }}
                         {...getControls(formik, "name")}
-                        label="Grouping"
+                        label="Tipo"
                         // name="category"
                       >
                         <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
@@ -138,7 +130,7 @@ const VaccineFormPage = (): ReactElement => {
                         <MenuItem value={CLOSTRIDIOSE}>Clostridioses</MenuItem>
                         <MenuItem value={BOTULISMO}>Botulismo</MenuItem>
                         <MenuItem value={LEPTOSPIROSE}>Leptospirose</MenuItem>
-                      </Select>
+                      </TextField>
                     </FormControl>
 
                     <TextField

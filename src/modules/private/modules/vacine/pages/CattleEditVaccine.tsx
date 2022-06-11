@@ -50,11 +50,6 @@ const CattleEditVaccine = (): ReactElement => {
   const { id } = useParams();
   const { idVacine } = useParams();
 
-  console.log("ID VACINA " + "= " + idVacine);
-
-  console.log(vacineHelpers.getAllVacines("1DpbNDXAu4ebmAZKgOb7"));
-  console.log(id);
-
   useEffect(() => {
     if (id && idVacine) {
       vacineHelpers.getVacineById(idVacine, id).then((vacine?: VacineModel) => {
@@ -122,10 +117,11 @@ const CattleEditVaccine = (): ReactElement => {
                       {...getControls(formik, "name")}
                     /> */}
                     <FormControl>
-                      <InputLabel>Tipo</InputLabel>
-                      <Select
+                      {/* <InputLabel>Tipo</InputLabel> */}
+                      <TextField
+                        select
                         {...getControls(formik, "name")}
-                        label="Grouping"
+                        label="Tipo"
                         style={{
                           width: 230,
                           margin: "0.4%",
@@ -138,7 +134,7 @@ const CattleEditVaccine = (): ReactElement => {
                         <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                         <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
                         <MenuItem value={RAIVA}>Raiva</MenuItem>
-                      </Select>
+                      </TextField>
                     </FormControl>
                     <TextField
                       style={{ width: 150, margin: "0.4%" }}

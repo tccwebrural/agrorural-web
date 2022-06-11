@@ -135,7 +135,7 @@ const VaccineInfoView = (): ReactElement => {
   return (
     <>
       {vacines.map((vacine) => (
-        <Card id="Card">
+        <Card key={vacine.name} id="Card">
           <div id="vaccineIcons-InfoGado">
             <VaccinesIcon
               style={{
@@ -148,6 +148,7 @@ const VaccineInfoView = (): ReactElement => {
           </div>
           <CardContent id="cardNameInfoGado">
             <h3>{vacine.name}</h3>
+            {/* <ListItem key={vacine.name()} value={vacine} /> */}
           </CardContent>
         </Card>
       ))}

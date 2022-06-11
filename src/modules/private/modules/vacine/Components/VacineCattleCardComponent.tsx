@@ -22,7 +22,7 @@ const VaccineCattleCardComponent = (): ReactElement => {
   const { id, idVacine } = useParams();
 
   const [initalValues, setInitialValues] = useState<VacineModel>({
-    date_application: FEBRE_AFTOSA,
+    date_application: "",
     name: "",
     expiration_date: "",
     lote: 0,
@@ -80,18 +80,18 @@ const VaccineCattleCardComponent = (): ReactElement => {
                 /> */}
 
                 <FormControl>
-                  <InputLabel>Tipo</InputLabel>
-                  <Select
+                  {/* <InputLabel>Tipo</InputLabel> */}
+                  <TextField
                     {...getControls(formik, "name")}
-                    label="Grouping"
+                    label="Tipo"
                     // name="category"
                     style={{ width: 210 }}
                     disabled={true}
                   >
-                    <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
+                    {/* <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
                     <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
-                    <MenuItem value={RAIVA}>Raivas</MenuItem>
-                  </Select>
+                    <MenuItem value={RAIVA}>Raivas</MenuItem> */}
+                  </TextField>
                 </FormControl>
               </Grid>
               <Grid sx={{ margin: "0.4%" }}>
