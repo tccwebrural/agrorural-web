@@ -100,7 +100,7 @@ const LoaderNotificationProvider = () => {
                     contVaccineRaiva++;
                   }
                 }
-
+                console.log("TESTE")
                 let result = [""];
                 result = vacinasObrigatorias.filter(
                   (x) =>
