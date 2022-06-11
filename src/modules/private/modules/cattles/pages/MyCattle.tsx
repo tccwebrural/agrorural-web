@@ -80,7 +80,6 @@ const MyCattle = (): ReactElement => {
   };
 
   const [vacineSelect, setVacineSelect] = useState<VacineModel>();
-  console.log(vacineSelect);
 
   return (
     <>
@@ -132,16 +131,15 @@ const MyCattle = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 221 }}>
-                        <InputLabel>Tipo</InputLabel>
-                        <Select
+                        {/* <InputLabel>Tipo</InputLabel> */}
+                        <TextField
                           disabled={true}
                           {...getControls(formik, "type")}
-                          label="Grouping"
-                          name="tipo"
+                          label="Tipo"
                         >
                           <MenuItem value={1}>Gado de Cortes</MenuItem>
                           <MenuItem value={2}>Gado Leitero</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
@@ -169,16 +167,16 @@ const MyCattle = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 100 }}>
-                        <InputLabel htmlFor="type">Sexo</InputLabel>
-                        <Select
+                        {/* <InputLabel htmlFor="type">Sexo</InputLabel> */}
+                        <TextField
                           disabled={true}
                           {...getControls(formik, "sex")}
-                          label="Grouping"
+                          label="Sexo"
                           name="type"
                         >
                           <MenuItem value={1}>Macho</MenuItem>
                           <MenuItem value={2}>Femea</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                   </FormControl>

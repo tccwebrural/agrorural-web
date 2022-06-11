@@ -145,16 +145,17 @@ const UpdateCattle = (): ReactElement => {
                     {...getControls(formik, "identifier")}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 250, margin: "0.6%" }}>
-                    <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
-                    <Select
+                  <FormControl sx={{ m: 1, minWidth: 250, margin: "-0.1%" }}>
+                    {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
+                    <TextField
+                      select
                       {...getControls(formik, "sex")}
-                      label="Grouping"
+                      label="Sexo"
                       // name="category"
                     >
                       <MenuItem value={1}>MACHO</MenuItem>
                       <MenuItem value={2}>FÊMEA</MenuItem>
-                    </Select>
+                    </TextField>
                   </FormControl>
                   <TextField
                     style={{ width: 210, margin: "0.6%" }}
@@ -174,22 +175,25 @@ const UpdateCattle = (): ReactElement => {
                     InputLabelProps={{
                       shrink: true,
                     }}
+
                     // inputProps={{
                     //   min: "2000-01-01",
                     //   max: `${today.toISOString()}`,
                     // }}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 341, margin: " 0.6%" }}>
-                    <InputLabel htmlFor="type">Tipo</InputLabel>
-                    <Select
+                  <FormControl sx={{ m: 1, minWidth: 240, margin: "- 0.6%" }}>
+                    {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
+                    <TextField
+                      select
                       {...getControls(formik, "type")}
-                      label="Grouping"
+                      label="Tipo"
+
                       // name="type"
                     >
                       <MenuItem value={1}>Gado de Corte</MenuItem>
                       <MenuItem value={2}>Gado Leitero</MenuItem>
-                    </Select>
+                    </TextField>
                   </FormControl>
                   <TextField
                     // disabled

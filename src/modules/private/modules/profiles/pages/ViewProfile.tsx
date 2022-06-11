@@ -188,7 +188,6 @@ const ViewProfilePage = (): ReactElement => {
                     <TextField
                       id="nameProfile"
                       variant="standard"
-                      defaultValue={initialValues.name}
                       disabled={isDisabled}
                       {...getControls(formik, "name")}
                     />

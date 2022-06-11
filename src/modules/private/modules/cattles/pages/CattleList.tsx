@@ -216,7 +216,6 @@ const CattleListPage = (): ReactElement => {
   const getAgeFromDate = (date: string) => {
     var today = new Date();
     var birthDate = new Date(date);
-    console.log(today.getMonth());
     return Math.floor(
       Math.ceil(
         Math.abs(birthDate.getTime() - today.getTime()) / (1000 * 3600 * 24)

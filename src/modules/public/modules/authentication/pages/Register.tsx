@@ -14,7 +14,7 @@ import { RegisterUserModel } from "../../../models/UserModel";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { RegisterValidatorSchema } from "../validators/RegisterValidatorSchema";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { trackPromise } from "react-promise-tracker";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { IMaskInput } from "react-imask";

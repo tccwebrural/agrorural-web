@@ -46,7 +46,6 @@ const CattleViewVaccine = (): ReactElement => {
   const cattleHelper = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const navigate = useNavigate();
-  console.log("id da pag" + id);
 
   useEffect(() => {
     loadingHelper.startLoading();
@@ -79,7 +78,7 @@ const CattleViewVaccine = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-viewCatlle">
               <h2 id="blocoTituloTxt-criacao-viewCatlle">
-                Dados do animal &gt; {initialValues.name}
+                Dados do animals &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-viewCatlle">
                 <abbr title="Imprimir">
@@ -119,16 +118,15 @@ const CattleViewVaccine = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 221 }}>
-                        <InputLabel>Tipo</InputLabel>
-                        <Select
+                        {/* <InputLabel>Tipo</InputLabel> */}
+                        <TextField
                           disabled={true}
                           {...getControls(formik, "type")}
-                          label="Grouping"
-                          name="tipo"
+                          label="Tipo"
                         >
                           <MenuItem value={1}>Gado de Cortes</MenuItem>
                           <MenuItem value={2}>Gado Leitero</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
@@ -156,8 +154,7 @@ const CattleViewVaccine = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 100 }}>
-                        <InputLabel htmlFor="type">Sexo</InputLabel>
-                        <Select
+                        <TextField
                           disabled={true}
                           {...getControls(formik, "sex")}
                           label="Grouping"
@@ -165,7 +162,7 @@ const CattleViewVaccine = (): ReactElement => {
                         >
                           <MenuItem value={1}>Macho</MenuItem>
                           <MenuItem value={2}>Femea</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                   </FormControl>

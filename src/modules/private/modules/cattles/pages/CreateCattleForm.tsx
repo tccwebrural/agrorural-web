@@ -109,15 +109,16 @@ const CreateCattleFormPage = (): ReactElement => {
                 style={{ width: 219 }}
               />
               <FormControl sx={{ m: 1, minWidth: 250 }}>
-                <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
-                <Select
+                {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
+                <TextField
+                  select
                   {...getControls(formCattle, "sex")}
-                  label="Grouping"
+                  label="Sexo"
                   // name="category"
                 >
                   <MenuItem value={1}>MACHO</MenuItem>
                   <MenuItem value={2}>FÊMEA</MenuItem>
-                </Select>
+                </TextField>
               </FormControl>
               <TextField
                 label="Peso Aproximadamente em Kg"
@@ -126,7 +127,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 196, marginLeft:7,marginTop:8 }}
+                style={{ width: 196, marginLeft: 7, marginTop: 8 }}
               />
               <TextField
                 label="Data de Nascimento"
@@ -139,15 +140,16 @@ const CreateCattleFormPage = (): ReactElement => {
                 {...getControls(formCattle, "birthday")}
               />
               <FormControl sx={{ m: 1, minWidth: 341 }}>
-                <InputLabel htmlFor="type">Tipo</InputLabel>
-                <Select
+                {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
+                <TextField
+                  select
                   {...getControls(formCattle, "type")}
-                  label="Grouping"
+                  label="Sexo"
                   // name="type"
                 >
                   <MenuItem value={1}>Gado de Corte</MenuItem>
                   <MenuItem value={2}>Gado Leitero</MenuItem>
-                </Select>
+                </TextField>
               </FormControl>
 
               <TextField

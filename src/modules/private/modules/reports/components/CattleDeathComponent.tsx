@@ -46,6 +46,8 @@ import { ReportHelper } from "../helpers/ReportHelper";
 import { useNavigate } from "react-router-dom";
 import { getFireError } from "utils/HandleFirebaseError";
 import { Timestamp } from "firebase/firestore";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const CattleDeathComponent = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
@@ -134,7 +136,7 @@ const CattleDeathComponent = (): ReactElement => {
                   previousValues.totalGarrotesM + 1;
               } else if (currentValue.age >= 25 && currentValue.age <= 36) {
                 previousValues.totalNovilhosM =
-                  previousValues.totalBezerrosM + 1;
+                  previousValues.totalNovilhosM + 1;
               } else {
                 previousValues.totalOutrosM = previousValues.totalOutrosM + 1;
               }

@@ -91,7 +91,7 @@ const CattleInfoGado = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
-                Dados do animal &gt; {initialValues.name}
+                Dados do animalsssss &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-infoGado">
                 <abbr title="Imprimir">
@@ -141,16 +141,16 @@ const CattleInfoGado = (): ReactElement => {
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
                         <FormControl sx={{ minWidth: 180 }}>
-                          <InputLabel>Tipo</InputLabel>
-                          <Select
+                          {/* <InputLabel>Tipo</InputLabel> */}
+                          <TextField
                             disabled={true}
                             {...getControls(formik, "type")}
-                            label="Grouping"
+                            label="Tipo"
                             name="tipo"
                           >
                             <MenuItem value={1}>Gado de Corte</MenuItem>
                             <MenuItem value={2}>Gado Leitero</MenuItem>
-                          </Select>
+                          </TextField>
                         </FormControl>
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
@@ -178,16 +178,16 @@ const CattleInfoGado = (): ReactElement => {
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
                         <FormControl sx={{ minWidth: 120 }}>
-                          <InputLabel htmlFor="type">Sexos</InputLabel>
-                          <Select
+                          {/* <InputLabel htmlFor="type">Sexos</InputLabel> */}
+                          <TextField
                             disabled={true}
                             {...getControls(formik, "sex")}
-                            label="Grouping"
+                            label="Sexo"
                             name="type"
                           >
                             <MenuItem value={1}>Macho</MenuItem>
                             <MenuItem value={2}>Femea</MenuItem>
-                          </Select>
+                          </TextField>
                         </FormControl>
                       </Grid>
                     </FormControl>
