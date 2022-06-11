@@ -9,7 +9,8 @@ class Notification {
   name!: string;
 }
 type NotificationContext = {
-  getNotification: () => Promise<Array<Notification>>;
+  // getNotification: () => Promise<Array<Notification>>;
+  getNotification: () => Promise<void[]>;
 };
 const LoaderNotificationProvider = () => {
   const vaccineBrucelose = "Brucelose";
@@ -57,9 +58,10 @@ const LoaderNotificationProvider = () => {
   const vacineHelpers = VacineHelper();
   const loading = useGlobalLoading();
 
-  const [notification, setNotification] = useState<
-    Array<Notification> | undefined
-  >();
+  // const [notification, setNotification] = useState<
+  //   Array<Notification> | undefined
+  // >();
+  const [notification, setNotification] = useState<any[]>([]);
 
   const getNotification = async () => {
     if (notification === undefined || notification.length === 0) {

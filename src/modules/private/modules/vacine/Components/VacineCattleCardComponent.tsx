@@ -17,7 +17,6 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { getControls } from "utils/FormUtils";
 import { VacineHelper } from "../helpers/VacineHelpers";
 import { VacineModel } from "../models/VacineModel";
-import CattleViewVaccine from "../pages/cattleViewVaccine";
 
 const VaccineCattleCardComponent = (): ReactElement => {
   const { id, idVacine } = useParams();
