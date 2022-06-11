@@ -79,7 +79,7 @@ const LoaderNotificationProvider = () => {
                   vaccines = yearOfVaccine.year;
 
                 }
-
+                console.log("TESTE")
                 let result = [""];
                 var mesRaiva = 0;
                 result = vacinasObrigatorias.filter((x) =>vaccines != today.getFullYear() ||!vacines.map((vacines) => vacines.name).includes(x));
