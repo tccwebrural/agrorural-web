@@ -46,19 +46,15 @@ const Header = (props: any): ReactElement => {
     loadUserData();
   }, [auth.userState]);
 
-    const [notifications, setNotifications] = useState<any[]>([]);
     const notifyProvider = useNotification();
-    var [contador, setContador] =useState(0);
+    const [contador, setContador] =useState(0);
 
     useEffect(() => {
-       trackPromise(
       notifyProvider.getNotification().then((notify) => {
-        setNotifications(notify);
-          for(contador=0; contador <= notify.length; contador++){
-            setContador(contador)
+         for(var cont=0; cont <= notify.length; cont++){
+         setContador(cont)
           }
-        })
-       )
+        })   
     }, []);
     
   return (

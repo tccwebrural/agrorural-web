@@ -32,7 +32,7 @@ const LoaderNotificationProvider = () => {
     var aplicationDate = new Date(ano, mes, dia);
     var YearAplicationDate;
 
-    return YearAplicationDate = aplicationDate.getFullYear();
+    return (YearAplicationDate = aplicationDate.getFullYear());
   };
   const [cattles, setCattles] = useState<CattleModel[]>([]);
 
@@ -50,7 +50,6 @@ const LoaderNotificationProvider = () => {
   const vacineHelpers = VacineHelper();
   const { id } = useParams();
   const loading = useGlobalLoading();
-  console.log(id);
 
   const [notification, setNotification] = useState<
     Array<Notification> | undefined
@@ -67,9 +66,6 @@ const LoaderNotificationProvider = () => {
             age: getMonthFromDate(cattles[index].birthday),
             idCattle: cattles[index].id,
           };
-          console.log("Animal: " + cattles[index].name);
-
-          
 
           if (cattle.status != 3 && cattle.idCattle) {
             await vacineHelpers
@@ -81,42 +77,28 @@ const LoaderNotificationProvider = () => {
                     year: getFromDate(vacines[i].date_application),
                   };
                   vaccines = yearOfVaccine.year;
+
                 }
 
                 let result = [""];
-
-                result = vacinasObrigatorias.filter(
-                  (x) =>
-                    vaccines != today.getFullYear() ||
-                    !vacines.map((vacines) => vacines.name).includes(x)
-                );
+                var mesRaiva = 0;
+                result = vacinasObrigatorias.filter((x) =>vaccines != today.getFullYear() ||!vacines.map((vacines) => vacines.name).includes(x));
+                var mesAtual = 2;
 
                 for (let i = 0; i < result.length; i++) {
+                  if ( result[i] === vaccineBrucelose && cattle.sex === 2 &&cattle.age >= 3 && cattle.age <= 8) {
 
-                  if (result[i] === vaccineBrucelose) {
-                    if (
-                      cattle.sex === 2 &&
-                      cattle.age >= 3 &&
-                      cattle.age <= 8
-                    ) {
-                      const cattleAndVaccines = {
-                        animalName: cattles[index].name,
-                        animalId: cattle.identifier,
-                        animalSex: cattle.sex,
-                        vaccineName: vaccineBrucelose,
-                      };
-                      listToVaccine.push(cattleAndVaccines);
-                    }
-                  } else if (result[i] === vaccineFebreAftosa) {
-                    if (mesAtual === 6 && cattle.age < 24) {
-                      const cattleAndVaccines = {
-                        animalName: cattles[index].name,
-                        animalId: cattle.identifier,
-                        animalSex: cattle.sex,
-                        vaccineName: vaccineFebreAftosa,
-                      };
-                      listToVaccine.push(cattleAndVaccines);
-                    } else if (mesAtual === 11 && cattle.age >= 24) {
+                        const cattleAndVaccines = {
+                          animalName: cattles[index].name,
+                          animalId: cattle.identifier,
+                          animalSex: cattle.sex,
+                          vaccineName: vaccineBrucelose,
+                        };
+                        listToVaccine.push(cattleAndVaccines);
+ 
+                  } 
+                   else if (result[i] === vaccineFebreAftosa && mesAtual === 6 && cattle.age < 24) {
+                    
                       const cattleAndVaccines = {
                         animalName: cattles[index].name,
                         animalId: cattle.identifier,
@@ -125,7 +107,16 @@ const LoaderNotificationProvider = () => {
                       };
                       listToVaccine.push(cattleAndVaccines);
                     }
-                  } else if (result[i] === vaccineRaiva) {
+                   else if (mesAtual === 11 && cattle.age >= 24) {
+                      const cattleAndVaccines = {
+                        animalName: cattles[index].name,
+                        animalId: cattle.identifier,
+                        animalSex: cattle.sex,
+                        vaccineName: vaccineFebreAftosa,
+                      };
+                      listToVaccine.push(cattleAndVaccines);
+                    }
+                   else if (result[i] === vaccineRaiva) {
                     const cattleAndVaccines = {
                       animalName: cattles[index].name,
                       animalId: cattle.identifier,
@@ -133,7 +124,7 @@ const LoaderNotificationProvider = () => {
                       vaccineName: vaccineRaiva,
                     };
                     listToVaccine.push(cattleAndVaccines);
-                }
+                  }
                 }
               });
           }
@@ -145,12 +136,10 @@ const LoaderNotificationProvider = () => {
       });
     }
     return notification || [];
-   
   };
   return {
     getNotification,
   };
-
 };
 
 const NotificationContext = createContext<NotificationContext | {}>({});
