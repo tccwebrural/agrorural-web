@@ -17,3 +17,26 @@
 #linkHeader:focus {
   border-bottom: 4px solid var(--cor006);
 }
+
+#headerMin {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  #header {
+    display: none;
+  }
+
+  #headerMin {
+    box-shadow: 0px 0px 3px 3px rgba(236, 236, 236, 0.685);
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    top: 0%;
+    width: 100vw;
+    height: 65px;
+    margin-bottom: 5%;
+    background-color: white;
+    z-index: 1;
+  }
+}

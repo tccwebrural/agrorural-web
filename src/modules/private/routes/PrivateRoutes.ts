@@ -16,8 +16,8 @@ import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
 import DeclareForm from "../modules/reports/pages/DeclareCattle";
 import TesteFormik from "../modules/testes/TesteFormik";
 import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
-import CattleViewVaccine from "../modules/vacine/pages/CattleViewVaccine";
 import VaccineNotify from "../modules/notifications/components/VaccineNotify";
+import CattleViewVaccine from "../modules/vacine/pages/CattleViewVaccine";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "home",
