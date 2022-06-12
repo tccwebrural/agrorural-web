@@ -111,9 +111,9 @@ const MyCattle = (): ReactElement => {
                       margin:"auto"
                     }}
                   >
-                    <Grid item xs={2} sx={{ margin: "0.4%" }}>
+                    <Grid item xs={2} sx={{ margin: "0.4%",marginLeft:-3 }}>
                       <TextField
-                        style={{ width: 180,marginRight:8 }}
+                        style={{ width: 178,marginRight:8 }}
                         id="outlined-disabled"
                         label="Nome"
                         type="text"

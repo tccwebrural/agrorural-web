@@ -1,7 +1,7 @@
 #Block-Profile {
   width: 1000px;
   border-radius: 8px;
-  margin: 1%;
+  margin: 3%;
   box-shadow: 0px 0px 6px 2px var(--cor111);
   z-index: 1;
   background-color: var(--cor001);

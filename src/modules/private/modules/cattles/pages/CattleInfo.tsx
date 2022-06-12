@@ -110,7 +110,7 @@ const CattleInfoGado = (): ReactElement => {
                   <FormControl id="formularioAnimalView">
                     <Grid className="gridInput">
                       <TextField
-                        style={{ width: 200 }}
+                        style={{ width: 213 }}
                         id="outlined-disabled"
                         label="Nome"
                         type="text"

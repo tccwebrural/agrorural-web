@@ -78,7 +78,7 @@
   padding-top: 7px;
 }
 
-#btn-DeleteAnimal {
+#btn-DeleteAnimal { 
   padding-top: 7px;
 }
 
@@ -90,6 +90,7 @@
 #bloco-modal span {
   color: #33658a;
   font-size: 20px;
+  font-weight: bold;
 }
 
 #btn-modalCancel {

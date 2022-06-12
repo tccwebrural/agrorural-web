@@ -102,7 +102,7 @@ const CattleEditVaccine = (): ReactElement => {
               <div id="Block-AnimalData">
                 <form
                   onSubmit={formik.handleSubmit}
-                  style={{ width: 1030, marginLeft: -8 }}
+                  style={{ width: 1030, marginLeft: -2 }}
                 >
                   <Box
                     sx={{
