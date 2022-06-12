@@ -33,7 +33,7 @@ const HomePage = (): ReactElement => {
             <Button
               sx={{ color: "black", fontSize: "20px" }}
               id="btn-header"
-              href="#Home"
+              href="#home"
             >
               Home
             </Button>
