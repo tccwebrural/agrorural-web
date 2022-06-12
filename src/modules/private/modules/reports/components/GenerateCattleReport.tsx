@@ -299,7 +299,8 @@ const GenerateCattleReport = (): ReactElement => {
       body: [
         ...reports.map((el) => [
           // el.createdAt.toDate().getMonth(),
-          el.createdAt.toDate().toLocaleDateString(),
+          // el.createdAt.toDate().toLocaleDateString(),
+          el.createdAt.toDate().toLocaleString(),
           el.deathByOwnConsuption.bezerros.male,
           el.deathByOwnConsuption.desmamados.male,
           el.deathByOwnConsuption.garrotes.male,
@@ -866,20 +867,20 @@ const GenerateCattleReport = (): ReactElement => {
               <Grid
                 sx={{
                   marginTop: " -6% ",
-                  marginBottom:"15%",
+                  marginBottom: "15%",
                   borderRadius: "5px",
                   backgroundColor: "rgba(0, 128, 0, 0.795)",
                 }}
               >
-                <Button onClick={submitSave} style={{ color: "var(--cor001)" }} >
+                <Button onClick={submitSave} style={{ color: "var(--cor001)" }}>
                   Gerar Relatório
                 </Button>{" "}
               </Grid>
               <Grid
                 sx={{
                   marginTop: " -6% ",
-                  marginBottom:"15%",
-                  marginLeft:"1%",
+                  marginBottom: "15%",
+                  marginLeft: "1%",
                   borderRadius: "5px",
                   backgroundColor: "rgba(255, 0, 0, 0.849)",
                 }}

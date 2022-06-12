@@ -120,6 +120,7 @@ const CattleViewVaccine = (): ReactElement => {
                       <FormControl sx={{ minWidth: 221 }}>
                         {/* <InputLabel>Tipo</InputLabel> */}
                         <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "type")}
                           label="Tipo"
@@ -155,9 +156,10 @@ const CattleViewVaccine = (): ReactElement => {
                     <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 100 }}>
                         <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "sex")}
-                          label="Grouping"
+                          label="Sexo"
                           name="type"
                         >
                           <MenuItem value={1}>Macho</MenuItem>

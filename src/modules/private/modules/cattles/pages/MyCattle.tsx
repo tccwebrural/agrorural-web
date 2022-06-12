@@ -133,6 +133,7 @@ const MyCattle = (): ReactElement => {
                       <FormControl sx={{ minWidth: 221 }}>
                         {/* <InputLabel>Tipo</InputLabel> */}
                         <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "type")}
                           label="Tipo"
@@ -169,6 +170,7 @@ const MyCattle = (): ReactElement => {
                       <FormControl sx={{ minWidth: 100 }}>
                         {/* <InputLabel htmlFor="type">Sexo</InputLabel> */}
                         <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "sex")}
                           label="Sexo"

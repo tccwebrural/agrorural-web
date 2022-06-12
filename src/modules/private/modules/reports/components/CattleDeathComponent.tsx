@@ -419,19 +419,23 @@ const CattleDeathComponent = (): ReactElement => {
             </div>
             <div className="FieldMF-alt-Left">
               {" "}
-              {report.deathByOwnConsuption.outros.male}
+              {report.deathByOwnConsuption.outros.male +
+                report.deathByOwnConsuption.novilhos.male}
             </div>
             <div className="FieldMF-alt-Rigth">
               {" "}
-              {report.deathByOwnConsuption.outros.female}
+              {report.deathByOwnConsuption.outros.female +
+                report.deathByOwnConsuption.novilhos.female}
             </div>
             <div className="FieldMF-Down-left">
               {" "}
-              {report.deathByDiversousCases.outros.male}
+              {report.deathByDiversousCases.outros.male +
+                report.deathByDiversousCases.novilhos.male}
             </div>
             <div className="FieldMF-Down-Rigth">
               {" "}
-              {report.deathByDiversousCases.outros.female}
+              {report.deathByDiversousCases.outros.female +
+                report.deathByDiversousCases.novilhos.female}
             </div>
           </div>
         </div>
