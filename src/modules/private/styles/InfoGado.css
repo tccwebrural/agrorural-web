@@ -1,15 +1,13 @@
 #blocoGeral-infoGado {
-  position: absolute;
-  width: 1100px;
-  top: 15%;
+  width: 80%;
+  margin: 2% auto;
+  position: relative;
   border-radius: 8px;
   box-shadow: 0px 0px 6px 2px var(--cor111);
   background-color: var(--cor001);
-  padding-bottom: 5%;
 }
 
 #blocoTitulo-criacao-infoGado {
-  width: 72vw;
   display: flex;
   align-items: center;
   margin-top: 2%;
@@ -30,7 +28,7 @@
   background-color: var(--cor007);
   position: absolute;
   width: 80%;
-  height: 4px;
+  height: 3px;
   right: 0;
   margin-right: 5%;
 }
@@ -40,6 +38,12 @@
   position: absolute;
   right: 30px;
   bottom: -25px;
+}
+
+#formularioAnimalView {
+  display: flex;
+  flex-direction: row;
+  margin-left: 2%;
 }
 
 #blocoTitulo-vacina-infoGado {
@@ -64,7 +68,7 @@
   background-color: var(--cor007);
   position: absolute;
   width: 80%;
-  height: 4px;
+  height: 3px;
   right: 0;
   margin-right: 5%;
 }
@@ -103,6 +107,7 @@
   box-shadow: 1px 1px 5px 2px var(--cor033);
   border: 1px solid var(--cor033);
 }
+
 #cardNameInfoGado {
   width: 100%;
   margin: auto;
@@ -116,6 +121,63 @@
 #button {
   display: flex;
   justify-content: flex-end;
-  position: absolute;
+  position: relative;
   right: 3%;
+  bottom: 20px;
+}
+
+.gridInput {
+  margin: 0.4%;
+}
+
+#inputPeso {
+  width: 170px;
+}
+
+#inputDataNascimento {
+  width: 110px;
+}
+
+#inputQtdCria {
+  width: 100px;
+}
+
+#inputTipo {
+  width: 110px;
+}
+
+@media (max-width: 800px) {
+  #blocoGeral-infoGado {
+    margin-top: 12%;
+    padding-bottom: 20px;
+  }
+  #formularioAnimalView {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #button,
+  #icone-imprimir {
+    display: none;
+  }
+
+  .gridInput {
+    margin: 1%;
+  }
+
+  #inputPeso {
+    width: 100px;
+  }
+
+  #inputDataNascimento {
+    width: 150px;
+  }
+
+  #inputQtdCria {
+    width: 150px;
+  }
+
+  #inputTipo {
+    width: 151px;
+  }
 }

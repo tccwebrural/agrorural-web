@@ -99,41 +99,37 @@ const CattleViewVaccine = (): ReactElement => {
                     <Grid item xs={2} sx={{ margin: "0.4%" }}>
                       <TextField
                         style={{ width: 190 }}
-                        id="outlined-disabled"
                         label="Nome"
                         type="text"
                         disabled={true}
                         {...getControls(formik, "name")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "0.4%" }}>
+                    <Grid className="gridInputVaccine">
                       <TextField
-                        style={{ width: 180 }}
-                        id="outlined-disabled"
+                        id="inputPesoVaccine"
                         label="Peso"
                         type="number"
                         disabled={true}
                         {...getControls(formik, "weigth")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "0.4%" }}>
-                      <FormControl sx={{ minWidth: 221 }}>
-                        {/* <InputLabel>Tipo</InputLabel> */}
-                        <TextField
-                          select
+                    <Grid className="gridInputVaccine">
+                      <FormControl id="inputTipoVaccine">
+                        <InputLabel>Tipo</InputLabel>
+                        <Select
                           disabled={true}
                           {...getControls(formik, "type")}
                           label="Tipo"
                         >
                           <MenuItem value={1}>Gado de Cortes</MenuItem>
                           <MenuItem value={2}>Gado Leitero</MenuItem>
-                        </TextField>
+                        </Select>
                       </FormControl>
                     </Grid>
-                    <Grid sx={{ margin: "0.4%" }}>
+                    <Grid className="gridInputVaccine">
                       <TextField
-                        style={{ width: 180 }}
-                        id="outlined-disabled"
+                        id="inputDataNascimentoVaccine"
                         label="Data de Nascimento"
                         type="date"
                         disabled={true}
@@ -143,20 +139,19 @@ const CattleViewVaccine = (): ReactElement => {
                         }}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "0.4%" }}>
+                    <Grid className="gridInputVaccine">
                       <TextField
-                        style={{ width: 120 }}
-                        id="Qtd de Cria"
+                        id="inputQtdCriaVaccine"
                         label="Qtd de Cria"
                         type="number"
                         disabled={true}
                         {...getControls(formik, "qtyChildren")}
                       />
                     </Grid>
-                    <Grid sx={{ margin: "0.4%" }}>
-                      <FormControl sx={{ minWidth: 100 }}>
-                        <TextField
-                          select
+                    <Grid className="gridInputVaccine">
+                      <FormControl id="inputSexoVaccine">
+                        <InputLabel htmlFor="type">Sexo</InputLabel>
+                        <Select
                           disabled={true}
                           {...getControls(formik, "sex")}
                           label="Sexo"
@@ -164,7 +159,7 @@ const CattleViewVaccine = (): ReactElement => {
                         >
                           <MenuItem value={1}>Macho</MenuItem>
                           <MenuItem value={2}>Femea</MenuItem>
-                        </TextField>
+                        </Select>
                       </FormControl>
                     </Grid>
                   </FormControl>

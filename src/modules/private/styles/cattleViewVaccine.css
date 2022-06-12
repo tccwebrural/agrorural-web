@@ -56,7 +56,7 @@
   background-color: var(--cor007);
   position: absolute;
   width: 80%;
-  height: 4px;
+  height: 3px;
   right: 0;
   margin-right: 5%;
 }
@@ -107,6 +107,30 @@
   justify-content: center;
 }
 
+.gridInputVaccine {
+  margin: 0.4%;
+}
+
+#inputPesoVaccine {
+  width: 170px;
+}
+
+#inputDataNascimentoVaccine {
+  width: 110px;
+}
+
+#inputQtdCriaVaccine {
+  width: 100px;
+}
+
+#inputTipoVaccine {
+  width: 180px;
+}
+
+#inputSexoVaccine {
+  width: 110px;
+}
+
 @media (max-width: 800px) {
   #blocoGeral-viewCatlle {
     margin-top: 15%;
@@ -126,5 +150,25 @@
 
   #button-viewCatlle {
     display: none;
+  }
+
+  .gridInputVaccine {
+    margin: 0.6%;
+  }
+
+  #inputDataNascimentoVaccine {
+    width: 160px;
+  }
+
+  #inputQtdCriaVaccine {
+    width: 170px;
+  }
+
+  #inputTipoVaccine {
+    width: 180px;
+  }
+
+  #inputSexoVaccine {
+    width: 180px;
   }
 }
