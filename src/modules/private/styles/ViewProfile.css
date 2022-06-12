@@ -1,8 +1,7 @@
 #Block-Profile {
-  width: 1100px;
-  margin: 2%;
-  max-height: 95%;
+  width: 1000px;
   border-radius: 8px;
+  margin: 1%;
   box-shadow: 0px 0px 6px 2px var(--cor111);
   z-index: 1;
   background-color: var(--cor001);
@@ -21,12 +20,10 @@
   max-height: 80%;
   padding: 3% 3% 3% 3%;
   margin: auto;
-  border: none;
   box-shadow: 0px 1px 5px 0px var(--cor033);
   border-radius: 8px;
   background-color: var(--cor001);
   position: relative;
-  z-index: 1000;
   box-sizing: border-box;
 }
 
@@ -96,7 +93,6 @@
   margin-top: -320px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-
 }
 
 #logoPequena-EditarPerfil {

@@ -64,7 +64,7 @@ const VaccineCattleCardComponent = (): ReactElement => {
         {(formik) => (
           <Box>
             <FormControl id="formularioDadosVacina">
-              <Grid item xs={2} sx={{ margin: "0.4%", marginLeft: 2 }}>
+              <Grid item xs={2} sx={{ margin: "0.4%" }}>
                 <FormControl>
                   <InputLabel>Tipo</InputLabel>
                   <Select
@@ -80,7 +80,7 @@ const VaccineCattleCardComponent = (): ReactElement => {
                   </Select>
                 </FormControl>
               </Grid>
-              <Grid sx={{ margin: "0.4%" }}>
+              <Grid className="gridInputVaccine">
                 <TextField
                   style={{ width: 170 }}
                   id="outlined-disabled"
@@ -90,9 +90,9 @@ const VaccineCattleCardComponent = (): ReactElement => {
                   type="number"
                 />
               </Grid>
-              <Grid sx={{ margin: "0.4%" }}>
+              <Grid className="gridInputVaccine">
                 <TextField
-                  style={{ width: 210 }}
+                  style={{ width: 170 }}
                   id="outlined-disabled"
                   label="Fabricante"
                   disabled={true}
@@ -100,7 +100,7 @@ const VaccineCattleCardComponent = (): ReactElement => {
                   type="text"
                 />
               </Grid>
-              <Grid sx={{ margin: "0.4%" }}>
+              <Grid className="gridInputVaccine">
                 <TextField
                   style={{ width: 200 }}
                   id="outlined-disabled"
@@ -113,7 +113,7 @@ const VaccineCattleCardComponent = (): ReactElement => {
                   }}
                 />
               </Grid>
-              <Grid sx={{ margin: "0.4%" }}>
+              <Grid className="gridInputVaccine">
                 <TextField
                   style={{ width: 200 }}
                   id="outlined-disabled"

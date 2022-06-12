@@ -29,7 +29,7 @@
   background-color: var(--cor007);
   position: absolute;
   width: 80%;
-  height: 4px;
+  height: 3px;
   right: 0;
   margin-right: 5%;
 }
@@ -56,7 +56,7 @@
   background-color: var(--cor007);
   position: absolute;
   width: 80%;
-  height: 4px;
+  height: 3px;
   right: 0;
   margin-right: 5%;
 }
@@ -98,9 +98,9 @@ abbr {
 
 #icon-vaccine-myCatlle {
   background-color: var(--cor001);
-  position: relative;
-  left: 720px;
-  bottom: 25px;
+  position: absolute;
+  right: 30px;
+  bottom: -25px;
 }
 
 #btAdd-Vaccine-myCatlle {
