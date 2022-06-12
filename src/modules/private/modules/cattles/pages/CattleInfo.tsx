@@ -91,7 +91,7 @@ const CattleInfoGado = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-infoGado">
               <h2 id="blocoTituloTxt-criacao-infoGado">
-                Dados do animalsssss &gt; {initialValues.name}
+                Dados do animal &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-infoGado">
                 <abbr title="Imprimir">
@@ -116,7 +116,7 @@ const CattleInfoGado = (): ReactElement => {
                         flexDirection: "row",
                         justifyContent: "center",
                         width: 1005,
-                        marginLeft: 5,
+                        marginLeft: 3,
                       }}
                     >
                       <Grid item xs={2} sx={{ margin: "0.4%" }}>
@@ -131,7 +131,7 @@ const CattleInfoGado = (): ReactElement => {
                       </Grid>
                       <Grid sx={{ margin: "0.4%" }}>
                         <TextField
-                          style={{ width: 190 }}
+                          style={{ width: 175 }}
                           id="outlined-disabled"
                           label="Peso"
                           type="number"
