@@ -145,9 +145,10 @@ const UpdateCattle = (): ReactElement => {
                     {...getControls(formik, "identifier")}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 250, margin: "-0.1%" }}>
+                  <FormControl >
                     {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
                     <TextField
+                     style={{ width: 230, margin: "2.6%  3%" }}
                       select
                       {...getControls(formik, "sex")}
                       label="Sexo"
@@ -158,7 +159,7 @@ const UpdateCattle = (): ReactElement => {
                     </TextField>
                   </FormControl>
                   <TextField
-                    style={{ width: 210, margin: "0.6%" }}
+                    style={{ width: 227, marginLeft: "2%", marginTop:6 }}
                     label="Peso"
                     {...getControls(formik, "weigth")}
                     InputLabelProps={{
@@ -168,7 +169,7 @@ const UpdateCattle = (): ReactElement => {
                   />
 
                   <TextField
-                    style={{ width: 340, margin: " 0.6%" }}
+                    style={{ width: 347, marginTop:6,marginLeft:6}}
                     label="Data de Nascimento"
                     type="date"
                     {...getControls(formik, "birthday")}
@@ -182,13 +183,13 @@ const UpdateCattle = (): ReactElement => {
                     // }}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 240, margin: "- 0.6%" }}>
+                  <FormControl sx={{ m: 1, minWidth: 290, margin: "- 0.6%",marginLeft: "0.4%", marginRight:"1%",marginTop:0.2  }}>
                     {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
                     <TextField
                       select
                       {...getControls(formik, "type")}
                       label="Tipo"
-
+                      style={{ width: 333, margin: "2% 0.6%", marginTop:4}}
                       // name="type"
                     >
                       <MenuItem value={1}>Gado de Corte</MenuItem>
@@ -203,7 +204,7 @@ const UpdateCattle = (): ReactElement => {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    style={{ width: 320, margin: " 0.6%" }}
+                    style={{ width: 320, marginTop:5.9, marginLeft:4}}
                   />
                   <div id="Block-CowImage-EditAnimalData">
                     <img
