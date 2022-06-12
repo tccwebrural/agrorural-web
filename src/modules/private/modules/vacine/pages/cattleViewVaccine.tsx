@@ -20,7 +20,7 @@ import { BsPrinter } from "react-icons/bs";
 import { MdCoronavirus } from "react-icons/md";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getControls } from "utils/FormUtils";
-import "../../../styles/cattleViewVaccine.css";
+import "../../../styles/CattleViewVaccine.css";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { CattleModel } from "../../cattles/models/CattleModel";
 import VaccineCattleCardComponent from "../Components/VacineCattleCardComponent";
