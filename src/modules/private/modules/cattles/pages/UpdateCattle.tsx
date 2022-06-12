@@ -145,19 +145,21 @@ const UpdateCattle = (): ReactElement => {
                     {...getControls(formik, "identifier")}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 250, margin: "0.6%" }}>
-                    <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
-                    <Select
+                  <FormControl >
+                    {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
+                    <TextField
+                     style={{ width: 230, margin: "2.6%  3%" }}
+                      select
                       {...getControls(formik, "sex")}
-                      label="Grouping"
+                      label="Sexo"
                       // name="category"
                     >
                       <MenuItem value={1}>MACHO</MenuItem>
                       <MenuItem value={2}>FÊMEA</MenuItem>
-                    </Select>
+                    </TextField>
                   </FormControl>
                   <TextField
-                    style={{ width: 210, margin: "0.6%" }}
+                    style={{ width: 227, marginLeft: "2%", marginTop:6 }}
                     label="Peso"
                     {...getControls(formik, "weigth")}
                     InputLabelProps={{
@@ -167,29 +169,32 @@ const UpdateCattle = (): ReactElement => {
                   />
 
                   <TextField
-                    style={{ width: 340, margin: " 0.6%" }}
+                    style={{ width: 347, marginTop:6,marginLeft:6}}
                     label="Data de Nascimento"
                     type="date"
                     {...getControls(formik, "birthday")}
                     InputLabelProps={{
                       shrink: true,
                     }}
+
                     // inputProps={{
                     //   min: "2000-01-01",
                     //   max: `${today.toISOString()}`,
                     // }}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 341, margin: " 0.6%" }}>
-                    <InputLabel htmlFor="type">Tipo</InputLabel>
-                    <Select
+                  <FormControl sx={{ m: 1, minWidth: 290, margin: "- 0.6%",marginLeft: "0.4%", marginRight:"1%",marginTop:0.2  }}>
+                    {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
+                    <TextField
+                      select
                       {...getControls(formik, "type")}
-                      label="Grouping"
+                      label="Tipo"
+                      style={{ width: 333, margin: "2% 0.6%", marginTop:4}}
                       // name="type"
                     >
                       <MenuItem value={1}>Gado de Corte</MenuItem>
                       <MenuItem value={2}>Gado Leitero</MenuItem>
-                    </Select>
+                    </TextField>
                   </FormControl>
                   <TextField
                     // disabled
@@ -199,7 +204,7 @@ const UpdateCattle = (): ReactElement => {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    style={{ width: 320, margin: " 0.6%" }}
+                    style={{ width: 320, marginTop:5.9, marginLeft:4}}
                   />
                   <div id="Block-CowImage-EditAnimalData">
                     <img

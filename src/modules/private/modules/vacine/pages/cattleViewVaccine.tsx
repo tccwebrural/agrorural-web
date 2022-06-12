@@ -46,7 +46,6 @@ const CattleViewVaccine = (): ReactElement => {
   const cattleHelper = CattleHelper();
   const loadingHelper = useGlobalLoading();
   const navigate = useNavigate();
-  console.log("id da pag" + id);
 
   useEffect(() => {
     loadingHelper.startLoading();
@@ -79,7 +78,7 @@ const CattleViewVaccine = (): ReactElement => {
           <section>
             <div id="blocoTitulo-criacao-viewCatlle">
               <h2 id="blocoTituloTxt-criacao-viewCatlle">
-                Dados do animal &gt; {initialValues.name}
+                Dados do animals &gt; {initialValues.name}
               </h2>
               <span id="blocoTituloLine-criacao-viewCatlle">
                 <abbr title="Imprimir">
@@ -121,8 +120,7 @@ const CattleViewVaccine = (): ReactElement => {
                         <Select
                           disabled={true}
                           {...getControls(formik, "type")}
-                          label="Grouping"
-                          name="tipo"
+                          label="Tipo"
                         >
                           <MenuItem value={1}>Gado de Cortes</MenuItem>
                           <MenuItem value={2}>Gado Leitero</MenuItem>
@@ -156,7 +154,7 @@ const CattleViewVaccine = (): ReactElement => {
                         <Select
                           disabled={true}
                           {...getControls(formik, "sex")}
-                          label="Grouping"
+                          label="Sexo"
                           name="type"
                         >
                           <MenuItem value={1}>Macho</MenuItem>

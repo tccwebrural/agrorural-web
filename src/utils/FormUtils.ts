@@ -13,6 +13,8 @@ const getControls = (formik: any, field: string) => {
     onChange: formik.handleChange,
     error: formik.touched[field] && Boolean(formik.errors[field]),
     helperText: formik.touched[field] && formik.errors[field],
+
+    // helpertext: formik.touched[field] && formik.errors[field],
   };
 };
 

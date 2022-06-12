@@ -51,9 +51,16 @@ const PrintButtonComponent = (): ReactElement => {
       //   [reports.map((reports, i) => reports.rebanhoAtual.bezerros.male)],
 
       // ],
+      theme: "grid",
       bodyStyles: {
-        valign: "top",
+        valign: "middle",
+        halign: "center",
       },
+      headStyles: {
+        valign: "middle",
+        halign: "center",
+      },
+
       styles: {
         cellWidth: "wrap",
 
@@ -67,7 +74,8 @@ const PrintButtonComponent = (): ReactElement => {
 
       body: [
         ...reports.map((el) => [
-          el.createdAt.toDate().getMonth(),
+          el.createdAt.toDate().toLocaleDateString(),
+          // (el.createdAt.toDate().getMonth() + 1),
 
           el.rebanhoAtual.bezerros.male + el.rebanhoAtual.bezerros.female,
           el.rebanhoAtual.desmamados.male + el.rebanhoAtual.desmamados.female,

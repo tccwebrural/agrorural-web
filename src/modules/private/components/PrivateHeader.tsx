@@ -46,17 +46,17 @@ const Header = (props: any): ReactElement => {
     loadUserData();
   }, [auth.userState]);
 
-    const notifyProvider = useNotification();
-    const [contador, setContador] =useState(0);
+  const notifyProvider = useNotification();
+  const [contador, setContador] = useState(0);
 
-    useEffect(() => {
-      notifyProvider.getNotification().then((notify) => {
-         for(var cont=0; cont <= notify.length; cont++){
-         setContador(cont)
-          }
-        })   
-    }, []);
-    
+  useEffect(() => {
+    notifyProvider.getNotification().then((notify) => {
+      for (var cont = 0; cont <= notify.length; cont++) {
+        setContador(cont);
+      }
+    });
+  }, []);
+
   return (
     <>
       <Box id="headerMin">
@@ -163,7 +163,6 @@ const Header = (props: any): ReactElement => {
                 variant="button"
                 sx={{ fontSize: "large", marginLeft: "2rem" }}
               >
-
                 <Badge badgeContent={contador} color="error" max={99}>
                   Notificações
                 </Badge>
@@ -185,7 +184,6 @@ const Header = (props: any): ReactElement => {
     </>
   );
 };
-
 export default Header;
 /**
  *  <Fragment>

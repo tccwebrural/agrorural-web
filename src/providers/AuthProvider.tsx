@@ -99,6 +99,7 @@ const UserAuthProvider = (): AuthContext => {
       );
       const user = res.user;
       await registerUser(user.uid, formData);
+
       toast.success(USUARIO_CADASTRADO_COM_SUCESSO);
     } catch (err: any) {
       toast.error(getFireError(err));
@@ -216,6 +217,16 @@ const UserAuthProvider = (): AuthContext => {
 
     // Busca o usuário com a mesma referência de criação que é utilizado acima
     const userDoc = await getDoc(userRef);
+    // TODO CODIGO DO CPF AQUI
+    const getCpf = await getUserByCpf(formData.cpf);
+    for (let index = 0; index < getCpf.length; index++) {
+      const item = getCpf[index];
+      if (item.id === formData.cpf) {
+        getCpf.splice(index, 1);
+      }
+    }
+
+    // fim do codigo do cpf
 
     // Caso exista informações no doc encontrado, é retornado uma mensagem de erro informado que o usuário já está cadastrado;
     if (userDoc.exists()) {
@@ -290,7 +301,7 @@ const UserAuthProvider = (): AuthContext => {
 
   //   await updateDoc(userRef, { active: true });
   // };
-  const getUserByCpf = async (cpf: boolean) => {
+  const getUserByCpf = async (cpf: string) => {
     const user = await getUser();
     let cattles = new Array<UserModel>();
     if (cpf) {

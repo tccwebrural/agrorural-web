@@ -94,7 +94,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 310 }}
+                style={{ width: 285, marginRight:  5}}
               />
               <TextField
                 // disabled
@@ -106,18 +106,20 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 219 }}
+                style={{ width: 250,marginRight:  5 }}
               />
               <FormControl sx={{ m: 1, minWidth: 250 }}>
-                <InputLabel htmlFor="grouped-select">Sexo</InputLabel>
-                <Select
+                {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
+                <TextField
+                  select
                   {...getControls(formCattle, "sex")}
-                  label="Grouping"
+                  label="Sexo"
                   // name="category"
+                  style={{ width: 244, margin:"0%",marginRight:  11}}
                 >
                   <MenuItem value={1}>MACHO</MenuItem>
                   <MenuItem value={2}>FÊMEA</MenuItem>
-                </Select>
+                </TextField>
               </FormControl>
               <TextField
                 label="Peso Aproximadamente em Kg"
@@ -126,7 +128,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 196, marginLeft:7,marginTop:8 }}
+                style={{ width: 210, marginLeft: -7, marginTop: 8}}
               />
               <TextField
                 label="Data de Nascimento"
@@ -138,16 +140,18 @@ const CreateCattleFormPage = (): ReactElement => {
                 // name="birthday"
                 {...getControls(formCattle, "birthday")}
               />
-              <FormControl sx={{ m: 1, minWidth: 341 }}>
-                <InputLabel htmlFor="type">Tipo</InputLabel>
-                <Select
+              <FormControl sx={{ m: 1, minWidth: 341,marginLeft:0.7 }}>
+                {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
+                <TextField
+                  select
                   {...getControls(formCattle, "type")}
-                  label="Grouping"
+                  label="Tipo"
                   // name="type"
+                  style={{ width: 350,margin:"0%",marginRight: -2}}
                 >
                   <MenuItem value={1}>Gado de Corte</MenuItem>
                   <MenuItem value={2}>Gado Leitero</MenuItem>
-                </Select>
+                </TextField>
               </FormControl>
 
               <TextField
