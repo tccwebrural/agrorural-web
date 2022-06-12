@@ -92,11 +92,16 @@ const UserAuthProvider = (): AuthContext => {
    */
   const signUp = async (formData: RegisterUserModel) => {
     try {
+      // if (await hasUserWithSameCpf(formData.cpf)) {
+      //   throw "Existe um usuario com o mesmo CPF";
+      //   // toast.error("existe um cpf");
+      // }
       const res = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
+
       const user = res.user;
       await registerUser(user.uid, formData);
 
@@ -218,13 +223,13 @@ const UserAuthProvider = (): AuthContext => {
     // Busca o usuário com a mesma referência de criação que é utilizado acima
     const userDoc = await getDoc(userRef);
     // TODO CODIGO DO CPF AQUI
-    const getCpf = await getUserByCpf(formData.cpf);
-    for (let index = 0; index < getCpf.length; index++) {
-      const item = getCpf[index];
-      if (item.id === formData.cpf) {
-        getCpf.splice(index, 1);
-      }
-    }
+    // const getCpf = await getUserByCpf(formData.cpf);
+    // for (let index = 0; index < getCpf.length; index++) {
+    //   const item = getCpf[index];
+    //   if (item.id === formData.cpf) {
+    //     getCpf.splice(index, 1);
+    //   }
+    // }
 
     // fim do codigo do cpf
 
@@ -301,27 +306,13 @@ const UserAuthProvider = (): AuthContext => {
 
   //   await updateDoc(userRef, { active: true });
   // };
-  const getUserByCpf = async (cpf: string) => {
-    const user = await getUser();
-    let cattles = new Array<UserModel>();
-    if (cpf) {
-      const cattlesCollectionRef = collection(
-        firestore,
-        COLLECTION_USERS,
-        user.id
-      );
+  const hasUserWithSameCpf = async (cpf: string) => {
+    const userCollectionRef = collection(firestore, COLLECTION_USERS);
 
-      const whereByIdentfier = query(
-        cattlesCollectionRef,
-        where("cpf", "==", cpf)
-      );
-      const response = await getDocs(whereByIdentfier);
-      cattles = response.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() } as UserModel;
-      });
-    }
+    const whereByCpf = query(userCollectionRef, where("cpf", "==", cpf));
 
-    return cattles;
+    // return !(await getDocs(whereByCpf)).empty;
+    return !(await getDocs(whereByCpf)).empty;
   };
 
   const updateUserId = async (formData: PerfilModelUser) => {

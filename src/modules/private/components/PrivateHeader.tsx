@@ -47,14 +47,9 @@ const Header = (props: any): ReactElement => {
   }, [auth.userState]);
 
   const notifyProvider = useNotification();
-  const [contador, setContador] = useState(0);
 
   useEffect(() => {
-    notifyProvider.getNotification().then((notify) => {
-      for (var cont = 0; cont <= notify.length; cont++) {
-        setContador(cont);
-      }
-    });
+    notifyProvider.getNotification().then((_) => {});
   }, []);
 
   return (
@@ -163,7 +158,11 @@ const Header = (props: any): ReactElement => {
                 variant="button"
                 sx={{ fontSize: "large", marginLeft: "2rem" }}
               >
-                <Badge badgeContent={contador} color="error" max={99}>
+                <Badge
+                  badgeContent={notifyProvider.getQtyNotification()}
+                  color="error"
+                  max={99}
+                >
                   Notificações
                 </Badge>
               </Link>

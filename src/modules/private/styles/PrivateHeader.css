@@ -17,7 +17,9 @@
 #linkHeader:focus {
   border-bottom: 4px solid var(--cor006);
 }
-
+.active {
+  border-bottom: 4px solid var(--cor006);
+}
 #headerMin {
   display: none;
 }

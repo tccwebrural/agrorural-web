@@ -35,6 +35,7 @@ import {
   LEPTOSPIROSE,
 } from "../../../../../constants";
 import bezerro from "../../../../../assets/bezerro.png";
+import { useNotification } from "providers/NotificationProvider";
 const VaccineFormPage = (): ReactElement => {
   const { id } = useParams();
 
@@ -49,6 +50,7 @@ const VaccineFormPage = (): ReactElement => {
   const navigate = useNavigate();
 
   const vacineHelper = VacineHelper();
+  const notifyProvider = useNotification();
 
   const submitForm = async (vacine: VacineModel) => {
     if (id) {
@@ -57,6 +59,7 @@ const VaccineFormPage = (): ReactElement => {
         .then(() =>
           //toast sucess
           {
+            notifyProvider.refreshNotifications();
             navigate("/private/cattles");
             // navigate(`private/cattle/${id}/Vaccine`);
           }

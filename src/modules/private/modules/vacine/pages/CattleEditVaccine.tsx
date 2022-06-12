@@ -30,6 +30,7 @@ import bezerro from "../../../../../assets/bezerro.png";
 import { FEBRE_AFTOSA } from "../../../../../constants";
 import { BRUCELOSE } from "../../../../../constants";
 import { RAIVA } from "../../../../../constants";
+import { useNotification } from "providers/NotificationProvider";
 
 const CattleEditVaccine = (): ReactElement => {
   function UpdateVaccineData() {
@@ -49,6 +50,7 @@ const CattleEditVaccine = (): ReactElement => {
   const navigate = useNavigate();
   const { id } = useParams();
   const { idVacine } = useParams();
+  const notifyProvider = useNotification();
 
   useEffect(() => {
     if (id && idVacine) {
@@ -67,10 +69,10 @@ const CattleEditVaccine = (): ReactElement => {
 
   const submitForm = (vacine: VacineModel) => {
     if (id) {
-      vacineHelpers.updateVacineId(vacine, id).then(() =>
-        //toast sucess
-        navigate(`/private/cattle/${id}/Vaccine`)
-      );
+      vacineHelpers.updateVacineId(vacine, id).then(() => {
+        notifyProvider.refreshNotifications();
+        navigate(`/private/cattle/${id}/Vaccine`);
+      });
     }
   };
   return (

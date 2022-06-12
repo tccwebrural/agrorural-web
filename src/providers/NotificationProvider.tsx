@@ -1,18 +1,27 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
 import { CattleHelper } from "modules/private/modules/cattles/helpers/CattleHelper";
 import { VacineHelper } from "modules/private/modules/vacine/helpers/VacineHelpers";
-import { useParams } from "react-router-dom";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { useGlobalLoading } from "./GlobalLoadingProvider";
-import { CattleModel } from "modules/private/modules/cattles/models/CattleModel";
 
-class Notification {
-  name!: string;
-}
-type NotificationContext = {
-  // getNotification: () => Promise<Array<Notification>>;
-  getNotification: () => Promise<void[]>;
+type NotificationType = {
+  animalName: string;
+  vaccineName: string;
+  animalId: string;
+  animalSex: number;
+  id: string;
 };
+type NotificationContext = {
+  getNotification: () => Promise<NotificationType[]>;
+  refreshNotifications: () => {};
+  getQtyNotification: () => {};
+};
+
 const LoaderNotificationProvider = () => {
+  const vacineHelpers = VacineHelper();
+  const cattleHelper = CattleHelper();
+  const [qtyNotification, setQtyNotification] = useState<number>(0);
+  const [notification, setNotification] = useState<any[]>();
+
   const vaccineBrucelose = "Brucelose";
   const vaccineFebreAftosa = "Febre aftosa";
   const vaccineRaiva = "Raiva";
@@ -42,8 +51,6 @@ const LoaderNotificationProvider = () => {
 
     return aplicationDate;
   };
-  const [cattles, setCattles] = useState<CattleModel[]>([]);
-
   const getMonthFromDate = (date: string) => {
     var birthDay = new Date(date);
 
@@ -54,18 +61,11 @@ const LoaderNotificationProvider = () => {
 
     return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
   };
-  const cattlehelpers = CattleHelper();
-  const vacineHelpers = VacineHelper();
-  const loading = useGlobalLoading();
-
-  // const [notification, setNotification] = useState<
-  //   Array<Notification> | undefined
-  // >();
-  const [notification, setNotification] = useState<any[]>([]);
-
-  const getNotification = async () => {
-    if (notification === undefined || notification.length === 0) {
-      await cattlehelpers.getAllCattles().then(async (cattles) => {
+  // TODO: JS-DOC
+  const getAllVacines = async () => {
+    const notifications = await cattleHelper
+      .getAllCattles()
+      .then(async (cattles) => {
         const listToVaccine: any[] = [];
 
         for (let index = 0; index < cattles.length; index++) {
@@ -118,7 +118,7 @@ const LoaderNotificationProvider = () => {
                   diaDoseReforco === today.getUTCDate()
                 ) {
                   const cattleAndVaccines = {
-                    animalName: cattles[index].name,
+                    animalName: cattle.name,
                     animalId: cattle.identifier,
                     animalSex: cattle.sex,
                     vaccineName: vaccineRaiva,
@@ -126,62 +126,63 @@ const LoaderNotificationProvider = () => {
                   listToVaccine.push(cattleAndVaccines);
                 }
                 for (let i = 0; i < result.length; i++) {
+                  const cattleAndVaccines = {
+                    animalName: cattle.name,
+                    animalId: cattle.identifier,
+                    animalSex: cattle.sex,
+                    vaccineName: result[i],
+                  };
                   if (
                     result[i] === vaccineBrucelose &&
                     cattle.sex === 2 &&
                     cattle.age >= 3 &&
                     cattle.age <= 8
                   ) {
-                    const cattleAndVaccines = {
-                      animalName: cattles[index].name,
-                      animalId: cattle.identifier,
-                      animalSex: cattle.sex,
-                      vaccineName: vaccineBrucelose,
-                    };
                     listToVaccine.push(cattleAndVaccines);
                   } else if (
                     result[i] === vaccineFebreAftosa &&
                     mesAtual === 6 &&
                     cattle.age < 24
                   ) {
-                    const cattleAndVaccines = {
-                      animalName: cattles[index].name,
-                      animalId: cattle.identifier,
-                      animalSex: cattle.sex,
-                      vaccineName: vaccineFebreAftosa,
-                    };
                     listToVaccine.push(cattleAndVaccines);
                   } else if (mesAtual === 11 && cattle.age >= 24) {
-                    const cattleAndVaccines = {
-                      animalName: cattles[index].name,
-                      animalId: cattle.identifier,
-                      animalSex: cattle.sex,
-                      vaccineName: vaccineFebreAftosa,
-                    };
                     listToVaccine.push(cattleAndVaccines);
                   } else if (result[i] === vaccineRaiva) {
-                    const cattleAndVaccines = {
-                      animalName: cattles[index].name,
-                      animalId: cattle.identifier,
-                      animalSex: cattle.sex,
-                      vaccineName: vaccineRaiva,
-                    };
                     listToVaccine.push(cattleAndVaccines);
                   }
                 }
               });
           }
-
-          setCattles(cattles);
-          setNotification(listToVaccine);
-          loading.stopLoading();
         }
+        return listToVaccine;
       });
+    setNotification(notifications);
+    setQtyNotification(notifications.length);
+    return notifications;
+  };
+  // TODO: JS-DOC
+  const getNotification = async () => {
+    if (notification === undefined || notification.length === 0) {
+      const notifications = await getAllVacines();
+      return notifications;
     }
     return notification || [];
   };
+  // TODO: JS-DOC
+  /**
+   * Método responsável por contar as notificações;
+   *
+   * @method getQtyNotification - Quantidade de notificaçoes ;
+
+   */
+  const getQtyNotification = () => {
+    return qtyNotification;
+  };
+
   return {
     getNotification,
+    refreshNotifications: () => getAllVacines(),
+    getQtyNotification,
   };
 };
 

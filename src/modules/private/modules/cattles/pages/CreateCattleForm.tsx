@@ -1,43 +1,36 @@
 import {
   Box,
+  Button,
   FormControl,
   Grid,
-  InputLabel,
-  Select,
-  Typography,
   MenuItem,
-  TextField,
   Stack,
-  Button,
-  Paper,
-  styled,
+  TextField,
 } from "@mui/material";
 
-import { DocumentReference, Timestamp } from "firebase/firestore";
-import React, { ReactElement, useState } from "react";
+import { ReactElement } from "react";
+import bezerro from "../../../../../assets/bezerro.png";
+import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
 import { CattleHelper } from "../helpers/CattleHelper";
 import { CattleModel } from "../models/CattleModel";
-import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andando.png";
-import bezerro from "../../../../../assets/bezerro.png";
 
-import { getControls } from "../../../../../utils/FormUtils";
 import toast from "react-hot-toast";
+import { getControls } from "../../../../../utils/FormUtils";
 
-import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { TodayTwoTone } from "@mui/icons-material";
-import { object } from "yup/lib/locale";
 import { CattleValidatorSchema } from "modules/private/modules/cattles/validators/CattleValidatorSchema";
+import { Link, useNavigate } from "react-router-dom";
 import { getFireError } from "utils/HandleFirebaseError";
-import { ReportHelper } from "../../reports/helpers/ReportHelper";
 
 import "../../../styles/CattleForm.css";
 import "../../../styles/style.css";
+import { useNotification } from "providers/NotificationProvider";
 
 const CreateCattleFormPage = (): ReactElement => {
   const cattlehelpers = CattleHelper();
 
   const navigate = useNavigate();
+  const notifyProvider = useNotification();
 
   const formCattle = useFormik({
     initialValues: {
@@ -56,10 +49,10 @@ const CreateCattleFormPage = (): ReactElement => {
       cattlehelpers
         .createCattle(formValue)
         .then(() => {
+          notifyProvider.refreshNotifications();
           navigate("/private/cattles");
           toast.success(`Animal cadastrado com sucesso!`);
         })
-
         .catch((err) => {
           console.error(err);
           toast.error(getFireError(err));
@@ -94,7 +87,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 285, marginRight:  5}}
+                style={{ width: 285, marginRight: 5 }}
               />
               <TextField
                 // disabled
@@ -106,7 +99,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 250,marginRight:  5 }}
+                style={{ width: 250, marginRight: 5 }}
               />
               <FormControl sx={{ m: 1, minWidth: 250 }}>
                 {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
@@ -115,7 +108,7 @@ const CreateCattleFormPage = (): ReactElement => {
                   {...getControls(formCattle, "sex")}
                   label="Sexo"
                   // name="category"
-                  style={{ width: 244, margin:"0%",marginRight:  11}}
+                  style={{ width: 244, margin: "0%", marginRight: 11 }}
                 >
                   <MenuItem value={1}>MACHO</MenuItem>
                   <MenuItem value={2}>FÊMEA</MenuItem>
@@ -128,7 +121,7 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                style={{ width: 210, marginLeft: -7, marginTop: 8}}
+                style={{ width: 210, marginLeft: -7, marginTop: 8 }}
               />
               <TextField
                 label="Data de Nascimento"
@@ -140,14 +133,14 @@ const CreateCattleFormPage = (): ReactElement => {
                 // name="birthday"
                 {...getControls(formCattle, "birthday")}
               />
-              <FormControl sx={{ m: 1, minWidth: 341,marginLeft:0.7 }}>
+              <FormControl sx={{ m: 1, minWidth: 341, marginLeft: 0.7 }}>
                 {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
                 <TextField
                   select
                   {...getControls(formCattle, "type")}
                   label="Tipo"
                   // name="type"
-                  style={{ width: 350,margin:"0%",marginRight: -2}}
+                  style={{ width: 350, margin: "0%", marginRight: -2 }}
                 >
                   <MenuItem value={1}>Gado de Corte</MenuItem>
                   <MenuItem value={2}>Gado Leitero</MenuItem>
