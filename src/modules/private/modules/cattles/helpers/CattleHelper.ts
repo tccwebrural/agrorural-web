@@ -18,6 +18,7 @@ import { firestore } from "../../../../../configs/Firebase";
 import { COLLECTION_FARMS } from "../../../../../constants";
 import { FarmHelper } from "../../../helpers/FarmHelper";
 import { CattleModel } from "../models/CattleModel";
+import { useNotification } from "providers/NotificationProvider";
 
 export const CattleHelper = () => {
   const { getFarmRef } = FarmHelper();
@@ -138,6 +139,7 @@ export const CattleHelper = () => {
 
   const updateDeathTypes = async (cattleId: string, deathBy: number) => {
     const farmRef = await getFarmRef();
+
     if (farmRef) {
       const cattlesCollectionRef = collection(
         firestore,

@@ -107,13 +107,13 @@ const MyCattle = (): ReactElement => {
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "center",
-                      width:180,
-                      margin:"auto"
+                      width: 180,
+                      margin: "auto",
                     }}
                   >
                     <Grid item xs={2} sx={{ margin: "0.4%" }}>
                       <TextField
-                        style={{ width: 180,marginRight:8 }}
+                        style={{ width: 180, marginRight: 8 }}
                         id="outlined-disabled"
                         label="Nome"
                         type="text"
@@ -123,7 +123,7 @@ const MyCattle = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <TextField
-                        style={{ width: 150,marginRight:8 }}
+                        style={{ width: 150, marginRight: 8 }}
                         id="outlined-disabled"
                         label="Peso"
                         type="number"
@@ -132,7 +132,7 @@ const MyCattle = (): ReactElement => {
                       />
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
-                      <FormControl sx={{ minWidth: 221 ,marginRight:1}}>
+                      <FormControl sx={{ minWidth: 221, marginRight: 1 }}>
                         {/* <InputLabel>Tipo</InputLabel> */}
                         <TextField
                           select
@@ -147,7 +147,7 @@ const MyCattle = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <TextField
-                        style={{ width: 180,marginRight:8 }}
+                        style={{ width: 180, marginRight: 8 }}
                         id="outlined-disabled"
                         label="Data de Nascimento"
                         type="date"
@@ -160,7 +160,7 @@ const MyCattle = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <TextField
-                        style={{ width: 120,marginRight:8 }}
+                        style={{ width: 120, marginRight: 8 }}
                         id="Qtd de Cria"
                         label="Qtd de Cria"
                         type="number"

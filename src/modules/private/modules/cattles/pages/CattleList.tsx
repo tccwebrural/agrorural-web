@@ -40,6 +40,7 @@ import {
   DEATH_BY_OWN_CONSUMPTION,
   CATTLE_IS_LIVE,
 } from "../../../../../constants";
+import { useNotification } from "providers/NotificationProvider";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 // import { ptBR } from "@mui/material/locale";
@@ -57,6 +58,19 @@ const CattleListPage = (): ReactElement => {
       align: "center",
       width: 120,
     },
+    // {
+    //   field: "status",
+    //   headerName: "Animal",
+    //   headerAlign: "center",
+    //   align: "center",
+    //   type: "string",
+    //   valueOptions: ["United Kingdom", "Spain", "Brazil"],
+
+    //   // valueGetter: (params: GridValueGetterParams) =>
+    //   //   `${(params.row.status = "Vivo")}`,
+
+    //   width: 120,
+    // },
     // {
     //   field: "category",
     //   headerName: "Categoria",
@@ -249,6 +263,7 @@ const CattleListPage = (): ReactElement => {
           if (cattleToDisplay.status != 3) {
             listToDisplay.push(cattleToDisplay);
           }
+          // listToDisplay.push(cattleToDisplay);
         }
 
         setAnimals(listToDisplay);
@@ -270,7 +285,10 @@ const CattleListPage = (): ReactElement => {
     if (isToDelete && selectedAnimal && selectedAnimal.id) {
       await cattlehelpers.deleteCattleId(selectedAnimal.id);
       toast.success(`Animal ${selectedAnimal.name} deletado com sucesso`);
-      await cattlehelpers.getAllCattles().then(setAnimals);
+      // await window.location.reload();
+      await window.location.reload();
+
+      // await cattlehelpers.getAllCattles().then(setAnimals);
     } else {
     }
 
@@ -365,7 +383,7 @@ const CattleListPage = (): ReactElement => {
     setSelectedAnimal(animalSelected);
     setModalDeathOpen(true);
   };
-
+  const notifyProvider = useNotification();
   const handleDeathAnimal = async () => {
     try {
       if (selectedAnimal?.id) {
@@ -377,6 +395,11 @@ const CattleListPage = (): ReactElement => {
         toast.success(
           `Animal ${selectedAnimal.name} foi morto por ${selectedDeathBy}`
         );
+        await window.location.reload();
+
+        // await cattlehelpers.getAllCattles().then(setAnimals);
+
+        // notifyProvider.refreshNotifications();
       } else {
         throw "Animal não selecionado";
       }

@@ -27,6 +27,7 @@ import toast from "react-hot-toast";
 
 import "../../../styles/MyCattle.css";
 import VaccineModalDelete from "./VaccineInfoVIew";
+import { useNotification } from "providers/NotificationProvider";
 
 const VaccineCardView = (): ReactElement => {
   const { id } = useParams();
@@ -36,6 +37,8 @@ const VaccineCardView = (): ReactElement => {
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
 
   const [selectedVacine, setSelectedVacine] = useState<VacineModel>();
+  const notifyProvider = useNotification();
+
   useEffect(() => {
     if (id) {
       vacineHelper.getAllVacines(id).then(setVacines);
@@ -51,6 +54,8 @@ const VaccineCardView = (): ReactElement => {
     if (isToDelete && selectedVacine && selectedVacine.id && id) {
       await vacineHelper.deleteVacineId(selectedVacine.id, id);
       toast.success(`Vacina ${selectedVacine.name} deletada com sucesso`);
+      await notifyProvider.refreshNotifications();
+
       await vacineHelper.getAllVacines(id).then(setVacines);
     } else {
       // toast.error("Erro ao deletar a vacina");

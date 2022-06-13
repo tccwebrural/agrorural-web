@@ -38,7 +38,6 @@ import {
   RegisterUserModel,
   UserModel,
 } from "../modules/public/models/UserModel";
-import { useGlobalLoading } from "./GlobalLoadingProvider";
 
 type AuthContext = {
   userState: UserModel | undefined;
@@ -92,10 +91,9 @@ const UserAuthProvider = (): AuthContext => {
    */
   const signUp = async (formData: RegisterUserModel) => {
     try {
-      // if (await hasUserWithSameCpf(formData.cpf)) {
-      //   throw "Existe um usuario com o mesmo CPF";
-      //   // toast.error("existe um cpf");
-      // }
+      if (await hasUserWithSameCpf(formData.cpf)) {
+        throw "Existe um usuario com o mesmo CPF";
+      }
       const res = await createUserWithEmailAndPassword(
         auth,
         formData.email,
@@ -103,6 +101,9 @@ const UserAuthProvider = (): AuthContext => {
       );
 
       const user = res.user;
+
+      // await desactiverUser();
+
       await registerUser(user.uid, formData);
 
       toast.success(USUARIO_CADASTRADO_COM_SUCESSO);
@@ -144,13 +145,6 @@ const UserAuthProvider = (): AuthContext => {
    * @param uid - Identificador do usuário no fire Authentication;
    */
 
-  // const getUserId = async (uid: string) => {
-  //   const userDocRef = doc(firestore, COLLECTION_USERS, uid);
-  //   const userData = await getDoc(userDocRef);
-  //   if (!userData.exists()) {
-  //     throw NOT_FOUND_USER;
-  //   }
-  // };
   const loadUserDataById = async (user: User) => {
     const userDocRef = doc(firestore, COLLECTION_USERS, user.uid);
     const userDoc = await getDoc(userDocRef);
@@ -179,42 +173,7 @@ const UserAuthProvider = (): AuthContext => {
    * @param uid - Identificador do usuário no fire Authentication;
    * @param formData - @see {@link RegisterUserModel}
    */
-  const registerUser2 = async (uid: string, formData: RegisterUserModel) => {
-    // Criação do documento do usuário dentro da collection de user com o um id customizado
-    // Nesse caso é utilziado o uid;
-    const userRef = doc(firestore, COLLECTION_USERS, uid);
 
-    // Busca o usuário com a mesma referência de criação que é utilizado acima
-    const userDoc = await getDoc(userRef);
-
-    // Caso exista informações no doc encontrado, é retornado uma mensagem de erro informado que o usuário já está cadastrado;
-    if (userDoc.exists()) {
-      throw "Usuário já cadastrado";
-    }
-
-    // Criação da fazenda com o nome fornecido
-    const farmRef = await addDoc(collection(firestore, COLLECTION_FARMS), {
-      name: formData.farmName,
-      createdAt: Timestamp.now(),
-      owner: userRef,
-    });
-
-    // Criação do usuário na coleção de usuários
-    await setDoc(userRef, {
-      uid,
-      name: formData.name,
-      phone: formData.phone,
-      cpf: formData.cpf,
-      authProvider: LOCAL_AUTH_PROVIDER,
-      farmRef,
-      createdAt: Timestamp.now(),
-      active: true,
-    });
-
-    return userRef;
-  };
-
-  // COMO EU FAIRA ***************************************
   const registerUser = async (uid: string, formData: RegisterUserModel) => {
     // Criação do documento do usuário dentro da collection de user com o um id customizado
     // Nesse caso é utilziado o uid;
@@ -222,16 +181,6 @@ const UserAuthProvider = (): AuthContext => {
 
     // Busca o usuário com a mesma referência de criação que é utilizado acima
     const userDoc = await getDoc(userRef);
-    // TODO CODIGO DO CPF AQUI
-    // const getCpf = await getUserByCpf(formData.cpf);
-    // for (let index = 0; index < getCpf.length; index++) {
-    //   const item = getCpf[index];
-    //   if (item.id === formData.cpf) {
-    //     getCpf.splice(index, 1);
-    //   }
-    // }
-
-    // fim do codigo do cpf
 
     // Caso exista informações no doc encontrado, é retornado uma mensagem de erro informado que o usuário já está cadastrado;
     if (userDoc.exists()) {
@@ -259,8 +208,6 @@ const UserAuthProvider = (): AuthContext => {
 
     return userRef;
   };
-
-  // FIM DOMO EU FARIA
 
   const isLoggedIn = async () => {
     const user = await getUser();
@@ -298,14 +245,6 @@ const UserAuthProvider = (): AuthContext => {
     await logout();
   };
 
-  // ACTIVER USER ???
-  // const activerUser = async (email: string) => {
-  //   await activerUser(email);
-  //   const user = await getUser();
-  //   const userRef = doc(firestore, COLLECTION_USERS, user.id);
-
-  //   await updateDoc(userRef, { active: true });
-  // };
   const hasUserWithSameCpf = async (cpf: string) => {
     const userCollectionRef = collection(firestore, COLLECTION_USERS);
 
