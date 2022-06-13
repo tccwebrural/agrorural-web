@@ -88,6 +88,7 @@ const HomePage = (): ReactElement => {
       <main>
         <Container id="block-geralHome">
           <section id="home">
+            <br />
             <div id="logo">
               <img id="img-logo" src={logoInicial} alt="" />
             </div>
@@ -108,6 +109,8 @@ const HomePage = (): ReactElement => {
             </div>
 
             <section id="projeto">
+              <br />
+              <br />
               <div id="ideia">
                 <h1 className="textTittle">Como Surgiu a Ideia?</h1>
 
@@ -173,6 +176,8 @@ const HomePage = (): ReactElement => {
           </section>
 
           <section id="inst">
+            <br />
+            <br />
             <div id="instituicao">
               <h1 className="textTittle">Instituição</h1>
               <div className="conjunto">
@@ -210,6 +215,9 @@ const HomePage = (): ReactElement => {
           </div>
 
           <section id="sobre_Nos">
+            <br />
+            <br />
+            <br />
             <div id="sobreNos">
               <h1 className="textTittle">Sobre nós</h1>
               <div id="sobre-nos">
