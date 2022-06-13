@@ -209,7 +209,7 @@ const CattleListPage = (): ReactElement => {
   const [animals, setAnimals] = useState<CattleModel[]>([]);
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
   const [modalDeathOpen, setModalDeathOpen] = useState(false);
-  const [selectedDeathBy, setSelectedDeathBy] = useState<number>(0);
+  const [selectedDeathBy, setSelectedDeathBy] = useState<number>(1);
 
   const cattlehelpers = CattleHelper();
   const loadingHelper = useGlobalLoading();

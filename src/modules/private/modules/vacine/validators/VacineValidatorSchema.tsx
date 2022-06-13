@@ -10,6 +10,7 @@ import {
   TODAY_DATE,
 } from "../../../../../constants";
 import { parse, isDate } from "date-fns";
+import { isPropertyAssignment } from "typescript";
 
 function parseDateString(value: any, originalValue: any) {
   const parsedDate = isDate(originalValue)
@@ -32,7 +33,7 @@ const VacineValidatorSchema = object({
     .required(REQUIRED_FIELD)
     .transform(parseDateString)
     // .min(new Date(), "data maior que o dia atual"),
-    .min("2022-01-01", INFERIOR_DATE_2005),
+    .min(new Date(), INFERIOR_DATE_2005),
 
   // expiration_date: date().transform(parseDateString).min(date),
 

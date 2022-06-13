@@ -27,7 +27,12 @@ import { Formik } from "formik";
 import { VacineValidatorSchema } from "../validators/VacineValidatorSchema";
 import { getControls } from "utils/FormUtils";
 import bezerro from "../../../../../assets/bezerro.png";
-import { FEBRE_AFTOSA } from "../../../../../constants";
+import {
+  BOTULISMO,
+  CLOSTRIDIOSE,
+  FEBRE_AFTOSA,
+  LEPTOSPIROSE,
+} from "../../../../../constants";
 import { BRUCELOSE } from "../../../../../constants";
 import { RAIVA } from "../../../../../constants";
 import { useNotification } from "providers/NotificationProvider";
@@ -136,6 +141,9 @@ const CattleEditVaccine = (): ReactElement => {
                         <MenuItem value={FEBRE_AFTOSA}>Febre aftosa</MenuItem>
                         <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
                         <MenuItem value={RAIVA}>Raiva</MenuItem>
+                        <MenuItem value={CLOSTRIDIOSE}>Clostridioses</MenuItem>
+                        <MenuItem value={BOTULISMO}>Botulismo</MenuItem>
+                        <MenuItem value={LEPTOSPIROSE}>Leptospirose</MenuItem>
                       </TextField>
                     </FormControl>
                     <TextField
