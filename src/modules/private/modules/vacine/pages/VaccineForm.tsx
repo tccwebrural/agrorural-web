@@ -95,13 +95,13 @@ const VaccineFormPage = (): ReactElement => {
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
                   <span id="Block-Txt-VaccineRegister">
-                    Cadastrar Vacinasss
+                    Cadastrar Vacina
                   </span>
                 </h2>
               </div>
               <div id="Block-AnimalData">
                 <form
-                  style={{ width: 1200, marginLeft: 0 }}
+                  style={{ width: 1100, marginLeft: 0 }}
                   onSubmit={formik.handleSubmit}
                 >
                   <Box

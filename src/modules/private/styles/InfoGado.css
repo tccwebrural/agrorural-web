@@ -43,7 +43,7 @@
 #formularioAnimalView {
   display: flex;
   flex-direction: row;
-  margin-left: 2%;
+  margin-left: 1.6%;
 }
 
 #blocoTitulo-vacina-infoGado {
@@ -131,11 +131,11 @@
 }
 
 #inputPeso {
-  width: 170px;
+  width: 160px;
 }
 
 #inputDataNascimento {
-  width: 110px;
+  width: 119px;
 }
 
 #inputQtdCria {

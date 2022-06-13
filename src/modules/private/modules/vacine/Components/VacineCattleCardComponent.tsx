@@ -70,7 +70,7 @@ const VaccineCattleCardComponent = (): ReactElement => {
                     {...getControls(formik, "name")}
                     label="Tipo"
                     // name="category"
-                    style={{ width: 210 }}
+                    style={{ width: 225,marginLeft:-20}}
                     disabled={true}
                   >
                     {/* <MenuItem value={BRUCELOSE}>Brucelose</MenuItem>
