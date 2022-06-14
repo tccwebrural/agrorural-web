@@ -31,10 +31,7 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import toast from "react-hot-toast";
 
 import "../../../styles/CattleList.css";
-import { Formik } from "formik";
-import { CattleValidatorSchema } from "../validators/CattleValidatorSchema";
-import { getControls } from "utils/FormUtils";
-import { CattleDeathValidatorSchema } from "../validators/CattleDeathValidatorSchema";
+
 import {
   DEATH_BY_VARIOUS_CASES,
   DEATH_BY_OWN_CONSUMPTION,
@@ -58,28 +55,7 @@ const CattleListPage = (): ReactElement => {
       align: "center",
       width: 120,
     },
-    // {
-    //   field: "status",
-    //   headerName: "Animal",
-    //   headerAlign: "center",
-    //   align: "center",
-    //   type: "string",
-    //   valueOptions: ["United Kingdom", "Spain", "Brazil"],
 
-    //   // valueGetter: (params: GridValueGetterParams) =>
-    //   //   `${(params.row.status = "Vivo")}`,
-
-    //   width: 120,
-    // },
-    // {
-    //   field: "category",
-    //   headerName: "Categoria",
-    //   headerAlign: "center",
-    //   align: "center",
-    //   type: "number",
-    //   width: 100,
-    //   valueGetter: (params: GridValueGetterParams) => `${params.row.weigth} kg`,
-    // },
     {
       field: "sex",
       headerName: "Sexo",
@@ -392,9 +368,7 @@ const CattleListPage = (): ReactElement => {
           selectedDeathBy
         );
 
-        toast.success(
-          `Animal ${selectedAnimal.name} foi morto por ${selectedDeathBy}`
-        );
+        toast.success(`Animal ${selectedAnimal.name} foi morto`);
         await window.location.reload();
 
         // await cattlehelpers.getAllCattles().then(setAnimals);

@@ -27,6 +27,7 @@ import VaccineModalDelete from "../../vacine/Components/VaccineInfoVIew";
 
 import "../../../styles/InfoGado.css";
 import VaccineInfoView from "../../vacine/Components/VaccineInfoVIew";
+import { TextFields } from "@mui/icons-material";
 
 function imprimir() {
   window.print();
@@ -129,8 +130,9 @@ const CattleInfoGado = (): ReactElement => {
                     </Grid>
                     <Grid className="gridInput">
                       <FormControl sx={{ minWidth: 180 }}>
-                        <InputLabel>Tipo</InputLabel>
-                        <Select
+                        {/* <InputLabel>Tipo</InputLabel> */}
+                        <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "type")}
                           label="Grouping"
@@ -138,7 +140,7 @@ const CattleInfoGado = (): ReactElement => {
                         >
                           <MenuItem value={1}>Gado de Corte</MenuItem>
                           <MenuItem value={2}>Gado Leitero</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                     <Grid className="gridInput">
@@ -164,8 +166,9 @@ const CattleInfoGado = (): ReactElement => {
                     </Grid>
                     <Grid className="gridInput">
                       <FormControl id="inputTipo">
-                        <InputLabel htmlFor="type">Sexos</InputLabel>
-                        <Select
+                        {/* <InputLabel htmlFor="type">Sexos</InputLabel> */}
+                        <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "sex")}
                           label="Grouping"
@@ -173,7 +176,7 @@ const CattleInfoGado = (): ReactElement => {
                         >
                           <MenuItem value={1}>Macho</MenuItem>
                           <MenuItem value={2}>Femea</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                   </FormControl>

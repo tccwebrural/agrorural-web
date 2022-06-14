@@ -152,7 +152,7 @@ export const CattleHelper = () => {
       return updateDoc(cattleRef, {
         status: 3,
         deathBy: deathBy,
-        identifier: Math.floor(Math.random() * 100),
+        identifier: "Morto",
       });
       // return deleteDoc(cattleRef);
     }

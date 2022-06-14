@@ -7,6 +7,7 @@ import { trackPromise } from "react-promise-tracker";
 
 import "../../../styles/NotifyVaccine.css";
 import { randomUUID } from "crypto";
+import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 
 type NotificationType = {
   animalName: string;
@@ -18,11 +19,11 @@ type NotificationType = {
 const VaccineNotify = (): ReactElement => {
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
   const notifyProvider = useNotification();
+  const loadingProvider = useGlobalLoading();
 
   useEffect(() => {
     trackPromise(
       notifyProvider.getNotification().then((notify) => {
-        console.log(notify);
         setNotifications(notify);
       }),
       GLOBAL_LOADING_KEY
