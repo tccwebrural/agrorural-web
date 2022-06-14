@@ -1,7 +1,6 @@
 import { CattleHelper } from "modules/private/modules/cattles/helpers/CattleHelper";
 import { VacineHelper } from "modules/private/modules/vacine/helpers/VacineHelpers";
 import { createContext, ReactNode, useContext, useState } from "react";
-import { useGlobalLoading } from "./GlobalLoadingProvider";
 
 type NotificationType = {
   animalName: string;
@@ -62,6 +61,7 @@ const LoaderNotificationProvider = () => {
     return todayMonth + 12 * todayYear - (birthDayMonth + 12 * birthDayYear);
   };
   // TODO: JS-DOC
+
   const getAllVacines = async () => {
     const notifications = await cattleHelper
       .getAllCattles()

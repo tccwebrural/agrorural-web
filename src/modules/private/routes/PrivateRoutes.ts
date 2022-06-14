@@ -5,18 +5,14 @@ import CattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import HomePage from "./../modules/home/pages/Home";
 import ViewProfilePage from "./../modules/profiles/pages/ViewProfile";
 import ProfileFormPage from "./../modules/profiles/pages/ProfileForm";
-import UpdateCattleStatusModal from "../modules/cattles/components/UpdateCattleModal";
-import UpdateCattleModal from "../modules/cattles/components/UpdateCattleModal";
 import MyCattle from "../modules/cattles/pages/MyCattle";
 import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import CattleInfoGado from "../modules/cattles/pages/CattleInfo";
 import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
-import notifyVaccine from "../modules/notifications/pages/NotifyVaccine";
 import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
 import DeclareForm from "../modules/reports/pages/DeclareCattle";
-import TesteFormik from "../modules/testes/TesteFormik";
 import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
-import VaccineNotify from "../modules/notifications/components/VaccineNotify";
+import VaccineNotify from "../modules/notifications/pages/VaccineNotify";
 import CattleViewVaccine from "../modules/vacine/pages/CattleViewVaccine";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
@@ -111,13 +107,5 @@ export const PRIVATE_ROUTES: Array<Route> = [
     path: "cattle/:id/vacine/:idVacine/edit",
     showHeaderBtn: false,
     component: CattleEditVaccine,
-  },
-  /////////////////////////  TESTE  /////////////////////////////////
-  {
-    key: "TesteFormik",
-    title: "teste formik",
-    path: "teste/TesteFormik",
-    showHeaderBtn: false,
-    component: TesteFormik,
   },
 ];

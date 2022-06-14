@@ -61,7 +61,6 @@ const VaccineFormPage = (): ReactElement => {
           {
             notifyProvider.refreshNotifications();
             navigate("/private/cattles");
-            // navigate(`private/cattle/${id}/Vaccine`);
           }
         )
         .catch((err) => {
@@ -70,9 +69,7 @@ const VaccineFormPage = (): ReactElement => {
           console.error(err);
           toast.error(getFireError(err));
         });
-      // vacine.id = id;
     }
-    console.log("id da vacina :" + vacine.id + vacine.name);
   };
 
   return (
@@ -94,9 +91,7 @@ const VaccineFormPage = (): ReactElement => {
             <div id="MainBlock-VaccineForm">
               <div className="Block-Txt-Line">
                 <h2 className="Block-Line">
-                  <span id="Block-Txt-VaccineRegister">
-                    Cadastrar Vacina
-                  </span>
+                  <span id="Block-Txt-VaccineRegister">Cadastrar Vacina</span>
                 </h2>
               </div>
               <div id="Block-AnimalData">

@@ -116,15 +116,16 @@ const CattleViewVaccine = (): ReactElement => {
                     </Grid>
                     <Grid className="gridInputVaccine">
                       <FormControl id="inputTipoVaccine">
-                        <InputLabel>Tipo</InputLabel>
-                        <Select
+                        {/* <InputLabel>Tipo</InputLabel> */}
+                        <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "type")}
                           label="Tipo"
                         >
                           <MenuItem value={1}>Gado de Cortes</MenuItem>
                           <MenuItem value={2}>Gado Leitero</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                     <Grid className="gridInputVaccine">
@@ -150,8 +151,9 @@ const CattleViewVaccine = (): ReactElement => {
                     </Grid>
                     <Grid className="gridInputVaccine">
                       <FormControl id="inputSexoVaccine">
-                        <InputLabel htmlFor="type">Sexo</InputLabel>
-                        <Select
+                        {/* <InputLabel htmlFor="type">Sexo</InputLabel> */}
+                        <TextField
+                          select
                           disabled={true}
                           {...getControls(formik, "sex")}
                           label="Sexo"
@@ -159,7 +161,7 @@ const CattleViewVaccine = (): ReactElement => {
                         >
                           <MenuItem value={1}>Macho</MenuItem>
                           <MenuItem value={2}>Femea</MenuItem>
-                        </Select>
+                        </TextField>
                       </FormControl>
                     </Grid>
                   </FormControl>

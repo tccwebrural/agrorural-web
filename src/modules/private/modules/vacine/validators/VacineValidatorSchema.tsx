@@ -8,6 +8,7 @@ import {
   PASSWORD_MIN_8,
   REQUIRED_FIELD,
   TODAY_DATE,
+  LOTE_MIN_0,
 } from "../../../../../constants";
 import { parse, isDate } from "date-fns";
 import { isPropertyAssignment } from "typescript";
@@ -22,7 +23,7 @@ function parseDateString(value: any, originalValue: any) {
 
 const VacineValidatorSchema = object({
   name: string().required(REQUIRED_FIELD),
-  lote: string().required(REQUIRED_FIELD),
+  lote: number().required(REQUIRED_FIELD).min(0, LOTE_MIN_0),
   // date_application: string().required(REQUIRED_FIELD),
   date_application: date()
     .required(REQUIRED_FIELD)
