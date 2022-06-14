@@ -53,10 +53,11 @@ const VaccineCardView = (): ReactElement => {
   const HandleDeleteVacine = async (isToDelete: boolean) => {
     if (isToDelete && selectedVacine && selectedVacine.id && id) {
       await vacineHelper.deleteVacineId(selectedVacine.id, id);
-      toast.success(`Vacina ${selectedVacine.name} deletada com sucesso`);
-      await notifyProvider.refreshNotifications();
 
       await vacineHelper.getAllVacines(id).then(setVacines);
+      toast.success(`Vacina ${selectedVacine.name} deletada com sucesso`);
+
+      await notifyProvider.refreshNotifications();
     } else {
       // toast.error("Erro ao deletar a vacina");
     }
