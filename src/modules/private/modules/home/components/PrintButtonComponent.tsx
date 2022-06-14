@@ -1,17 +1,5 @@
-import {
-  Box,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  Typography,
-  TableRow,
-  TableBody,
-  Paper,
-  Fab,
-} from "@mui/material";
+import { Fab } from "@mui/material";
 import React, { ReactElement, useEffect, useState } from "react";
-import { useAuth } from "../../../../../providers/AuthProvider";
 import "../../../styles/Home.css";
 import { BsPrinter } from "react-icons/bs";
 import jsPDF from "jspdf";
@@ -22,7 +10,6 @@ import { ReportHelper } from "../../reports/helpers/ReportHelper";
 
 const PrintButtonComponent = (): ReactElement => {
   const doc = new jsPDF();
-  //   const docAuto = new autoTable(doc, autoTable);
 
   const [reports, setReports] = useState<ReportModel[]>([]);
 
@@ -32,7 +19,6 @@ const PrintButtonComponent = (): ReactElement => {
   }, []);
 
   const Print = () => {
-    // doc.text("Meu Relátorio", 20, 10);
     doc.text("Meu relátorio", 85, 10);
 
     autoTable(doc, {
@@ -47,10 +33,7 @@ const PrintButtonComponent = (): ReactElement => {
           "total",
         ],
       ],
-      // body: [
-      //   [reports.map((reports, i) => reports.rebanhoAtual.bezerros.male)],
 
-      // ],
       theme: "grid",
       bodyStyles: {
         valign: "middle",
@@ -87,7 +70,6 @@ const PrintButtonComponent = (): ReactElement => {
       ],
     });
 
-    // autoTable(doc, {: "#Block-MyReports" });
     doc.save("Meu Relátorio.pdf");
   };
   return (

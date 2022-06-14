@@ -1,19 +1,17 @@
 import { Route } from "../../public/models/RouteModel";
 /* Paginas publicas da aplicação */
-import CattleListPage from "../modules/cattles/pages/CattleList";
-import CattleFormPage from "../modules/cattles/pages/CreateCattleForm";
-import HomePage from "./../modules/home/pages/Home";
-import ViewProfilePage from "./../modules/profiles/pages/ViewProfile";
-import ProfileFormPage from "./../modules/profiles/pages/ProfileForm";
-import MyCattle from "../modules/cattles/pages/MyCattle";
-import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
 import CattleInfoGado from "../modules/cattles/pages/CattleInfo";
-import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
+import CattleListPage from "../modules/cattles/pages/CattleList";
+import CreateCattleFormPage from "../modules/cattles/pages/CreateCattleForm";
+import MyCattle from "../modules/cattles/pages/MyCattle";
 import UpdateCattle from "../modules/cattles/pages/UpdateCattle";
+import VaccineNotify from "../modules/notifications/pages/VaccineNotify";
 import DeclareForm from "../modules/reports/pages/DeclareCattle";
 import CattleEditVaccine from "../modules/vacine/pages/CattleEditVaccine";
-import VaccineNotify from "../modules/notifications/pages/VaccineNotify";
 import CattleViewVaccine from "../modules/vacine/pages/CattleViewVaccine";
+import VaccineFormPage from "../modules/vacine/pages/VaccineForm";
+import HomePage from "./../modules/home/pages/Home";
+import ViewProfilePage from "./../modules/profiles/pages/ViewProfile";
 export const PRIVATE_ROUTES: Array<Route> = [
   {
     key: "home",

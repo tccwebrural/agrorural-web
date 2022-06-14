@@ -1,28 +1,25 @@
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
+import { trackPromise } from "react-promise-tracker";
 import { Link, useNavigate } from "react-router-dom";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { useAuth } from "../../../../../providers/AuthProvider";
 import { getControls } from "../../../../../utils/FormUtils";
 import { LoginValidatorSchema } from "../validators/LoginValidatorSchema";
-import { Toaster } from "react-hot-toast";
-import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import { trackPromise } from "react-promise-tracker";
-import { GLOBAL_LOADING_KEY } from "../../../../../constants";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import footer from "../../../../../assets/footer.png";
+import logoPequena from "../../../../../assets/logoPequena.png";
 import vaca1 from "../../../../../assets/vaca1.png";
 import vaca2 from "../../../../../assets/vaca2.png";
-import logoPequena from "../../../../../assets/logoPequena.png";
 
 import "../../../styles/Login.css";
 
 const LoginPage = (): ReactElement => {
   const authContext = useAuth();
   const navigate = useNavigate();
-  const loadingHelper = useGlobalLoading();
 
   useEffect(() => {
     authContext.logout(false);
@@ -35,12 +32,6 @@ const LoginPage = (): ReactElement => {
     },
     validationSchema: LoginValidatorSchema,
     onSubmit: async (formValue) => {
-      // loadingHelper.startLoading();
-      // await authContext.signIn(formValue.email, formValue.password).then(() => {
-      //   navigate("/private");
-      //   loadingHelper.stopLoading();
-      // });
-
       trackPromise(
         authContext.signIn(formValue.email, formValue.password).then(() => {
           navigate("/private");

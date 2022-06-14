@@ -11,16 +11,13 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { Fragment, ReactElement, useEffect, useState } from "react";
+import { useNotification } from "providers/NotificationProvider";
+import React, { ReactElement, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { APP_TITLE, ROOT_THEME } from "../../../constants";
+import logoPequena from "../../../assets/logoPequena.png";
 import { useAuth } from "../../../providers/AuthProvider";
 import { PRIVATE_ROUTES } from "../routes/PrivateRoutes";
-import logoPequena from "../../../assets/logoPequena.png";
 import "../styles/PrivateHeader.css";
-import MailIcon from "@mui/icons-material/Mail";
-import { useNotification } from "providers/NotificationProvider";
-import { trackPromise } from "react-promise-tracker";
 
 const Header = (props: any): ReactElement => {
   const auth = useAuth();

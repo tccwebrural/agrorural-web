@@ -1,12 +1,9 @@
-import { object, ref, string } from "yup";
+import { object, string } from "yup";
 import {
   CPF_INVALID,
   CPF_REGEX,
   EMAIL_INVALID,
-  PASSWORD_IS_NOT_EQUALS,
-  PASSWORD_MIN_8,
   PHONE_INVALID,
-  PHONE_MIN_9_11,
   PHONE_REGEX,
   REQUIRED_FIELD,
 } from "../../../../../constants";

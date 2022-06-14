@@ -1,35 +1,25 @@
-import {
-  Box,
-  Button,
-  Container,
-  FormControl,
-  Grid,
-  InputLabel,
-} from "@mui/material";
-import TextField from "@mui/material/TextField";
-import { useFormik } from "formik";
-import React, { ReactElement, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { RegisterUserModel } from "../../../models/UserModel";
-import { useAuth } from "../../../../../providers/AuthProvider";
-import { getControls } from "../../../../../utils/FormUtils";
-import { RegisterValidatorSchema } from "../validators/RegisterValidatorSchema";
-import toast, { Toaster } from "react-hot-toast";
-import { trackPromise } from "react-promise-tracker";
-import { GLOBAL_LOADING_KEY } from "../../../../../constants";
-import { IMaskInput } from "react-imask";
-import Input from "@mui/material/Input";
-import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { Box, Button, Container, Grid } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import { useFormik } from "formik";
+import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
+import { ReactElement, useState } from "react";
+import { trackPromise } from "react-promise-tracker";
+import { useNavigate } from "react-router-dom";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+import { useAuth } from "../../../../../providers/AuthProvider";
+import { getControls } from "../../../../../utils/FormUtils";
+import { RegisterUserModel } from "../../../models/UserModel";
+import { RegisterValidatorSchema } from "../validators/RegisterValidatorSchema";
 
 import footer from "../../../../../assets/footer.png";
+import logoPequena from "../../../../../assets/logoPequena.png";
 import vaca2 from "../../../../../assets/vaca2.png";
 import vaca3 from "../../../../../assets/vaca3.png";
-import logoPequena from "../../../../../assets/logoPequena.png";
 
-import "../../../styles/Register.css";
 import { CpfMaskComponent } from "modules/public/components/CpfMaskComponent";
+import "../../../styles/Register.css";
 
 const RegisterPage = (): ReactElement => {
   const navigate = useNavigate();

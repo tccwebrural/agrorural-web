@@ -1,38 +1,19 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Menu,
-  MenuItem,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React, { ReactElement, useEffect, useState } from "react";
-import { BiMenu } from "react-icons/bi";
-import { auth } from "configs/Firebase";
-import { ProviderAuth, useAuth } from "providers/AuthProvider";
-import {
-  PerfilModelUser,
-  RegisterUserModel,
-  UserModel,
-} from "modules/public/models/UserModel";
-import { useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
-import { getFireError } from "utils/HandleFirebaseError";
-import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import { Box, Button, Menu, MenuItem, TextField } from "@mui/material";
 import { Formik } from "formik";
-import { getControls } from "utils/FormUtils";
-import { DocumentReference } from "firebase/firestore";
 import { FarmHelper } from "modules/private/helpers/FarmHelper";
-import { AltRouteRounded } from "@mui/icons-material";
-import { updateProfile } from "firebase/auth";
-import { EditProfileValidatorSchema } from "../validators/EditProfileValidatorSschema";
-import { FarmModel } from "modules/private/models/FarmModel";
-import { GLOBAL_LOADING_KEY } from "../../../../../constants";
-import { trackPromise } from "react-promise-tracker";
-import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
 import { CpfMaskComponent } from "modules/public/components/CpfMaskComponent";
+import { PhoneMaskCustom } from "modules/public/components/PhoneMaskComponent";
+import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
+import { useAuth } from "providers/AuthProvider";
+import { useGlobalLoading } from "providers/GlobalLoadingProvider";
+import React, { ReactElement, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { BiMenu } from "react-icons/bi";
+import { trackPromise } from "react-promise-tracker";
+import { getControls } from "utils/FormUtils";
+import { getFireError } from "utils/HandleFirebaseError";
+import { GLOBAL_LOADING_KEY } from "../../../../../constants";
+import { EditProfileValidatorSchema } from "../validators/EditProfileValidatorSschema";
 
 import imgUser from "../../../../../assets/imgUser.png";
 import rodape from "../../../../../assets/rodape.png";
@@ -40,6 +21,7 @@ import rodape from "../../../../../assets/rodape.png";
 import "../../../styles/ViewProfile.css";
 
 const ViewProfilePage = (): ReactElement => {
+  // COMENTARIO
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -81,8 +63,6 @@ const ViewProfilePage = (): ReactElement => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const loadingHelper = useGlobalLoading();
-
-  const navigate = useNavigate();
 
   const [show, setShow] = useState(false);
 

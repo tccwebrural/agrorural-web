@@ -1,8 +1,3 @@
-/**
-
- * @param male - Gados do tipo macho  
- */
-
 class VaccineNotifyModel {
   animalName!: string;
   animalId!: number;

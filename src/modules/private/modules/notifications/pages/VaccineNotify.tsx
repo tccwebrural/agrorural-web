@@ -1,13 +1,10 @@
 import { Box, Grid } from "@mui/material";
-// import { GLOBAL_LOADING_KEY } from "constants";
 import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import { useNotification } from "providers/NotificationProvider";
-import { ReactElement, useContext, useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { trackPromise } from "react-promise-tracker";
 
 import "../../../styles/NotifyVaccine.css";
-import { randomUUID } from "crypto";
-import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 
 type NotificationType = {
   animalName: string;
@@ -19,7 +16,6 @@ type NotificationType = {
 const VaccineNotify = (): ReactElement => {
   const [notifications, setNotifications] = useState<NotificationType[]>([]);
   const notifyProvider = useNotification();
-  const loadingProvider = useGlobalLoading();
 
   useEffect(() => {
     trackPromise(

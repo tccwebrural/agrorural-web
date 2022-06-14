@@ -6,7 +6,6 @@ import {
   PASSWORD_IS_NOT_EQUALS,
   PASSWORD_MIN_8,
   PHONE_INVALID,
-  PHONE_MIN_9_11,
   PHONE_REGEX,
   REQUIRED_FIELD,
 } from "../../../../../constants";

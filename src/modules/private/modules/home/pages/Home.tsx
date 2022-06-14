@@ -46,16 +46,6 @@ const HomePage = (): ReactElement => {
     );
   }, []);
 
-  const [reportMonth, setReportMonht] = useState<ReportModel>();
-  function imprimir() {
-    window.print();
-  }
-
-  // const getMonth = () => {
-  //   if(reportMonth?.createdAt){
-  //     reportMonth()+ 1
-  //   }
-  // };
   return (
     <>
       <main>
@@ -63,11 +53,6 @@ const HomePage = (): ReactElement => {
           <div id="blocoTitulo-criacao-home">
             <h2 id="blocoTituloTxt-criacao-home">Meu Relatório</h2>
             <span id="blocoTituloLine-vacina-home">
-              {/* <abbr title="Imprimir">
-                <Fab id="icone-imprimir-Home" onClick={imprimir}>
-                  <BsPrinter size={20} />
-                </Fab>
-              </abbr> */}
               {/* COMPONENTE PRINT BUTTON */}
               {PrintButtonComponent()}
             </span>

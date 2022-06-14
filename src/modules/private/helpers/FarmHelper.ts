@@ -1,15 +1,9 @@
-import { COLLECTION_FARMS } from "./../../../constants";
-import { PerfilModelUser } from "modules/public/models/UserModel";
 import { firestore } from "configs/Firebase";
-import {
-  collection,
-  doc,
-  DocumentReference,
-  getDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, DocumentReference, getDoc, updateDoc } from "firebase/firestore";
+import { PerfilModelUser } from "modules/public/models/UserModel";
 import { useAuth } from "../../../providers/AuthProvider";
 import { FarmModel } from "../models/FarmModel";
+import { COLLECTION_FARMS } from "./../../../constants";
 
 export const FarmHelper = () => {
   const authContext = useAuth();

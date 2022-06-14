@@ -1,7 +1,6 @@
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   Box,
-  Button,
   Container,
   IconButton,
   Link,
@@ -10,12 +9,12 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import React, { Fragment, ReactElement, useEffect } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { APP_TITLE, ROOT_THEME } from "../../../constants";
+import logoPequena from "../../../assets/logoPequena.png";
+import { APP_TITLE } from "../../../constants";
 import { useAuth } from "../../../providers/AuthProvider";
 import { PUBLIC_ROUTES } from "../routes/PublicRoutes";
-import logoPequena from "../../../assets/logoPequena.png";
 import "../styles/Header.css";
 
 const Header = (props: any): ReactElement => {
