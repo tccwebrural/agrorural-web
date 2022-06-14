@@ -1,17 +1,12 @@
-import { Timestamp } from "firebase/firestore";
-import { date, number } from "yup";
-import { object, string } from "yup";
+import { isDate, parse } from "date-fns";
+import { date, number, object, string } from "yup";
 import {
-  EMAIL_INVALID,
-  INDENTIFER_INVALID,
+  DATE_AFTER_TODAY,
   INFERIOR_DATE_2005,
-  PASSWORD_MIN_8,
+  LOTE_MIN_0,
   REQUIRED_FIELD,
   TODAY_DATE,
-  LOTE_MIN_0,
 } from "../../../../../constants";
-import { parse, isDate } from "date-fns";
-import { isPropertyAssignment } from "typescript";
 
 function parseDateString(value: any, originalValue: any) {
   const parsedDate = isDate(originalValue)
@@ -34,7 +29,7 @@ const VacineValidatorSchema = object({
     .required(REQUIRED_FIELD)
     .transform(parseDateString)
     // .min(new Date(), "data maior que o dia atual"),
-    .min(new Date(), INFERIOR_DATE_2005),
+    .min(new Date(), DATE_AFTER_TODAY),
 
   // expiration_date: date().transform(parseDateString).min(date),
 

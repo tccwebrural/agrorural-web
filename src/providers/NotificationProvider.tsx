@@ -96,9 +96,9 @@ const LoaderNotificationProvider = () => {
                   anoDoseReforco = vaccines.dataAplicacao.getFullYear();
                   mesDoseReforco = vaccines.dataAplicacao.getMonth() + 1;
                   diaDoseReforco = vaccines.dataAplicacao.getUTCDate();
-                  if (vaccines.vaccinesName === vaccineRaiva) {
-                    contVaccineRaiva++;
-                  }
+                  // if (vaccines.vaccinesName === vaccineRaiva) {
+                  //   contVaccineRaiva++;
+                  // }
                 }
                 let result = [""];
                 result = vacinasObrigatorias.filter(
@@ -132,6 +132,9 @@ const LoaderNotificationProvider = () => {
                     animalSex: cattle.sex,
                     vaccineName: result[i],
                   };
+                  // if (result[i] === vaccineRaiva && cattle.sex === 2) {
+                  //   listToVaccine.push(cattleAndVaccines);
+                  // }
                   if (
                     result[i] === vaccineBrucelose &&
                     cattle.sex === 2 &&
