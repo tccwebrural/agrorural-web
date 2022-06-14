@@ -96,7 +96,7 @@ const LoaderNotificationProvider = () => {
                   anoDoseReforco = vaccines.dataAplicacao.getFullYear();
                   mesDoseReforco = vaccines.dataAplicacao.getMonth() + 1;
                   diaDoseReforco = vaccines.dataAplicacao.getUTCDate();
-                  if (vaccines.vaccinesName === vaccineRaiva) {
+                if (vaccines.vaccinesName === vaccineRaiva) {
                     contVaccineRaiva++;
                   }
                 }
