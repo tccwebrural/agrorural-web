@@ -1,20 +1,15 @@
 import {
-  Container,
   Fab,
   Box,
   FormControl,
   Grid,
   TextField,
-  InputLabel,
-  Select,
   MenuItem,
   Button,
 } from "@mui/material";
 import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { MdCoronavirus } from "react-icons/md";
 import { BsPrinter } from "react-icons/bs";
-import vaca1 from "../../../../../assets/vaca1.png";
 import { CattleModel } from "../models/CattleModel";
 import { CattleHelper } from "../helpers/CattleHelper";
 import toast from "react-hot-toast";
@@ -22,12 +17,9 @@ import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { Formik } from "formik";
 import { getFireError } from "utils/HandleFirebaseError";
 import { getControls } from "utils/FormUtils";
-import VaccineCardView from "../../vacine/Components/VaccineCardView";
-import VaccineModalDelete from "../../vacine/Components/VaccineInfoVIew";
 
 import "../../../styles/InfoGado.css";
 import VaccineInfoView from "../../vacine/Components/VaccineInfoVIew";
-import { TextFields } from "@mui/icons-material";
 
 function imprimir() {
   window.print();
@@ -130,7 +122,6 @@ const CattleInfoGado = (): ReactElement => {
                     </Grid>
                     <Grid className="gridInput">
                       <FormControl sx={{ minWidth: 180 }}>
-                        {/* <InputLabel>Tipo</InputLabel> */}
                         <TextField
                           select
                           disabled={true}
@@ -166,7 +157,6 @@ const CattleInfoGado = (): ReactElement => {
                     </Grid>
                     <Grid className="gridInput">
                       <FormControl id="inputTipo">
-                        {/* <InputLabel htmlFor="type">Sexos</InputLabel> */}
                         <TextField
                           select
                           disabled={true}

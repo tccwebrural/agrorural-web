@@ -1,36 +1,14 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import {
   Box,
-  Button,
-  Grid,
-  MenuItem,
-  Modal,
-  Select,
-  Typography,
 } from "@mui/material";
-import { BsPrinter } from "react-icons/bs";
 import Checkbox from "@mui/material/Checkbox";
-import Fab from "@mui/material/Fab";
-import TextField from "@mui/material/TextField";
-import { useAuth } from "providers/AuthProvider";
-import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
-import { Formik } from "formik";
-import { getControls } from "utils/FormUtils";
-import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import toast from "react-hot-toast";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import ProprietarieData from "../components/ProprietarieData";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-
-import vaca from "../../../../../assets/vaca-sem-chifre.png";
-
 import "../../../styles/DeclareForm.css";
 import "../../../styles/style.css";
 import CurrentCattleComponent from "../components/CurrentCattleComponent";
-import ModalDeclareComponent from "../components/GenerateCattleReport";
-import { trackPromise } from "react-promise-tracker";
-import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 import CattleDeathComponent from "../components/CattleDeathComponent";
 import GenerateCattleReport from "../components/GenerateCattleReport";
 
@@ -38,8 +16,6 @@ const DeclareForm = (): ReactElement => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   const loading = useGlobalLoading();
-  const cattlehelper = CattleHelper();
-
   useEffect(() => {
     loading.startLoading();
     loading.stopLoading();

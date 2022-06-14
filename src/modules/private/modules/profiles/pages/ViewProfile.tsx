@@ -132,7 +132,6 @@ const ViewProfilePage = (): ReactElement => {
                 }}
               >
                 <MenuItem
-                  // onClick={() => setShow((prev) => !prev)}
                   onClick={handleOpenClickMenu}
                 >
                   Editar Perfil
@@ -176,7 +175,6 @@ const ViewProfilePage = (): ReactElement => {
                       size="small"
                       variant="standard"
                       className="txt-FieldsProfile"
-                      // disabled={isDisabled}
                       disabled={true}
                       {...getControls(formik, "cpf")}
                       InputProps={{

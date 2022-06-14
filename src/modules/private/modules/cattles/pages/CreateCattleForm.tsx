@@ -72,7 +72,6 @@ const CreateCattleFormPage = (): ReactElement => {
 
         <div className="Block-Txt-Line">
           <h2 className="Block-Line">
-            {/* <span className="Block-Txt">Minha Criação &gt; Cadastrar Gado</span> */}
             <span className="Block-Txt">Cadastrar Animal</span>
           </h2>
         </div>
@@ -90,11 +89,8 @@ const CreateCattleFormPage = (): ReactElement => {
                 style={{ width: 285, marginRight: 5 }}
               />
               <TextField
-                // disabled
                 label="Identificador"
                 type="number"
-                // name="identifier"
-                // inputProps={{ min: 1 }}
                 {...getControls(formCattle, "identifier")}
                 InputLabelProps={{
                   shrink: true,
@@ -102,12 +98,10 @@ const CreateCattleFormPage = (): ReactElement => {
                 style={{ width: 250, marginRight: 5 }}
               />
               <FormControl sx={{ m: 1, minWidth: 250 }}>
-                {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
                 <TextField
                   select
                   {...getControls(formCattle, "sex")}
                   label="Sexo"
-                  // name="category"
                   style={{ width: 244, margin: "0%", marginRight: 11 }}
                 >
                   <MenuItem value={1}>MACHO</MenuItem>
@@ -130,16 +124,13 @@ const CreateCattleFormPage = (): ReactElement => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                // name="birthday"
                 {...getControls(formCattle, "birthday")}
               />
               <FormControl sx={{ m: 1, minWidth: 341, marginLeft: 0.7 }}>
-                {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
                 <TextField
                   select
                   {...getControls(formCattle, "type")}
                   label="Tipo"
-                  // name="type"
                   style={{ width: 350, margin: "0%", marginRight: -2 }}
                 >
                   <MenuItem value={1}>Gado de Corte</MenuItem>
@@ -148,10 +139,8 @@ const CreateCattleFormPage = (): ReactElement => {
               </FormControl>
 
               <TextField
-                // disabled
                 label="Quantidade de cria"
                 type="number"
-                // name="identifier"
                 {...getControls(formCattle, "qtyChildren")}
                 InputLabelProps={{
                   shrink: true,

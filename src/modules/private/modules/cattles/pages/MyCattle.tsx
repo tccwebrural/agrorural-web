@@ -5,24 +5,19 @@ import {
   FormControl,
   Grid,
   TextField,
-  InputLabel,
-  Select,
   MenuItem,
   Button,
 } from "@mui/material";
 import { ReactElement, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import { CattleModel, CATTLE_SEXS } from "../models/CattleModel";
+import { CattleModel } from "../models/CattleModel";
 import { Formik } from "formik";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
 import { CattleHelper } from "../helpers/CattleHelper";
 import toast from "react-hot-toast";
 import { getControls } from "utils/FormUtils";
-import { VacineModel } from "../../vacine/models/VacineModel";
 import VaccineCardView from "../../vacine/Components/VaccineCardView";
-import { trackPromise } from "react-promise-tracker";
-import { GLOBAL_LOADING_KEY } from "../../../../../constants";
 
 import "../../../styles/MyCattle.css";
 
@@ -63,23 +58,7 @@ const MyCattle = (): ReactElement => {
     }
   }, []);
 
-  const submitForm = (cattle: CattleModel) => {
-    // cattle.id = id;
-    // cattleHelper
-    //   .updateCattleId(cattle)
-    //   .then(() =>
-    //     //toast sucess
-    //     navigate("/private/cattles")
-    //   )
-    //   .catch((err) => {
-    //     //TODO: Mensagem de erro
-    //     //toast erro
-    //     console.error(err);
-    //     toast.error(getFireError(err));
-    //   });
-  };
-
-  const [vacineSelect, setVacineSelect] = useState<VacineModel>();
+  const submitForm = (cattle: CattleModel) => {};
 
   return (
     <>
@@ -133,7 +112,6 @@ const MyCattle = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 221, marginRight: 1 }}>
-                        {/* <InputLabel>Tipo</InputLabel> */}
                         <TextField
                           select
                           disabled={true}
@@ -170,7 +148,6 @@ const MyCattle = (): ReactElement => {
                     </Grid>
                     <Grid sx={{ margin: "0.4%" }}>
                       <FormControl sx={{ minWidth: 120 }}>
-                        {/* <InputLabel htmlFor="type">Sexo</InputLabel> */}
                         <TextField
                           select
                           disabled={true}

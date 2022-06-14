@@ -1,36 +1,10 @@
-import {
-  Box,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  Typography,
-  TableRow,
-  TableBody,
-  Paper,
-  Fab,
-  Button,
-  TextField,
-  Grid,
-  Modal,
-} from "@mui/material";
+
 import React, { ReactElement, useEffect, useState } from "react";
-import { useAuth } from "../../../../../providers/AuthProvider";
 import "../../../styles/Home.css";
-import { BsPrinter } from "react-icons/bs";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import {
-  CattleModel,
-  CATTLE_SEXS,
-  CATTLE_TYPES,
-} from "../../cattles/models/CattleModel";
-import toast from "react-hot-toast";
 import { ReportModel } from "../models/ReportModel";
-import { Agent } from "https";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
-import { MALE, FEMALE, CATTLE_IS_LIVE } from "../../../../../constants";
+import { MALE, FEMALE} from "../../../../../constants";
 
 import { Timestamp } from "firebase/firestore";
 
@@ -38,9 +12,6 @@ const CurrentCattleComponent = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
 
   const cattlehelpers = CattleHelper();
-  function imprimir() {
-    window.print();
-  }
 
   const [report, setReport] = useState<ReportModel>({
     rebanhoAtual: {
@@ -116,7 +87,6 @@ const CurrentCattleComponent = (): ReactElement => {
             const initialValue = 0;
             if (currentValue.sex === MALE && currentValue.status != 3) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
                   previousValues.totalBezerrosM + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -136,7 +106,6 @@ const CurrentCattleComponent = (): ReactElement => {
               currentValue.status != 3
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosF =
                   previousValues.totalBezerrosF + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -216,10 +185,8 @@ const CurrentCattleComponent = (): ReactElement => {
         <p className="CattleDeclaration">Rebanho Bovino Atual Existente</p>
         <div className="CurrentCattleHerd-RA">
           {" "}
-          {/*rebanho bovino atual */}
           <div className="Block-CurrentCattleHerd-RA">
             {" "}
-            {/*bloco rebanho bovino atual */}
             <p className="SmallBlocks-CurrentCattleHerd-RA">
               {" "}
               {/*blocos pequenos do rebanho bovino atual existente*/}

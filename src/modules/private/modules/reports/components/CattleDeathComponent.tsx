@@ -1,53 +1,14 @@
-import {
-  Box,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  Typography,
-  TableRow,
-  TableBody,
-  Paper,
-  Fab,
-  Button,
-  TextField,
-  Grid,
-  Modal,
-} from "@mui/material";
+
 import React, { ReactElement, useEffect, useState } from "react";
-import { useAuth } from "../../../../../providers/AuthProvider";
 import "../../../styles/Home.css";
-import { BsPrinter } from "react-icons/bs";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import {
-  CattleModel,
-  CATTLE_SEXS,
-  CATTLE_TYPES,
-} from "../../cattles/models/CattleModel";
-import toast from "react-hot-toast";
 import { ReportModel } from "../models/ReportModel";
-import { Agent } from "https";
-import AssignmentIcon from "@mui/icons-material/Assignment";
-import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
 import {
   MALE,
   FEMALE,
-  CATTLE_IS_LIVE,
-  DEATH_BY_VARIOUS_CASES,
-  DEATH_BY_OWN_CONSUMPTION,
 } from "../../../../../constants";
-import { FarmHelper } from "modules/private/helpers/FarmHelper";
-import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
-import { Formik } from "formik";
-import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
-import { getControls } from "utils/FormUtils";
-import { ReportHelper } from "../helpers/ReportHelper";
-import { useNavigate } from "react-router-dom";
-import { getFireError } from "utils/HandleFirebaseError";
 import { Timestamp } from "firebase/firestore";
-import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
 
 const CattleDeathComponent = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
@@ -125,7 +86,6 @@ const CattleDeathComponent = (): ReactElement => {
           (previousValues: any, currentValue: any) => {
             if (currentValue.sex === MALE && currentValue.deathBy === 1) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
                   previousValues.totalBezerrosM + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -145,7 +105,6 @@ const CattleDeathComponent = (): ReactElement => {
               currentValue.deathBy === 1
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosF =
                   previousValues.totalBezerrosF + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -165,7 +124,6 @@ const CattleDeathComponent = (): ReactElement => {
             // SEGUNDO IF*************************************************************************
             if (currentValue.sex === MALE && currentValue.deathBy === 2) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosConsumoProprioM =
                   previousValues.totalBezerrosConsumoProprioM + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -186,7 +144,6 @@ const CattleDeathComponent = (): ReactElement => {
               currentValue.deathBy === 2
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosConsumoProprioF =
                   previousValues.totalBezerrosConsumoProprioF + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -204,8 +161,7 @@ const CattleDeathComponent = (): ReactElement => {
               }
             }
 
-            // **********_)___________________________*********************
-
+//******************************************************************************************************* */
             previousValues.totalCattlesMale =
               previousValues.totalOutrosM +
               previousValues.totalBezerrosM +
@@ -255,7 +211,7 @@ const CattleDeathComponent = (): ReactElement => {
             totalNovilhosF: 0,
             totalOutrosF: 0,
 
-            // CONSUMO PRPRIO
+            // CONSUMO PROPRIO
             totalBezerrosConsumoProprioM: 0,
             totalDesmamadosConsumoProprioM: 0,
             totalGarrotesConsumoProprioM: 0,

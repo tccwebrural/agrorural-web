@@ -160,7 +160,7 @@ const LoaderNotificationProvider = () => {
     setQtyNotification(notifications.length);
     return notifications;
   };
-  // TODO: JS-DOC
+
   const getNotification = async () => {
     if (notification === undefined || notification.length === 0) {
       const notifications = await getAllVacines();

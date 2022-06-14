@@ -2,8 +2,6 @@ import { Box, Button, Container } from "@mui/material";
 import { ReactElement } from "react";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import { Link } from "react-router-dom";
-
-/**IMAGENS*/
 import logoPequena from "../../../assets/logoPequena.png";
 import meio from "../../../assets/meio.png";
 import vaca3 from "../../../assets/vaca3.png";
@@ -16,8 +14,6 @@ import leticia from "../../../assets/leticia.png";
 import george from "../../../assets/george.png";
 import footer from "../../../assets/footer.png";
 import pablo from "../../../assets/pablo.png";
-
-/**CSS*/
 import "../styles/Home.css";
 
 const HomePage = (): ReactElement => {

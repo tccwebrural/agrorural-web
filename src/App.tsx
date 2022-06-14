@@ -8,23 +8,6 @@ import PrivateRoute from "./modules/private/Private";
 import PublicRoute from "./modules/public/Public";
 import { ProviderAuth } from "./providers/AuthProvider";
 
-// function App() {
-//   return (
-//     <>
-//       <CssBaseline />
-//       <BrowserRouter>
-//         <ProviderAuth>
-//           <Routes>
-//             {PublicRoute()}
-//             {PrivateRoute()}
-//           </Routes>
-//         </ProviderAuth>
-//       </BrowserRouter>
-//       <Toaster position="top-center" reverseOrder={false} />
-//     </>
-//   );
-// }
-
 function App() {
   return (
     <>
