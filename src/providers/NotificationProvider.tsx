@@ -96,15 +96,12 @@ const LoaderNotificationProvider = () => {
                   anoDoseReforco = vaccines.dataAplicacao.getFullYear();
                   mesDoseReforco = vaccines.dataAplicacao.getMonth() + 1;
                   diaDoseReforco = vaccines.dataAplicacao.getUTCDate();
-                  // if (vaccines.vaccinesName === vaccineRaiva) {
-                  //   contVaccineRaiva++;
-                  // }
+                  if (vaccines.vaccinesName === vaccineRaiva) {
+                    contVaccineRaiva++;
+                  }
                 }
                 let result = [""];
-                result = vacinasObrigatorias.filter(
-                  (x) =>
-                    yearOfVaccine != today.getFullYear() ||
-                    !vacines.map((vacines) => vacines.name).includes(x)
+                result = vacinasObrigatorias.filter((x) =>yearOfVaccine != today.getFullYear() || !vacines.map((vacines) => vacines.name).includes(x)
                 );
 
                 if (mesDoseReforco > 12) {
