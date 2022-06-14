@@ -47,11 +47,6 @@ type AuthContext = {
 
   logout: (redirectToHome?: boolean) => void;
   desactiverUser: () => Promise<void>;
-  // activerUser: (email: string) => Promise<void>;
-  // desactiverUser: (redirectToHome?: boolean) => Promise<void>;
-
-  // sendPasswordReset: (email: string) => {};
-  // loadUserDataById: (uid: string) => Promise<UserModel | undefined>;
   loadUserDataById: (user: User) => Promise<UserModel | undefined>;
   sendPasswordReset: (email: string) => Promise<void>;
   updateUserId: (formData: PerfilModelUser) => Promise<void>;
@@ -68,7 +63,6 @@ const UserAuthProvider = (): AuthContext => {
    * @param password - Senha do usuário;
    */
   const signIn = async (email: string, password: string) => {
-    // const loadingHelper = useGlobalLoading();
 
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
@@ -101,9 +95,6 @@ const UserAuthProvider = (): AuthContext => {
       );
 
       const user = res.user;
-
-      // await desactiverUser();
-
       await registerUser(user.uid, formData);
 
       toast.success(USUARIO_CADASTRADO_COM_SUCESSO);
@@ -128,7 +119,6 @@ const UserAuthProvider = (): AuthContext => {
       await sendPasswordResetEmail(auth, email);
       toast.success(EMAIL_REDIFINIR_ENVIADO_COM_SUCESSO);
     } catch (err: any) {
-      // toast.error(getFireError(err));
       toast.error("O e-mail informado não está cadastrado no sistema!");
       throw err;
     }
@@ -250,22 +240,18 @@ const UserAuthProvider = (): AuthContext => {
 
     const whereByCpf = query(userCollectionRef, where("cpf", "==", cpf));
 
-    // return !(await getDocs(whereByCpf)).empty;
     return !(await getDocs(whereByCpf)).empty;
   };
 
   const updateUserId = async (formData: PerfilModelUser) => {
-    // await updateUserId(formData);
 
     const user = await getUser();
     const userRef = doc(firestore, COLLECTION_USERS, user.id);
-    // const userDoc = await getDoc(userRef);
 
     return updateDoc(userRef, {
       cpf: formData.cpf,
       name: formData.name,
       phone: formData.phone,
-      // ...formData,
     });
   };
 

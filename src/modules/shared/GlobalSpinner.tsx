@@ -1,6 +1,5 @@
 import { css } from "@emotion/react";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import React from "react";
 import { usePromiseTracker } from "react-promise-tracker";
 import { PuffLoader } from "react-spinners";
 

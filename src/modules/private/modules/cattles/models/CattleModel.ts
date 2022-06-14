@@ -13,14 +13,6 @@ const CATTLE_DETH_TYPES: { [key: number]: string } = {
   2: "Consumo Próprio",
 };
 
-// const CATTLES_CATTEGORIES: { [key: number]: string } = {
-//   1: "Bezerros",
-//   2: "Desmamados",
-//   3: "Desmamados",
-//   4: "Garrotes",
-//   5: "Novilhos",
-//   6: "Outros",
-// };
 class CattleModel {
   id?: string;
   identifier!: number;
@@ -33,7 +25,5 @@ class CattleModel {
   createdAt?: Timestamp;
   deathBy?: number;
   status?: number;
-
-  //categories?: number;
 }
 export { CATTLE_DETH_TYPES, CATTLE_SEXS, CattleModel, CATTLE_TYPES };

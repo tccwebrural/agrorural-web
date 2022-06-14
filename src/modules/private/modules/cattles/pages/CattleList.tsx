@@ -4,7 +4,6 @@ import {
   GridColDef,
   GridRenderCellParams,
   GridValueGetterParams,
-  nlNL,
   ptBR,
 } from "@mui/x-data-grid";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -15,13 +14,11 @@ import { FaCross } from "react-icons/fa";
 import {
   Box,
   Button,
-  Container,
   Fab,
   Grid,
   MenuItem,
   Modal,
   Select,
-  Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
@@ -35,17 +32,13 @@ import "../../../styles/CattleList.css";
 import {
   DEATH_BY_VARIOUS_CASES,
   DEATH_BY_OWN_CONSUMPTION,
-  CATTLE_IS_LIVE,
 } from "../../../../../constants";
 import { useNotification } from "providers/NotificationProvider";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
-// import { ptBR } from "@mui/material/locale";
 
 const CattleListPage = (): ReactElement => {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   const columns: GridColDef[] = [
     {
@@ -107,8 +100,6 @@ const CattleListPage = (): ReactElement => {
       align: "center",
       width: 100,
       sortable: false,
-      // valueGetter: (params: GridValueGetterParams) =>
-      //     `${params.row.qtyChildren} kkk`,
     },
     {
       field: "operacoes",
@@ -226,10 +217,8 @@ const CattleListPage = (): ReactElement => {
             id: cattle.id,
             identifier: cattle.identifier,
             name: cattle.name,
-            // Exemplo 3 de como mudar o valor para exibir
             age: getAgeFromDate(cattle.birthday),
             month: getMonthFromDate(cattle.birthday),
-            // Exemplo 4 de como mudar o valor para exibir
             type: CATTLE_TYPES[cattle.type],
             sex: cattle.sex,
             weigth: cattle.weigth,
@@ -239,7 +228,6 @@ const CattleListPage = (): ReactElement => {
           if (cattleToDisplay.status != 3) {
             listToDisplay.push(cattleToDisplay);
           }
-          // listToDisplay.push(cattleToDisplay);
         }
 
         setAnimals(listToDisplay);
@@ -251,8 +239,7 @@ const CattleListPage = (): ReactElement => {
       });
   }, []);
 
-  //
-  // BLOCO DE CODIGO MODAL DELETE ******************************************************************
+  //******************************* BLOCO DE CODIGO MODAL DELETE *****************************************
   const openDeleteAnimalModal = (animalSelected: CattleModel) => {
     setSelectedAnimal(animalSelected);
     setModalDeleteOpen(true);
@@ -261,15 +248,11 @@ const CattleListPage = (): ReactElement => {
     if (isToDelete && selectedAnimal && selectedAnimal.id) {
       await cattlehelpers.deleteCattleId(selectedAnimal.id);
       toast.success(`Animal ${selectedAnimal.name} deletado com sucesso`);
-      // await window.location.reload();
       await window.location.reload();
 
-      // await cattlehelpers.getAllCattles().then(setAnimals);
     } else {
     }
 
-    // setSelectedAnimal({});
-    // Fecha o modal
     setModalDeleteOpen(false);
   };
 
@@ -351,7 +334,7 @@ const CattleListPage = (): ReactElement => {
     }
   };
 
-  // FIM DO BLOCO DE CODIGO MODAL DELETE ****************************************************************
+  //******************************* FIM DO BLOCO DE CODIGO MODAL DELETE ***************************
 
   // ***********************************BLOCO CODIGO MODAL DEATHS *********************************
 
@@ -371,9 +354,6 @@ const CattleListPage = (): ReactElement => {
         toast.success(`Animal ${selectedAnimal.name} foi morto`);
         await window.location.reload();
 
-        // await cattlehelpers.getAllCattles().then(setAnimals);
-
-        // notifyProvider.refreshNotifications();
       } else {
         throw "Animal não selecionado";
       }
@@ -463,7 +443,7 @@ const CattleListPage = (): ReactElement => {
   // *************************************** FIM DO CODIGO MODAL DEATHS ****************************************
   return (
     <>
-      {/* MODALL KK */}
+      {/* MODALL */}
       <div id="MainBlockCattleList">
         <div id="Block-Txt-Line-List">
           <h2 id="Block-Txt-List">Minha Criação</h2>
@@ -491,21 +471,12 @@ const CattleListPage = (): ReactElement => {
               rows={animals}
               columns={columns}
               localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
-              // CAIXA DE SELELEÃO
-              // checkboxSelection
 
               sx={{
                 border: "none",
                 boxShadow: " 2px 2px 4px 2px var(--cor111)",
               }}
-              // sx={{
-              //   boxShadow: 2,
-              //   border: 2,
-              //   borderColor: "primary.light",
-              //   "& .MuiDataGrid-cell:hover": {
-              //     color: "primary.main",
-              //   },
-              // }}
+            
             />
             {renderDeleteAnimalModal()}
             {renderDeatTypesModal()}

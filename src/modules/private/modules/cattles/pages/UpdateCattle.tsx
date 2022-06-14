@@ -3,9 +3,7 @@ import {
   Button,
   FormControl,
   Grid,
-  InputLabel,
   MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import { Formik } from "formik";
@@ -20,14 +18,11 @@ import vaca_com_chifre_andando from "../../../../../assets/vaca-com-chifre-andan
 import { getControls } from "../../../../../utils/FormUtils";
 import { CattleHelper } from "../helpers/CattleHelper";
 import { CattleModel } from "../models/CattleModel";
-
 import "../../../styles/UpdateCattle.css";
 
-//
 const UpdateCattle = (): ReactElement => {
   const cattleHelper = CattleHelper();
   const loadingHelper = useGlobalLoading();
-  // const today = new Date();
 
   const [initialValues, setInitialValues] = useState<CattleModel>({
     identifier: 0,
@@ -42,19 +37,6 @@ const UpdateCattle = (): ReactElement => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // const submitForm = (cattle: CattleModel) => {
-  //   cattle.id = id;
-  //   cattleHelper
-  //     .updateCattleId(cattle)
-
-  //     .catch((err) => {
-  //       //TODO: Mensagem de erro
-  //       //toast erro
-  //       console.error(err);
-  //       toast.error(getFireError(err));
-  //     });
-  // };
-
   const submitForm = async (cattle: CattleModel) => {
     if (id) {
       cattleHelper
@@ -63,7 +45,6 @@ const UpdateCattle = (): ReactElement => {
           //toast sucess
           {
             navigate("/private/cattles");
-            // navigate(`private/cattle/${id}/Vaccine`);
           }
         )
         .catch((err) => {
@@ -73,7 +54,6 @@ const UpdateCattle = (): ReactElement => {
           toast.error(getFireError(err));
         });
     }
-    // vacine.id = id;
   };
 
   useEffect(() => {
@@ -145,21 +125,19 @@ const UpdateCattle = (): ReactElement => {
                     {...getControls(formik, "identifier")}
                   />
 
-                  <FormControl >
-                    {/* <InputLabel htmlFor="grouped-select">Sexo</InputLabel> */}
+                  <FormControl>
                     <TextField
-                     style={{ width: 230, margin: "2.6%  3%" }}
+                      style={{ width: 230, margin: "2.6%  3%" }}
                       select
                       {...getControls(formik, "sex")}
                       label="Sexo"
-                      // name="category"
                     >
                       <MenuItem value={1}>MACHO</MenuItem>
                       <MenuItem value={2}>FÊMEA</MenuItem>
                     </TextField>
                   </FormControl>
                   <TextField
-                    style={{ width: 227, marginLeft: "2%", marginTop:6 }}
+                    style={{ width: 227, marginLeft: "2%", marginTop: 6 }}
                     label="Peso"
                     {...getControls(formik, "weigth")}
                     InputLabelProps={{
@@ -169,42 +147,43 @@ const UpdateCattle = (): ReactElement => {
                   />
 
                   <TextField
-                    style={{ width: 347, marginTop:6,marginLeft:6}}
+                    style={{ width: 347, marginTop: 6, marginLeft: 6 }}
                     label="Data de Nascimento"
                     type="date"
                     {...getControls(formik, "birthday")}
                     InputLabelProps={{
                       shrink: true,
                     }}
-
-                    // inputProps={{
-                    //   min: "2000-01-01",
-                    //   max: `${today.toISOString()}`,
-                    // }}
                   />
 
-                  <FormControl sx={{ m: 1, minWidth: 290, margin: "- 0.6%",marginLeft: "0.4%", marginRight:"1%",marginTop:0.2  }}>
-                    {/* <InputLabel htmlFor="type">Tipo</InputLabel> */}
+                  <FormControl
+                    sx={{
+                      m: 1,
+                      minWidth: 290,
+                      margin: "- 0.6%",
+                      marginLeft: "0.4%",
+                      marginRight: "1%",
+                      marginTop: 0.2,
+                    }}
+                  >
                     <TextField
                       select
                       {...getControls(formik, "type")}
                       label="Tipo"
-                      style={{ width: 333, margin: "2% 0.6%", marginTop:4}}
-                      // name="type"
+                      style={{ width: 333, margin: "2% 0.6%", marginTop: 4 }}
                     >
                       <MenuItem value={1}>Gado de Corte</MenuItem>
                       <MenuItem value={2}>Gado Leitero</MenuItem>
                     </TextField>
                   </FormControl>
                   <TextField
-                    // disabled
                     label="Quantidade de cria"
                     type="number"
                     {...getControls(formik, "qtyChildren")}
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    style={{ width: 320, marginTop:5.9, marginLeft:4}}
+                    style={{ width: 320, marginTop: 5.9, marginLeft: 4 }}
                   />
                   <div id="Block-CowImage-EditAnimalData">
                     <img
@@ -232,12 +211,7 @@ const UpdateCattle = (): ReactElement => {
                         Cancelar
                       </Button>
 
-                      <Button
-                        variant="contained"
-                        color="success"
-                        // onClick={salvarDadosAnimal}
-                        type="submit"
-                      >
+                      <Button variant="contained" color="success" type="submit">
                         Atualizar
                       </Button>
                     </Grid>

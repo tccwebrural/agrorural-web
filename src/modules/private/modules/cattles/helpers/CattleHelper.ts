@@ -1,15 +1,12 @@
 import { COLLECTION_CATTLES } from "./../../../../../constants";
-// import { randomUUID } from "crypto";
 import {
   addDoc,
   collection,
   deleteDoc,
   doc,
-  DocumentReference,
   getDoc,
   getDocs,
   query,
-  setDoc,
   Timestamp,
   updateDoc,
   where,
@@ -18,7 +15,6 @@ import { firestore } from "../../../../../configs/Firebase";
 import { COLLECTION_FARMS } from "../../../../../constants";
 import { FarmHelper } from "../../../helpers/FarmHelper";
 import { CattleModel } from "../models/CattleModel";
-import { useNotification } from "providers/NotificationProvider";
 
 export const CattleHelper = () => {
   const { getFarmRef } = FarmHelper();
@@ -53,7 +49,6 @@ export const CattleHelper = () => {
       cattle.createdAt = Timestamp.now();
       cattle.status = 1;
 
-      // cattle.status = 1;
       const cattles = await getCattlesByIdentifier(cattle.identifier);
       if (cattles.length > 0) {
         throw "Esse identificador já existe, por favor troque para um novo!";
@@ -82,7 +77,6 @@ export const CattleHelper = () => {
       );
 
       const cattles = await getCattlesByIdentifier(cattle.identifier);
-      //REMOVER CATTLE ATUAL DA ATUALIZAÇÃO
       for (let index = 0; index < cattles.length; index++) {
         const item = cattles[index];
         if (item.id === cattle.id) {
@@ -132,7 +126,6 @@ export const CattleHelper = () => {
       );
       const cattleRef = doc(firestore, cattlesCollectionRef.path, cattleId);
 
-      // return updateDoc(cattleRef, { status: 2 });
       return deleteDoc(cattleRef);
     }
   };
@@ -154,7 +147,6 @@ export const CattleHelper = () => {
         deathBy: deathBy,
         identifier: "Morto",
       });
-      // return deleteDoc(cattleRef);
     }
   };
 
@@ -183,10 +175,6 @@ export const CattleHelper = () => {
         where("status", "!=", 2)
       );
 
-      // const findByCollectionRef = query(
-      //   cattlesCollectionRef,
-      //   where("deathBy", "!=", 1)
-      // );
       const response = await getDocs(findByCollectionRef);
 
       cattles = response.docs.map((doc) => {

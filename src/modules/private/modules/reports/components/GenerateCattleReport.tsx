@@ -1,41 +1,19 @@
 import {
   Box,
-  Table,
-  TableCell,
-  TableContainer,
-  TableHead,
-  Typography,
-  TableRow,
-  TableBody,
-  Paper,
   Fab,
   Button,
-  TextField,
   Grid,
   Modal,
 } from "@mui/material";
 import React, { ReactElement, useEffect, useState } from "react";
-import { useAuth } from "../../../../../providers/AuthProvider";
 import "../../../styles/Home.css";
 import { BsPrinter } from "react-icons/bs";
 import { CattleHelper } from "../../cattles/helpers/CattleHelper";
 import { useGlobalLoading } from "providers/GlobalLoadingProvider";
-import {
-  CattleModel,
-  CATTLE_SEXS,
-  CATTLE_TYPES,
-} from "../../cattles/models/CattleModel";
 import toast from "react-hot-toast";
 import { ReportModel } from "../models/ReportModel";
-import { Agent } from "https";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { CompressOutlined, PreviewOutlined } from "@mui/icons-material";
 import { MALE, FEMALE, CATTLE_IS_LIVE } from "../../../../../constants";
-import { FarmHelper } from "modules/private/helpers/FarmHelper";
-import { PerfilModelUser, UserModel } from "modules/public/models/UserModel";
-import { Formik } from "formik";
-import { RegisterValidatorSchema } from "modules/public/modules/authentication/validators/RegisterValidatorSchema";
-import { getControls } from "utils/FormUtils";
 import { ReportHelper } from "../helpers/ReportHelper";
 import { useNavigate } from "react-router-dom";
 import { getFireError } from "utils/HandleFirebaseError";
@@ -48,7 +26,6 @@ var lastYear = today.getFullYear() - 1;
 var twoYearsAgo = today.getFullYear() - 2;
 var threeYearsAgo = today.getFullYear() - 3;
 var fourYearsAgo = today.getFullYear() - 4;
-var periodo = [currentYear, lastYear, twoYearsAgo, threeYearsAgo, fourYearsAgo];
 
 const GenerateCattleReport = (): ReactElement => {
   const loadingHelper = useGlobalLoading();
@@ -57,9 +34,6 @@ const GenerateCattleReport = (): ReactElement => {
   const handleClose = () => setOpen(false);
   const handleOpen = () => setOpen(true);
   const cattlehelpers = CattleHelper();
-  function imprimir() {
-    window.print();
-  }
 
   const [report, setReport] = useState<ReportModel>({
     rebanhoAtual: {
@@ -178,7 +152,6 @@ const GenerateCattleReport = (): ReactElement => {
 
       body: [
         ...reports.map((el) => [
-          // el.createdAt.toDate().getMonth(),
           el.createdAt.toDate().toLocaleDateString(),
           el.rebanhoAtual?.bezerros.male,
           el.rebanhoAtual?.desmamados.male,
@@ -239,7 +212,6 @@ const GenerateCattleReport = (): ReactElement => {
 
       body: [
         ...reports.map((el) => [
-          // el.createdAt.toDate().getMonth(),
           el.createdAt.toDate().toLocaleDateString(),
           el.rebanhoAtual?.bezerros.female,
           el.rebanhoAtual?.desmamados.female,
@@ -298,8 +270,6 @@ const GenerateCattleReport = (): ReactElement => {
 
       body: [
         ...reports.map((el) => [
-          // el.createdAt.toDate().getMonth(),
-          // el.createdAt.toDate().toLocaleDateString(),
           el.createdAt.toDate().toLocaleDateString(),
           el.deathByOwnConsuption?.bezerros.male,
           el.deathByOwnConsuption?.desmamados.male,
@@ -415,7 +385,6 @@ const GenerateCattleReport = (): ReactElement => {
 
       body: [
         ...reports.map((el) => [
-          // el.createdAt.toDate().getMonth(),
           el.createdAt.toDate().toLocaleDateString(),
           el.deathByDiversousCases?.bezerros.male,
           el.deathByDiversousCases?.desmamados.male,
@@ -505,7 +474,6 @@ const GenerateCattleReport = (): ReactElement => {
           (previousValues: any, currentValue: any) => {
             if (currentValue.sex === MALE && currentValue.status != 3) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosM =
                   previousValues.totalBezerrosM + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -525,7 +493,6 @@ const GenerateCattleReport = (): ReactElement => {
               currentValue.status != 3
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosF =
                   previousValues.totalBezerrosF + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -566,7 +533,6 @@ const GenerateCattleReport = (): ReactElement => {
               currentValue.deathBy === 1
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosCausasDiversasF =
                   previousValues.totalBezerrosCausasDiversasF + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -586,7 +552,6 @@ const GenerateCattleReport = (): ReactElement => {
             // *************************************CONSUMO PROPRIO************************************
             if (currentValue.sex === MALE && currentValue.deathBy === 2) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosConsumoProprioM =
                   previousValues.totalBezerrosConsumoProprioM + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -607,7 +572,6 @@ const GenerateCattleReport = (): ReactElement => {
               currentValue.deathBy === 2
             ) {
               if (currentValue.age >= 0 && currentValue.age <= 6) {
-                // previousValues.totalBezerrosM = currentValue.totalBezerrosM + 1;
                 previousValues.totalBezerrosConsumoProprioF =
                   previousValues.totalBezerrosConsumoProprioF + 1;
               } else if (currentValue.age > 6 && currentValue.age <= 12) {
@@ -798,18 +762,13 @@ const GenerateCattleReport = (): ReactElement => {
 
   const reportHelper = ReportHelper();
 
-  //   const [CattleCategory, setCattleCattegory] = useState<
-
   const navigate = useNavigate();
 
   const submitSave = async () => {
     await reportHelper
       .createReport(report)
       .then(() => {
-        // navigate("/private/home");
-        // let cancel = false;
-        // if (cancel) return;
-        // setReport(currentrep);
+
         toast.success("SUCESSO");
         navigate("/private/home");
       })
@@ -818,11 +777,9 @@ const GenerateCattleReport = (): ReactElement => {
         //toast erro
         navigate("/private/cattles");
 
-        // console.error(err);
         toast.error(getFireError(err));
       });
 
-    // vacine.id = id;
   };
   return (
     <>
