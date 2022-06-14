@@ -147,6 +147,7 @@
 }
 
 @media (max-width: 800px) {
+  
   #blocoGeral-infoGado {
     margin-top: 12%;
     padding-bottom: 20px;
@@ -166,7 +167,7 @@
   }
 
   #inputPeso {
-    width: 100px;
+    width: 85px;
   }
 
   #inputDataNascimento {

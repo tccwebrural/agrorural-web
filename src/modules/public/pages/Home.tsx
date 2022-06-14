@@ -102,7 +102,7 @@ const HomePage = (): ReactElement => {
                 gado. O AgroRural foca na gestão e no controle de vacinação do
                 gado, onde o pecuarista pode cadastrar seus animais e ter fácil
                 acesso à esses dados, e por meio de relatórios que o próprio
-                sistema fornece ter uma visão ampla do seu rebanho, além de
+                sistema fornece para ter uma visão ampla do seu rebanho, além de
                 notificar o pecuarista quando os animais estiverem no período de
                 vacinação.
               </span>
@@ -121,8 +121,7 @@ const HomePage = (): ReactElement => {
                   dados do animal em um papel que se perde facilmente e não
                   sabendo a data que o bezerro nasceu. Com o controle do
                   nascimento, o produtor rural consegue saber o período exato de
-                  quando vacinar os animais e o sistema irá notificar para que
-                  ele não perca a data de vacinação.
+                  quando vacinar os animais.
                 </span>
               </div>
             </section>
@@ -161,7 +160,7 @@ const HomePage = (): ReactElement => {
                   </div>
                   <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
-                    <p>Gerar Relatórios da quantidade de animais.</p>
+                    <p>Gerar Relatório da quantidade de animais.</p>
                   </div>
                   <div className="text-CheckBox">
                     <CheckOutlinedIcon sx={{ color: "green", margin: "1%" }} />
@@ -184,10 +183,10 @@ const HomePage = (): ReactElement => {
                 <span id="textInstituicao">
                   Universidade Estácio de Sá (UNESA). Universidade privada
                   brasileira fundada em 1970, <br />
-                  no bairro de Rio Comprido, Foi fundada como uma Faculdade de
-                  Direito e hoje possui mais de 39 Campos universitários
-                  espalhados pelo Brasil com diversos Cursos; Nesse projeto
-                  (AgroRural), o projeto ficará Alocado no Campos de Cabo Frio{" "}
+                  no bairro de Rio Comprido, foi fundada como uma faculdade de
+                  direito e hoje possui mais de 39 Campos universitários
+                  espalhados pelo Brasil com diversos cursos. Nesse projeto
+                  (AgroRural), o projeto ficará Alocado no campos de Cabo Frio{" "}
                 </span>
                 <div id="img-instituicao">
                   <img src={estacio} alt="Erro..." />
