@@ -141,7 +141,7 @@ const LoaderNotificationProvider = () => {
                     listToVaccine.push(cattleAndVaccines);
                   } else if (
                     result[i] === vaccineFebreAftosa &&
-                    mesAtual === 6 &&
+                    mesAtual === 5 &&
                     cattle.age < 24
                   ) {
                     listToVaccine.push(cattleAndVaccines);

@@ -94,7 +94,7 @@ const HomePage = (): ReactElement => {
             </div>
 
             <div id="agroRural">
-              <h1 className="textTittle">O que é o AGRO RURAL?</h1>
+              <h1 className="textTittle">O que é o AgroRural?</h1>
 
               <span>
                 É um sistema que veio para trazer mais praticidade e agilidade
@@ -112,7 +112,7 @@ const HomePage = (): ReactElement => {
               <br />
               <br />
               <div id="ideia">
-                <h1 className="textTittle">Como Surgiu a Ideia?</h1>
+                <h1 className="textTittle">Como surgiu a ideia?</h1>
 
                 <span>
                   A ideia surgiu no momento que foi estudada a dificuldade que
