@@ -138,7 +138,7 @@ const CattleListPage = (): ReactElement => {
       field: "operacoes",
       headerName: "Operações",
       description:
-        "Nos botões abaixo você pode visualizar os dados do animal,visualizar o cartão de vacina, editar e deletar os dados do animal selecionado.",
+        "Nos botões abaixo você pode visualizar os dados do animal,visualizar o cartão de vacina, editar, deletar e adicionar a morte do animal selecionado. ",
       sortable: false,
       headerAlign: "center",
       width: 260,
