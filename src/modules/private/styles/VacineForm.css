@@ -32,12 +32,14 @@
   margin-right: 5px;
   margin-left: -220px;
 }
+
 #Block-AnimalData {
   width: 1035px;
   height: 400px;
   margin: auto;
   padding: 1%;
 }
+
 #Block-CalfImage-CadastroVacina{
   display: flex;
   justify-content: end;
