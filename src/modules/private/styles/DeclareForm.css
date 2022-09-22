@@ -6,6 +6,7 @@
   height: 90px;
   margin: auto;
 }
+
 #Block-Txt-CattleDeclaration {
   color: var(--cor005);
   padding: 10px 10px;
@@ -15,6 +16,7 @@
   background-color: var(--cor001);
   position: relative;
 }
+
 #Block-Line-CattleDeclaration {
   background-color: var(--cor007);
   display: flex;
@@ -24,16 +26,19 @@
   margin-right: 2px;
   margin-left: -60px;
 }
+
 #printIcon {
   background-color: var(--cor007);
   margin-top: -25px;
   margin-left: 1447%;
 }
+
 #reportIcon {
   background-color: var(--cor005);
   margin-top: -25px;
   margin-left: 1235%;
 }
+
 #bloco-modal-GerarRelatóri {
   font-size: 20px;
   color: var(--cor005);

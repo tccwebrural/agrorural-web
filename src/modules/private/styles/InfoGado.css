@@ -84,7 +84,6 @@
   margin: 0% 2.5%;
   flex-wrap: wrap;
 }
-
 #Card {
   margin: 0.8%;
   min-width: 160px;
@@ -92,14 +91,12 @@
   box-shadow: 1px 1px 5px 2px var(--cor033);
   border: 1px solid var(--cor033);
 }
-
 #vaccineIcons-InfoGado {
   display: flex;
   justify-content: center;
   height: 60px;
   margin-top: 10%;
 }
-
 #vacinas {
   margin: 0.8%;
   min-width: 160px;
@@ -107,7 +104,6 @@
   box-shadow: 1px 1px 5px 2px var(--cor033);
   border: 1px solid var(--cor033);
 }
-
 #cardNameInfoGado {
   width: 100%;
   margin: auto;
@@ -117,7 +113,6 @@
   background-color: var(--cor005);
   padding: 8px 8px;
 }
-
 #button {
   display: flex;
   justify-content: flex-end;
@@ -125,23 +120,18 @@
   right: 3%;
   bottom: 20px;
 }
-
 .gridInput {
   margin: 0.4%;
 }
-
 #inputPeso {
   width: 160px;
 }
-
 #inputDataNascimento {
   width: 119px;
 }
-
 #inputQtdCria {
   width: 100px;
 }
-
 #inputTipo {
   width: 110px;
 }
@@ -156,28 +146,22 @@
     display: flex;
     flex-wrap: wrap;
   }
-
   #button,
   #icone-imprimir {
     display: none;
   }
-
   .gridInput {
     margin: 1%;
   }
-
   #inputPeso {
     width: 85px;
   }
-
   #inputDataNascimento {
     width: 150px;
   }
-
   #inputQtdCria {
     width: 150px;
   }
-
   #inputTipo {
     width: 151px;
   }
