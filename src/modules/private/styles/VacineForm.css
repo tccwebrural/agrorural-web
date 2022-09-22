@@ -8,6 +8,7 @@
     padding: 1px;
     padding-bottom: 3%;
 }
+
 #Block-Txt-Line-VaccineRegister {
   display: flex;
   justify-content: space-around;
@@ -15,6 +16,7 @@
   width: 1100px;
   height: 90px;
 }
+
 #Block-Txt-VaccineRegister {
   color: var(--cor005);
   background-color: var(--cor001);
@@ -23,6 +25,7 @@
   width: 125%;
   font-size: 22px;
 }
+
 #Block-Line-VaccineRegister {
   background-color: var(--cor007);
   display: flex;
