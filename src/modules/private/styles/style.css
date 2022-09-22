@@ -16,7 +16,6 @@
   --cor009: rgb(189, 55, 37);
   --cor008: rgb(37, 37, 37);
 }
-
 .MainBlock {
   background-color: var(--cor001);
   width: 1100px;
@@ -28,7 +27,6 @@
   padding-bottom: 5%;
   margin-bottom: 2%;
 }
-
 .Block-Txt-Line {
   height: 90px;
   display: flex;
@@ -36,7 +34,6 @@
   width: 93%;
   margin: auto;
 }
-
 .Block-Txt {
   background: var(--cor001);
   padding: 0px 10px 0px 0px;
@@ -44,7 +41,6 @@
   color: var(--cor005);
   background-color: var(--cor001);
 }
-
 .Block-Line {
   width: 100%;
   text-align: start;
