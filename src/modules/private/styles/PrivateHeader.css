@@ -1,12 +1,10 @@
 #header {
   box-shadow: 0px 0px 5px 2px var(--cor111);
 }
-
 #logoPequena-header {
   display: flex;
   margin: 0.5% 0%;
 }
-
 #logoPequena-header img {
   max-width: 125px;
   height: auto;
