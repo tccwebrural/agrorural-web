@@ -8,17 +8,20 @@
   padding-bottom: 5%;
   position: relative;
 }
+
 #CattleForm {
   margin: auto;
   margin-top: 0%;
   width: 1045px;
   height: 400px;
 }
+
 #Block-CowImage-Form {
   position: absolute;
   bottom: -7px;
   left: 80px;
 }
+
 #Block-CalfImage-Form {
   position: absolute;
   right: 80px;
