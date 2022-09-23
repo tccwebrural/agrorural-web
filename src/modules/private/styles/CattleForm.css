@@ -19,17 +19,21 @@
   bottom: -7px;
   left: 80px;
 }
+
 #Block-CalfImage-Form {
   position: absolute;
   right: 80px;
   bottom: 50px;
 }
+
 #CowImage-Form {
   width: 350px;
 }
+
 #CalfImage-Form {
   width: 160px;
 }
+
 #Btns-SaveCancel-Form {
   height: 60px;
   position: absolute;
